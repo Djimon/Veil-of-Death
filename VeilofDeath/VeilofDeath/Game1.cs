@@ -10,25 +10,29 @@ namespace VeilofDeath
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
+        GraphicsDevice device;
         SpriteBatch spriteBatch;
         GamePadState lastState = GamePad.GetState(PlayerIndex.One);
         KeyboardState oldKeyboardState, currentKeyboardState;
 
-        Vector3 cameraPosition = new Vector3(0.0f, 0.0f, GameConstants.CameraHeight);
-        float aspectRatio;
-        Matrix projectionMatrix;
-        Matrix viewMatrix;
-        Matrix playerWorld;
+        Vector3 cameraPosition = new Vector3(0.0f, 0.0f, GameConstants.fCameraHeight);
+        float fAspectRatio;
+        Matrix x_projectionMatrix;
+        Matrix x_viewMatrix;
+        Matrix x_playerWorld;
 
-        Model cube;
-        Matrix[] cubeTransform;
+        Player Player;
+        Model m_player;
+        Matrix[] x_playerModelTransforms;
+
+        Effect basicEffect;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            aspectRatio = (float)GraphicsDeviceManager.DefaultBackBufferWidth / GraphicsDeviceManager.DefaultBackBufferHeight;
+            fAspectRatio = (float)GraphicsDeviceManager.DefaultBackBufferWidth / GraphicsDeviceManager.DefaultBackBufferHeight;
         }
 
         /// <summary>
@@ -39,8 +43,16 @@ namespace VeilofDeath
         /// </summary>
         protected override void Initialize()
         {
+            graphics.PreferredBackBufferWidth = 800;
+            graphics.PreferredBackBufferHeight = 600;
+            graphics.IsFullScreen = false;
+            graphics.ApplyChanges();
+            Window.Title = "Veil of Death (alpha 0.01a)";
+
+
             currentKeyboardState = new KeyboardState();
             // TODO: Add your initialization logic here
+            SetUpCamera();
 
             base.Initialize();
         }
@@ -53,8 +65,11 @@ namespace VeilofDeath
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
             // TODO: use this.Content to load your game content here
+            //basicEffect = Content.Load<Effect>("effects");
+            m_player = LoadModel("Models/cube");
+            x_playerModelTransforms = SetupEffectDefaults(m_player);
+
         }
 
         /// <summary>
@@ -75,7 +90,7 @@ namespace VeilofDeath
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            float timeDelta = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            float fTimeDelta = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
 
             // TODO: Add your update logic here
@@ -89,13 +104,33 @@ namespace VeilofDeath
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.DarkSlateBlue);
 
-            // TODO: Add your drawing code here
+            Matrix x_PlayerTranslationMatrix = Matrix.CreateTranslation(Player.Position);
+            DrawModel(m_player,x_PlayerTranslationMatrix,x_playerModelTransforms);
+
 
             base.Draw(gameTime);
         }
 
+
+        /// <summary>
+        /// Sets up the view matrix and the projection matrix
+        /// </summary>
+        private void SetUpCamera()
+        {
+            x_viewMatrix = Matrix.CreateLookAt(new Vector3(20, 13, -5), new Vector3(8, 0, -7), new Vector3(0, 1, 0));
+            x_projectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, 
+                                                                    fAspectRatio, 
+                                                                    0.2f, 
+                                                                    500.0f);
+        }
+
+        /// <summary>
+        /// Enables the default effect for the given model
+        /// </summary>
+        /// <param name="myModel">3D Model</param>
+        /// <returns>absolute bone transforms as Matrix[]</returns>
         private Matrix[] SetupEffectDefaults(Model myModel)
         {
             Matrix[] absoluteTransforms = new Matrix[myModel.Bones.Count];
@@ -106,11 +141,53 @@ namespace VeilofDeath
                 foreach (BasicEffect effect in mesh.Effects)
                 {
                     effect.EnableDefaultLighting();
-                    effect.Projection = projectionMatrix;
-                    effect.View = viewMatrix;
+                    effect.Projection = x_projectionMatrix;
+                    effect.View = x_viewMatrix;
                 }
             }
             return absoluteTransforms;
+        }
+
+        /// <summary>
+        /// Loads a Model from content pipeline via string
+        /// and apply a basic effect
+        /// </summary>
+        /// <param name="assetName">name of model in content pipeline (with path)</param>
+        /// <returns>Model</returns>
+        private Model LoadModel(string assetName)
+        {
+            Model newModel = Content.Load<Model>(assetName);
+            foreach (ModelMesh mesh in newModel.Meshes)
+            {
+                foreach (ModelMeshPart meshPart in mesh.MeshParts)
+                {
+                    //meshPart.Effect = basicEffect.Clone();
+                }
+            }
+            return newModel;
+        }
+
+        /// <summary>
+        /// draws the given model
+        /// </summary>
+        /// <param name="model">Model</param>
+        /// <param name="modelTranslation">Translation matrix of the given model</param>
+        /// <param name="absoluteBoneTransforms">bone transformation matrix of given model</param>
+        public void DrawModel(Model model, Matrix modelTranslation, Matrix[] absoluteBoneTransforms)
+        {
+            
+            //Draw the model, a model can have multiple meshes, so loop
+            foreach (ModelMesh mesh in model.Meshes)
+            {
+                //This is where the mesh orientation is set
+                foreach (BasicEffect effect in mesh.Effects)
+                {
+                    effect.World = absoluteBoneTransforms[mesh.ParentBone.Index] * modelTransform;
+                    effect.View = x_viewMatrix;
+                }
+                //Draw the mesh, will use the effects set above.
+                mesh.Draw();
+            }
         }
     }
 }

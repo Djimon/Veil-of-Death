@@ -3,6 +3,6 @@
     static class GameConstants
     {
 
-        public static float CameraHeight = 100;
+        public static float fCameraHeight = 100;
     }
 }
