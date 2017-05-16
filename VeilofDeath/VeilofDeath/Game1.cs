@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.Collections.Generic;
 
 namespace VeilofDeath
 {
@@ -16,23 +18,36 @@ namespace VeilofDeath
         KeyboardState oldKeyboardState, currentKeyboardState;
 
         Vector3 cameraPosition = new Vector3(0.0f, 0.0f, GameConstants.fCameraHeight);
-        float fAspectRatio;
         Matrix x_projectionMatrix;
         Matrix x_viewMatrix;
         Matrix x_playerWorld;
+
+        VertexBuffer cityVertexBuffer;
+        Texture2D sceneryTexture;
+        int[,] floorPlan;
+        int[] buildingHeights = new int[] { 0, 2, 2, 6, 5, 4 };
+        Vector3 lightDirection = new Vector3(3, -2, 5);
+
+        SpriteFont lucidaConsole;
 
         Player Player;
         Model m_player;
         Matrix[] x_playerModelTransforms;
 
-        Effect basicEffect;
+        //Effect basicEffect;
+
+        Matrix viewMatrix;
+        Matrix projectionMatrix;
+
+        Vector2 GUI_Pos = new Vector2(100, 50); //TODO get rid of magicConstants
+        Vector2 GUI_Stuff = new Vector2(100, 400); //TODO get rid of magicConstants
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            fAspectRatio = (float)GraphicsDeviceManager.DefaultBackBufferWidth / GraphicsDeviceManager.DefaultBackBufferHeight;
+            GameConstants.fAspectRatio = (float)GraphicsDeviceManager.DefaultBackBufferWidth / GraphicsDeviceManager.DefaultBackBufferHeight;
         }
 
         /// <summary>
@@ -49,10 +64,12 @@ namespace VeilofDeath
             graphics.ApplyChanges();
             Window.Title = "Veil of Death (alpha 0.01a)";
 
+            lightDirection.Normalize();
 
             currentKeyboardState = new KeyboardState();
             // TODO: Add your initialization logic here
             SetUpCamera();
+
 
             base.Initialize();
         }
@@ -66,9 +83,15 @@ namespace VeilofDeath
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             // TODO: use this.Content to load your game content here
-            //basicEffect = Content.Load<Effect>("effects");
+            //basicEffect = Content.Load<Effect>("FX/effects");
+            lucidaConsole = Content.Load<SpriteFont>("Fonts/Lucida Console");
+
+            sceneryTexture = Content.Load<Texture2D>("Textures/texturemap");
             m_player = LoadModel("Models/cube");
             x_playerModelTransforms = SetupEffectDefaults(m_player);
+
+            Player = new Player();
+            Player.Spawn();
 
         }
 
@@ -92,10 +115,23 @@ namespace VeilofDeath
                 Exit();
             float fTimeDelta = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-
+            UpdateCamera();
             // TODO: Add your update logic here
 
             base.Update(gameTime);
+        }
+
+        private void UpdateCamera()
+        {
+            Vector3 campos = new Vector3(0, 0.1f, 0.6f);
+            campos = Vector3.Transform(campos, Matrix.CreateFromQuaternion(Player.Rotation));
+            campos += Player.Position;
+
+            Vector3 camup = new Vector3(0, 1, 0);
+            camup = Vector3.Transform(camup, Matrix.CreateFromQuaternion(Player.Rotation));
+
+            viewMatrix = Matrix.CreateLookAt(campos, Player.Position, camup);
+            projectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, GameConstants.fAspectRatio, 0.2f, 500.0f);
         }
 
         /// <summary>
@@ -109,10 +145,19 @@ namespace VeilofDeath
             Matrix x_PlayerTranslationMatrix = Matrix.CreateTranslation(Player.Position);
             DrawModel(m_player,x_PlayerTranslationMatrix,x_playerModelTransforms);
 
+            DrawGUI();
 
             base.Draw(gameTime);
         }
 
+        private void DrawGUI()
+        {
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Opaque);
+            spriteBatch.DrawString(lucidaConsole, "Pos: " + Player.Position,
+                                   GUI_Pos, Color.LightGreen);
+
+            spriteBatch.End(); ;
+        }
 
         /// <summary>
         /// Sets up the view matrix and the projection matrix
@@ -121,7 +166,7 @@ namespace VeilofDeath
         {
             x_viewMatrix = Matrix.CreateLookAt(new Vector3(20, 13, -5), new Vector3(8, 0, -7), new Vector3(0, 1, 0));
             x_projectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, 
-                                                                    fAspectRatio, 
+                                                                    GameConstants.fAspectRatio, 
                                                                     0.2f, 
                                                                     500.0f);
         }
@@ -182,7 +227,7 @@ namespace VeilofDeath
                 //This is where the mesh orientation is set
                 foreach (BasicEffect effect in mesh.Effects)
                 {
-                    effect.World = absoluteBoneTransforms[mesh.ParentBone.Index] * modelTransform;
+                    effect.World = absoluteBoneTransforms[mesh.ParentBone.Index] * modelTranslation;
                     effect.View = x_viewMatrix;
                 }
                 //Draw the mesh, will use the effects set above.
