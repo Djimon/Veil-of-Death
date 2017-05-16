@@ -26,6 +26,16 @@ namespace VeilofDeath
 
         Effect basicEffect;
 
+        Vector3 lightDirection = new Vector3(3, -2, 5);
+        SpriteFont lucidaConsole;
+
+        Matrix viewMatrix;
+        Matrix projectionMatrix;
+
+        Vector2 GUI_Pos = new Vector2(100, 50); //TODO get rid of magicConstants
+        Vector2 GUI_Stuff = new Vector2(100, 400); //TODO get rid of magicConstants
+
+
 
         //level test variables
         Level dungeon;
@@ -54,6 +64,7 @@ namespace VeilofDeath
             graphics.ApplyChanges();
             Window.Title = "Veil of Death (alpha 0.01a)";
 
+            lightDirection.Normalize();
 
             currentKeyboardState = new KeyboardState();
             // TODO: Add your initialization logic here
@@ -79,8 +90,12 @@ namespace VeilofDeath
             spriteBatch = new SpriteBatch(GraphicsDevice);
             // TODO: use this.Content to load your game content here
             //basicEffect = Content.Load<Effect>("effects");
+            lucidaConsole = Content.Load<SpriteFont>("Fonts/Lucida Console");
             m_player = LoadModel("Models/cube");
             x_playerModelTransforms = SetupEffectDefaults(m_player);
+
+            Player = new Player();
+            Player.Spawn();
 
         }
 
@@ -104,12 +119,24 @@ namespace VeilofDeath
                 Exit();
             float fTimeDelta = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-
+            UpdateCamera();
             // TODO: Add your update logic here
 
             base.Update(gameTime);
         }
 
+        private void UpdateCamera()
+        {
+            Vector3 campos = new Vector3(0, 0.1f, 0.6f);
+            campos = Vector3.Transform(campos, Matrix.CreateFromQuaternion(Player.Rotation));
+            campos += Player.Position;
+
+            Vector3 camup = new Vector3(0, 1, 0);
+            camup = Vector3.Transform(camup, Matrix.CreateFromQuaternion(Player.Rotation));
+
+            viewMatrix = Matrix.CreateLookAt(campos, Player.Position, camup);
+            projectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, GameConstants.fAspectRatio, 0.2f, 500.0f);
+        }
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
@@ -121,6 +148,7 @@ namespace VeilofDeath
             Matrix x_PlayerTranslationMatrix = Matrix.CreateTranslation(Player.Position);
             DrawModel(m_player,x_PlayerTranslationMatrix,x_playerModelTransforms);
 
+            DrawGUI();
 
             dungeon.DrawGround(GraphicsDevice);
 
@@ -128,7 +156,14 @@ namespace VeilofDeath
             base.Draw(gameTime);
         }
 
+        private void DrawGUI()
+        {
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Opaque);
+            spriteBatch.DrawString(lucidaConsole, "Pos: " + Player.Position,
+                                   GUI_Pos, Color.White);
 
+            spriteBatch.End(); ;
+        }
         /// <summary>
         /// Sets up the view matrix and the projection matrix
         /// </summary>

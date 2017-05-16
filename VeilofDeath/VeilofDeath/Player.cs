@@ -28,7 +28,7 @@ namespace VeilofDeath
 
         public void Spawn()
         {
-            Position = new Vector3(8, 1, -3);
+            Position = new Vector3(0, 1, 1);
             Rotation = Quaternion.Identity;
             Velocity = Vector3.Zero;
             //TODO: Reset Level, all Buffs and Debuffs
