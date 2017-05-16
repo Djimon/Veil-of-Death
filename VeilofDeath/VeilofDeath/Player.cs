@@ -15,9 +15,11 @@ namespace VeilofDeath
         public Matrix[] Transforms;
 
         //Position of the model in world space
-        public Vector3 Position = Vector3.Zero;
+        public Vector3 Position;
         //Velocity of the model, applied each frame to the model's position
-        public Vector3 Velocity = Vector3.Zero;
+        public Vector3 Velocity;
+
+        public Quaternion Rotation;
 
         public Player()
         {
@@ -26,8 +28,9 @@ namespace VeilofDeath
 
         public void Spawn()
         {
-            Position = Vector3.Zero;
-
+            Position = new Vector3(8, 1, -3);
+            Rotation = Quaternion.Identity;
+            Velocity = Vector3.Zero;
             //TODO: Reset Level, all Buffs and Debuffs
         }
 
