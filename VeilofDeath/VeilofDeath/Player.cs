@@ -19,6 +19,11 @@ namespace VeilofDeath
         //Velocity of the model, applied each frame to the model's position
         public Vector3 Velocity = Vector3.Zero;
 
+        public Player()
+        {
+
+        }
+
         public void Spawn()
         {
             Position = Vector3.Zero;

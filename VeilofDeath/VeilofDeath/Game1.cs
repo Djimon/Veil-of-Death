@@ -16,7 +16,6 @@ namespace VeilofDeath
         KeyboardState oldKeyboardState, currentKeyboardState;
 
         Vector3 cameraPosition = new Vector3(0.0f, 0.0f, GameConstants.fCameraHeight);
-        float fAspectRatio;
         Matrix x_projectionMatrix;
         Matrix x_viewMatrix;
         Matrix x_playerWorld;
@@ -27,12 +26,18 @@ namespace VeilofDeath
 
         Effect basicEffect;
 
+
+        //level test variables
+        Level dungeon;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            fAspectRatio = (float)GraphicsDeviceManager.DefaultBackBufferWidth / GraphicsDeviceManager.DefaultBackBufferHeight;
+            //device = GraphicsDevice;
+
+            GameConstants.fAspectRatio = (float)GraphicsDeviceManager.DefaultBackBufferWidth / GraphicsDeviceManager.DefaultBackBufferHeight;
         }
 
         /// <summary>
@@ -53,6 +58,13 @@ namespace VeilofDeath
             currentKeyboardState = new KeyboardState();
             // TODO: Add your initialization logic here
             SetUpCamera();
+
+            Player = new Player();
+            Player.Spawn();
+
+            //Level test initialize
+            dungeon = new Level();
+            dungeon.Initialize(GraphicsDevice);
 
             base.Initialize();
         }
@@ -110,6 +122,9 @@ namespace VeilofDeath
             DrawModel(m_player,x_PlayerTranslationMatrix,x_playerModelTransforms);
 
 
+            dungeon.DrawGround(GraphicsDevice);
+
+
             base.Draw(gameTime);
         }
 
@@ -121,7 +136,7 @@ namespace VeilofDeath
         {
             x_viewMatrix = Matrix.CreateLookAt(new Vector3(20, 13, -5), new Vector3(8, 0, -7), new Vector3(0, 1, 0));
             x_projectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, 
-                                                                    fAspectRatio, 
+                                                                    GameConstants.fAspectRatio, 
                                                                     0.2f, 
                                                                     500.0f);
         }
@@ -182,7 +197,7 @@ namespace VeilofDeath
                 //This is where the mesh orientation is set
                 foreach (BasicEffect effect in mesh.Effects)
                 {
-                    effect.World = absoluteBoneTransforms[mesh.ParentBone.Index] * modelTransform;
+                    effect.World = absoluteBoneTransforms[mesh.ParentBone.Index] * modelTranslation;
                     effect.View = x_viewMatrix;
                 }
                 //Draw the mesh, will use the effects set above.
