@@ -6,7 +6,23 @@ using System.Threading.Tasks;
 
 namespace VeilofDeath
 {
-    class Gameobject
+    abstract class GameObject
     {
+
+        protected void HandleCollision()
+        {
+
+        }
+
+        protected void Initialize()
+        {
+
+        }
+
+        protected void Kill()
+        {
+
+        }
+
     }
 }

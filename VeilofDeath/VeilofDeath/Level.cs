@@ -23,14 +23,27 @@ namespace VeilofDeath
 
         public void Initialize(GraphicsDevice device)
         {
-            x_groundPlane = new VertexPositionTexture[6];
+            x_groundPlane = new VertexPositionTexture[18];
 
-            x_groundPlane [0].Position = new Vector3( -20, -20, 0);
-            x_groundPlane [1].Position = new Vector3( -20, 20, 0);
-            x_groundPlane [2].Position = new Vector3( 20, -20, 0);
-            x_groundPlane [3].Position = x_groundPlane [1].Position;
-            x_groundPlane [4].Position = new Vector3( 20, 20, 0);
+            x_groundPlane[0].Position = new Vector3( -10, -10, 0);
+            x_groundPlane[1].Position = new Vector3( -10, 10, 0);
+            x_groundPlane[2].Position = new Vector3( 10, -10, 0);
+            x_groundPlane[3].Position = x_groundPlane [1].Position;
+            x_groundPlane[4].Position = new Vector3( 10, 10, 0);
             x_groundPlane[5].Position = x_groundPlane[2].Position;
+            x_groundPlane[6].Position = x_groundPlane[0].Position;
+            x_groundPlane[7].Position = new Vector3(-10, -10, 5);
+            x_groundPlane[8].Position = x_groundPlane[1].Position;
+            x_groundPlane[9].Position = x_groundPlane[1].Position;
+            x_groundPlane[10].Position = x_groundPlane[7].Position;
+            x_groundPlane[11].Position = new Vector3(-10, 10, 5);
+            x_groundPlane[12].Position = x_groundPlane[2].Position;
+            x_groundPlane[13].Position = x_groundPlane[4].Position;
+            x_groundPlane[14].Position = new Vector3(10, -10, 5);
+            x_groundPlane[15].Position = x_groundPlane[4].Position;
+            x_groundPlane[16].Position = new Vector3(10, 10, 5);
+            x_groundPlane[17].Position = x_groundPlane[14].Position;
+
 
             effect = new BasicEffect(device);
         }
@@ -68,7 +81,7 @@ namespace VeilofDeath
                     // at the beginning of the floorVerts array
                     0,
                     // The number of triangles to draw
-                    2);
+                    6);
             }
         }
 

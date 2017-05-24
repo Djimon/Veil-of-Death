@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace VeilofDeath
 {
-    class Player : LivingEntity
+    class Player : GameObject,LivingEntity
     {
         public Model Model;
         public Matrix[] Transforms;

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -35,6 +36,8 @@ namespace VeilofDeath
         Vector2 GUI_Pos = new Vector2(100, 50); //TODO get rid of magicConstants
         Vector2 GUI_Stuff = new Vector2(100, 400); //TODO get rid of magicConstants
 
+        PlayerController PController;
+
 
 
         //level test variables
@@ -66,7 +69,6 @@ namespace VeilofDeath
 
             lightDirection.Normalize();
 
-            currentKeyboardState = new KeyboardState();
             // TODO: Add your initialization logic here
             SetUpCamera();
 
@@ -76,6 +78,10 @@ namespace VeilofDeath
             //Level test initialize
             dungeon = new Level();
             dungeon.Initialize(GraphicsDevice);
+
+            oldKeyboardState = Keyboard.GetState();
+            currentKeyboardState = new KeyboardState();
+            PController = new PlayerController();
 
             base.Initialize();
         }
@@ -92,8 +98,8 @@ namespace VeilofDeath
             //basicEffect = Content.Load<Effect>("effects");
             lucidaConsole = Content.Load<SpriteFont>("Fonts/Lucida Console");
             m_player = LoadModel("Models/cube");
+            //m_player = CM.Load<Model>("Models/cube");
             x_playerModelTransforms = SetupEffectDefaults(m_player);
-
             Player = new Player();
             Player.Spawn();
 
@@ -121,6 +127,10 @@ namespace VeilofDeath
 
             UpdateCamera();
             // TODO: Add your update logic here
+
+            PController.Update(oldKeyboardState, Player);
+
+            oldKeyboardState = currentKeyboardState;
 
             base.Update(gameTime);
         }
@@ -225,6 +235,8 @@ namespace VeilofDeath
         /// <param name="absoluteBoneTransforms">bone transformation matrix of given model</param>
         public void DrawModel(Model model, Matrix modelTranslation, Matrix[] absoluteBoneTransforms)
         {
+
+            GraphicsDevice.Clear(Color.CornflowerBlue);
             
             //Draw the model, a model can have multiple meshes, so loop
             foreach (ModelMesh mesh in model.Meshes)
@@ -232,8 +244,10 @@ namespace VeilofDeath
                 //This is where the mesh orientation is set
                 foreach (BasicEffect effect in mesh.Effects)
                 {
-                    effect.World = absoluteBoneTransforms[mesh.ParentBone.Index] * modelTranslation;
+                    //effect.World = absoluteBoneTransforms[mesh.ParentBone.Index] * modelTranslation;
                     effect.View = x_viewMatrix;
+                    effect.World = Matrix.CreateTranslation(new Vector3(0, 0, 0));
+                    effect.Projection = x_projectionMatrix;
                 }
                 //Draw the mesh, will use the effects set above.
                 mesh.Draw();
