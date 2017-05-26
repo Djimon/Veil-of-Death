@@ -135,6 +135,8 @@ namespace VeilofDeath
             base.Update(gameTime);
         }
 
+        
+
         private void UpdateCamera()
         {
             Vector3 campos = new Vector3(0, 0.1f, 0.6f);
@@ -160,7 +162,14 @@ namespace VeilofDeath
 
             DrawGUI();
 
+            //Draws Ground and the side walls
             dungeon.DrawGround(GraphicsDevice);
+
+
+            //Draws the model to the new positions
+            //PController.Draw(cameraPosition, GameConstants.fAspectRatio, m_player, Player);
+
+            m_player.Draw(PController.GetWorldMatrix(Player),x_viewMatrix,x_projectionMatrix);
 
 
             base.Draw(gameTime);
