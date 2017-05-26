@@ -15,7 +15,11 @@ namespace VeilofDeath
         /// </summary>
         void Spawn(Vector3 pos);
 
-        void Initilize(Model model);
+        /// <summary>
+        /// Initializes the entity with the given model
+        /// </summary>
+        /// <param name="model">Model for the entity</param>
+        void Initialize(Model model);
 
         /// <summary>
         /// Behaves simmilar to an update function

@@ -1,7 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 
 namespace VeilofDeath
 {
@@ -23,6 +27,8 @@ namespace VeilofDeath
         Model m_player;
         Matrix[] x_playerModelTransforms;
 
+        public Dictionary<string, Model> levelContent;
+
         Camera camera;
 
         Vector3 lightDirection = new Vector3(3, -2, 5);
@@ -35,6 +41,9 @@ namespace VeilofDeath
 
         //level test variables
         Level dungeon;
+
+        Bitmap levelMask;
+        Map testmap;
 
         public Game1()
         {
@@ -70,9 +79,16 @@ namespace VeilofDeath
             dungeon = new Level();
             dungeon.Initialize();
 
-            oldKeyboardState = Keyboard.GetState();
-            currentKeyboardState = new KeyboardState();
+            currentKeyboardState = Keyboard.GetState();
+            oldKeyboardState = new KeyboardState();
             PController = new PlayerController();
+
+            //Pass this to Mapgeneration (Blocks) -> Loads all Textures in the Dircetory Level11
+            GameConstants.levelDictionary = LevelContent.LoadListContent<Model>(Content, "Models/Level1");
+            foreach (KeyValuePair<string, Model> SM in GameConstants.levelDictionary)
+            {
+                Console.WriteLine("Key:" + SM.Key + ", Value: " + SM.Value);
+            }
 
             base.Initialize();
         }
@@ -89,10 +105,16 @@ namespace VeilofDeath
             //basicEffect = Content.Load<Effect>("effects");
             lucidaConsole = Content.Load<SpriteFont>("Fonts/Lucida Console");
             m_player = LoadModel("Models/cube");
+
+            levelMask = new Bitmap("Content/Maps/testmap.bmp");
+
+            testmap = new Map(levelMask);
+
             //m_player = CM.Load<Model>("Models/cube");
             Player.Initilize(m_player);
             x_playerModelTransforms = SetupEffectDefaults(m_player);
             Player.Spawn(new Vector3(0, 1, 1));
+
 
         }
 
@@ -115,12 +137,11 @@ namespace VeilofDeath
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed 
                 || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
             float fTimeDelta = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            // UpdateCamera();
-            // TODO: Add your update logic here
 
-            PController.Update(oldKeyboardState, Player);
+            PController.Update(currentKeyboardState, Player);
 
             oldKeyboardState = currentKeyboardState;
 
@@ -129,18 +150,17 @@ namespace VeilofDeath
             base.Update(gameTime);
         }
 
-
-
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.DarkSlateBlue);                   
+            GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.DarkSlateBlue);                   
 
-            dungeon.DrawGround(GraphicsDevice); //my Update with Camera as input propperty
+            //dungeon.DrawGround(GraphicsDevice); //my Update with Camera as input propperty
 
+            testmap.Draw(camera); //TODO: Warum sehe cih sie nicht?
 
             Player.Draw(camera);
 
@@ -150,11 +170,18 @@ namespace VeilofDeath
             base.Draw(gameTime);
         }
 
+        /// <summary>
+        /// Helper to draw 2-dimensional GUI-Objects using the SpriteBatch
+        /// </summary>
         private void DrawGUI()
         {
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Opaque);
+            //Debug - Anzeige
             spriteBatch.DrawString(lucidaConsole, "Pos: " + Player.Position,
-                                   GUI_Pos, Color.White);
+                                   GUI_Pos, Microsoft.Xna.Framework.Color.White);
+
+
+
 
             spriteBatch.End(); ;
         }
@@ -220,7 +247,7 @@ namespace VeilofDeath
         public void DrawModel(Model model, Matrix modelTranslation, Matrix[] absoluteBoneTransforms)
         {
 
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.CornflowerBlue);
             
             //Draw the model, a model can have multiple meshes, so loop
             foreach (ModelMesh mesh in model.Meshes)

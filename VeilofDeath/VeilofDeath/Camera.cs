@@ -25,21 +25,35 @@ namespace VeilofDeath
 
         public void Update(GameTime gameTime,Player P)
         {
-            position = Vector3.Transform(position, Matrix.CreateFromQuaternion(P.Rotation));
-            //position += P.Position;
-            SetView(P);
+            Vector3 campos = new Vector3(0, 0.1f, 0.6f);
+            Vector3 camup = new Vector3(0, 1, 0);
+            
+
+            ViewMatrix = Matrix.CreateLookAt(campos, P.Position, camup);
+            ProjectionMatrix = Matrix.CreatePerspectiveFieldOfView( MathHelper.PiOver4, 
+                                                                    GameConstants.fAspectRatio,
+                                                                    GameConstants.NearClipPlane, 
+                                                                    GameConstants.FarClipPlane );
         }
-        
+
+        /// <summary>
+        /// Sets the Viewmatrix in dependence of the player
+        /// </summary>
+        /// <param name="P">Player</param>
+        /// <returns>ViewMatrix</returns>
         public Matrix SetView(Player P)
         {
             var lookAtVector = Vector3.Zero;
             var upVector = Vector3.UnitZ;
-            upVector = Vector3.Transform(upVector, Matrix.CreateFromQuaternion(P.Rotation));
 
             ViewMatrix = Matrix.CreateLookAt(position, P.Position, upVector);
             return ViewMatrix;
-        }        
-        
+        }
+
+        /// <summary>
+        /// sets upthe camera projection matrix
+        /// </summary>
+        /// <returns>ProjectionMatrix</returns>
         public Matrix SetProjectionsMatrix()
         {
             float fieldOfView = Microsoft.Xna.Framework.MathHelper.PiOver4;

@@ -29,8 +29,6 @@ namespace VeilofDeath
         {
             currentKeyboardState = Keyboard.GetState();
 
-            //if (currentKeyboardState.IsKeyDown(Keys.Escape))
-            //Exit();
 
             if (currentKeyboardState.IsKeyDown(Keys.Right) && !oldKeyboardState.IsKeyDown(Keys.Right))
                 character.Position.X += 1 * GameConstants.MovingSpeed;
@@ -80,10 +78,10 @@ namespace VeilofDeath
         //    }
         //}
 
-        public Matrix GetWorldMatrix(Player character)
-        {
-            Matrix translation = Matrix.CreateTranslation(new Vector3(character.Position.X, character.Position.Y, character.Position.Z));
-            return translation;
-        }
+        //public Matrix GetWorldMatrix(Player character)
+        //{
+        //    Matrix translation = Matrix.CreateTranslation(new Vector3(character.Position.X, character.Position.Y, character.Position.Z));
+        //    return translation;
+        //}
     }
 }

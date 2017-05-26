@@ -11,14 +11,20 @@ namespace VeilofDeath
     abstract class AGameObject
     {
         public Model model;
-        float angle;
+        public float angle;
 
+        /// <summary>
+        /// Primary collision
+        /// </summary>
         protected void HandleCollision()
         {
 
         }
 
 
+        /// <summary>
+        /// Method to delete an object fully with all its dependent effects
+        /// </summary>
         protected void Kill()
         {
             //Destroy GameObject and all it's Effects and Dependencies
@@ -42,6 +48,10 @@ namespace VeilofDeath
             }
         }
 
+        /// <summary>
+        /// generates world matrix for this object
+        /// </summary>
+        /// <returns>WolrdMatrix</returns>
         Matrix GetWorldMatrix()
         {
             const float circleRadius = 8;
