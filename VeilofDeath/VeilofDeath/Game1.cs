@@ -145,7 +145,8 @@ namespace VeilofDeath
             Player.Draw(camera);
 
             DrawGUI();
-            
+
+
             base.Draw(gameTime);
         }
 
