@@ -111,7 +111,7 @@ namespace VeilofDeath
             testmap = new Map(levelMask);
 
             //m_player = CM.Load<Model>("Models/cube");
-            Player.Initilize(m_player);
+            Player.Initialize(m_player);
             x_playerModelTransforms = SetupEffectDefaults(m_player);
             Player.Spawn(new Vector3(0, 1, 1));
 
@@ -158,7 +158,7 @@ namespace VeilofDeath
         {
             GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.DarkSlateBlue);                   
 
-            //dungeon.DrawGround(GraphicsDevice); //my Update with Camera as input propperty
+            dungeon.DrawGround(GraphicsDevice); //my Update with Camera as input propperty
 
             testmap.Draw(camera); //TODO: Warum sehe cih sie nicht?
 
