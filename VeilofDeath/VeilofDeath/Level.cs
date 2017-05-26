@@ -21,7 +21,7 @@ namespace VeilofDeath
         GraphicsDevice device;
         GraphicsDeviceManager graphicsManager;
 
-        public void Initialize(GraphicsDevice device)
+        public void Initialize()
         {
             x_groundPlane = new VertexPositionTexture[18];
 
@@ -45,11 +45,12 @@ namespace VeilofDeath
             x_groundPlane[17].Position = x_groundPlane[14].Position;
 
 
-            effect = new BasicEffect(device);
+            
         }
 
         public void DrawGround(GraphicsDevice device)
         {
+            effect = new BasicEffect(device);
             // The assignment of effect.View and effect.Projection
             // are nearly identical to the code in the Model drawing code.
             var cameraPosition = new Vector3(0, 40, 20);

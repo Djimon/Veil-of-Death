@@ -31,16 +31,16 @@ namespace VeilofDeath
             //Exit();
 
             if (currentKeyboardState.IsKeyDown(Keys.Right) && !oldKeyboardState.IsKeyDown(Keys.Right))
-                character.Position.X += 10;
+                character.Position.X += 1 * GameConstants.MovingSpeed;
 
             if (currentKeyboardState.IsKeyDown(Keys.Left) && !oldKeyboardState.IsKeyDown(Keys.Left))
-                character.Position.X -= 10;
+                character.Position.X -= 1 * GameConstants.MovingSpeed;
 
             if (currentKeyboardState.IsKeyDown(Keys.Up) && !oldKeyboardState.IsKeyDown(Keys.Up))
-                character.Position.Y+= 10;
+                character.Position.Y+= 1 * GameConstants.MovingSpeed;
 
             if (currentKeyboardState.IsKeyDown(Keys.Down) && !oldKeyboardState.IsKeyDown(Keys.Down))
-                character.Position.Y -= 10;
+                character.Position.Y -= 1 * GameConstants.MovingSpeed;
 
             Console.WriteLine(character.Position.ToString());
         }

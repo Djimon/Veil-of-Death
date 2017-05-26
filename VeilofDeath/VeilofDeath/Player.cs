@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace VeilofDeath
 {
-    class Player : GameObject,LivingEntity
+    class Player : AGameObject,ILivingEntity
     {
-        public Model Model;
-        public Matrix[] Transforms;
+
+        public Matrix[] x_Transforms;
 
         //Position of the model in world space
         public Vector3 Position;
@@ -26,9 +26,14 @@ namespace VeilofDeath
 
         }
 
-        public void Spawn()
+        public void Initilize(Model m)
         {
-            Position = new Vector3(0, 1, 1);
+            model = m;            
+        }
+
+        public void Spawn(Vector3 pos)
+        {
+            Position = pos;
             Rotation = Quaternion.Identity;
             Velocity = Vector3.Zero;
             //TODO: Reset Level, all Buffs and Debuffs
@@ -44,9 +49,17 @@ namespace VeilofDeath
             //TODO: implement Bewegung
         }
 
+        public new void Draw(Camera c)
+        {
+            c.ViewMatrix = c.SetView(this);
+            base.Draw(c);
+
+        }
+
         public void DeSpawn()
         {
             //TODO: Model deaktivieren, nicht löschen, da öfter benötigt
         }
+
     }
 }

@@ -11,7 +11,6 @@ namespace VeilofDeath
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
-        GraphicsDevice device;
         SpriteBatch spriteBatch;
         GamePadState lastState = GamePad.GetState(PlayerIndex.One);
         KeyboardState oldKeyboardState, currentKeyboardState;
@@ -19,26 +18,20 @@ namespace VeilofDeath
         Vector3 cameraPosition = new Vector3(0.0f, 0.0f, GameConstants.fCameraHeight);
         Matrix x_projectionMatrix;
         Matrix x_viewMatrix;
-        Matrix x_playerWorld;
 
         Player Player;
         Model m_player;
         Matrix[] x_playerModelTransforms;
 
-        Effect basicEffect;
+        Camera camera;
 
         Vector3 lightDirection = new Vector3(3, -2, 5);
         SpriteFont lucidaConsole;
-
-        Matrix viewMatrix;
-        Matrix projectionMatrix;
 
         Vector2 GUI_Pos = new Vector2(100, 50); //TODO get rid of magicConstants
         Vector2 GUI_Stuff = new Vector2(100, 400); //TODO get rid of magicConstants
 
         PlayerController PController;
-
-
 
         //level test variables
         Level dungeon;
@@ -47,8 +40,6 @@ namespace VeilofDeath
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
-            //device = GraphicsDevice;
 
             GameConstants.fAspectRatio = (float)GraphicsDeviceManager.DefaultBackBufferWidth / GraphicsDeviceManager.DefaultBackBufferHeight;
         }
@@ -61,8 +52,8 @@ namespace VeilofDeath
         /// </summary>
         protected override void Initialize()
         {
-            graphics.PreferredBackBufferWidth = 800;
-            graphics.PreferredBackBufferHeight = 600;
+            graphics.PreferredBackBufferWidth = GameConstants.windowWidth;
+            graphics.PreferredBackBufferHeight = GameConstants.windowHeight;
             graphics.IsFullScreen = false;
             graphics.ApplyChanges();
             Window.Title = "Veil of Death (alpha 0.01a)";
@@ -70,14 +61,14 @@ namespace VeilofDeath
             lightDirection.Normalize();
 
             // TODO: Add your initialization logic here
-            SetUpCamera();
+            //SetUpCamera();
+            camera = new Camera(graphics.GraphicsDevice);
 
             Player = new Player();
-            Player.Spawn();
 
             //Level test initialize
             dungeon = new Level();
-            dungeon.Initialize(GraphicsDevice);
+            dungeon.Initialize();
 
             oldKeyboardState = Keyboard.GetState();
             currentKeyboardState = new KeyboardState();
@@ -99,9 +90,9 @@ namespace VeilofDeath
             lucidaConsole = Content.Load<SpriteFont>("Fonts/Lucida Console");
             m_player = LoadModel("Models/cube");
             //m_player = CM.Load<Model>("Models/cube");
+            Player.Initilize(m_player);
             x_playerModelTransforms = SetupEffectDefaults(m_player);
-            Player = new Player();
-            Player.Spawn();
+            Player.Spawn(new Vector3(0, 1, 1));
 
         }
 
@@ -121,48 +112,40 @@ namespace VeilofDeath
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed 
+                || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             float fTimeDelta = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            UpdateCamera();
+            // UpdateCamera();
             // TODO: Add your update logic here
 
             PController.Update(oldKeyboardState, Player);
 
             oldKeyboardState = currentKeyboardState;
 
+            //letztes Update immer die Camera!
+            camera.Update(gameTime, Player);
             base.Update(gameTime);
         }
 
-        private void UpdateCamera()
-        {
-            Vector3 campos = new Vector3(0, 0.1f, 0.6f);
-            campos = Vector3.Transform(campos, Matrix.CreateFromQuaternion(Player.Rotation));
-            campos += Player.Position;
 
-            Vector3 camup = new Vector3(0, 1, 0);
-            camup = Vector3.Transform(camup, Matrix.CreateFromQuaternion(Player.Rotation));
 
-            viewMatrix = Matrix.CreateLookAt(campos, Player.Position, camup);
-            projectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, GameConstants.fAspectRatio, 0.2f, 500.0f);
-        }
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.DarkSlateBlue);
+            GraphicsDevice.Clear(Color.DarkSlateBlue);                   
 
-            Matrix x_PlayerTranslationMatrix = Matrix.CreateTranslation(Player.Position);
-            DrawModel(m_player,x_PlayerTranslationMatrix,x_playerModelTransforms);
+            dungeon.DrawGround(GraphicsDevice); //my Update with Camera as input propperty
+
+
+            Player.Draw(camera);
 
             DrawGUI();
-
-            dungeon.DrawGround(GraphicsDevice);
-
-
+            
             base.Draw(gameTime);
         }
 
@@ -182,8 +165,8 @@ namespace VeilofDeath
             x_viewMatrix = Matrix.CreateLookAt(new Vector3(20, 13, -5), new Vector3(8, 0, -7), new Vector3(0, 1, 0));
             x_projectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, 
                                                                     GameConstants.fAspectRatio, 
-                                                                    0.2f, 
-                                                                    500.0f);
+                                                                    GameConstants.NearClipPlane, 
+                                                                    GameConstants.FarClipPlane);
         }
 
         /// <summary>
@@ -253,5 +236,18 @@ namespace VeilofDeath
                 mesh.Draw();
             }
         }
+
+        //private void UpdateCamera()
+        //{
+        //    Vector3 campos = new Vector3(0, 0.1f, 0.6f);
+        //    campos = Vector3.Transform(campos, Matrix.CreateFromQuaternion(Player.Rotation));
+        //    campos += Player.Position;
+
+        //    Vector3 camup = new Vector3(0, 1, 0);
+        //    camup = Vector3.Transform(camup, Matrix.CreateFromQuaternion(Player.Rotation));
+
+        //    viewMatrix = Matrix.CreateLookAt(campos, Player.Position, camup);
+        //    projectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, GameConstants.fAspectRatio, 0.2f, 500.0f);
+        //}
     }
 }
