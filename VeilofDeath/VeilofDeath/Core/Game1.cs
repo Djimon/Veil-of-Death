@@ -42,6 +42,7 @@ namespace VeilofDeath
         //level test variables
         Level dungeon;
 
+        //variables for maps
         Bitmap levelMask;
         Map testmap;
 
@@ -73,7 +74,7 @@ namespace VeilofDeath
             //SetUpCamera();
             camera = new Camera(graphics.GraphicsDevice);
 
-            Player = new Player();
+            Player = new Player(LoadModel("Models/cube"));
 
             //Level test initialize
             dungeon = new Level();
@@ -110,7 +111,6 @@ namespace VeilofDeath
 
             testmap = new Map(levelMask);
 
-            //m_player = CM.Load<Model>("Models/cube");
             Player.Initialize(m_player);
             x_playerModelTransforms = SetupEffectDefaults(m_player);
             Player.Spawn(new Vector3(0, 1, 1));
@@ -158,11 +158,13 @@ namespace VeilofDeath
         {
             GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.DarkSlateBlue);                   
 
-            dungeon.DrawGround(GraphicsDevice); //my Update with Camera as input propperty
+            dungeon.DrawGround(GraphicsDevice, NewCamera.Instance); //my Update with Camera as input propperty
+            
+            //testmap.Draw(camera); //TODO: Warum sehe cih sie nicht?
 
-            testmap.Draw(camera); //TODO: Warum sehe cih sie nicht?
+            //Player.Draw(camera);
 
-            Player.Draw(camera);
+            NewDrawModel(Player, NewCamera.Instance);
 
             DrawGUI();
 
@@ -265,6 +267,31 @@ namespace VeilofDeath
             }
         }
 
+        public void NewDrawModel(Player character, NewCamera camera)
+        {
+            foreach (ModelMesh mesh in character.model.Meshes)
+            {
+                foreach (BasicEffect effect in mesh.Effects)
+                {
+                    effect.EnableDefaultLighting();
+
+                    effect.DirectionalLight0.DiffuseColor = new Vector3(0.5f, 0, 0); // a red light
+                    effect.DirectionalLight0.Direction = new Vector3(-1, 0, -1);  // coming along the x-axis
+                    effect.DirectionalLight0.SpecularColor = new Vector3(0, 1, 0); // with green highlights
+
+                    effect.AmbientLightColor = new Vector3(0.01f, 0.15f, 0.6f);
+                    effect.EmissiveColor = new Vector3(0f, 0.1f, 0.2f);
+
+                    effect.World = camera.World * Matrix.CreateTranslation(character.Position);
+                    effect.View = camera.View;
+                    effect.Projection = camera.Projection;
+                }
+
+                mesh.Draw();
+            }
+        }
+    }
+
         //private void UpdateCamera()
         //{
         //    Vector3 campos = new Vector3(0, 0.1f, 0.6f);
@@ -277,5 +304,4 @@ namespace VeilofDeath
         //    viewMatrix = Matrix.CreateLookAt(campos, Player.Position, camup);
         //    projectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, GameConstants.fAspectRatio, 0.2f, 500.0f);
         //}
-    }
 }

@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace VeilofDeath
 {
-    class Camera
+    public class Camera
     {
         // We need this to calculate the aspectRatio
         // in the ProjectionMatrix property.
         GraphicsDevice graphicsDevice;
 
-        Vector3 position = new Vector3(15, 10, 10);
+        public Vector3 position = new Vector3(15, 10, 10);
         public Matrix ProjectionMatrix;
         public Matrix ViewMatrix;
 

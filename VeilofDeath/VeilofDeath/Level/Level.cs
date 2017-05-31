@@ -48,12 +48,12 @@ namespace VeilofDeath
             
         }
 
-        public void DrawGround(GraphicsDevice device)
+        public void DrawGround(GraphicsDevice device, NewCamera camera)
         {
             effect = new BasicEffect(device);
             // The assignment of effect.View and effect.Projection
             // are nearly identical to the code in the Model drawing code.
-            var cameraPosition = new Vector3(0, 40, 20);
+            var cameraPosition = new Vector3 (0, 40, 20);
             var cameraLookAtVector = Vector3.Zero;
             var cameraUpVector = Vector3.UnitZ;
 
@@ -62,8 +62,8 @@ namespace VeilofDeath
              
 
             float fieldOfView = Microsoft.Xna.Framework.MathHelper.PiOver4;
-            float nearClipPlane = 1;
-            float farClipPlane = 200;
+            float nearClipPlane = GameConstants.NearClipPlane;
+            float farClipPlane = GameConstants.FarClipPlane;
 
             effect.Projection = Matrix.CreatePerspectiveFieldOfView(
                 fieldOfView, GameConstants.fAspectRatio, nearClipPlane, farClipPlane);

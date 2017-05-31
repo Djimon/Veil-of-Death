@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace VeilofDeath
 {
-    class Player : AGameObject,ILivingEntity
+     public class Player : AGameObject,ILivingEntity
     {
         //Position of the model in world space
         public Vector3 Position;
@@ -18,9 +18,10 @@ namespace VeilofDeath
 
         //public Quaternion Rotation;
 
-        public Player()
+        public Player(Model m)
         {
-            
+            model = m;
+            Position = Vector3.Zero;
         }
 
         public void Initialize(Model m)

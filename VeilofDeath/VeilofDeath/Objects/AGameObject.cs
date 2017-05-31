@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace VeilofDeath
 {
-    abstract class AGameObject
+    public abstract class AGameObject
     {
         public Model model;
         public float angle;
@@ -20,7 +20,6 @@ namespace VeilofDeath
         {
 
         }
-
 
         /// <summary>
         /// Method to delete an object fully with all its dependent effects

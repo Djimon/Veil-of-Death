@@ -17,6 +17,8 @@ namespace VeilofDeath
 
         public static int BlockSize = 90;
         public static Dictionary<string, Model> levelDictionary;
+
+        //z-axis of level
         public static float LevelHeight = 0;
 
         public static int TrapNumber = 4;
