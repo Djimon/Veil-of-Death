@@ -10,6 +10,8 @@ namespace VeilofDeath
 {
     public class Camera
     {
+        //TODO: DEPRECATED -> entfernen durch NewCamera ersetzen
+
         // We need this to calculate the aspectRatio
         // in the ProjectionMatrix property.
         GraphicsDevice graphicsDevice;
@@ -32,8 +34,8 @@ namespace VeilofDeath
             ViewMatrix = Matrix.CreateLookAt(campos, P.Position, camup);
             ProjectionMatrix = Matrix.CreatePerspectiveFieldOfView( MathHelper.PiOver4, 
                                                                     GameConstants.fAspectRatio,
-                                                                    GameConstants.NearClipPlane, 
-                                                                    GameConstants.FarClipPlane );
+                                                                    GameConstants.fNearClipPlane, 
+                                                                    GameConstants.fFarClipPlane );
         }
 
         /// <summary>
@@ -51,14 +53,14 @@ namespace VeilofDeath
         }
 
         /// <summary>
-        /// sets upthe camera projection matrix
+        /// sets up the camera projection matrix
         /// </summary>
         /// <returns>ProjectionMatrix</returns>
         public Matrix SetProjectionsMatrix()
         {
             float fieldOfView = Microsoft.Xna.Framework.MathHelper.PiOver4;
-            float nearClipPlane = GameConstants.NearClipPlane;
-            float farClipPlane = GameConstants.FarClipPlane;
+            float nearClipPlane = GameConstants.fNearClipPlane;
+            float farClipPlane = GameConstants.fFarClipPlane;
 
             ProjectionMatrix = Matrix.CreatePerspectiveFieldOfView(
                 fieldOfView, GameConstants.fAspectRatio, nearClipPlane, farClipPlane);

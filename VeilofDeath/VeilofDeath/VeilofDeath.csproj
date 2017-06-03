@@ -45,7 +45,7 @@
     <Compile Include="Core\Camera.cs" />
     <Compile Include="Core\Game1.cs" />
     <Compile Include="Core\GameConstants.cs" />
-    <Compile Include="NewCamera.cs" />
+    <Compile Include="Core\NewCamera.cs" />
     <Compile Include="Objects\AGameObject.cs" />
     <Compile Include="Level\Level.cs" />
     <Compile Include="Objects\ILivingEntity.cs" />
@@ -54,7 +54,7 @@
     <Compile Include="Objects\Player\PlayerController.cs" />
     <Compile Include="Core\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Level\TextureContent.cs" />
+    <Compile Include="Level\LevelContent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

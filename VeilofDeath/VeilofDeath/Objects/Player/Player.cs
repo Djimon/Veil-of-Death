@@ -15,13 +15,18 @@ namespace VeilofDeath
         public Vector3 Position;
         //Velocity of the model, applied each frame to the model's position
         public Vector3 Velocity;
+        public bool isActive = false;
 
         //public Quaternion Rotation;
 
+        /// <summary>
+        /// Constructor, needs model
+        /// </summary>
+        /// <param name="m">model of the player</param>
         public Player(Model m)
         {
             model = m;
-            Position = Vector3.Zero;
+            Position = new Vector3(GameConstants.fLaneCenter, 0,0);
         }
 
         public void Initialize(Model m)
@@ -29,12 +34,28 @@ namespace VeilofDeath
             model = m;            
         }
 
+        /// <summary>
+        /// Spawns the player
+        /// </summary>
+        /// <param name="pos">position where to spawn</param>
         public void Spawn(Vector3 pos)
         {
             Position = pos;
             //Rotation = Quaternion.Identity;
             Velocity = Vector3.Zero;
             //TODO: Reset Level, all Buffs and Debuffs
+            isActive = true;
+        }
+
+        /// <summary>
+        /// Spawns the player
+        /// </summary>
+        public void Spawn()
+        {
+            //Rotation = Quaternion.Identity;
+            Velocity = Vector3.Zero;
+            //TODO: Reset Level, all Buffs and Debuffs
+            isActive = true;
         }
 
         /// <summary>
@@ -55,20 +76,46 @@ namespace VeilofDeath
         }
 
         /// <summary>
-        /// Draws the Player and set the viewmatrix of the camera
+        /// Draws the player if active
         /// </summary>
-        /// <param name="c">main camera</param>
-        public new void Draw(Camera c)
+        public void Draw()
         {
-     
-            c.ViewMatrix = c.SetView(this);
-            base.Draw(c);
+            if (!isActive)
+                return;
+
+            foreach (ModelMesh mesh in this.model.Meshes)
+            {
+                foreach (BasicEffect effect in mesh.Effects)
+                {
+                    effect.EnableDefaultLighting();
+
+                    effect.DirectionalLight0.DiffuseColor = new Vector3(0.5f, 0, 0); // a red light
+                    effect.DirectionalLight0.Direction = new Vector3(-1, 0, -1);  // coming along the x-axis
+                    effect.DirectionalLight0.SpecularColor = new Vector3(0, 1, 0); // with green highlights
+
+                    effect.AmbientLightColor = new Vector3(0.01f, 0.15f, 0.6f);
+                    effect.EmissiveColor = new Vector3(0f, 0.1f, 0.2f);
+
+                    effect.World = NewCamera.Instance.X_World * Matrix.CreateTranslation(this.Position);
+                    effect.View = NewCamera.Instance.X_View;
+                    effect.Projection = NewCamera.Instance.X_Projection;
+                }
+
+                mesh.Draw();
+            }
+
 
         }
 
+        /// <summary>
+        /// Deactivates the player.
+        /// Model is no longer drawn 
+        /// </summary>
         public void DeSpawn()
         {
             //TODO: Model deaktivieren, nicht löschen, da öfter benötigt
+            isActive = false; //wird nciht mehr gedrawt
+            Position = Vector3.Zero;
         }
 
     }

@@ -12,7 +12,11 @@ namespace VeilofDeath
     {
 
         public bool isWalkable = true;
+        /// <summary>
+        /// Defines the grid positon
+        /// </summary>
         Vector3 position;
+        float scale = GameConstants.iBlockSize / 2;
 
         /// <summary>
         /// Look-up dictionary matching a string to the suitable model
@@ -39,7 +43,7 @@ namespace VeilofDeath
         public int blockType; //TODO: wieder private machen!!
 
         /// <summary>
-        /// Methode, die Textur des Blocks auf mitgegebene Textur wechselt.
+        /// Set the model of this block.
         /// </summary>
         public void setModel(Model m)
         {
@@ -47,7 +51,7 @@ namespace VeilofDeath
         }
 
         /// <summary>
-        /// Methode, die zurückgibt, ob der Block walkable ist.
+        /// return whether the Player can walk on this block.
         /// </summary>
         public bool getWalkable()
         {
@@ -55,7 +59,7 @@ namespace VeilofDeath
         }
 
         /// <summary>
-        /// Methode, die Typen des jeweiligen Blocks zurückgibt.
+        /// returns blocktype.
         /// </summary>
         public int type()
         {
@@ -63,8 +67,8 @@ namespace VeilofDeath
         }
 
         /// <summary>
-        /// <para>Konstruktor</para>
-        /// <para>Zunächst wird Typ des Blocks festgelegt und anhand dessen die restlichen Variablen und die Textur zugeordnet.</para>
+        /// <para>Constructor</para>
+        /// <para>The blocktype defines the model to be loaded</para>
         /// </summary>
         /// <param name="blockType">defines the Type of the block</param>
         /// <param name="pos">is the 2D psoition in the map (will be casted into 3D)</param>
@@ -78,7 +82,7 @@ namespace VeilofDeath
                 case 0: //weg (white)
                     {
                         m_Block = modelDictionary["weg"];
-                        this.position = new Vector3(pos,GameConstants.LevelHeight);
+                        this.position = new Vector3(pos,GameConstants.fLevelHeight);
                         this.isWalkable = true;
                         break;
                         Console.WriteLine(modelDictionary["weg"].ToString());
@@ -87,14 +91,14 @@ namespace VeilofDeath
                 case 1: //Mauer (grey)
                     {
                         this.m_Block = modelDictionary["mauer"];
-                        this.position = new Vector3(pos, GameConstants.LevelHeight); 
+                        this.position = new Vector3(pos, GameConstants.fLevelHeight); 
                         this.isWalkable = false;
                         break;
                     }
                 case 2: //Loch (red)
                     {
                         //this.m_Block = modelDictionary["none"];
-                        this.position = new Vector3(pos, GameConstants.LevelHeight);
+                        this.position = new Vector3(pos, GameConstants.fLevelHeight);
                         this.isWalkable = false;
 
                         break;
@@ -102,21 +106,21 @@ namespace VeilofDeath
                 case 3: //start (green)
                     {
                         this.m_Block = modelDictionary["start"];
-                        this.position = new Vector3(pos, GameConstants.LevelHeight);
+                        this.position = new Vector3(pos, GameConstants.fLevelHeight);
                         this.isWalkable = true;
                         break;
                     }
                 case 4: //ziel (blue)
                     {
                         this.m_Block = modelDictionary["ende"];
-                        this.position = new Vector3(pos, GameConstants.LevelHeight);
+                        this.position = new Vector3(pos, GameConstants.fLevelHeight);
                         this.isWalkable = true;
                         break;
                     }
                 case 5: //Falle 1
                     {
                         this.m_Block= modelDictionary[""];
-                        this.position = new Vector3(pos, GameConstants.LevelHeight);
+                        this.position = new Vector3(pos, GameConstants.fLevelHeight);
                         this.isWalkable = false;
                         break;
                     }
@@ -124,21 +128,21 @@ namespace VeilofDeath
                 case 6: //Falle 2
                     {
                         this.m_Block = modelDictionary[""];
-                        this.position = new Vector3(pos, GameConstants.LevelHeight);
+                        this.position = new Vector3(pos, GameConstants.fLevelHeight);
                         this.isWalkable = true;
                         break;
                     }
                 case 7: //Falle 3
                     {
                         this.m_Block = modelDictionary[""];
-                        this.position = new Vector3(pos, GameConstants.LevelHeight);
+                        this.position = new Vector3(pos, GameConstants.fLevelHeight);
                         this.isWalkable = true;
                         break;
                     }
                 case 8: //Falle 4
                     {
                         this.m_Block = modelDictionary[""];
-                        this.position = new Vector3(pos, GameConstants.LevelHeight);
+                        this.position = new Vector3(pos, GameConstants.fLevelHeight);
                         this.isWalkable = true;
                         break;
                     }
@@ -147,10 +151,9 @@ namespace VeilofDeath
         }
 
         /// <summary>
-        /// Draws each Levelblocks
+        /// Draws each Levelblock
         /// </summary>
-        /// <param name="C">main camera</param>
-        public void Draw(Camera C)
+        public void Draw()
         {
             if (m_Block != null)
             {
@@ -161,31 +164,34 @@ namespace VeilofDeath
                         effect.EnableDefaultLighting();
                         effect.PreferPerPixelLighting = true;
 
-                        effect.World = GetWorldMatrix();
-                        effect.View = C.ViewMatrix;
-                        effect.Projection = C.SetProjectionsMatrix();
+                        //effect.World = GetWorldMatrix();
+                        //effect.View = C.ViewMatrix;
+                        //effect.Projection = C.SetProjectionsMatrix();
+                        effect.World = NewCamera.Instance.X_World * Matrix.CreateScale(scale) * Matrix.CreateTranslation(position);
+                        effect.View = NewCamera.Instance.X_View;
+                        effect.Projection = NewCamera.Instance.X_Projection;
                     }
                     mesh.Draw();
                 }
             }
         }
 
-        Matrix GetWorldMatrix()
-        {
-            const float circleRadius = 0;
-            const float heightOffGround = 0;
+        //Matrix GetWorldMatrix()
+        //{
+        //    const float circleRadius = 0;
+        //    const float heightOffGround = 0;
 
-            // this matrix moves the model "out" from the origin
-            Matrix translationMatrix = Matrix.CreateTranslation(circleRadius, 0, heightOffGround);
+        //    // this matrix moves the model "out" from the origin
+        //    Matrix translationMatrix = Matrix.CreateTranslation(circleRadius, 0, heightOffGround);
 
-            // this matrix rotates everything around the origin
-            Matrix rotationMatrix = Matrix.Identity;
+        //    // this matrix rotates everything around the origin
+        //    Matrix rotationMatrix = Matrix.Identity;
 
-            // We combine the two to have the model move in a circle:
-            Matrix combined = translationMatrix * rotationMatrix;
+        //    // We combine the two to have the model move in a circle:
+        //    Matrix combined = translationMatrix * rotationMatrix;
 
-            return combined;
-        }
+        //    return combined;
+        //}
 
     }
 }

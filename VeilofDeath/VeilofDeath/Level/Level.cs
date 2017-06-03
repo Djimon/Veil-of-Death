@@ -21,6 +21,9 @@ namespace VeilofDeath
         GraphicsDevice device;
         GraphicsDeviceManager graphicsManager;
 
+        /// <summary>
+        /// Defines the vertices for the ground.
+        /// </summary>
         public void Initialize()
         {
             x_groundPlane = new VertexPositionTexture[18];
@@ -48,7 +51,11 @@ namespace VeilofDeath
             
         }
 
-        public void DrawGround(GraphicsDevice device, NewCamera camera)
+        /// <summary>
+        /// Helper to draw primitives as ground
+        /// </summary>
+        /// <param name="device">global graphi device</param>
+        public void DrawGround(GraphicsDevice device)
         {
             effect = new BasicEffect(device);
             // The assignment of effect.View and effect.Projection
@@ -62,8 +69,8 @@ namespace VeilofDeath
              
 
             float fieldOfView = Microsoft.Xna.Framework.MathHelper.PiOver4;
-            float nearClipPlane = GameConstants.NearClipPlane;
-            float farClipPlane = GameConstants.FarClipPlane;
+            float nearClipPlane = GameConstants.fNearClipPlane;
+            float farClipPlane = GameConstants.fFarClipPlane;
 
             effect.Projection = Matrix.CreatePerspectiveFieldOfView(
                 fieldOfView, GameConstants.fAspectRatio, nearClipPlane, farClipPlane);

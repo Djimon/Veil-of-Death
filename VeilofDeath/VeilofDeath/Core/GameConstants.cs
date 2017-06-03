@@ -1,27 +1,55 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 
 namespace VeilofDeath
 {
     static class GameConstants
     {
-        public static int windowWidth = 800;
-        public static int windowHeight = 600;
 
-        public static float fCameraHeight = 100;
-        public static float fAspectRatio;
-        public static float MovingSpeed = 1;
+        // Camera and View
+        public static Vector2 WINDOWSIZE = new Vector2(1200, 700);
+        /// <summary>
+        /// fixed aspect ratio of the window
+        /// </summary>
+        public static float fAspectRatio = WINDOWSIZE.X / WINDOWSIZE.Y;
+        /// <summary>
+        /// fixed window size width
+        /// </summary>
+        public static float fCameraHeight = 10f;
+        /// <summary>
+        /// Belongs to the Camera View Distance
+        /// </summary>
+        public static float fFarClipPlane = 150;
+        /// <summary>
+        /// Belongs to the Camera View Distance
+        /// </summary>
+        public static float fNearClipPlane = 0.1f;
 
-        public static float FarClipPlane = 200;
-        public static float NearClipPlane = 1;
-
-        public static int BlockSize = 90;
+        //Map/ level
+        /// <summary>
+        /// Size of each block in the map (like tiles)
+        /// </summary>
+        public static int iBlockSize = 2;
+        public static float fLaneCenter = iBlockSize * 3;  // *3 <= * mapmask.width (actual 6) and :2 (center)
+        /// <summary>
+        /// Dictionary which holds the models for each LevelBlock
+        /// </summary>
         public static Dictionary<string, Model> levelDictionary;
+        /// <summary>
+        /// Z-Axis of the level
+        /// </summary>
+        public static float fLevelHeight = -1;
 
-        //z-axis of level
-        public static float LevelHeight = 0;
-
-        public static int TrapNumber = 4;
+        //Gameplay
+        /// <summary>
+        /// Speed the player moves
+        /// </summary>
+        public static float fMovingSpeed = 1;
+        /// <summary>
+        /// number of Traps in the Game
+        /// </summary>
+        public static int iTrapNumber = 4;
     }
 
 }

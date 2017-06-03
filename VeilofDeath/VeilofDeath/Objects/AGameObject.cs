@@ -31,6 +31,7 @@ namespace VeilofDeath
 
         public void Draw(Camera cam)
         {
+            //TODO: Überprüfen, ob so wie in Player auch für normale GameObjects geeignet?
             foreach (var mesh in model.Meshes)
             {
                 foreach (BasicEffect effect in mesh.Effects)

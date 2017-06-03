@@ -46,6 +46,9 @@ namespace VeilofDeath
         Bitmap levelMask;
         Map testmap;
 
+        /// <summary>
+        /// Main Game
+        /// </summary>
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -62,8 +65,8 @@ namespace VeilofDeath
         /// </summary>
         protected override void Initialize()
         {
-            graphics.PreferredBackBufferWidth = GameConstants.windowWidth;
-            graphics.PreferredBackBufferHeight = GameConstants.windowHeight;
+            graphics.PreferredBackBufferWidth = (int) GameConstants.WINDOWSIZE.X;
+            graphics.PreferredBackBufferHeight = (int) GameConstants.WINDOWSIZE.Y;
             graphics.IsFullScreen = false;
             graphics.ApplyChanges();
             Window.Title = "Veil of Death (alpha 0.01a)";
@@ -113,7 +116,8 @@ namespace VeilofDeath
 
             Player.Initialize(m_player);
             x_playerModelTransforms = SetupEffectDefaults(m_player);
-            Player.Spawn(new Vector3(0, 1, 1));
+            Player.Spawn(new Vector3(GameConstants.fLaneCenter, 0, 0));
+            NewCamera.Instance.SetTarget(Player);
 
 
         }
@@ -146,7 +150,8 @@ namespace VeilofDeath
             oldKeyboardState = currentKeyboardState;
 
             //letztes Update immer die Camera!
-            camera.Update(gameTime, Player);
+            //camera.Update(gameTime, Player);
+            //NewCamera.Instance.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -158,13 +163,13 @@ namespace VeilofDeath
         {
             GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.DarkSlateBlue);                   
 
-            dungeon.DrawGround(GraphicsDevice, NewCamera.Instance); //my Update with Camera as input propperty
+            dungeon.DrawGround(GraphicsDevice); //my Update with Camera as input propperty
             
-            //testmap.Draw(camera); //TODO: Warum sehe cih sie nicht?
+            testmap.Draw();
 
-            //Player.Draw(camera);
+            Player.Draw();
 
-            NewDrawModel(Player, NewCamera.Instance);
+            NewDrawModel(Player);
 
             DrawGUI();
 
@@ -195,8 +200,8 @@ namespace VeilofDeath
             x_viewMatrix = Matrix.CreateLookAt(new Vector3(20, 13, -5), new Vector3(8, 0, -7), new Vector3(0, 1, 0));
             x_projectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, 
                                                                     GameConstants.fAspectRatio, 
-                                                                    GameConstants.NearClipPlane, 
-                                                                    GameConstants.FarClipPlane);
+                                                                    GameConstants.fNearClipPlane, 
+                                                                    GameConstants.fFarClipPlane);
         }
 
         /// <summary>
@@ -267,7 +272,11 @@ namespace VeilofDeath
             }
         }
 
-        public void NewDrawModel(Player character, NewCamera camera)
+        /// <summary>
+        /// Helper to draw the player
+        /// </summary>
+        /// <param name="character">Player</param>
+        public void NewDrawModel(Player character)
         {
             foreach (ModelMesh mesh in character.model.Meshes)
             {
@@ -282,9 +291,9 @@ namespace VeilofDeath
                     effect.AmbientLightColor = new Vector3(0.01f, 0.15f, 0.6f);
                     effect.EmissiveColor = new Vector3(0f, 0.1f, 0.2f);
 
-                    effect.World = camera.World * Matrix.CreateTranslation(character.Position);
-                    effect.View = camera.View;
-                    effect.Projection = camera.Projection;
+                    effect.World = NewCamera.Instance.X_World * Matrix.CreateTranslation(character.Position);
+                    effect.View = NewCamera.Instance.X_View;
+                    effect.Projection = NewCamera.Instance.X_Projection;
                 }
 
                 mesh.Draw();
