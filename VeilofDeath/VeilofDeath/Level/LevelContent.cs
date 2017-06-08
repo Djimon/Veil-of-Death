@@ -13,7 +13,7 @@ namespace VeilofDeath
         /// <summary>
         /// Generates lookup table for models with their corresponding string (name)
         /// </summary>
-        /// <typeparam name="T">Onject (Model)</typeparam>
+        /// <typeparam name="T">Object (Model)</typeparam>
         /// <param name="contentManager">MonoGame Content.mgcb</param>
         /// <param name="contentFolder">Path to folder</param>
         /// <returns></returns>

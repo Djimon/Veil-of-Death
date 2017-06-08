@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 
 namespace VeilofDeath
 {
     static class GameConstants
     {
+        //mandatory things        
+        public static ContentManager Content;
 
         // Camera and View
         public static Vector2 WINDOWSIZE = new Vector2(1200, 700);
@@ -13,6 +16,7 @@ namespace VeilofDeath
         /// fixed aspect ratio of the window
         /// </summary>
         public static float fAspectRatio = WINDOWSIZE.X / WINDOWSIZE.Y;
+        public static NewCamera MainCam;
         /// <summary>
         /// fixed window size width
         /// </summary>
@@ -25,6 +29,7 @@ namespace VeilofDeath
         /// Belongs to the Camera View Distance
         /// </summary>
         public static float fNearClipPlane = 0.1f;
+        internal static SpriteBatch SpriteBatch;
 
         //Map/ level
         /// <summary>
@@ -50,6 +55,8 @@ namespace VeilofDeath
         /// number of Traps in the Game
         /// </summary>
         public static int iTrapNumber = 4;
+        public static int iMaxLevel = 1;
+        
     }
 
 }
