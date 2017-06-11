@@ -12,6 +12,7 @@ namespace VeilofDeath
     {
         public Model model;
         public float angle;
+        public Vector3 Position;
 
         /// <summary>
         /// Primary collision
@@ -29,7 +30,7 @@ namespace VeilofDeath
             //Destroy GameObject and all it's Effects and Dependencies
         }
 
-        public void Draw(Camera cam)
+        public void Draw()
         {
             //TODO: Überprüfen, ob so wie in Player auch für normale GameObjects geeignet?
             foreach (var mesh in model.Meshes)
@@ -37,38 +38,24 @@ namespace VeilofDeath
                 foreach (BasicEffect effect in mesh.Effects)
                 {
                     effect.EnableDefaultLighting();
-                    effect.PreferPerPixelLighting = true;
 
-                    effect.World = GetWorldMatrix(); 
-                    effect.View = cam.ViewMatrix;
-                    effect.Projection = cam.SetProjectionsMatrix();
+                    effect.DirectionalLight0.DiffuseColor = new Vector3(0.5f, 0, 0); // a red light
+                    effect.DirectionalLight0.Direction = new Vector3(-1, 0, -1);  // coming along the x-axis
+                    effect.DirectionalLight0.SpecularColor = new Vector3(0, 1, 0); // with green highlights
+
+                    effect.AmbientLightColor = new Vector3(0.01f, 0.15f, 0.6f);
+                    effect.EmissiveColor = new Vector3(0f, 0.1f, 0.2f);
+
+                    effect.World = GameConstants.MainCam.X_World * Matrix.CreateTranslation(this.Position);
+                    effect.View = GameConstants.MainCam.X_View;
+                    effect.Projection = GameConstants.MainCam.X_Projection;
                 }
 
                 mesh.Draw();
             }
         }
 
-        /// <summary>
-        /// generates world matrix for this object
-        /// </summary>
-        /// <returns>WolrdMatrix</returns>
-        Matrix GetWorldMatrix()
-        {
-            const float circleRadius = 8;
-            const float heightOffGround = 3;
-
-            // this matrix moves the model "out" from the origin
-            Matrix translationMatrix = Matrix.CreateTranslation(
-                circleRadius, 0, heightOffGround);
-
-            // this matrix rotates everything around the origin
-            Matrix rotationMatrix = Matrix.CreateRotationZ(angle);
-
-            // We combine the two to have the model move in a circle:
-            Matrix combined = translationMatrix * rotationMatrix;
-
-            return combined;
-        }
+        
 
     }
 }

@@ -19,7 +19,7 @@ namespace VeilofDeath
         /// Initializes the entity with the given model
         /// </summary>
         /// <param name="model">Model for the entity</param>
-        void Initialize(Model model);
+        void Initialize();
 
         /// <summary>
         /// Behaves simmilar to an update function

@@ -48,10 +48,9 @@
     <Compile Include="Core\GameStates\MainMenu.cs" />
     <Compile Include="Core\GameStates\Score.cs" />
     <Compile Include="Level\Block.cs" />
-    <Compile Include="Core\Camera.cs" />
     <Compile Include="Core\Game1.cs" />
     <Compile Include="Core\GameConstants.cs" />
-    <Compile Include="Core\NewCamera.cs" />
+    <Compile Include="Core\Camera.cs" />
     <Compile Include="Objects\AGameObject.cs" />
     <Compile Include="Level\Level.cs" />
     <Compile Include="Objects\ILivingEntity.cs" />

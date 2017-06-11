@@ -167,9 +167,9 @@ namespace VeilofDeath
                         //effect.World = GetWorldMatrix();
                         //effect.View = C.ViewMatrix;
                         //effect.Projection = C.SetProjectionsMatrix();
-                        effect.World = NewCamera.Instance.X_World * Matrix.CreateScale(scale) * Matrix.CreateTranslation(position);
-                        effect.View = NewCamera.Instance.X_View;
-                        effect.Projection = NewCamera.Instance.X_Projection;
+                        effect.World = GameConstants.MainCam.X_World * Matrix.CreateScale(scale) * Matrix.CreateTranslation(position);
+                        effect.View = GameConstants.MainCam.X_View;
+                        effect.Projection = GameConstants.MainCam.X_Projection;
                     }
                     mesh.Draw();
                 }

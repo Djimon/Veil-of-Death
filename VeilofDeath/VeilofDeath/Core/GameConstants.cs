@@ -16,7 +16,7 @@ namespace VeilofDeath
         /// fixed aspect ratio of the window
         /// </summary>
         public static float fAspectRatio = WINDOWSIZE.X / WINDOWSIZE.Y;
-        public static NewCamera MainCam;
+        public static Camera MainCam;
         /// <summary>
         /// fixed window size width
         /// </summary>
@@ -35,8 +35,8 @@ namespace VeilofDeath
         /// <summary>
         /// Size of each block in the map (like tiles)
         /// </summary>
-        public static int iBlockSize = 2;
-        public static float fLaneCenter = iBlockSize * 3;  // *3 <= * mapmask.width (actual 6) and :2 (center)
+        public static int iBlockSize = 4;
+        public static float fLaneCenter = (iBlockSize*6 -1) /2;  // *3 <= * mapmask.width (actual 6) and :2 (center)
         /// <summary>
         /// Dictionary which holds the models for each LevelBlock
         /// </summary>
@@ -44,7 +44,7 @@ namespace VeilofDeath
         /// <summary>
         /// Z-Axis of the level
         /// </summary>
-        public static float fLevelHeight = -1;
+        public static float fLevelHeight = -1f * iBlockSize;
 
         //Gameplay
         /// <summary>

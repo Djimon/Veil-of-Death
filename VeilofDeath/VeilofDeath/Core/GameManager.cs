@@ -32,7 +32,6 @@
         public GameManager()
         {
             Load();
-            Level = 0;
         }
 
         public void LevelUp()
@@ -42,6 +41,8 @@
 
         public void Save()
         {
+            //TODO: aus datei laden
+            this.Level = 1;
 
         }
 

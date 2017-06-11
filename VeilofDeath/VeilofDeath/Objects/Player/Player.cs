@@ -16,6 +16,7 @@ namespace VeilofDeath
         //Velocity of the model, applied each frame to the model's position
         public Vector3 Velocity;
         public bool isActive = false;
+        public float fSpeed = 0.1f;
 
         //public Quaternion Rotation;
 
@@ -27,11 +28,12 @@ namespace VeilofDeath
         {
             model = m;
             Position = new Vector3(GameConstants.fLaneCenter, 0,0);
+            Initialize();            
         }
 
-        public void Initialize(Model m)
+        public void Initialize()
         {
-            model = m;            
+                        
         }
 
         /// <summary>
@@ -63,8 +65,8 @@ namespace VeilofDeath
         /// </summary>
         public void Tick()
         {
-            
             Move();
+
         }
 
         /// <summary>
@@ -73,12 +75,14 @@ namespace VeilofDeath
         public void Move()
         {
             //TODO: implement Bewegung
+            Velocity = fSpeed * Vector3.Up;
+            Position += Velocity;
         }
 
         /// <summary>
         /// Draws the player if active
         /// </summary>
-        public void Draw()
+        public new void Draw()
         {
             if (!isActive)
                 return;
@@ -96,16 +100,15 @@ namespace VeilofDeath
                     effect.AmbientLightColor = new Vector3(0.01f, 0.15f, 0.6f);
                     effect.EmissiveColor = new Vector3(0f, 0.1f, 0.2f);
 
-                    effect.World = NewCamera.Instance.X_World * Matrix.CreateTranslation(this.Position);
-                    effect.View = NewCamera.Instance.X_View;
-                    effect.Projection = NewCamera.Instance.X_Projection;
+                    effect.World = GameConstants.MainCam.X_World * Matrix.CreateTranslation(this.Position);
+                    effect.View = GameConstants.MainCam.X_View;
+                    effect.Projection = GameConstants.MainCam.X_Projection;
                 }
 
                 mesh.Draw();
             }
-
-
         }
+
 
         /// <summary>
         /// Deactivates the player.

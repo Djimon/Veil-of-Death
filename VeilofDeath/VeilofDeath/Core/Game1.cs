@@ -46,6 +46,7 @@ namespace VeilofDeath
         /// </summary>
         protected override void Initialize()
         {
+            GameManager.Instance.Load();
             graphics.PreferredBackBufferWidth = (int)GameConstants.WINDOWSIZE.X;
             graphics.PreferredBackBufferHeight = (int)GameConstants.WINDOWSIZE.Y;
             graphics.IsFullScreen = false;
@@ -53,8 +54,11 @@ namespace VeilofDeath
             Window.Title = "Veil of Death (alpha 0.01a)";
             lightDirection.Normalize();
 
-            GameConstants.MainCam = new NewCamera();
+            GameConstants.MainCam = new Camera();
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            GameConstants.SpriteBatch = spriteBatch;
 
+            gameStates.Clear();
             gameStates.Push(new MainMenu());
             
 
@@ -68,8 +72,7 @@ namespace VeilofDeath
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-            GameConstants.SpriteBatch = spriteBatch;
+            
             // TODO: use this.Content to load your game content here
 
 
@@ -94,7 +97,7 @@ namespace VeilofDeath
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed
                 || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            //float fTimeDelta = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            
 
             currentState = gameStates.Peek();
             currentState.Update(gameTime);
@@ -105,7 +108,7 @@ namespace VeilofDeath
                 gameStates.Pop();
             if (nextState != EState.none)
             {
-                currentState.newState = EState.none;
+                currentState.newState = nextState;
                 gameStates.Push(FetchGameState(nextState));
             }
             if (gameStates.Count == 0)

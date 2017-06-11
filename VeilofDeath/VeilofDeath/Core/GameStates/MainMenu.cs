@@ -30,7 +30,7 @@ namespace VeilofDeath.Core.GameStates
 
         public void Initialize()
         {
-            
+            newState = EState.none;
         }
 
         public void LoadContent()

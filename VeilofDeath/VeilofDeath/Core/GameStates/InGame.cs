@@ -12,6 +12,10 @@ namespace VeilofDeath.Core.GameStates
 {
     class InGame : IGameState
     {
+        /// <summary>
+        /// newState defines in which GameState to go next
+        /// Must be initialized to "EState.none"!
+        /// </summary>
         public EState newState { get; set; }
         public bool canLeave { get; set; }
 
@@ -21,18 +25,7 @@ namespace VeilofDeath.Core.GameStates
         public SpriteBatch spriteBatch;
         public SpriteFont lucidaConsole;
 
-        int iLevel
-        {
-            get
-            {
-                return iLevel;
-            }
-            set
-            {
-                if (iLevel > GameConstants.iMaxLevel)
-                    iLevel = GameConstants.iMaxLevel;
-            }
-        }
+        int iLevel;
 
         Bitmap levelMask;
         public Map testmap;  
@@ -50,6 +43,8 @@ namespace VeilofDeath.Core.GameStates
 
         private bool reachedFinish = false;
 
+        float fTimeDelta;
+
         public InGame(int Level)
         {
             spriteBatch = GameConstants.SpriteBatch;
@@ -63,9 +58,12 @@ namespace VeilofDeath.Core.GameStates
 
         public void Initialize()
         {
+            newState = EState.none;
             currentKeyboardState = Keyboard.GetState();
             oldKeyboardState = new KeyboardState();
-            PController = new PlayerController();
+            
+            
+
 
             lucidaConsole = GameConstants.Content.Load<SpriteFont>("Fonts/Lucida Console");
 
@@ -82,15 +80,16 @@ namespace VeilofDeath.Core.GameStates
 
         public void LoadContent()
         {
+            
             m_player = LoadModel("Models/cube");
 
             levelMask = new Bitmap("Content/Maps/testmap.bmp");
 
             testmap = new Map(levelMask);
-
-            Player.Initialize(m_player);
+            Player = new Player(m_player);
             x_playerModelTransforms = SetupEffectDefaults(m_player);
             Player.Spawn(new Vector3(GameConstants.fLaneCenter, 0, 0));
+            PController = new PlayerController(Player);
 
             GameConstants.MainCam.SetTarget(Player);
         }
@@ -102,9 +101,11 @@ namespace VeilofDeath.Core.GameStates
 
         public void Update(GameTime time)
         {
-            PController.Update(currentKeyboardState, Player);
+            PController.Update(currentKeyboardState);
             oldKeyboardState = currentKeyboardState;
-
+            Player.Tick();
+            fTimeDelta += (float)time.ElapsedGameTime.TotalSeconds;
+            //GameConstants.MainCam.Update(time);
 
             if (reachedFinish)
             {
@@ -130,7 +131,7 @@ namespace VeilofDeath.Core.GameStates
         {
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Opaque);
             //Debug - Anzeige
-            spriteBatch.DrawString(lucidaConsole, "Pos: " + Player.Position,
+            spriteBatch.DrawString(lucidaConsole, "Pos: " + Player.Position+ " Time: "+fTimeDelta,
                                    GUI_Pos, Microsoft.Xna.Framework.Color.White);
 
 
