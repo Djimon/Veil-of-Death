@@ -6,13 +6,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VeilofDeath.Objects;
 
 namespace VeilofDeath
 {
      public class Player : AGameObject,ILivingEntity
     {
-        //Position of the model in world space
-        public Vector3 Position;
         //Velocity of the model, applied each frame to the model's position
         public Vector3 Velocity;
         public bool isActive = false;
@@ -28,12 +27,12 @@ namespace VeilofDeath
         {
             model = m;
             Position = new Vector3(GameConstants.fLaneCenter, 0,0);
-            Initialize();            
+            Initialize();   
         }
 
         public void Initialize()
         {
-                        
+            box = new MyBoundingBox(this);
         }
 
         /// <summary>
@@ -66,6 +65,7 @@ namespace VeilofDeath
         public void Tick()
         {
             Move();
+            HandleCollision();
 
         }
 

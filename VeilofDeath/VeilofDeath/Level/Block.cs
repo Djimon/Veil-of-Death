@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VeilofDeath.Objects.Traps;
 
 namespace VeilofDeath
 {
@@ -101,7 +102,8 @@ namespace VeilofDeath
                         this.position = new Vector3(pos, GameConstants.fLevelHeight);
                         this.isWalkable = false;
                         GameManager.Instance.AddSpike(this);
-
+                        //GameConstants.ListOfSpikeTraps.Add(new SpikeTrap(new Vector3(pos, GameConstants.fLevelHeight)));
+                        GameConstants.ListOfSpikeTraps.Add(new SpikeTrap(new Vector3(pos, GameConstants.fLevelHeight)));
                         break;
                     }
                 case 3: //start (green)
