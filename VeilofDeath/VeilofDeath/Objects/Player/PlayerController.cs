@@ -50,11 +50,13 @@ namespace VeilofDeath
                 Jump(character);
                 isSpacePressed = true;
             }
-            //if (currentKeyboardState.IsKeyDown(Keys.Down) && !oldKeyboardState.IsKeyDown(Keys.Down) && !isDownPressed)
-            //{
-            //    character.Position.Y -= 1 * GameConstants.iBlockSize;
-            //    isDownPressed = true;
-            //}
+
+            if (!character.isSliding && currentKeyboardState.IsKeyDown(Keys.LeftShift) && !oldKeyboardState.IsKeyDown(Keys.LeftShift) && !isDownPressed)
+            {
+                character.isSliding = true; ;
+                //TODO: Just Change the Animation and check if the Collision-boxes follow the Animation (= is small enough to pass under a obsticle)
+                isDownPressed = true;
+            }
 
             if (isRightPressed && currentKeyboardState.IsKeyUp(Keys.Right))
                 isRightPressed = false;
@@ -62,8 +64,8 @@ namespace VeilofDeath
                 isLeftPressed = false;
             if (isSpacePressed && currentKeyboardState.IsKeyUp(Keys.Space))
                 isSpacePressed = false;
-            //if (isDownPressed && currentKeyboardState.IsKeyUp(Keys.Down))
-            //    isDownPressed = false;
+            if (isDownPressed && currentKeyboardState.IsKeyUp(Keys.LeftShift))
+                isDownPressed = false;
 
             if (GameConstants.isDebugMode)
                 Console.WriteLine(character.Position.ToString());
@@ -87,12 +89,17 @@ namespace VeilofDeath
                 Console.WriteLine("Jump ends at " + character.Position.X+":"+fjumpEndPositionY);
             character.SetJumpingCurve(jumpMid,m, fjumpEndPositionY);
             character.isJumping = true;
-
         }
 
-        private float calculateFactor(Vector2 mid, float height)
+        /// <summary>
+        /// calculates the factor for the S-form of the square function
+        /// </summary>
+        /// <param name="mid">S-point</param>
+        /// <param name="posX">another point (actual Y-Position in 3D)</param>
+        /// <returns></returns>
+        private float calculateFactor(Vector2 mid, float posX)
         {
-            Vector2 landing = new Vector2(height, 0);
+            Vector2 landing = new Vector2(posX, 0);
             return (landing.Y - mid.Y) / ((landing.X - mid.X)* (landing.X - mid.X));
         }
     }

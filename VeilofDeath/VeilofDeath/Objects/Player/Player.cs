@@ -11,18 +11,28 @@ namespace VeilofDeath
 {
      public class Player : AGameObject,ILivingEntity
     {
-        //Position of the model in world space
-        public Vector3 Position;
         //Velocity of the model, applied each frame to the model's position
         public Vector3 Velocity;
         public bool isActive = false;
         public float fSpeed = 0.1f * GameConstants.fMovingSpeed;
+
+        /// <summary>
+        /// triggers the jumping animation
+        /// </summary>
         public bool isJumping = false;
+        //TODO: Animationszeit = GameCOnstants.fJumpingWidth / GameConstants.fJumpSpeed (für Jump und Slide gleich)
+
+        /// <summary>
+        /// triggers the Sliding animation
+        /// </summary>
+        public bool isSliding = false;
+
 
         // Scheitelpunkt-Form für Sprung-Kurve
         Vector2 S;
         float a;
         float afterJumpY;
+       
 
         //public Quaternion Rotation;
 
@@ -109,9 +119,10 @@ namespace VeilofDeath
                 Console.WriteLine("jumpheight: " + Position.Z);
             if (Position.Z < 0 )
             {
+                isJumping = false;
                 Position.Z = 0;
                 UnsetJCurve();
-                isJumping = false;
+                
             }
         }
 
@@ -139,8 +150,6 @@ namespace VeilofDeath
             S = Vector2.Zero;
             a = 0;
             afterJumpY = 0;
-            if (GameConstants.isDebugMode)
-                Console.WriteLine("S("+S.X+"/"+S.Y+") , a = "+a);
         }
 
         private float calculateFactor(Vector2 mid, float height)

@@ -105,8 +105,18 @@ namespace VeilofDeath.Core.GameStates
         {
             PController.Update(currentKeyboardState);
             oldKeyboardState = currentKeyboardState;
-            Player.Tick();
             fTimeDelta += (float)time.ElapsedGameTime.TotalSeconds;
+            Player.Tick();
+
+            if (Player.Position.Y >= GameConstants.fJumpWidth
+                && Player.Position.Y <= GameConstants.fJumpWidth + 0.111f)
+            {
+                GameConstants.fJumpSpeed = GameConstants.fJumpWidth / fTimeDelta;
+                if (GameConstants.isDebugMode)
+                    Console.WriteLine("JumpSpeed: "+ GameConstants.fJumpSpeed);
+            }
+                
+            
             //GameConstants.MainCam.Update(time);
             UpdateScore();
 

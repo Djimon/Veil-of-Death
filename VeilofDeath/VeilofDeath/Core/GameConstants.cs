@@ -49,8 +49,8 @@ namespace VeilofDeath
         public static float fJumpWidth = 2* iBlockSize;
         /* to overjump one block: when jumping is pressed in the middle of the before-block, 
          * it takes 2 blocks to land in the middle of the after-block */
-
         public static float fJumpHeight =  iBlockSize *6/5;
+        public static float fJumpSpeed;
 
         /// <summary>
         /// Dictionary which holds the models for each LevelBlock
