@@ -97,9 +97,10 @@ namespace VeilofDeath
                     }
                 case 2: //Loch (red)
                     {
-                        //this.m_Block = modelDictionary["none"];
+                        this.m_Block = modelDictionary["stachelfalle"];
                         this.position = new Vector3(pos, GameConstants.fLevelHeight);
                         this.isWalkable = false;
+                        GameManager.Instance.AddSpike(this);
 
                         break;
                     }
@@ -117,9 +118,9 @@ namespace VeilofDeath
                         this.isWalkable = true;
                         break;
                     }
-                case 5: //Falle 1
+                case 5: //Slowing Falle
                     {
-                        this.m_Block= modelDictionary[""];
+                        this.m_Block= modelDictionary["slowtrap"];
                         this.position = new Vector3(pos, GameConstants.fLevelHeight);
                         this.isWalkable = false;
                         break;

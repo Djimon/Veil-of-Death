@@ -17,6 +17,7 @@ namespace VeilofDeath
         /// </summary>
         public static float fAspectRatio = WINDOWSIZE.X / WINDOWSIZE.Y;
         public static Camera MainCam;
+        public static int CameraAngle = 40;
         /// <summary>
         /// fixed window size width
         /// </summary>
@@ -44,7 +45,7 @@ namespace VeilofDeath
         /// <summary>
         /// Z-Axis of the level
         /// </summary>
-        public static float fLevelHeight = -1f * iBlockSize;
+        public static float fLevelHeight = -1f * iBlockSize +1 ;
 
         //Gameplay
         /// <summary>

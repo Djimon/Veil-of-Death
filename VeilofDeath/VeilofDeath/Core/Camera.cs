@@ -77,7 +77,7 @@ namespace VeilofDeath
         {
             x_world = Matrix.CreateTranslation(new Vector3(0, 0, 0));
             x_view = Matrix.CreateLookAt(camPos,new Vector3(GameConstants.fLaneCenter,0,0), UP);
-            x_projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(50), 
+            x_projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(GameConstants.CameraAngle), 
                                                             GameConstants.fAspectRatio, 
                                                             GameConstants.fNearClipPlane, 
                                                             GameConstants.fFarClipPlane);
@@ -97,9 +97,7 @@ namespace VeilofDeath
             camPos += new Vector3(0, target.Velocity.Y ,0); //TODO: get rid of Magic numbers
 
             Vector3 targetVector = new Vector3(GameConstants.fLaneCenter, target.Position.Y, 0f);
-            x_view = Matrix.CreateLookAt(camPos, 
-                                        targetVector /*- new Vector3(0f,0f, GameConstants.fCameraHeight)*/,
-                                        UP );
+            x_view = Matrix.CreateLookAt(camPos,targetVector,UP );
 
         }
 
