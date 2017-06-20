@@ -131,8 +131,9 @@ namespace VeilofDeath
         /// </summary>
         public void ResetCamera()
         {
-            Console.WriteLine("ResetCam");
-            camPos = new Vector3(GameConstants.fLaneCenter, -20, 10); // x:= bloksize *3 <= *6 Lanes and :2 (center) 
+            if (GameConstants.isDebugMode)
+                Console.WriteLine("ResetCam");
+            camPos = new Vector3(GameConstants.fLaneCenter, -20, GameConstants.fCameraHeight); // x:= bloksize *3 <= *6 Lanes and :2 (center) 
             lastPos = camPos;
             ResetRotation();
         }

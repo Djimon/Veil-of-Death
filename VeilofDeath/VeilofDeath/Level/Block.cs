@@ -85,7 +85,6 @@ namespace VeilofDeath
                         this.position = new Vector3(pos,GameConstants.fLevelHeight);
                         this.isWalkable = true;
                         break;
-                        Console.WriteLine(modelDictionary["weg"].ToString());
                     }
 
                 case 1: //Mauer (grey)

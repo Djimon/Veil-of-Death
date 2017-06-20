@@ -71,7 +71,8 @@ namespace VeilofDeath.Core.GameStates
             GameConstants.levelDictionary = LevelContent.LoadListContent<Model>(GameConstants.Content, "Models/Level1");
             foreach (KeyValuePair<string, Model> SM in GameConstants.levelDictionary)
             {
-                Console.WriteLine("Key:" + SM.Key + ", Value: " + SM.Value);
+                if (GameConstants.isDebugMode)
+                    Console.WriteLine("Key:" + SM.Key + ", Value: " + SM.Value);
             }
 
             //TODO: initialize these Matrixes

@@ -28,7 +28,8 @@ namespace VeilofDeath
             foreach (FileInfo file in files)
             {
                 string key = Path.GetFileNameWithoutExtension(file.Name);
-                Console.WriteLine("...." + key);
+                if (GameConstants.isDebugMode)
+                    Console.WriteLine("...." + key);
                 result[key] = contentManager.Load<T>(contentFolder + "/" + key);
             }
             return result;
