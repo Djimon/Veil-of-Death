@@ -19,7 +19,7 @@ namespace VeilofDeath
         bool isRightPressed = false;
         bool isLeftPressed = false;
 
-        bool isLanded =false ;
+        bool isLanded = false ;
         Player character;
        // private Player character;
 

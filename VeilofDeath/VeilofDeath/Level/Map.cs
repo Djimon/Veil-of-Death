@@ -170,7 +170,7 @@ namespace VeilofDeath
             {
                 for (int j = 0; j < map.GetLength(1); j++)
                 {
-                    map[i, j].Draw();                    
+                    map[i, j].Draw();
                 }
             }
         }

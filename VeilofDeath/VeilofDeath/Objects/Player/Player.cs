@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VeilofDeath.Objects;
 
 namespace VeilofDeath
 {
@@ -44,12 +45,12 @@ namespace VeilofDeath
         {
             model = m;
             Position = new Vector3(GameConstants.fLaneCenter, 0,0);
-            Initialize();            
+            Initialize();   
         }
 
         public void Initialize()
         {
-                        
+            box = new MyBoundingBox(this);
         }
 
         /// <summary>
@@ -82,6 +83,7 @@ namespace VeilofDeath
         public void Tick()
         {
             Move();
+            HandleCollision();
 
         }
 
