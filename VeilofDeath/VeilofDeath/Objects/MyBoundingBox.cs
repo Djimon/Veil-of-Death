@@ -15,8 +15,12 @@ namespace VeilofDeath.Objects
         private int imaxY;
         private int imaxZ;
 
+        private AGameObject O_Parent;
+
         public MyBoundingBox(AGameObject gameObject)
         {
+            //ToDO: size nciht von der Position abhängig machen -> Kracht beim Player, da sich die Pos stets ändert
+            O_Parent = gameObject;
             iminX = (int)gameObject.Position.X - GameConstants.iBlockSize / 2;
             iminY = (int)gameObject.Position.Y - GameConstants.iBlockSize * 2;
             iminZ = (int)gameObject.Position.Z - GameConstants.iBlockSize * 4;
@@ -27,13 +31,14 @@ namespace VeilofDeath.Objects
 
         public bool intersect(MyBoundingBox other)
         {
-           GameConstants.isCollided = ((this.iminX <= other.imaxX && this.imaxX >= other.iminX) &&
+            //TODO: attach "isCollided" to Player not global
+           O_Parent.hasCollided = ((this.iminX <= other.imaxX && this.imaxX >= other.iminX) &&
                                       (this.iminY <= other.imaxY && this.imaxY >= other.iminY) &&
                                       (this.iminZ <= other.imaxZ && this.imaxZ >= other.iminZ));
 
             //Console.WriteLine("Collision: " + GameConstants.isCollided);
 
-            return GameConstants.isCollided;
+            return O_Parent.hasCollided;
         }
 
     }

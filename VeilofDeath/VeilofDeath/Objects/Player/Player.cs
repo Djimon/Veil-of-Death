@@ -15,7 +15,7 @@ namespace VeilofDeath
         //Velocity of the model, applied each frame to the model's position
         public Vector3 Velocity;
         public bool isActive = false;
-        public float fSpeed = 0.1f * GameConstants.fMovingSpeed;
+        public float fSpeed = 0.1f * GameConstants.fMovingSpeed;        
 
         /// <summary>
         /// triggers the jumping animation

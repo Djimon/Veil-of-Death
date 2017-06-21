@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using VeilofDeath.Objects.Traps;
 
 namespace VeilofDeath
 {
@@ -52,15 +53,15 @@ namespace VeilofDeath
         }
 
         /**************** Ingame Features ********************/
-        public List<Block> SpikeList = new List<Block>();
+        public List<SpikeTrap> SpikeList = new List<SpikeTrap>();
         
 
-        public List<Block> getSpikeList()
+        public List<SpikeTrap> getSpikeList()
         {
             return SpikeList;
         }
 
-        public void AddSpike(Block spike)
+        public void AddSpike(SpikeTrap spike)
         {
             SpikeList.Add(spike);
         }

@@ -74,12 +74,7 @@ namespace VeilofDeath
         public static int iTrapNumber = 4;
         public static int iMaxLevel = 1;
 
-
-        public static List<SpikeTrap> ListOfSpikeTraps =  new List<SpikeTrap>();
-       // public static ArrayList ListOfTraps = new ArrayList();
-
-        public static bool isCollided = false;
-        
+              
         
     }
 

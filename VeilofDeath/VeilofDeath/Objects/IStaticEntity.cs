@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace VeilofDeath.Objects
 {
-    interface StaticEntity
+    interface IStaticEntity
     {
 
         void Spawn(Vector3 pos);
