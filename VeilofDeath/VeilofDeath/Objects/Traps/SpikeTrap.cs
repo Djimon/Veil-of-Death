@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace VeilofDeath.Objects.Traps
 {
-    class SpikeTrap : AGameObject, StaticEntity
+    public class SpikeTrap : AGameObject, StaticEntity
     {
         public MyBoundingBox box;
 

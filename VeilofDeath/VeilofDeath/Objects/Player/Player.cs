@@ -64,6 +64,7 @@ namespace VeilofDeath
         /// </summary>
         public void Tick()
         {
+            box.update(this);
             Move();
             HandleCollision();
 

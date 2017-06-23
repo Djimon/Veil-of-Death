@@ -89,7 +89,7 @@ namespace VeilofDeath.Core.GameStates
             testmap = new Map(levelMask);
             Player = new Player(m_player);
             x_playerModelTransforms = SetupEffectDefaults(m_player);
-            Player.Spawn(new Vector3(GameConstants.fLaneCenter, 0, 0));
+            Player.Spawn(new Vector3(GameConstants.fLaneCenter+1, 0, 0));
             PController = new PlayerController(Player);
 
             GameConstants.MainCam.SetTarget(Player);
