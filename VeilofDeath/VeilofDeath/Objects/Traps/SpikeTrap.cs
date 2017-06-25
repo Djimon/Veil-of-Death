@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using VeilofDeath.Objects;
 
-namespace VeilofDeath.Objects.Traps
+namespace VeilofDeath
 {
-    public class SpikeTrap : AGameObject, StaticEntity
-    class SpikeTrap : AGameObject, IStaticEntity
+    public class SpikeTrap : AGameObject, IStaticEntity
     {
         private Block identity;
 

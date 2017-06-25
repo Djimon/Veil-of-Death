@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using VeilofDeath.Objects.Traps;
 
 namespace VeilofDeath
 {
