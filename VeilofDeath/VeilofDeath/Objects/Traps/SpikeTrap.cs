@@ -8,18 +8,20 @@ using Microsoft.Xna.Framework;
 namespace VeilofDeath.Objects.Traps
 {
     public class SpikeTrap : AGameObject, StaticEntity
+    class SpikeTrap : AGameObject, IStaticEntity
     {
-        public MyBoundingBox box;
+        private Block identity;
 
-        public SpikeTrap(Vector3 pos)
+        public SpikeTrap(Vector3 pos, Block self)
         {
             Position = pos;
+            identity = self;
             Initialize();
         }
 
         public void DeSpawn()
         {
-            throw new NotImplementedException();
+            box = null;
         }
 
         public void Initialize()
@@ -39,7 +41,11 @@ namespace VeilofDeath.Objects.Traps
 
         public void Tick()
         {
-            throw new NotImplementedException();
+            if (identity == null)
+            {
+                DeSpawn();
+            }
+            
         }
     }
 }

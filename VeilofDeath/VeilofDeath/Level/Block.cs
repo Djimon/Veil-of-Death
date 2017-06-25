@@ -86,7 +86,6 @@ namespace VeilofDeath
                         this.position = new Vector3(pos,GameConstants.fLevelHeight);
                         this.isWalkable = true;
                         break;
-                        Console.WriteLine(modelDictionary["weg"].ToString());
                     }
 
                 case 1: //Mauer (grey)
@@ -101,9 +100,9 @@ namespace VeilofDeath
                         this.m_Block = modelDictionary["stachelfalle"];
                         this.position = new Vector3(pos, GameConstants.fLevelHeight);
                         this.isWalkable = false;
-                        GameManager.Instance.AddSpike(this);
+                        GameManager.Instance.AddSpike(new SpikeTrap(new Vector3(pos, GameConstants.fLevelHeight),this));
                         //GameConstants.ListOfSpikeTraps.Add(new SpikeTrap(new Vector3(pos, GameConstants.fLevelHeight)));
-                        GameConstants.ListOfSpikeTraps.Add(new SpikeTrap(new Vector3(pos, GameConstants.fLevelHeight)));
+                        //GameConstants.ListOfSpikeTraps.Add(new SpikeTrap(new Vector3(pos, GameConstants.fLevelHeight)));
                         break;
                     }
                 case 3: //start (green)

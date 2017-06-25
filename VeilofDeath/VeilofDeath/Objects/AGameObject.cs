@@ -16,13 +16,13 @@ namespace VeilofDeath
         public float angle;
         public Vector3 Position;
         public MyBoundingBox box;
-
+        public bool hasCollided = false;
         /// <summary>
         /// Primary collision
         /// </summary>
         protected void HandleCollision()
         {
-            foreach (SpikeTrap trap in GameConstants.ListOfSpikeTraps)
+            foreach (SpikeTrap trap in GameManager.Instance.SpikeList)
             {
                 if (this.box.intersect(trap.box))
                     Console.WriteLine("Collision");

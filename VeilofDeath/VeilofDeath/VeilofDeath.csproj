@@ -60,7 +60,7 @@
     <Compile Include="Objects\Player\Player.cs" />
     <Compile Include="Objects\Player\PlayerController.cs" />
     <Compile Include="Core\Program.cs" />
-    <Compile Include="Objects\StaticEntity.cs" />
+    <Compile Include="Objects\IStaticEntity.cs" />
     <Compile Include="Objects\Traps\SpikeTrap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Level\LevelContent.cs" />

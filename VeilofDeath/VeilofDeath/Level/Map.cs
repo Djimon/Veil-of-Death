@@ -65,13 +65,15 @@ namespace VeilofDeath
             Ziel = new Vector2(0, 0);
 
             map = new Block[mask.Width, mask.Height];
-            Console.WriteLine("Maske: "+mask.Width +":"+ mask.Height);
+            if (GameConstants.isDebugMode)
+                Console.WriteLine("Maske: "+mask.Width +":"+ mask.Height);
 
             for (int row = 0; row < map.GetLength(0); row++)
             {
                 for (int col = 0; col < map.GetLength(1); col++)
                 {
-                    Console.WriteLine("P("+row*iBlockSize+":"+col*iBlockSize+") color = "+mask.GetPixel(row,col).Name);
+                    if (GameConstants.isDebugMode)
+                        Console.WriteLine("P("+row*iBlockSize+":"+col*iBlockSize+") color = "+mask.GetPixel(row,col).Name);
 
                     if (mask.GetPixel(row, col).Name == sBlack)
                     {

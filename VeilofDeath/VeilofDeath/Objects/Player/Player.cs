@@ -15,7 +15,25 @@ namespace VeilofDeath
         //Velocity of the model, applied each frame to the model's position
         public Vector3 Velocity;
         public bool isActive = false;
-        public float fSpeed = 0.1f;
+        public float fSpeed = 0.1f * GameConstants.fMovingSpeed;        
+
+        /// <summary>
+        /// triggers the jumping animation
+        /// </summary>
+        public bool isJumping = false;
+        //TODO: Animationszeit = GameCOnstants.fJumpingWidth / GameConstants.fJumpSpeed (für Jump und Slide gleich)
+
+        /// <summary>
+        /// triggers the Sliding animation
+        /// </summary>
+        public bool isSliding = false;
+
+
+        // Scheitelpunkt-Form für Sprung-Kurve
+        Vector2 S;
+        float a;
+        float afterJumpY;
+       
 
         //public Quaternion Rotation;
 
@@ -75,9 +93,72 @@ namespace VeilofDeath
         /// </summary>
         public void Move()
         {
-            //TODO: implement Bewegung
+
+            if (isJumping)
+            {
+                Jump();
+            }
+
             Velocity = fSpeed * Vector3.Up;
             Position += Velocity;
+
+        }
+
+        /// <summary>
+        /// performs the calculation oh the position during a jump
+        /// </summary>
+        public void Jump()
+        {
+            // Scheitelpunktform für Parabel 
+            // using S.X like Position.Y because S is 2d and Position is 3D
+            // same with S.Y and Position.Z
+
+
+            //TODO: fix quadratical Jumping
+            
+            Position.Z = a * ( (Position.Y - S.X)*(Position.Y - S.X))   + S.Y;
+
+            if (GameConstants.isDebugMode)
+                Console.WriteLine("jumpheight: " + Position.Z);
+            if (Position.Z < 0 )
+            {
+                isJumping = false;
+                Position.Z = 0;
+                UnsetJCurve();
+                
+            }
+        }
+
+        /// <summary>
+        /// Sets the parameters for the jumping curve to calculate the Player.Position
+        /// </summary>
+        /// <param name="jumpMid">S(x,y) - center point of the jump</param>
+        /// <param name="m">the factor for parabel-function</param>
+        /// <param name="endPos">position (y) where the jump ends</param>
+        internal void SetJumpingCurve(Vector2 jumpMid,float m, float endPos)
+        {
+            S = jumpMid;
+            a = m;
+
+            afterJumpY = endPos;
+            if (GameConstants.isDebugMode)
+                Console.WriteLine("S(" + S.X + "/" + S.Y + ") , a = " + a);
+        }
+
+        /// <summary>
+        /// Resets the jumping curve parameters
+        /// </summary>
+        public void UnsetJCurve()
+        {
+            S = Vector2.Zero;
+            a = 0;
+            afterJumpY = 0;
+        }
+
+        private float calculateFactor(Vector2 mid, float height)
+        {
+            Vector2 landing = new Vector2(height, 0);
+            return (landing.Y - mid.Y) / (landing.X - mid.X);
         }
 
         /// <summary>
@@ -109,6 +190,8 @@ namespace VeilofDeath
                 mesh.Draw();
             }
         }
+
+   
 
 
         /// <summary>

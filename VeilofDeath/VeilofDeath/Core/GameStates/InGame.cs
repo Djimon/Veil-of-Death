@@ -71,7 +71,8 @@ namespace VeilofDeath.Core.GameStates
             GameConstants.levelDictionary = LevelContent.LoadListContent<Model>(GameConstants.Content, "Models/Level1");
             foreach (KeyValuePair<string, Model> SM in GameConstants.levelDictionary)
             {
-                Console.WriteLine("Key:" + SM.Key + ", Value: " + SM.Value);
+                if (GameConstants.isDebugMode)
+                    Console.WriteLine("Key:" + SM.Key + ", Value: " + SM.Value);
             }
 
             //TODO: initialize these Matrixes
@@ -104,8 +105,18 @@ namespace VeilofDeath.Core.GameStates
         {
             PController.Update(currentKeyboardState);
             oldKeyboardState = currentKeyboardState;
-            Player.Tick();
             fTimeDelta += (float)time.ElapsedGameTime.TotalSeconds;
+            Player.Tick();
+
+            if (Player.Position.Y >= GameConstants.fJumpWidth
+                && Player.Position.Y <= GameConstants.fJumpWidth + 0.111f)
+            {
+                GameConstants.fJumpSpeed = GameConstants.fJumpWidth / fTimeDelta;
+                if (GameConstants.isDebugMode)
+                    Console.WriteLine("JumpSpeed: "+ GameConstants.fJumpSpeed);
+            }
+                
+            
             //GameConstants.MainCam.Update(time);
             UpdateScore();
 
