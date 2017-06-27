@@ -42,7 +42,7 @@ namespace VeilofDeath
         /// Size of each block in the map (like tiles)
         /// </summary>
         public static int iBlockSize = 4;
-        public static float fLaneCenter = 1 + (iBlockSize*6 - 1) /2;  // *3 <= * mapmask.width (actual 6) and :2 (center)
+        public static float fLaneCenter = (iBlockSize*6) /2;  // *3 <= * mapmask.width (actual 6) and :2 (center)
 
         /// <summary>
         /// Length of the Jump

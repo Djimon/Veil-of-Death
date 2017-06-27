@@ -16,6 +16,7 @@ namespace VeilofDeath
         public Vector3 Position;
         public MyBoundingBox box;
         public bool hasCollided = false;
+        public string name="";
         /// <summary>
         /// Primary collision
         /// </summary>

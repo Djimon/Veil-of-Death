@@ -46,7 +46,8 @@ namespace VeilofDeath
             model = m;
             Position = new Vector3(GameConstants.fLaneCenter, 0,0);
             Console.WriteLine("Startposition: (" + this.Position.X + "/ " + this.Position.Y + "/" + this.Position.Z + ")");
-            Initialize();   
+            Initialize();
+            this.name = "Player";
         }
 
         public void Initialize()
@@ -83,8 +84,8 @@ namespace VeilofDeath
         /// </summary>
         public void Tick()
         {
-            box.update(this);
             Move();
+            box.update(this);
             HandleCollision();
 
         }
@@ -182,6 +183,7 @@ namespace VeilofDeath
 
                     effect.AmbientLightColor = new Vector3(0.01f, 0.15f, 0.6f);
                     effect.EmissiveColor = new Vector3(0f, 0.1f, 0.2f);
+
 
                     effect.World = GameConstants.MainCam.X_World * Matrix.CreateTranslation(this.Position);
                     effect.View = GameConstants.MainCam.X_View;
