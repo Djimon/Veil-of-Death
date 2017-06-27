@@ -11,17 +11,11 @@ namespace VeilofDeath.Objects
     {
         private Vector3 center;
         private float iminX;
-        private float iminY;
-        private float iminZ;
-        private float imaxX;
-        private float imaxY;
-        private float imaxZ;
 
         
         //private AGameObject O_Parent;
 
-        //public MyBoundingBox(AGameObject gameObject)
-        public MyBoundingBox(Player player)
+
         {
             center = new Vector3(player.Position.X, player.Position.Y, player.Position.Z);
             iminX = center.X - GameConstants.iBlockSize / 4;
@@ -55,8 +49,7 @@ namespace VeilofDeath.Objects
 
         public bool intersect(MyBoundingBox other)
         {
-            //TODO: attach "isCollided" to Player not global
-           /*O_Parent.hasCollided*/ GameConstants.isCollided  = ((this.iminX <= other.imaxX && this.imaxX >= other.iminX) &&
+
                                       (this.iminY <= other.imaxY && this.imaxY >= other.iminY) &&
                                       (this.iminZ <= other.imaxZ && this.imaxZ >= other.iminZ));
 
@@ -66,10 +59,10 @@ namespace VeilofDeath.Objects
             Console.WriteLine("Trap x: " + other.imaxX + " y: " + other.imaxY + " z: " + other.imaxZ);
             */
 
-            return GameConstants.isCollided;
-           // return O_Parent.hasCollided;
+
         }
 
+/
         public void update(Player player)
         {
             iminX = player.Position.X - GameConstants.iBlockSize / 4;
@@ -79,5 +72,6 @@ namespace VeilofDeath.Objects
             imaxY = player.Position.Y + GameConstants.iBlockSize / 4;
             imaxZ = player.Position.Z + GameConstants.iBlockSize;
         }
+
     }
 }

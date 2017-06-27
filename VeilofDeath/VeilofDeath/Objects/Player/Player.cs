@@ -77,6 +77,7 @@ namespace VeilofDeath
             Velocity = Vector3.Zero;
             //TODO: Reset Level, all Buffs and Debuffs
             isActive = true;
+            Position = GameManager.Instance.StartPos;
         }
 
         /// <summary>
@@ -114,9 +115,6 @@ namespace VeilofDeath
             // Scheitelpunktform für Parabel 
             // using S.X like Position.Y because S is 2d and Position is 3D
             // same with S.Y and Position.Z
-
-
-            //TODO: fix quadratical Jumping
             
             Position.Z = a * ( (Position.Y - S.X)*(Position.Y - S.X))   + S.Y;
 
@@ -203,7 +201,7 @@ namespace VeilofDeath
         /// </summary>
         public void DeSpawn()
         {
-            //TODO: Model deaktivieren, nicht löschen, da öfter benötigt
+            //TODO: Model deaktivieren, nicht löschen, da öfter benötigt (Loading-Pools)
             isActive = false; //wird nciht mehr gedrawt
             Position = Vector3.Zero;
         }

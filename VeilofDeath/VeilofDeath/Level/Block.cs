@@ -108,6 +108,7 @@ namespace VeilofDeath
                     {
                         this.m_Block = modelDictionary["start"];
                         this.position = new Vector3(pos, GameConstants.fLevelHeight);
+                        GameManager.Instance.StartPos = this.position;
                         this.isWalkable = true;
                         break;
                     }

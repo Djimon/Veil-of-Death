@@ -70,7 +70,6 @@ namespace VeilofDeath
         {
             InitializeCameraVectors();
             InitializeCameraMatrices();
-            CameraMidPoint = GameConstants.fLaneCenter - GameConstants.iBlockSize;
         }
 
         void InitializeCameraMatrices()
