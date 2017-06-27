@@ -84,7 +84,6 @@ namespace VeilofDeath.Core.GameStates
         {
             
             m_player = LoadModel("Models/cube");
-
             levelMask = new Bitmap("Content/Maps/testmap.bmp");
 
             testmap = new Map(levelMask);
@@ -114,8 +113,7 @@ namespace VeilofDeath.Core.GameStates
                 GameConstants.fJumpSpeed = GameConstants.fJumpWidth / fTimeDelta;
                 if (GameConstants.isDebugMode)
                     Console.WriteLine("JumpSpeed: "+ GameConstants.fJumpSpeed);
-            }
-                
+            }                
             
             //GameConstants.MainCam.Update(time);
             UpdateScore();
@@ -153,9 +151,6 @@ namespace VeilofDeath.Core.GameStates
             //Debug - Anzeige
             spriteBatch.DrawString(lucidaConsole, "Pos: " + Player.Position+ " Score: "+GameManager.Score,
                                    GUI_Pos, Microsoft.Xna.Framework.Color.White);
-
-
-
 
             spriteBatch.End(); ;
         }

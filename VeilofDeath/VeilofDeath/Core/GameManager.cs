@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using VeilofDeath.Objects.Traps;
 
 namespace VeilofDeath
@@ -28,7 +29,7 @@ namespace VeilofDeath
         public int Level { get; private set; }
         public static int Score { get; private set; }
         public int Difficulty { get; set; }
-
+        public Vector3 StartPos { get; set; }
 
         public static void UpdateScore(int value)
         {
