@@ -23,12 +23,12 @@ namespace VeilofDeath.Objects
         //public MyBoundingBox(AGameObject gameObject)
         public MyBoundingBox(Player player)
         {
-            iminX = player.Position.X - GameConstants.iBlockSize / 2;
-            iminY = player.Position.Y - GameConstants.iBlockSize / 2;
-            iminZ = player.Position.Z - GameConstants.iBlockSize * 2;
-            imaxX = player.Position.X + GameConstants.iBlockSize / 2;
-            imaxY = player.Position.Y + GameConstants.iBlockSize / 2;
-            imaxZ = player.Position.Z + GameConstants.iBlockSize * 2;
+            iminX = player.Position.X - GameConstants.iBlockSize / 4;
+            iminY = player.Position.Y - GameConstants.iBlockSize / 4;
+            iminZ = player.Position.Z;//- GameConstants.iBlockSize ;
+            imaxX = player.Position.X + GameConstants.iBlockSize / 4;
+            imaxY = player.Position.Y + GameConstants.iBlockSize / 4;
+            imaxZ = player.Position.Z;// + GameConstants.iBlockSize ;
             //ToDO: size nciht von der Position abhängig machen -> Kracht beim Player, da sich die Pos stets ändert
             /*O_Parent = gameObject;
             iminX = (int)gameObject.Position.X - GameConstants.iBlockSize / 2;
@@ -42,13 +42,14 @@ namespace VeilofDeath.Objects
 
         public MyBoundingBox(SpikeTrap trap)
         {
-            center = new Vector3(trap.Position.X + 1.5f, trap.Position.Y + 1.5f, trap.Position.Z);
-            iminX = center.X - GameConstants.iBlockSize / 2;
-            iminY = center.Y - GameConstants.iBlockSize / 2;
-            iminZ = center.Z - GameConstants.iBlockSize * 8;
-            imaxX = center.X + GameConstants.iBlockSize / 2;
-            imaxY = center.Y + GameConstants.iBlockSize / 2;
-            imaxZ = center.Z + GameConstants.iBlockSize * 8;
+            center = new Vector3(trap.Position.X + 2, trap.Position.Y + 2, trap.Position.Z);
+            iminX = center.X - GameConstants.iBlockSize / 4;
+            iminY = center.Y - GameConstants.iBlockSize / 4;
+            iminZ = center.Z - GameConstants.iBlockSize;
+            imaxX = center.X + GameConstants.iBlockSize / 4;
+            imaxY = center.Y + GameConstants.iBlockSize / 4;
+            imaxZ = center.Z + GameConstants.iBlockSize;
+            Console.WriteLine("TrapCenterPosition: (" + center.X + "/ " + center.Y + "/ " + center.Z + ")");
         }
 
         public bool intersect(MyBoundingBox other)
@@ -58,10 +59,11 @@ namespace VeilofDeath.Objects
                                       (this.iminY <= other.imaxY && this.imaxY >= other.iminY) &&
                                       (this.iminZ <= other.imaxZ && this.imaxZ >= other.iminZ));
 
-            //Console.WriteLine("Collision: " + GameConstants.isCollided);
-
-            
-            //Console.WriteLine("Trap x: " + other.imaxX + " y: " + other.imaxY + " z: " + other.imaxZ);
+            /*
+            Console.WriteLine("Collision: " + GameConstants.isCollided);
+            Console.WriteLine("Player x: " + iminX + " y: " + iminY + " z: " + iminZ);
+            Console.WriteLine("Trap x: " + other.imaxX + " y: " + other.imaxY + " z: " + other.imaxZ);
+            */
 
             return GameConstants.isCollided;
            // return O_Parent.hasCollided;
@@ -69,14 +71,12 @@ namespace VeilofDeath.Objects
 
         public void update(Player player)
         {
-            iminX = player.Position.X - GameConstants.iBlockSize / 2;
-            iminY = player.Position.Y - GameConstants.iBlockSize / 2;
-            iminZ = player.Position.Z - GameConstants.iBlockSize * 2;
-            imaxX = player.Position.X + GameConstants.iBlockSize / 2;
-            imaxY = player.Position.Y + GameConstants.iBlockSize / 2;
-            imaxZ = player.Position.Z + GameConstants.iBlockSize * 2;
-
-            Console.WriteLine("Player x: " + iminX + " y: " + iminY + " z: " + iminZ);
+            iminX = player.Position.X - GameConstants.iBlockSize / 4;
+            iminY = player.Position.Y - GameConstants.iBlockSize / 4;
+            iminZ = player.Position.Z;// - GameConstants.iBlockSize * 2;
+            imaxX = player.Position.X + GameConstants.iBlockSize / 4;
+            imaxY = player.Position.Y + GameConstants.iBlockSize / 4;
+            imaxZ = player.Position.Z;// + GameConstants.iBlockSize * 2;
         }
     }
 }

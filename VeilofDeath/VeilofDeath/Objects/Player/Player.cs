@@ -45,6 +45,7 @@ namespace VeilofDeath
         {
             model = m;
             Position = new Vector3(GameConstants.fLaneCenter, 0,0);
+            Console.WriteLine("Startposition: (" + this.Position.X + "/ " + this.Position.Y + "/" + this.Position.Z + ")");
             Initialize();   
         }
 

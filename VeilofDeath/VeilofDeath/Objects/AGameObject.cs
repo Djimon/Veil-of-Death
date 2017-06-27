@@ -24,8 +24,8 @@ namespace VeilofDeath
             foreach (SpikeTrap trap in GameManager.Instance.SpikeList)
             {
                 if (this.box.intersect(trap.box))
-                    GameConstants.currentGame.Exit();
-                    //Console.WriteLine("Collision");
+                    //GameConstants.currentGame.Exit();
+                    Console.WriteLine("Collision");
             }
 
         }
