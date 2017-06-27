@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using VeilofDeath.Objects.Traps;
+using VeilofDeath.Objects;
 
 namespace VeilofDeath
 {
