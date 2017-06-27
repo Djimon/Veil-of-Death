@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VeilofDeath.Objects;
-using VeilofDeath.Objects.Traps;
 
 namespace VeilofDeath
 {
@@ -25,6 +24,7 @@ namespace VeilofDeath
             foreach (SpikeTrap trap in GameManager.Instance.SpikeList)
             {
                 if (this.box.intersect(trap.box))
+                    //GameConstants.currentGame.Exit();
                     Console.WriteLine("Collision");
             }
 

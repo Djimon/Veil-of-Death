@@ -36,6 +36,8 @@ namespace VeilofDeath
             GameConstants.Content = Content;
 
             GameConstants.fAspectRatio = (float)GraphicsDeviceManager.DefaultBackBufferWidth / GraphicsDeviceManager.DefaultBackBufferHeight;
+
+            GameConstants.currentGame = this;
         }
 
         /// <summary>

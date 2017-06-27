@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
-using VeilofDeath.Objects.Traps;
 using System.Collections;
 
 namespace VeilofDeath
@@ -73,6 +72,10 @@ namespace VeilofDeath
         /// </summary>
         public static int iTrapNumber = 4;
         public static int iMaxLevel = 1;
+
+        public static bool isCollided = false;
+
+        public static Game currentGame;
 
               
         
