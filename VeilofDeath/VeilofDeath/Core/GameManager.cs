@@ -30,6 +30,7 @@ namespace VeilofDeath
         public static int Score { get; private set; }
         public int Difficulty { get; set; }
         public Vector3 StartPos { get; set; }
+        public Vector3 ZielPos { get; set; }
 
         public static void UpdateScore(int value)
         {
