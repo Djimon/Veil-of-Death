@@ -40,7 +40,6 @@ namespace VeilofDeath.Core.GameStates
         Vector2 GUI_Pos = new Vector2(100, 50); //TODO get rid of magicConstants
         Vector2 GUI_Stuff = new Vector2(100, 400); //TODO get rid of magicConstants
 
-        private bool reachedFinish = false;
 
         float fTimeDelta;
         private int score;
@@ -85,7 +84,7 @@ namespace VeilofDeath.Core.GameStates
             testmap = new Map(levelMask);
             Player = new Player(m_player);
             x_playerModelTransforms = SetupEffectDefaults(m_player);
-            Player.Spawn(new Vector3(GameConstants.fLaneCenter, 0, 0));
+            Player.Spawn(new Vector3(14, 0, 0));
             PController = new PlayerController(Player);
 
             GameConstants.MainCam.SetTarget(Player);
@@ -122,7 +121,7 @@ namespace VeilofDeath.Core.GameStates
             //GameConstants.MainCam.Update(time);
             UpdateScore();
 
-            if (reachedFinish)
+            if (reachedFinish())
             {
                 newState = EState.Score;
             }
@@ -198,6 +197,11 @@ namespace VeilofDeath.Core.GameStates
                 }
             }
             return newModel;
+        }
+
+        private bool reachedFinish()
+        {
+            return Player.Position.Y >= GameManager.Instance.ZielPos.Y ? true : false;
         }
 
     }

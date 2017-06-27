@@ -18,22 +18,36 @@ namespace VeilofDeath
         public bool hasCollided = false;
         public bool isDead = false;
 
+
+
+        public string name="";
         /// <summary>
         /// Primary collision
         /// </summary>
         protected void HandleCollision()
         {
+
             foreach (SpikeTrap trap in GameManager.Instance.SpikeList)
             {
+                
+                if (trap.Position.Y > (this.Position.Y + 2 * GameConstants.iBlockSize)
+                    || trap.Position.Y < (this.Position.Y - GameConstants.iBlockSize))
+                {                    
+                    continue;
+                }
+
 
                 if (this.box.intersect(trap.box))
                 {
                     //GameConstants.currentGame.Exit();
                     Console.WriteLine("Collision");
-                    this.isDead = true;
+                    Console.WriteLine("player: " + this.box.iminZ 
+                                       + " box: " + trap.box.imaxZ);
+                    //this.isDead = true;
                 }
                     
             }
+
 
         }
 

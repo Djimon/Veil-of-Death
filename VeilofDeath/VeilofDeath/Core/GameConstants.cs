@@ -43,12 +43,12 @@ namespace VeilofDeath
         /// Size of each block in the map (like tiles)
         /// </summary>
         public static int iBlockSize = 4;
-        public static float fLaneCenter =1+ (iBlockSize*6 -1) /2;  // *3 <= * mapmask.width (actual 6) and :2 (center)
+        public static float fLaneCenter = (iBlockSize*6) /2;  // *3 <= * mapmask.width (actual 6) and :2 (center)
 
         /// <summary>
         /// Length of the Jump
         /// </summary>
-        public static float fJumpWidth = 4* iBlockSize;
+        public static float fJumpWidth = 2.5f* iBlockSize;
         /* to overjump one block: when jumping is pressed in the middle of the before-block, 
          * it takes 2 blocks to land in the middle of the after-block */
         public static float fJumpHeight =  iBlockSize *6/5;
@@ -61,13 +61,13 @@ namespace VeilofDeath
         /// <summary>
         /// Z-Axis of the level
         /// </summary>
-        public static float fLevelHeight = -1f * iBlockSize +1 ;
+        public static float fLevelHeight = -1f * iBlockSize  +0.1f;
 
         //Gameplay
         /// <summary>
         /// Speed the player moves
         /// </summary>
-        public static float fMovingSpeed = 3;
+        public static float fMovingSpeed = 1;
         /// <summary>
         /// number of Traps in the Game
         /// </summary>

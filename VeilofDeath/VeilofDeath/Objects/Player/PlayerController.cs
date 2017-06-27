@@ -31,17 +31,18 @@ namespace VeilofDeath
         public void Update (KeyboardState oldKeyboardState)
         {
             currentKeyboardState = Keyboard.GetState();
-            
 
+            //Console.WriteLine(character.Position.X + " lars");
 
             if (currentKeyboardState.IsKeyDown(Keys.Right) && !oldKeyboardState.IsKeyDown(Keys.Right) && !isRightPressed)
             {
-                character.Position.X += 1 * GameConstants.iBlockSize;
+                //  Console.WriteLine(character.Position.X + " geeerd");
+                character.Position.X += 1  * GameConstants.iBlockSize;
                 isRightPressed = true;
             }
             if (currentKeyboardState.IsKeyDown(Keys.Left) && !oldKeyboardState.IsKeyDown(Keys.Left) && !isLeftPressed)
             {
-                character.Position.X -= 1 * GameConstants.iBlockSize;
+                character.Position.X -= 1  * GameConstants.iBlockSize;
                 isLeftPressed = true;
             }
             if (!character.isJumping && !isSpacePressed && currentKeyboardState.IsKeyDown(Keys.Space) && !oldKeyboardState.IsKeyDown(Keys.Space) )
