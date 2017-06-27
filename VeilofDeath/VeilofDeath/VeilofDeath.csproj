@@ -48,6 +48,7 @@
     <Compile Include="Core\GameStates\MainMenu.cs" />
     <Compile Include="Core\GameStates\Score.cs" />
     <Compile Include="Core\SpikeHandler.cs" />
+    <Compile Include="Core\Veil.cs" />
     <Compile Include="Level\Block.cs" />
     <Compile Include="Core\Game1.cs" />
     <Compile Include="Core\GameConstants.cs" />

@@ -10,35 +10,37 @@ namespace VeilofDeath.Objects
    public class MyBoundingBox
     {
         private Vector3 center;
-
+        int iminX, imaxX, iminY, imaxY, iminZ, imaxZ;
         
-        //private AGameObject O_Parent;
+        private AGameObject O_Parent;
 
         public MyBoundingBox(AGameObject gameObject)
         {
-
-
+            O_Parent = gameObject;
+            
             center = new Vector3(gameObject.Position.X + 2, gameObject.Position.Y + 2, gameObject.Position.Z);
-            iminX = (int) center.X - GameConstants.iBlockSize / 4;
-            imaxX = (int) center.X + GameConstants.iBlockSize / 4;
-            iminY = (int) center.Y - GameConstants.iBlockSize / 4;            
-            imaxY = (int) center.Y + GameConstants.iBlockSize / 4;
+            iminX = (int) center.X - GameConstants.iBlockSize / 2;
+            imaxX = (int) center.X + GameConstants.iBlockSize / 2;
+            iminY = (int) center.Y - GameConstants.iBlockSize / 2;            
+            imaxY = (int) center.Y + GameConstants.iBlockSize / 2;
             iminZ = (int) center.Z - GameConstants.iBlockSize ;
             imaxZ = (int) center.Z + GameConstants.iBlockSize ;
-            */
+            
         }
 
+        /*
         public MyBoundingBox(SpikeTrap trap)
         {
             center = new Vector3(trap.Position.X + 2, trap.Position.Y + 2, trap.Position.Z);
-            iminX = center.X - GameConstants.iBlockSize / 4;
-            iminY = center.Y - GameConstants.iBlockSize / 4;
-            iminZ = center.Z - GameConstants.iBlockSize;
-            imaxX = center.X + GameConstants.iBlockSize / 4;
-            imaxY = center.Y + GameConstants.iBlockSize / 4;
-            imaxZ = center.Z + GameConstants.iBlockSize;
+            iminX = (int) center.X - GameConstants.iBlockSize / 4;
+            iminY = (int) center.Y - GameConstants.iBlockSize / 4;
+            iminZ = (int) center.Z - GameConstants.iBlockSize;
+            imaxX = (int) center.X + GameConstants.iBlockSize / 4;
+            imaxY = (int) center.Y + GameConstants.iBlockSize / 4;
+            imaxZ = (int) center.Z + GameConstants.iBlockSize;
             Console.WriteLine("TrapCenterPosition: (" + center.X + "/ " + center.Y + "/ " + center.Z + ")");
         }
+        */
 
         public bool intersect(MyBoundingBox other)
         {
@@ -56,17 +58,17 @@ namespace VeilofDeath.Objects
             return O_Parent.hasCollided;
         }
 
-/*
-        public void update(Player player)
+
+        public void update(AGameObject gameObject)
         {
-            iminX = player.Position.X - GameConstants.iBlockSize / 4;
-            iminY = player.Position.Y - GameConstants.iBlockSize / 4;
-            iminZ = player.Position.Z;// - GameConstants.iBlockSize * 2;
-            imaxX = player.Position.X + GameConstants.iBlockSize / 4;
-            imaxY = player.Position.Y + GameConstants.iBlockSize / 4;
-            imaxZ = player.Position.Z;// + GameConstants.iBlockSize * 2;
+            iminX = (int) gameObject.Position.X - GameConstants.iBlockSize / 4;
+            iminY = (int) gameObject.Position.Y - GameConstants.iBlockSize / 4;
+            iminZ = (int) gameObject.Position.Z;// - GameConstants.iBlockSize * 2;
+            imaxX = (int) gameObject.Position.X + GameConstants.iBlockSize / 4;
+            imaxY = (int) gameObject.Position.Y + GameConstants.iBlockSize / 4;
+            imaxZ = (int) gameObject.Position.Z;// + GameConstants.iBlockSize * 2;
         }
-*/
+
 
     }
 }

@@ -16,6 +16,8 @@ namespace VeilofDeath.Core.GameStates
         public bool canLeave { get; set; }       
         public EState newState { get; set; }
 
+        Vector2 GUI_Pos;
+
         int iStatus = 0;
 
 
@@ -34,7 +36,7 @@ namespace VeilofDeath.Core.GameStates
 
         public void LoadContent()
         {
-            background = GameConstants.Content.Load<Texture2D>("menuBG");
+            background = GameConstants.Content.Load<Texture2D>("noob");
             //Load other Textures, like Buttons
         }
 
@@ -67,13 +69,17 @@ namespace VeilofDeath.Core.GameStates
 
         private void UpdateLOSE()
         {
-            if(Keyboard.GetState().IsKeyDown(Keys.Enter))
-                newState = EState.Ingame; 
+            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+            {
+                GameConstants.MainCam.ResetCamera();
+                newState = EState.Ingame;
+
+            }
         }
 
         public void Draw(GameTime time)
         {
-            spriteBatch.Begin();
+           
             //TODO: Draw background
 
             switch (iStatus)
@@ -90,7 +96,7 @@ namespace VeilofDeath.Core.GameStates
 
             //TODO: Draw Statistics
 
-            spriteBatch.End();
+         
 
         }
 
@@ -101,7 +107,14 @@ namespace VeilofDeath.Core.GameStates
 
         private void DrawLOSE()
         {
-            throw new NotImplementedException();
-        }
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Opaque);
+            //Debug - Anzeige
+            spriteBatch.Draw(background, new Rectangle(0, 0, (int)GameConstants.WINDOWSIZE.X, (int)GameConstants.WINDOWSIZE.Y), Color.White);
+
+            spriteBatch.End(); ;
+        
+    }
+
+
     }
 }

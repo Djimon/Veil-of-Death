@@ -27,6 +27,7 @@ namespace VeilofDeath
         public void Initialize()
         {
             box = new MyBoundingBox(this);
+            
         }
 
         public void Interact()

@@ -83,9 +83,9 @@ namespace VeilofDeath
         /// Update method for the Player
         /// </summary>
         public void Tick()
-        {
-            box.update(this);
+        {            
             Move();
+            box.update(this);
             HandleCollision();
 
         }

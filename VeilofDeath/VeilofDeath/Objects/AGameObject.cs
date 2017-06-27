@@ -16,6 +16,8 @@ namespace VeilofDeath
         public Vector3 Position;
         public MyBoundingBox box;
         public bool hasCollided = false;
+        public bool isDead = false;
+
         /// <summary>
         /// Primary collision
         /// </summary>
@@ -23,9 +25,14 @@ namespace VeilofDeath
         {
             foreach (SpikeTrap trap in GameManager.Instance.SpikeList)
             {
+
                 if (this.box.intersect(trap.box))
+                {
                     //GameConstants.currentGame.Exit();
                     Console.WriteLine("Collision");
+                    this.isDead = true;
+                }
+                    
             }
 
         }

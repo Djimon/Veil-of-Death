@@ -23,7 +23,6 @@ namespace VeilofDeath.Core.GameStates
         public KeyboardState oldKeyboardState { get; private set; }
 
         public SpriteBatch spriteBatch;
-        public SpriteFont lucidaConsole;
 
         int iLevel;
 
@@ -63,10 +62,6 @@ namespace VeilofDeath.Core.GameStates
             currentKeyboardState = Keyboard.GetState();
             oldKeyboardState = new KeyboardState();
             
-            
-
-
-            lucidaConsole = GameConstants.Content.Load<SpriteFont>("Fonts/Lucida Console");
 
             GameConstants.levelDictionary = LevelContent.LoadListContent<Model>(GameConstants.Content, "Models/Level1");
             foreach (KeyValuePair<string, Model> SM in GameConstants.levelDictionary)
@@ -75,6 +70,7 @@ namespace VeilofDeath.Core.GameStates
                     Console.WriteLine("Key:" + SM.Key + ", Value: " + SM.Value);
             }
 
+            
             //TODO: initialize these Matrixes
             //x_projectionMatrix =
             //x_viewMatrix =
@@ -105,15 +101,23 @@ namespace VeilofDeath.Core.GameStates
             PController.Update(currentKeyboardState);
             oldKeyboardState = currentKeyboardState;
             fTimeDelta += (float)time.ElapsedGameTime.TotalSeconds;
-            Player.Tick();
-
-            if (Player.Position.Y >= GameConstants.fJumpWidth
-                && Player.Position.Y <= GameConstants.fJumpWidth + 0.111f)
+            if (Player.isDead)
             {
-                GameConstants.fJumpSpeed = GameConstants.fJumpWidth / fTimeDelta;
-                if (GameConstants.isDebugMode)
-                    Console.WriteLine("JumpSpeed: "+ GameConstants.fJumpSpeed);
-            }                
+                Player = null;
+                newState = EState.GameOver;
+            }
+            else
+            {
+                Player.Tick();
+
+                if (Player.Position.Y >= GameConstants.fJumpWidth
+                    && Player.Position.Y <= GameConstants.fJumpWidth + 0.111f)
+                {
+                    GameConstants.fJumpSpeed = GameConstants.fJumpWidth / fTimeDelta;
+                    if (GameConstants.isDebugMode)
+                        Console.WriteLine("JumpSpeed: " + GameConstants.fJumpSpeed);
+                }
+            }            
             
             //GameConstants.MainCam.Update(time);
             UpdateScore();
@@ -149,7 +153,7 @@ namespace VeilofDeath.Core.GameStates
         {
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Opaque);
             //Debug - Anzeige
-            spriteBatch.DrawString(lucidaConsole, "Pos: " + Player.Position+ " Score: "+GameManager.Score,
+            spriteBatch.DrawString(GameConstants.lucidaConsole, "Pos: " + Player.Position+ " Score: "+GameManager.Score,
                                    GUI_Pos, Microsoft.Xna.Framework.Color.White);
 
             spriteBatch.End(); ;

@@ -23,6 +23,7 @@ namespace VeilofDeath
         public static float fAspectRatio = WINDOWSIZE.X / WINDOWSIZE.Y;
         public static Camera MainCam;
         public static int CameraAngle = 35;
+        public static float CameraDistance = -20;
         /// <summary>
         /// fixed window size width
         /// </summary>
@@ -47,7 +48,7 @@ namespace VeilofDeath
         /// <summary>
         /// Length of the Jump
         /// </summary>
-        public static float fJumpWidth = 2* iBlockSize;
+        public static float fJumpWidth = 4* iBlockSize;
         /* to overjump one block: when jumping is pressed in the middle of the before-block, 
          * it takes 2 blocks to land in the middle of the after-block */
         public static float fJumpHeight =  iBlockSize *6/5;
@@ -76,9 +77,7 @@ namespace VeilofDeath
         public static bool isCollided = false;
 
         public static Game currentGame;
-
-              
-        
+        internal static SpriteFont lucidaConsole;
     }
 
 }
