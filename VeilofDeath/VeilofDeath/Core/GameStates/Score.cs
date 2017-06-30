@@ -40,12 +40,12 @@ namespace VeilofDeath.Core.GameStates
 
         public void UnloadContent()
         {
-            throw new NotImplementedException();
+            
         }
 
         public void Update(GameTime time)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void Draw(GameTime time)

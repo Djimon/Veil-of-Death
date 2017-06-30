@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VeilofDeath.Objects;
+using VeilofDeath.Objects.Traps;
 
 namespace VeilofDeath
 {
@@ -21,35 +22,11 @@ namespace VeilofDeath
 
 
         public string name="";
+
         /// <summary>
         /// Primary collision
         /// </summary>
-        protected void HandleCollision()
-        {
-
-            foreach (SpikeTrap trap in GameManager.Instance.SpikeList)
-            {
-                
-                if (trap.Position.Y > (this.Position.Y + 2 * GameConstants.iBlockSize)
-                    || trap.Position.Y < (this.Position.Y - GameConstants.iBlockSize))
-                {                    
-                    continue;
-                }
-
-
-                if (this.box.intersect(trap.box))
-                {
-                    //GameConstants.currentGame.Exit();
-                    Console.WriteLine("Collision");
-                    Console.WriteLine("player: " + this.box.iminZ 
-                                       + " box: " + trap.box.imaxZ);
-                    //this.isDead = true;
-                }
-                    
-            }
-
-
-        }
+ 
 
         /// <summary>
         /// Method to delete an object fully with all its dependent effects

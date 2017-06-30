@@ -53,6 +53,7 @@ namespace VeilofDeath
          * it takes 2 blocks to land in the middle of the after-block */
         public static float fJumpHeight =  iBlockSize *6/5;
         public static float fJumpSpeed;
+        public static float fjumpTime;
 
         /// <summary>
         /// Dictionary which holds the models for each LevelBlock
@@ -67,7 +68,7 @@ namespace VeilofDeath
         /// <summary>
         /// Speed the player moves
         /// </summary>
-        public static float fMovingSpeed = 1;
+        public static float fMovingSpeed = 3;
         /// <summary>
         /// number of Traps in the Game
         /// </summary>
@@ -77,7 +78,8 @@ namespace VeilofDeath
         public static bool isCollided = false;
 
         public static Game currentGame;
-        internal static SpriteFont lucidaConsole;
+        public static SpriteFont lucidaConsole;
+        
     }
 
 }

@@ -10,7 +10,12 @@ namespace VeilofDeath
 {
     public class SpikeTrap : AGameObject, IStaticEntity
     {
+        public bool isFloating;
+        public float fStartFloating;
         private Block identity;
+
+        //TODO: Spiketraps aus der mapgeneration rausholen und stattdessen leere blocks in der Map genereieren und markieren,
+        //      nach der Mapgeneration, werdne dann auf die markierten positionen Die Traps instantiiert
 
         public SpikeTrap(Vector3 pos, Block self)
         {
@@ -42,10 +47,33 @@ namespace VeilofDeath
 
         public void Tick()
         {
+            throw new NotImplementedException();
+        }
+
+        public void Tick( GameTime time)
+        {
+            
             if (identity == null)
             {
                 DeSpawn();
             }
+
+            if (isFloating)
+            {                
+                Position.Z = (GameConstants.iBlockSize * 2 / GameConstants.fJumpSpeed) * (float)(time.ElapsedGameTime.TotalSeconds - fStartFloating);
+                if (Position.Z >= GameConstants.iBlockSize/2)
+                    isFloating = false;
+            }
+            else if (Position.Z > GameConstants.fLevelHeight)
+            {
+                Position.Z = (GameConstants.iBlockSize * -2 / GameConstants.fJumpSpeed) * (float)(time.ElapsedGameTime.TotalSeconds - fStartFloating);
+            }
+
+
+        }
+
+        private void DoFloat()
+        {
             
         }
     }

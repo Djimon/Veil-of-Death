@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using VeilofDeath.Objects;
+using VeilofDeath.Objects.Traps;
 
 namespace VeilofDeath
 {
@@ -50,13 +51,23 @@ namespace VeilofDeath
         }
         public void Load()
         {
-            //TODO: aus datei laden
+            //TODO: aus datei laden (if Datei leer, then level = 1)
             this.Level = 1;
         }
 
         /**************** Ingame Features ********************/
-        public List<SpikeTrap> SpikeList = new List<SpikeTrap>();
-        
+        List<SpikeTrap> SpikeList = new List<SpikeTrap>();
+        List<SlowTrap> SlowList = new List<SlowTrap>();
+
+        public List<SlowTrap> getSlowList()
+        {
+            return SlowList;
+        }
+
+        public void AddSlow(SlowTrap slow)
+        {
+            SlowList.Add(slow);
+        }
 
         public List<SpikeTrap> getSpikeList()
         {

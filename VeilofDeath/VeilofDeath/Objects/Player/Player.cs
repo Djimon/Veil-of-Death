@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VeilofDeath.Objects;
+using VeilofDeath.Objects.Traps;
 
 namespace VeilofDeath
 {
@@ -28,6 +29,7 @@ namespace VeilofDeath
         /// </summary>
         public bool isSliding = false;
 
+        public bool isSlowed = false;
 
         // Scheitelpunkt-Form für Sprung-Kurve
         Vector2 S;
@@ -89,7 +91,7 @@ namespace VeilofDeath
 
             box.update(this);
             //if (! isJumping)
-                HandleCollision();
+            HandleCollision();
 
         }
 
@@ -104,7 +106,9 @@ namespace VeilofDeath
                 Jump();
             }
 
-            Velocity = fSpeed * Vector3.Up;
+            
+
+            Velocity = isSlowed ? fSpeed/5 * Vector3.Up : fSpeed * Vector3.Up;
             Position += Velocity;
 
         }
@@ -127,6 +131,57 @@ namespace VeilofDeath
                 isJumping = false;
                 Position.Z = 0;
                 UnsetJCurve();
+                
+            }
+        }
+
+        protected void HandleCollision()
+        {
+            HandleSpikes();
+            HandleSlowtraps();
+
+        }
+
+        private void HandleSpikes()
+        {
+            foreach (SpikeTrap trap in GameManager.Instance.getSpikeList())
+            {
+
+                if (trap.Position.Y > (this.Position.Y + 2 * GameConstants.iBlockSize)
+                    || trap.Position.Y < (this.Position.Y - GameConstants.iBlockSize))
+                {
+                    continue;
+                }
+
+
+                if (this.box.intersect(trap.box))
+                {
+                    //GameConstants.currentGame.Exit();
+                    Console.WriteLine("Collision");
+                    Console.WriteLine("player: " + this.box.iminZ
+                                       + " box: " + trap.box.imaxZ);
+                    this.isDead = true;
+                }
+            }
+        }
+
+        private void HandleSlowtraps()
+        {
+            isSlowed = false;
+
+            foreach (SlowTrap slow in GameManager.Instance.getSlowList())
+            {
+                if (slow.Position.Y > (this.Position.Y + 2 * GameConstants.iBlockSize)
+                    || slow.Position.Y < (this.Position.Y - GameConstants.iBlockSize))
+                {
+                    continue;
+                }
+
+                if (this.box.intersect(slow.box))
+                {
+                    Console.WriteLine("Slowdown");
+                    this.isSlowed = true;
+                }
                 
             }
         }
@@ -207,6 +262,7 @@ namespace VeilofDeath
             isActive = false; //wird nciht mehr gedrawt
             Position = Vector3.Zero;
         }
+
 
     }
 }

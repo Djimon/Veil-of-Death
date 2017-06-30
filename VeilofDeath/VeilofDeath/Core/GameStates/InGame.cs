@@ -21,6 +21,7 @@ namespace VeilofDeath.Core.GameStates
 
         public KeyboardState currentKeyboardState { get; private set; }
         public KeyboardState oldKeyboardState { get; private set; }
+        public TrapHandler TrapHandler;
 
         public SpriteBatch spriteBatch;
 
@@ -40,6 +41,7 @@ namespace VeilofDeath.Core.GameStates
         Vector2 GUI_Pos = new Vector2(100, 50); //TODO get rid of magicConstants
         Vector2 GUI_Stuff = new Vector2(100, 400); //TODO get rid of magicConstants
 
+        private Vector3 start;
 
         float fTimeDelta;
         private int score;
@@ -61,6 +63,7 @@ namespace VeilofDeath.Core.GameStates
             currentKeyboardState = Keyboard.GetState();
             oldKeyboardState = new KeyboardState();
             
+            
 
             GameConstants.levelDictionary = LevelContent.LoadListContent<Model>(GameConstants.Content, "Models/Level1");
             foreach (KeyValuePair<string, Model> SM in GameConstants.levelDictionary)
@@ -79,13 +82,16 @@ namespace VeilofDeath.Core.GameStates
         {
             
             m_player = LoadModel("Models/cube");
-            levelMask = new Bitmap("Content/Maps/testmap.bmp");
+            levelMask = new Bitmap("Content/Maps/testmap2.bmp"); //TODO: rename to "1" for level 1 and so on "2", "3" load in pendancy of level
 
             testmap = new Map(levelMask);
+            start = GameManager.Instance.StartPos;
             Player = new Player(m_player);
             x_playerModelTransforms = SetupEffectDefaults(m_player);
-            Player.Spawn(new Vector3(14, 0, 0));
+            Player.Spawn(new Vector3(start.X, start.Y, 0));
             PController = new PlayerController(Player);
+
+            TrapHandler = new TrapHandler();
 
             GameConstants.MainCam.SetTarget(Player);
         }
@@ -97,6 +103,9 @@ namespace VeilofDeath.Core.GameStates
 
         public void Update(GameTime time)
         {
+
+            TrapHandler.choseTraps(time);
+
             PController.Update(currentKeyboardState);
             oldKeyboardState = currentKeyboardState;
             fTimeDelta += (float)time.ElapsedGameTime.TotalSeconds;
@@ -115,6 +124,8 @@ namespace VeilofDeath.Core.GameStates
                     GameConstants.fJumpSpeed = GameConstants.fJumpWidth / fTimeDelta;
                     if (GameConstants.isDebugMode)
                         Console.WriteLine("JumpSpeed: " + GameConstants.fJumpSpeed);
+                    GameConstants.fjumpTime = GameConstants.fJumpWidth / GameConstants.fJumpSpeed;
+                    Console.WriteLine("JumpTime: "+ GameConstants.fjumpTime);
                 }
             }            
             
@@ -201,7 +212,10 @@ namespace VeilofDeath.Core.GameStates
 
         private bool reachedFinish()
         {
-            return Player.Position.Y >= GameManager.Instance.ZielPos.Y ? true : false;
+            if (Player != null)
+                return Player.Position.Y >= GameManager.Instance.ZielPos.Y ? true : false;
+            else
+                return false;
         }
 
     }
