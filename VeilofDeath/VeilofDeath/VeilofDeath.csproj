@@ -54,7 +54,6 @@
     <Compile Include="Core\GameStates\Statistics.cs" />
     <Compile Include="Core\Spawner.cs" />
     <Compile Include="Core\TrapHandler.cs" />
-    <Compile Include="Core\Veil.cs" />
     <Compile Include="Level\Block.cs" />
     <Compile Include="Core\Game1.cs" />
     <Compile Include="Core\GameConstants.cs" />

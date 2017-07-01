@@ -118,7 +118,7 @@ namespace VeilofDeath.Core.GameStates
             spriteBatch.Begin();
             spriteBatch.Draw(background, new Rectangle(0, 0, (int)GameConstants.WINDOWSIZE.X, (int)GameConstants.WINDOWSIZE.Y), Color.White);
             //Draw more 2D stuff here
-            Vector2 Anker = new Vector2(410, 150);
+            Vector2 Anker = new Vector2(410, 200);
             for (int i = 0; i < (int)Button.Count; i++) 
             {
                 if (i == (int)m_selected)
