@@ -12,11 +12,12 @@ namespace VeilofDeath
     public class Block
     {
 
-        public bool isWalkable = true;
+        public bool isFree = false;
+        public bool isWalkable = false;
         /// <summary>
         /// Defines the grid positon
         /// </summary>
-        Vector3 position;
+        public Vector3 position;
         float scale = GameConstants.iBlockSize / 2;
 
         /// <summary>
@@ -85,6 +86,7 @@ namespace VeilofDeath
                         m_Block = modelDictionary["weg"];
                         this.position = new Vector3(pos,GameConstants.fLevelHeight);
                         this.isWalkable = true;
+                        this.isFree = true;
                         break;
                     }
 
@@ -108,7 +110,7 @@ namespace VeilofDeath
                         this.m_Block = modelDictionary["start"];
                         this.position = new Vector3(pos, GameConstants.fLevelHeight);
                         GameManager.Instance.StartPos = this.position;
-                        this.isWalkable = true;
+                        this.isWalkable = true;                        
                         break;
                     }
                 case 4: //ziel (blue)
@@ -116,7 +118,7 @@ namespace VeilofDeath
                         this.m_Block = modelDictionary["ende"];
                         this.position = new Vector3(pos, GameConstants.fLevelHeight);
                         GameManager.Instance.ZielPos = this.position;
-                        this.isWalkable = true;
+                        this.isWalkable = true;                      
                         break;
                     }
                 case 5: //Slowing Falle
@@ -125,6 +127,7 @@ namespace VeilofDeath
                         this.position = new Vector3(pos, GameConstants.fLevelHeight);
                         GameManager.Instance.AddSlow(new SlowTrap(new Vector3(pos, GameConstants.fLevelHeight), this));
                         this.isWalkable = true;
+                        this.isFree = true;
                         break;
                     }
 

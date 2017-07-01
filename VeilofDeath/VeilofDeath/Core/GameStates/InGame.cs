@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using System.Drawing;
+using VeilofDeath.Objects;
 
 namespace VeilofDeath.Core.GameStates
 {
@@ -46,6 +47,8 @@ namespace VeilofDeath.Core.GameStates
         float fTimeDelta;
         private int score;
 
+        Spawner objectSpawner;
+
         public InGame(int Level)
         {
             spriteBatch = GameConstants.SpriteBatch;
@@ -83,15 +86,21 @@ namespace VeilofDeath.Core.GameStates
             
             m_player = LoadModel("Models/cube");
             levelMask = new Bitmap("Content/Maps/testmap2.bmp"); //TODO: rename to "1" for level 1 and so on "2", "3" load in pendancy of level
-
             testmap = new Map(levelMask);
+
+            //after Map generation
+            objectSpawner = new Spawner();
             start = GameManager.Instance.StartPos;
+
+
+            objectSpawner.PlaceCoins(testmap.map);
             Player = new Player(m_player);
             x_playerModelTransforms = SetupEffectDefaults(m_player);
             Player.Spawn(new Vector3(start.X, start.Y, 0));
             PController = new PlayerController(Player);
 
             TrapHandler = new TrapHandler();
+            
 
             GameConstants.MainCam.SetTarget(Player);
         }
@@ -144,16 +153,31 @@ namespace VeilofDeath.Core.GameStates
 
             Player.Draw();
 
-            //NewDrawModel(Player);
+            DrawObject();
 
             DrawGUI();
             
         }
 
+        private void DrawObject()
+        {
+            foreach (Coin c in GameManager.Instance.getCoinList())
+            {
+                c.Draw();
+            }
+
+            // Spikes
+
+
+            // Drehdinger
+
+
+        }
+
         private void UpdateScore()
         {
             score = (int)(fTimeDelta * 10);
-            GameManager.UpdateScore(score);
+            GameManager.Instance.UpdateScore(score);
         }
 
         /// <summary>
@@ -200,13 +224,15 @@ namespace VeilofDeath.Core.GameStates
         private Model LoadModel(string assetName)
         {
             Model newModel = GameConstants.Content.Load<Model>(assetName);
-            foreach (ModelMesh mesh in newModel.Meshes)
-            {
-                foreach (ModelMeshPart meshPart in mesh.MeshParts)
-                {
-                    //meshPart.Effect = basicEffect.Clone();
-                }
-            }
+
+            //foreach (ModelMesh mesh in newModel.Meshes)
+            //{
+            //    foreach (ModelMeshPart meshPart in mesh.MeshParts)
+            //    {
+            //        //meshPart.Effect = basicEffect.Clone();
+            //    }
+            //}
+
             return newModel;
         }
 

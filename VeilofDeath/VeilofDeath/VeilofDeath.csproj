@@ -50,6 +50,7 @@
     <Compile Include="Core\GameStates\InGame.cs" />
     <Compile Include="Core\GameStates\MainMenu.cs" />
     <Compile Include="Core\GameStates\Score.cs" />
+    <Compile Include="Core\Spawner.cs" />
     <Compile Include="Core\TrapHandler.cs" />
     <Compile Include="Core\Veil.cs" />
     <Compile Include="Level\Block.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Core\Camera.cs" />
     <Compile Include="Objects\AGameObject.cs" />
     <Compile Include="Level\Level.cs" />
+    <Compile Include="Objects\Coin.cs" />
     <Compile Include="Objects\ILivingEntity.cs" />
     <Compile Include="Level\Map.cs" />
     <Compile Include="Objects\MyBoundingBox.cs" />

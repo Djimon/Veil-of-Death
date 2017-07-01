@@ -139,7 +139,28 @@ namespace VeilofDeath
         {
             HandleSpikes();
             HandleSlowtraps();
+            HandleCoins();
+        }
 
+        private void HandleCoins()
+        {
+            List<Coin> lc = GameManager.Instance.getCoinList();
+            // in einer foreach kann ich nciht löschen
+            // For schleife von hinten nach vorne, da dann selbst bei einer löschung der Indx korrekt blebit
+            foreach (Coin c in lc)
+            {
+                if (c.Position.Y > (this.Position.Y + 2 * GameConstants.iBlockSize)
+                    || c.Position.Y < (this.Position.Y - GameConstants.iBlockSize))
+                {
+                    continue;
+                }
+
+                if (this.box.intersect(c.box))
+                {
+                    GameManager.Instance.Delete(c);
+                    GameManager.Instance.AddtoScore(100); //TODO: Remove magic Constants
+                }
+            }
         }
 
         private void HandleSpikes()

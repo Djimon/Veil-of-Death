@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using VeilofDeath.Objects;
 using VeilofDeath.Objects.Traps;
@@ -32,11 +33,18 @@ namespace VeilofDeath
         public int Difficulty { get; set; }
         public Vector3 StartPos { get; set; }
         public Vector3 ZielPos { get; set; }
+        
 
-        public static void UpdateScore(int value)
+        public void UpdateScore(int value)
         {
             Score = value;
         }
+
+        public void AddtoScore(int value)
+        {
+            Score += value;
+        }
+
         public GameManager()
         {
             Load();
@@ -58,6 +66,7 @@ namespace VeilofDeath
         /**************** Ingame Features ********************/
         List<SpikeTrap> SpikeList = new List<SpikeTrap>();
         List<SlowTrap> SlowList = new List<SlowTrap>();
+        List<Coin> CoinList = new List<Coin>();
 
         public List<SlowTrap> getSlowList()
         {
@@ -79,5 +88,19 @@ namespace VeilofDeath
             SpikeList.Add(spike);
         }
 
+        public List<Coin> getCoinList()
+        {
+            return CoinList;
+        }
+
+        public void AddCoin(Coin coin)
+        {
+            CoinList.Add(coin);
+        }
+
+        internal void Delete(Coin c)
+        {
+            CoinList.Remove(c);
+        }
     }
 }
