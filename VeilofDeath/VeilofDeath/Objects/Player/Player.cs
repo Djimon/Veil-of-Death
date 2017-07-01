@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VeilofDeath.Objects;
+using VeilofDeath.Objects.Traps;
 
 namespace VeilofDeath
 {
@@ -15,8 +16,9 @@ namespace VeilofDeath
         //Velocity of the model, applied each frame to the model's position
         public Vector3 Velocity;
         public bool isActive = false;
-        public float fSpeed = 0.1f * GameConstants.fMovingSpeed;        
+        public float fSpeed = 0.1f * GameConstants.fMovingSpeed;
 
+        public float fProgress;
         /// <summary>
         /// triggers the jumping animation
         /// </summary>
@@ -28,6 +30,7 @@ namespace VeilofDeath
         /// </summary>
         public bool isSliding = false;
 
+        public bool isSlowed = false;
 
         // Scheitelpunkt-Form für Sprung-Kurve
         Vector2 S;
@@ -45,7 +48,9 @@ namespace VeilofDeath
         {
             model = m;
             Position = new Vector3(GameConstants.fLaneCenter, 0,0);
-            Initialize();   
+            Console.WriteLine("Startposition: (" + this.Position.X + "/ " + this.Position.Y + "/" + this.Position.Z + ")");
+            Initialize();
+            this.name = "Player";
         }
 
         public void Initialize()
@@ -75,15 +80,18 @@ namespace VeilofDeath
             Velocity = Vector3.Zero;
             //TODO: Reset Level, all Buffs and Debuffs
             isActive = true;
+            Position = GameManager.Instance.StartPos;
         }
 
         /// <summary>
         /// Update method for the Player
         /// </summary>
         public void Tick()
-        {
-            box.update(this);
+        {            
             Move();
+
+            box.update(this);
+            //if (! isJumping)
             HandleCollision();
 
         }
@@ -99,7 +107,9 @@ namespace VeilofDeath
                 Jump();
             }
 
-            Velocity = fSpeed * Vector3.Up;
+            
+
+            Velocity = isSlowed ? fSpeed/5 * Vector3.Up : fSpeed * Vector3.Up;
             Position += Velocity;
 
         }
@@ -112,9 +122,6 @@ namespace VeilofDeath
             // Scheitelpunktform für Parabel 
             // using S.X like Position.Y because S is 2d and Position is 3D
             // same with S.Y and Position.Z
-
-
-            //TODO: fix quadratical Jumping
             
             Position.Z = a * ( (Position.Y - S.X)*(Position.Y - S.X))   + S.Y;
 
@@ -125,6 +132,80 @@ namespace VeilofDeath
                 isJumping = false;
                 Position.Z = 0;
                 UnsetJCurve();
+                
+            }
+        }
+
+        protected void HandleCollision()
+        {
+            HandleSpikes();
+            HandleSlowtraps();
+            HandleCoins();
+        }
+
+        private void HandleCoins()
+        {
+            List<Coin> lc = GameManager.Instance.getCoinList();
+            // in einer foreach kann ich nciht löschen
+            // For schleife von hinten nach vorne, da dann selbst bei einer löschung der Indx korrekt blebit
+            for (int i = lc.Count-1 ; i > 0; i--)
+            {
+                if (lc[i].Position.Y > (this.Position.Y + 2 * GameConstants.iBlockSize)
+                    || lc[i].Position.Y < (this.Position.Y - GameConstants.iBlockSize))
+                {
+                    continue;
+                }
+
+                if (this.box.intersect(lc[i].box))
+                {
+                    Console.WriteLine("Coin");
+                    GameManager.Instance.Delete(lc[i]);
+                    GameManager.Instance.AddtoScore(25); //TODO: Remove magic Constants
+                }
+            }
+
+        }
+
+        private void HandleSpikes()
+        {
+            foreach (SpikeTrap trap in GameManager.Instance.getSpikeList())
+            {
+
+                if (trap.Position.Y > (this.Position.Y + 2 * GameConstants.iBlockSize)
+                    || trap.Position.Y < (this.Position.Y - GameConstants.iBlockSize))
+                {
+                    continue;
+                }
+
+
+                if (this.box.intersect(trap.box))
+                {
+                    //GameConstants.currentGame.Exit();
+                    Console.WriteLine("Collision");
+                    Console.WriteLine("player: " + this.box.iminZ
+                                       + " box: " + trap.box.imaxZ);
+                    this.isDead = true;
+                }
+            }
+        }
+
+        private void HandleSlowtraps()
+        {
+            isSlowed = false;
+
+            foreach (SlowTrap slow in GameManager.Instance.getSlowList())
+            {
+                if (slow.Position.Y > (this.Position.Y + 2 * GameConstants.iBlockSize)
+                    || slow.Position.Y < (this.Position.Y - GameConstants.iBlockSize))
+                {
+                    continue;
+                }
+
+                if (this.box.intersect(slow.box))
+                {
+                    Console.WriteLine("Slowdown");
+                    this.isSlowed = true;
+                }
                 
             }
         }
@@ -182,6 +263,7 @@ namespace VeilofDeath
                     effect.AmbientLightColor = new Vector3(0.01f, 0.15f, 0.6f);
                     effect.EmissiveColor = new Vector3(0f, 0.1f, 0.2f);
 
+
                     effect.World = GameConstants.MainCam.X_World * Matrix.CreateTranslation(this.Position);
                     effect.View = GameConstants.MainCam.X_View;
                     effect.Projection = GameConstants.MainCam.X_Projection;
@@ -200,10 +282,11 @@ namespace VeilofDeath
         /// </summary>
         public void DeSpawn()
         {
-            //TODO: Model deaktivieren, nicht löschen, da öfter benötigt
+            //TODO: Model deaktivieren, nicht löschen, da öfter benötigt (Loading-Pools)
             isActive = false; //wird nciht mehr gedrawt
             Position = Vector3.Zero;
         }
+
 
     }
 }

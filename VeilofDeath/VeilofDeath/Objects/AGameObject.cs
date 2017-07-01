@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VeilofDeath.Objects;
+using VeilofDeath.Objects.Traps;
 
 namespace VeilofDeath
 {
@@ -16,19 +17,11 @@ namespace VeilofDeath
         public Vector3 Position;
         public MyBoundingBox box;
         public bool hasCollided = false;
-        /// <summary>
-        /// Primary collision
-        /// </summary>
-        protected void HandleCollision()
-        {
-            foreach (SpikeTrap trap in GameManager.Instance.SpikeList)
-            {
-                if (this.box.intersect(trap.box)) ;
-                    //GameConstants.currentGame.Exit();
-                    //Console.WriteLine("Collision");
-            }
+        public bool isDead = false;
 
-        }
+        public float fModelScale = 1;
+
+        public string name="";
 
         /// <summary>
         /// Method to delete an object fully with all its dependent effects
@@ -47,14 +40,14 @@ namespace VeilofDeath
                 {
                     effect.EnableDefaultLighting();
 
-                    effect.DirectionalLight0.DiffuseColor = new Vector3(0.5f, 0, 0); // a red light
+                    effect.DirectionalLight0.DiffuseColor = new Vector3(1, 1, 1); // a red light
                     effect.DirectionalLight0.Direction = new Vector3(-1, 0, -1);  // coming along the x-axis
-                    effect.DirectionalLight0.SpecularColor = new Vector3(0, 1, 0); // with green highlights
+                    effect.DirectionalLight0.SpecularColor = new Vector3(0.2f,0.2f , 0.2f); // with green highlights
 
-                    effect.AmbientLightColor = new Vector3(0.01f, 0.15f, 0.6f);
-                    effect.EmissiveColor = new Vector3(0f, 0.1f, 0.2f);
+                    effect.AmbientLightColor = new Vector3(0f, 0f, 0f);
+                    effect.EmissiveColor = new Vector3(0.15f, 0.15f, 0.0f);
 
-                    effect.World = GameConstants.MainCam.X_World * Matrix.CreateTranslation(this.Position);
+                    effect.World = GameConstants.MainCam.X_World * Matrix.CreateScale(fModelScale) * Matrix.CreateTranslation(this.Position);
                     effect.View = GameConstants.MainCam.X_View;
                     effect.Projection = GameConstants.MainCam.X_Projection;
                 }

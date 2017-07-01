@@ -23,6 +23,7 @@ namespace VeilofDeath
         public static float fAspectRatio = WINDOWSIZE.X / WINDOWSIZE.Y;
         public static Camera MainCam;
         public static int CameraAngle = 35;
+        public static float CameraDistance = -20;
         /// <summary>
         /// fixed window size width
         /// </summary>
@@ -42,16 +43,17 @@ namespace VeilofDeath
         /// Size of each block in the map (like tiles)
         /// </summary>
         public static int iBlockSize = 4;
-        public static float fLaneCenter = (iBlockSize*6 -1) /2;  // *3 <= * mapmask.width (actual 6) and :2 (center)
+        public static float fLaneCenter = (iBlockSize*6) /2;  // *3 <= * mapmask.width (actual 6) and :2 (center)
 
         /// <summary>
         /// Length of the Jump
         /// </summary>
-        public static float fJumpWidth = 2* iBlockSize;
+        public static float fJumpWidth = 2.5f* iBlockSize;
         /* to overjump one block: when jumping is pressed in the middle of the before-block, 
          * it takes 2 blocks to land in the middle of the after-block */
         public static float fJumpHeight =  iBlockSize *6/5;
         public static float fJumpSpeed;
+        public static float fjumpTime;
 
         /// <summary>
         /// Dictionary which holds the models for each LevelBlock
@@ -60,7 +62,7 @@ namespace VeilofDeath
         /// <summary>
         /// Z-Axis of the level
         /// </summary>
-        public static float fLevelHeight = -1f * iBlockSize +1 ;
+        public static float fLevelHeight = -1f * iBlockSize  +0.1f;
 
         //Gameplay
         /// <summary>
@@ -76,9 +78,9 @@ namespace VeilofDeath
         public static bool isCollided = false;
 
         public static Game currentGame;
+        public static SpriteFont lucidaConsole;
 
-              
-        
+        public static GraphicsDeviceManager Graphics { get; internal set; }
     }
 
 }

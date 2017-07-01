@@ -13,13 +13,15 @@ namespace VeilofDeath.Core.GameStates
         public bool canLeave { get; set; }
         public EState newState { get; set; }
 
+        private Texture2D background;
+
         SpriteBatch spriteBatch;
         IGameState _callingGameState;
 
 
-        public Score(IGameState callingState)
+        public Score()
         {
-            _callingGameState = callingState;
+            //_callingGameState = callingState;
             spriteBatch = GameConstants.SpriteBatch;
 
             Initialize();
@@ -28,31 +30,29 @@ namespace VeilofDeath.Core.GameStates
 
         public void Initialize()
         {
-            //
+            newState = EState.none;
         }
 
         public void LoadContent()
         {
-            //
+            background = GameConstants.Content.Load<Texture2D>("winner");
         }
 
         public void UnloadContent()
         {
-            throw new NotImplementedException();
+            
         }
 
         public void Update(GameTime time)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void Draw(GameTime time)
         {
             spriteBatch.Begin();
 
-            //TODO: still Draw the _callinGameState
-
-            //then Draw the ScoreScreen (transparent Background)
+            spriteBatch.Draw(background, new Rectangle(0, 0, (int)GameConstants.WINDOWSIZE.X, (int)GameConstants.WINDOWSIZE.Y), Color.White);
 
             spriteBatch.End();
         }

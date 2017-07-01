@@ -23,25 +23,34 @@ namespace VeilofDeath
         Player character;
        // private Player character;
 
+        /// <summary>
+        /// CONSTRUCTOR
+        /// </summary>
+        /// <param name="player">Main Player</param>
         public PlayerController(Player player)
         {
             character = player;
         }
 
+        /// <summary>
+        /// main update method for player movement
+        /// </summary>
+        /// <param name="oldKeyboardState">last state of the keyboard</param>
         public void Update (KeyboardState oldKeyboardState)
         {
             currentKeyboardState = Keyboard.GetState();
-            
 
+            //Console.WriteLine(character.Position.X + " lars");
 
             if (currentKeyboardState.IsKeyDown(Keys.Right) && !oldKeyboardState.IsKeyDown(Keys.Right) && !isRightPressed)
             {
-                character.Position.X += 1 * GameConstants.iBlockSize;
+                //  Console.WriteLine(character.Position.X + " geeerd");
+                character.Position.X += 1  * GameConstants.iBlockSize;
                 isRightPressed = true;
             }
             if (currentKeyboardState.IsKeyDown(Keys.Left) && !oldKeyboardState.IsKeyDown(Keys.Left) && !isLeftPressed)
             {
-                character.Position.X -= 1 * GameConstants.iBlockSize;
+                character.Position.X -= 1  * GameConstants.iBlockSize;
                 isLeftPressed = true;
             }
             if (!character.isJumping && !isSpacePressed && currentKeyboardState.IsKeyDown(Keys.Space) && !oldKeyboardState.IsKeyDown(Keys.Space) )

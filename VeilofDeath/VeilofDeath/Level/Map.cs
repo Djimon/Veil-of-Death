@@ -26,6 +26,8 @@ namespace VeilofDeath
         /// </summary>
         public Block[,] map;
 
+        int scale;
+
         /// <summary>
         /// blocksize for all blocks.
         /// </summary>
@@ -62,6 +64,7 @@ namespace VeilofDeath
         public Map(Bitmap mask)
         {
             iBlockSize = GameConstants.iBlockSize;
+            scale = 2;
             Ziel = new Vector2(0, 0);
 
             map = new Block[mask.Width, mask.Height];
@@ -81,49 +84,49 @@ namespace VeilofDeath
                     }
                     else if (mask.GetPixel(row, col).Name == sWhite)
                     {
-                        map[row, col] = new Block(0, new Vector2(row * iBlockSize, col * iBlockSize));
+                        map[row, col] = new Block(0, new Vector2(row * iBlockSize + scale, col * iBlockSize + scale));
                         // weg
                     }
                     else if (mask.GetPixel(row, col).Name == sGrey)
                     {
-                        map[row, col] = new Block(1, new Vector2(row * iBlockSize, col * iBlockSize));
+                        map[row, col] = new Block(1, new Vector2(row * iBlockSize + scale, col * iBlockSize + scale));
                         // mauer
                     }
                     else if (mask.GetPixel(row, col).Name == sRed)
                     {
-                        map[row, col] = new Block(2, new Vector2(row * iBlockSize, col * iBlockSize));
+                        map[row, col] = new Block(2, new Vector2(row * iBlockSize + scale, col * iBlockSize + scale));
                         // loch
                     }
                     else if (mask.GetPixel(row, col).Name == sGreen)
                     {
-                        map[row, col] = new Block(3, new Vector2(row * iBlockSize, col * iBlockSize));
+                        map[row, col] = new Block(3, new Vector2(row * iBlockSize + scale, col * iBlockSize + scale));
                         Start = new Vector2(row * iBlockSize + 1, col * iBlockSize + 1);
                         // start
                     }
                     else if (mask.GetPixel(row, col).Name == sBlue)
                     {
-                        map[row, col] = new Block(4, new Vector2(row * iBlockSize, col * iBlockSize));
+                        map[row, col] = new Block(4, new Vector2(row * iBlockSize + scale, col * iBlockSize + scale));
                         Ziel = new Vector2(row * iBlockSize + 1, col * iBlockSize + 1);
                         // ziel
                     }
                     else if (mask.GetPixel(row, col).Name == sOrange)
                     {
-                        map[row, col] = new Block(5, new Vector2(row * iBlockSize, col * iBlockSize));
+                        map[row, col] = new Block(5, new Vector2(row * iBlockSize + scale, col * iBlockSize + scale));
                         // Falle 1
                     }
                     else if (mask.GetPixel(row, col).Name == sCyan)
                     {
-                        map[row, col] = new Block(6, new Vector2(row * iBlockSize, col * iBlockSize));
+                        map[row, col] = new Block(6, new Vector2(row * iBlockSize + scale, col * iBlockSize + scale));
                         // Falle 2
                     }
                     else if (mask.GetPixel(row, col).Name == sDarkGreen)
                     {
-                        map[row, col] = new Block(7, new Vector2(row * iBlockSize, col * iBlockSize));
+                        map[row, col] = new Block(7, new Vector2(row * iBlockSize + scale, col * iBlockSize + scale));
                         // Falle 3
                     }
                     else
                     {
-                        map[row, col] = new Block(0, new Vector2(row * iBlockSize, col * iBlockSize));
+                        map[row, col] = new Block(0, new Vector2(row * iBlockSize + scale, col * iBlockSize + scale));
                         //loch
                     }                                        
                 }
@@ -142,20 +145,20 @@ namespace VeilofDeath
             int temp = n.Next(1,GameConstants.iTrapNumber); // derzeit 4
             switch (temp)
             {
-                case 1: map[row, col] = new Block(5, new Vector2(row * iBlockSize, col * iBlockSize)); // Falle 1
+                case 1: map[row, col] = new Block(5, new Vector2(row * iBlockSize + scale, col * iBlockSize + scale)); // Falle 1
                     break;
-                case 2: map[row, col] = new Block(6, new Vector2(row * iBlockSize, col * iBlockSize)); // Falle 2
+                case 2: map[row, col] = new Block(6, new Vector2(row * iBlockSize + scale, col * iBlockSize + scale)); // Falle 2
                     break;
-                case 3: map[row, col] = new Block(7, new Vector2(row * iBlockSize, col * iBlockSize)); // Falle 3
+                case 3: map[row, col] = new Block(7, new Vector2(row * iBlockSize + scale, col * iBlockSize + scale)); // Falle 3
                     break;
-                case 4: map[row, col] = new Block(8, new Vector2(row * iBlockSize, col * iBlockSize)); // Falle 4
+                case 4: map[row, col] = new Block(8, new Vector2(row * iBlockSize + scale, col * iBlockSize + scale)); // Falle 4
                     break;
                 //case 5:
                 //    break;
                 //case 6:
                 //    break;
-                default: map[row, col] = new Block(2, new Vector2(row * iBlockSize, col * iBlockSize)); //loch
-                         
+                default: map[row, col] = new Block(2, new Vector2(row * iBlockSize + scale, col * iBlockSize + scale)); //loch
+
                     break;
             }
              

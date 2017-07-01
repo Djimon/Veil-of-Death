@@ -5,17 +5,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VeilofDeath.Objects.Traps;
 
 namespace VeilofDeath
 {
     public class Block
     {
 
-        public bool isWalkable = true;
+        public bool isFree = false;
+        public bool isWalkable = false;
         /// <summary>
         /// Defines the grid positon
         /// </summary>
-        Vector3 position;
+        public Vector3 position;
         float scale = GameConstants.iBlockSize / 2;
 
         /// <summary>
@@ -84,6 +86,7 @@ namespace VeilofDeath
                         m_Block = modelDictionary["weg"];
                         this.position = new Vector3(pos,GameConstants.fLevelHeight);
                         this.isWalkable = true;
+                        this.isFree = true;
                         break;
                     }
 
@@ -94,35 +97,37 @@ namespace VeilofDeath
                         this.isWalkable = false;
                         break;
                     }
-                case 2: //Loch (red)
+                case 2: //Stachelfalle (red)
                     {
-                        this.m_Block = modelDictionary["stachelfalle"];
-                        this.position = new Vector3(pos, GameConstants.fLevelHeight);
+                        //this.m_Block = modelDictionary["stachelfalle"]; //TODO: ersetze mit Loch
+                        this.position = new Vector3(pos.X, pos.Y ,GameConstants.fLevelHeight);
                         this.isWalkable = false;
-                        GameManager.Instance.AddSpike(new SpikeTrap(new Vector3(pos, GameConstants.fLevelHeight),this));
-                        //GameConstants.ListOfSpikeTraps.Add(new SpikeTrap(new Vector3(pos, GameConstants.fLevelHeight)));
-                        //GameConstants.ListOfSpikeTraps.Add(new SpikeTrap(new Vector3(pos, GameConstants.fLevelHeight)));
+                        GameManager.Instance.AddSpike(new SpikeTrap(this.position,this));
                         break;
                     }
                 case 3: //start (green)
                     {
                         this.m_Block = modelDictionary["start"];
                         this.position = new Vector3(pos, GameConstants.fLevelHeight);
-                        this.isWalkable = true;
+                        GameManager.Instance.StartPos = this.position;
+                        this.isWalkable = true;                        
                         break;
                     }
                 case 4: //ziel (blue)
                     {
                         this.m_Block = modelDictionary["ende"];
                         this.position = new Vector3(pos, GameConstants.fLevelHeight);
-                        this.isWalkable = true;
+                        GameManager.Instance.ZielPos = this.position;
+                        this.isWalkable = true;                      
                         break;
                     }
                 case 5: //Slowing Falle
                     {
                         this.m_Block= modelDictionary["slowtrap"];
                         this.position = new Vector3(pos, GameConstants.fLevelHeight);
-                        this.isWalkable = false;
+                        GameManager.Instance.AddSlow(new SlowTrap(new Vector3(pos, GameConstants.fLevelHeight), this));
+                        this.isWalkable = true;
+                        this.isFree = true;
                         break;
                     }
 

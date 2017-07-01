@@ -70,7 +70,6 @@ namespace VeilofDeath
         {
             InitializeCameraVectors();
             InitializeCameraMatrices();
-            CameraMidPoint = GameConstants.fLaneCenter - (GameConstants.iBlockSize / 2);
         }
 
         void InitializeCameraMatrices()
@@ -133,7 +132,7 @@ namespace VeilofDeath
         {
             if (GameConstants.isDebugMode)
                 Console.WriteLine("ResetCam");
-            camPos = new Vector3(GameConstants.fLaneCenter, -20, GameConstants.fCameraHeight); // x:= bloksize *3 <= *6 Lanes and :2 (center) 
+            camPos = new Vector3(GameConstants.fLaneCenter, GameConstants.CameraDistance, GameConstants.fCameraHeight); // x:= bloksize *3 <= *6 Lanes and :2 (center) 
             lastPos = camPos;
             ResetRotation();
         }
