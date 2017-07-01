@@ -13,7 +13,6 @@ namespace VeilofDeath.Core.GameStates
     enum Button
     {
         Start,
-        Options, 
         Credits,
         Winnerlist,
         Exit,
@@ -55,16 +54,14 @@ namespace VeilofDeath.Core.GameStates
             background = GameConstants.Content.Load<Texture2D>("menuBG");
             Buttons = new Texture2D[(int)Button.Count];
             Buttons[(int)Button.Start] = GameConstants.Content.Load<Texture2D>("Textures/StartButton");
-            Buttons[(int)Button.Options] = GameConstants.Content.Load<Texture2D>("Textures/StartButton");
-            Buttons[(int)Button.Credits] = GameConstants.Content.Load<Texture2D>("Textures/StartButton");
+            Buttons[(int)Button.Credits] = GameConstants.Content.Load<Texture2D>("Textures/CreditsB");
             Buttons[(int)Button.Winnerlist] = GameConstants.Content.Load<Texture2D>("Textures/Winnerlist");
             Buttons[(int)Button.Exit] = GameConstants.Content.Load<Texture2D>("Textures/ExitButton");
             //more buttons
             SelectedButtons = new Texture2D[(int)Button.Count];
             SelectedButtons[(int)Button.Start] = GameConstants.Content.Load<Texture2D>("Textures/StartButtonSelected");
-            SelectedButtons[(int)Button.Options] = GameConstants.Content.Load<Texture2D>("Textures/StartButtonSelected");
-            SelectedButtons[(int)Button.Credits] = GameConstants.Content.Load<Texture2D>("Textures/StartButtonSelected");
-            SelectedButtons[(int)Button.Winnerlist] = GameConstants.Content.Load<Texture2D>("Textures/StartButtonSelected");
+            SelectedButtons[(int)Button.Credits] = GameConstants.Content.Load<Texture2D>("Textures/CreditsBS");
+            SelectedButtons[(int)Button.Winnerlist] = GameConstants.Content.Load<Texture2D>("Textures/WinnerListS");
             SelectedButtons[(int)Button.Exit] = GameConstants.Content.Load<Texture2D>("Textures/ExitButtonSelected");
             //Load other Textures, like Buttons
         }
@@ -102,7 +99,9 @@ namespace VeilofDeath.Core.GameStates
                         newState = EState.Ingame;
                         break;
 
-                   // case Button.Exit:
+                    case Button.Exit:
+                        GameConstants.currentGame.Exit();
+                        break;
                         
 
                     default:
@@ -119,7 +118,7 @@ namespace VeilofDeath.Core.GameStates
             spriteBatch.Begin();
             spriteBatch.Draw(background, new Rectangle(0, 0, (int)GameConstants.WINDOWSIZE.X, (int)GameConstants.WINDOWSIZE.Y), Color.White);
             //Draw more 2D stuff here
-            Vector2 Anker = new Vector2(500, 100);
+            Vector2 Anker = new Vector2(410, 150);
             for (int i = 0; i < (int)Button.Count; i++) 
             {
                 if (i == (int)m_selected)

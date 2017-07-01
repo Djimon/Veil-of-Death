@@ -44,6 +44,7 @@ namespace VeilofDeath.Core.GameStates
         private bool reachedFinish = false;
 
         float fTimeDelta;
+        private int score;
 
         public InGame(int Level)
         {
@@ -70,7 +71,8 @@ namespace VeilofDeath.Core.GameStates
             GameConstants.levelDictionary = LevelContent.LoadListContent<Model>(GameConstants.Content, "Models/Level1");
             foreach (KeyValuePair<string, Model> SM in GameConstants.levelDictionary)
             {
-                Console.WriteLine("Key:" + SM.Key + ", Value: " + SM.Value);
+                if (GameConstants.isDebugMode)
+                    Console.WriteLine("Key:" + SM.Key + ", Value: " + SM.Value);
             }
 
             //TODO: initialize these Matrixes
@@ -88,7 +90,7 @@ namespace VeilofDeath.Core.GameStates
             testmap = new Map(levelMask);
             Player = new Player(m_player);
             x_playerModelTransforms = SetupEffectDefaults(m_player);
-            Player.Spawn(new Vector3(GameConstants.fLaneCenter, 0, 0));
+            Player.Spawn(new Vector3(GameConstants.fLaneCenter+1, 0, 0));
             PController = new PlayerController(Player);
 
             GameConstants.MainCam.SetTarget(Player);
@@ -103,9 +105,20 @@ namespace VeilofDeath.Core.GameStates
         {
             PController.Update(currentKeyboardState);
             oldKeyboardState = currentKeyboardState;
-            Player.Tick();
             fTimeDelta += (float)time.ElapsedGameTime.TotalSeconds;
+            Player.Tick();
+
+            if (Player.Position.Y >= GameConstants.fJumpWidth
+                && Player.Position.Y <= GameConstants.fJumpWidth + 0.111f)
+            {
+                GameConstants.fJumpSpeed = GameConstants.fJumpWidth / fTimeDelta;
+                if (GameConstants.isDebugMode)
+                    Console.WriteLine("JumpSpeed: "+ GameConstants.fJumpSpeed);
+            }
+                
+            
             //GameConstants.MainCam.Update(time);
+            UpdateScore();
 
             if (reachedFinish)
             {
@@ -122,6 +135,13 @@ namespace VeilofDeath.Core.GameStates
             //NewDrawModel(Player);
 
             DrawGUI();
+            
+        }
+
+        private void UpdateScore()
+        {
+            score = (int)(fTimeDelta * 10);
+            GameManager.UpdateScore(score);
         }
 
         /// <summary>
@@ -131,7 +151,7 @@ namespace VeilofDeath.Core.GameStates
         {
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Opaque);
             //Debug - Anzeige
-            spriteBatch.DrawString(lucidaConsole, "Pos: " + Player.Position+ " Time: "+fTimeDelta,
+            spriteBatch.DrawString(lucidaConsole, "Pos: " + Player.Position+ " Score: "+GameManager.Score,
                                    GUI_Pos, Microsoft.Xna.Framework.Color.White);
 
 

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VeilofDeath.Objects;
 
 namespace VeilofDeath
 {
@@ -13,12 +14,19 @@ namespace VeilofDeath
         public Model model;
         public float angle;
         public Vector3 Position;
-
+        public MyBoundingBox box;
+        public bool hasCollided = false;
         /// <summary>
         /// Primary collision
         /// </summary>
         protected void HandleCollision()
         {
+            foreach (SpikeTrap trap in GameManager.Instance.SpikeList)
+            {
+                if (this.box.intersect(trap.box)) ;
+                    //GameConstants.currentGame.Exit();
+                    //Console.WriteLine("Collision");
+            }
 
         }
 

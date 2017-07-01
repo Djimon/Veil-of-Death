@@ -34,13 +34,13 @@ namespace VeilofDeath
         /* ~~~~ Strings, um Bitmapfarbe einem Blocktyp zuzuordnen ~~~~ */
         public static String sWhite = "ffffffff"; //Weg
         public static String sBlack = "ff000000"; //Mauer Vertikal
-        public static String sRed = "ffff0000"; // Hintergrund
+        public static String sRed = "ffff0000"; // loch /spike
         public static String sGreen = "ff00ff00"; //Start
         public static String sBlue = "ff0000ff"; //Ziel
         public static String sGrey = "ff424242"; //Mauer Horizontal
-        public static String sOrange = "ffff8800"; // Loch im Boden
+        public static String sOrange = "ffff8800"; // Slowtrap
         public static String sCyan = "ff008080"; // geheimer Weg Vorderansicht
-        public static String sDarkGreen = "ff004000"; // geheimer Weg Draufsicht
+        public static String sDarkGreen = "ff004000"; // 
 
         /// <summary>
         ///  <para>generates a map with random traps and the possibility of fixed traps ("taktische Falle")</para>
@@ -65,13 +65,15 @@ namespace VeilofDeath
             Ziel = new Vector2(0, 0);
 
             map = new Block[mask.Width, mask.Height];
-            Console.WriteLine("Maske: "+mask.Width +":"+ mask.Height);
+            if (GameConstants.isDebugMode)
+                Console.WriteLine("Maske: "+mask.Width +":"+ mask.Height);
 
             for (int row = 0; row < map.GetLength(0); row++)
             {
                 for (int col = 0; col < map.GetLength(1); col++)
                 {
-                    Console.WriteLine("P("+row+":"+col+") color = "+mask.GetPixel(row,col).Name);
+                    if (GameConstants.isDebugMode)
+                        Console.WriteLine("P("+row*iBlockSize+":"+col*iBlockSize+") color = "+mask.GetPixel(row,col).Name);
 
                     if (mask.GetPixel(row, col).Name == sBlack)
                     {
@@ -168,7 +170,7 @@ namespace VeilofDeath
             {
                 for (int j = 0; j < map.GetLength(1); j++)
                 {
-                    map[i, j].Draw();                    
+                    map[i, j].Draw();
                 }
             }
         }

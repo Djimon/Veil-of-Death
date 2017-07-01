@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace VeilofDeath
 {
-    class Block
+    public class Block
     {
 
         public bool isWalkable = true;
@@ -85,7 +85,6 @@ namespace VeilofDeath
                         this.position = new Vector3(pos,GameConstants.fLevelHeight);
                         this.isWalkable = true;
                         break;
-                        Console.WriteLine(modelDictionary["weg"].ToString());
                     }
 
                 case 1: //Mauer (grey)
@@ -97,10 +96,12 @@ namespace VeilofDeath
                     }
                 case 2: //Loch (red)
                     {
-                        //this.m_Block = modelDictionary["none"];
+                        this.m_Block = modelDictionary["stachelfalle"];
                         this.position = new Vector3(pos, GameConstants.fLevelHeight);
                         this.isWalkable = false;
-
+                        GameManager.Instance.AddSpike(new SpikeTrap(new Vector3(pos, GameConstants.fLevelHeight),this));
+                        //GameConstants.ListOfSpikeTraps.Add(new SpikeTrap(new Vector3(pos, GameConstants.fLevelHeight)));
+                        //GameConstants.ListOfSpikeTraps.Add(new SpikeTrap(new Vector3(pos, GameConstants.fLevelHeight)));
                         break;
                     }
                 case 3: //start (green)
@@ -117,9 +118,9 @@ namespace VeilofDeath
                         this.isWalkable = true;
                         break;
                     }
-                case 5: //Falle 1
+                case 5: //Slowing Falle
                     {
-                        this.m_Block= modelDictionary[""];
+                        this.m_Block= modelDictionary["slowtrap"];
                         this.position = new Vector3(pos, GameConstants.fLevelHeight);
                         this.isWalkable = false;
                         break;
