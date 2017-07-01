@@ -4,50 +4,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace VeilofDeath.Core.GameStates
 {
     class Credits : IGameState
     {
-        public bool canLeave
+        Texture2D background;
+        private SpriteBatch spriteBatch;
+
+        public bool canLeave { get; set; }
+        
+
+        public EState newState { get; set; }
+
+        public Credits()
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public EState newState
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public void Draw(GameTime time)
-        {
-            throw new NotImplementedException();
+            spriteBatch = GameConstants.SpriteBatch;
+            Initialize();
+            LoadContent();
         }
 
         public void Initialize()
         {
-            throw new NotImplementedException();
+            newState = EState.none;
         }
 
         public void LoadContent()
         {
-            throw new NotImplementedException();
+            background = GameConstants.Content.Load<Texture2D>("Menu/menuBG");
         }
 
         public void UnloadContent()
@@ -59,5 +44,14 @@ namespace VeilofDeath.Core.GameStates
         {
             throw new NotImplementedException();
         }
+        public void Draw(GameTime time)
+        {
+            spriteBatch.Begin();
+
+            spriteBatch.Draw(background, new Rectangle(0, 0, (int)GameConstants.WINDOWSIZE.X, (int)GameConstants.WINDOWSIZE.Y), Color.White);
+
+            spriteBatch.End();
+        }
+
     }
 }

@@ -51,7 +51,7 @@ namespace VeilofDeath.Core.GameStates
 
         public void LoadContent()
         {
-            background = GameConstants.Content.Load<Texture2D>("menuBG");
+            background = GameConstants.Content.Load<Texture2D>("titleBG");
             Buttons = new Texture2D[(int)Button.Count];
             Buttons[(int)Button.Start] = GameConstants.Content.Load<Texture2D>("Textures/StartButton");
             Buttons[(int)Button.Credits] = GameConstants.Content.Load<Texture2D>("Textures/CreditsB");

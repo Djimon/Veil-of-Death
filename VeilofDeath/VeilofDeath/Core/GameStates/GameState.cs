@@ -14,10 +14,12 @@ namespace VeilofDeath.Core
         MainMenu,
         Settings,
         Controlls,
+        Statistics,
         Ingame,
         Score,
         GameOver,
-        Credits
+        Credits,
+        count
     }
 
     interface IGameState
