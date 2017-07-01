@@ -31,8 +31,9 @@ namespace VeilofDeath
 
         public void Initialize()
         {
-            box = new MyBoundingBox(this);
-            
+            fModelScale = 2;
+            model = GameConstants.levelDictionary["stachelfalle"];
+            box = new MyBoundingBox(this);                   
         }
 
         public void Interact()
@@ -58,16 +59,7 @@ namespace VeilofDeath
                 DeSpawn();
             }
 
-            if (isFloating)
-            {                
-                Position.Z = (GameConstants.iBlockSize * 2 / GameConstants.fJumpSpeed) * (float)(time.ElapsedGameTime.TotalSeconds - fStartFloating);
-                if (Position.Z >= GameConstants.iBlockSize/2)
-                    isFloating = false;
-            }
-            else if (Position.Z > GameConstants.fLevelHeight)
-            {
-                Position.Z = (GameConstants.iBlockSize * -2 / GameConstants.fJumpSpeed) * (float)(time.ElapsedGameTime.TotalSeconds - fStartFloating);
-            }
+        
 
 
         }

@@ -30,7 +30,7 @@ namespace VeilofDeath.Core
             {
                 if (rnd.NextDouble() < 0.05f)
                 {
-                    Console.WriteLine("FLOAT!");
+                    //Console.WriteLine("FLOAT!");
                     spike.isFloating = true;
                     spike.fStartFloating = (float)time.ElapsedGameTime.TotalSeconds;
                 }                     

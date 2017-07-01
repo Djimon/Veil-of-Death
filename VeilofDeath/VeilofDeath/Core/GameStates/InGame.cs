@@ -22,6 +22,7 @@ namespace VeilofDeath.Core.GameStates
 
         public KeyboardState currentKeyboardState { get; private set; }
         public KeyboardState oldKeyboardState { get; private set; }
+
         public TrapHandler TrapHandler;
 
         public SpriteBatch spriteBatch;
@@ -39,8 +40,11 @@ namespace VeilofDeath.Core.GameStates
         private Matrix x_projectionMatrix;
         private Matrix x_viewMatrix;
 
-        Vector2 GUI_Pos = new Vector2(100, 50); //TODO get rid of magicConstants
+        Vector2 GUI_Pos = new Vector2(1000, 20); //TODO get rid of magicConstants
         Vector2 GUI_Stuff = new Vector2(100, 400); //TODO get rid of magicConstants
+
+        Texture2D txLine, txPlayer;
+        Texture2D[] txVeil;
 
         private Vector3 start;
 
@@ -48,6 +52,13 @@ namespace VeilofDeath.Core.GameStates
         private int score;
 
         Spawner objectSpawner;
+        private float timesincelastupdate;
+
+        private Vector2 playerTexPos = new Vector2(0,0);
+        private Vector2 VeilTexPos = new Vector2(0, 0);
+        private float playeTexStart;
+        private float veilTexStart;
+        private float angle;
 
         public InGame(int Level)
         {
@@ -64,9 +75,7 @@ namespace VeilofDeath.Core.GameStates
         {
             newState = EState.none;
             currentKeyboardState = Keyboard.GetState();
-            oldKeyboardState = new KeyboardState();
-            
-            
+            oldKeyboardState = new KeyboardState();            
 
             GameConstants.levelDictionary = LevelContent.LoadListContent<Model>(GameConstants.Content, "Models/Level1");
             foreach (KeyValuePair<string, Model> SM in GameConstants.levelDictionary)
@@ -75,11 +84,21 @@ namespace VeilofDeath.Core.GameStates
                     Console.WriteLine("Key:" + SM.Key + ", Value: " + SM.Value);
             }
 
-            
-            //TODO: initialize these Matrixes
-            //x_projectionMatrix =
-            //x_viewMatrix =
-    }
+            txVeil = new Texture2D[3];
+            txLine = GameConstants.Content.Load<Texture2D>("GUI/line");
+            txPlayer = GameConstants.Content.Load<Texture2D>("GUI/playericon");
+            txVeil[0] = GameConstants.Content.Load<Texture2D>("GUI/veil_1");
+            txVeil[1] = GameConstants.Content.Load<Texture2D>("GUI/veil_2");
+            txVeil[2] = GameConstants.Content.Load<Texture2D>("GUI/veil_3");
+
+            CalculateGUIPositions();
+        }
+
+        private void CalculateGUIPositions()
+        {
+            playeTexStart = playerTexPos.Y = GameConstants.WINDOWSIZE.Y - txPlayer.Height;
+            veilTexStart = VeilTexPos.Y = GameConstants.WINDOWSIZE.Y - txVeil[0].Height;
+        }
 
         public void LoadContent()
         {
@@ -113,11 +132,11 @@ namespace VeilofDeath.Core.GameStates
         public void Update(GameTime time)
         {
 
-            TrapHandler.choseTraps(time);
+            //TrapHandler.choseTraps(time);
 
             PController.Update(currentKeyboardState);
             oldKeyboardState = currentKeyboardState;
-            fTimeDelta += (float)time.ElapsedGameTime.TotalSeconds;
+            fTimeDelta = (float)time.ElapsedGameTime.Milliseconds;
             if (Player.isDead)
             {
                 Player = null;
@@ -166,6 +185,11 @@ namespace VeilofDeath.Core.GameStates
                 c.Draw();
             }
 
+            foreach (SpikeTrap sp in GameManager.Instance.getSpikeList())
+            {
+                sp.Draw();
+            }
+
             // Spikes
 
 
@@ -174,10 +198,27 @@ namespace VeilofDeath.Core.GameStates
 
         }
 
+
         private void UpdateScore()
         {
-            score = (int)(fTimeDelta * 10);
-            GameManager.Instance.UpdateScore(score);
+            timesincelastupdate += fTimeDelta;
+            if (timesincelastupdate > 1000)
+            {
+                GameManager.Instance.AddtoScore((int)Math.Floor(timesincelastupdate/200));                
+                timesincelastupdate = timesincelastupdate % 1000;
+            }
+            if (timesincelastupdate > 100)
+                UdpdateGUIPos();
+
+        }
+
+
+        private void UdpdateGUIPos()
+        {
+            if (Player != null)
+                playerTexPos.Y = GameConstants.WINDOWSIZE.Y - GameConstants.WINDOWSIZE.Y * Math.Max(0, Player.Position.Y / GameManager.Instance.ZielPos.Y);
+            //veilTexStart.Y = Math.Max(0, veil.Position.Y / lange);
+
         }
 
         /// <summary>
@@ -185,10 +226,22 @@ namespace VeilofDeath.Core.GameStates
         /// </summary>
         private void DrawGUI()
         {
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Opaque);
-            //Debug - Anzeige
-            spriteBatch.DrawString(GameConstants.lucidaConsole, "Pos: " + Player.Position+ " Score: "+GameManager.Score,
+            //spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Opaque);
+            spriteBatch.Begin(depthStencilState: GameConstants.Graphics.GraphicsDevice.DepthStencilState, rasterizerState: GameConstants.Graphics.GraphicsDevice.RasterizerState);
+
+            // Vorlage: // spriteBatch.Draw(texture, position, color)
+            spriteBatch.DrawString(GameConstants.lucidaConsole, " Score: " + GameManager.Score,
                                    GUI_Pos, Microsoft.Xna.Framework.Color.White);
+
+
+            spriteBatch.Draw(txLine, new Vector2(1, 1), Microsoft.Xna.Framework.Color.White);
+            spriteBatch.Draw(txPlayer, playerTexPos, Microsoft.Xna.Framework.Color.White);
+            //spriteBatch.Draw(txVeil[0], VeilTexPos, Microsoft.Xna.Framework.Color.White);
+            //Vector2 location = new Vector2(400, 240);
+            //Microsoft.Xna.Framework.Rectangle sourceRectangle = new Microsoft.Xna.Framework.Rectangle(0, 0, txVeil[1].Width, txVeil[1].Height);
+            //Vector2 origin = new Vector2(0, 0);
+            //angle += 0.11f;
+            //spriteBatch.Draw(txVeil[0], location, sourceRectangle, Microsoft.Xna.Framework.Color.White, angle, origin, 1.0f, SpriteEffects.None, 1);
 
             spriteBatch.End(); ;
         }

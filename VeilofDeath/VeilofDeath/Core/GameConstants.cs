@@ -79,7 +79,8 @@ namespace VeilofDeath
 
         public static Game currentGame;
         public static SpriteFont lucidaConsole;
-        
+
+        public static GraphicsDeviceManager Graphics { get; internal set; }
     }
 
 }

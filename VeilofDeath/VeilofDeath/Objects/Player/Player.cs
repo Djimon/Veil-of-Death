@@ -16,8 +16,9 @@ namespace VeilofDeath
         //Velocity of the model, applied each frame to the model's position
         public Vector3 Velocity;
         public bool isActive = false;
-        public float fSpeed = 0.1f * GameConstants.fMovingSpeed;        
+        public float fSpeed = 0.1f * GameConstants.fMovingSpeed;
 
+        public float fProgress;
         /// <summary>
         /// triggers the jumping animation
         /// </summary>
@@ -147,20 +148,22 @@ namespace VeilofDeath
             List<Coin> lc = GameManager.Instance.getCoinList();
             // in einer foreach kann ich nciht löschen
             // For schleife von hinten nach vorne, da dann selbst bei einer löschung der Indx korrekt blebit
-            foreach (Coin c in lc)
+            for (int i = lc.Count-1 ; i > 0; i--)
             {
-                if (c.Position.Y > (this.Position.Y + 2 * GameConstants.iBlockSize)
-                    || c.Position.Y < (this.Position.Y - GameConstants.iBlockSize))
+                if (lc[i].Position.Y > (this.Position.Y + 2 * GameConstants.iBlockSize)
+                    || lc[i].Position.Y < (this.Position.Y - GameConstants.iBlockSize))
                 {
                     continue;
                 }
 
-                if (this.box.intersect(c.box))
+                if (this.box.intersect(lc[i].box))
                 {
-                    GameManager.Instance.Delete(c);
-                    GameManager.Instance.AddtoScore(100); //TODO: Remove magic Constants
+                    Console.WriteLine("Coin");
+                    GameManager.Instance.Delete(lc[i]);
+                    GameManager.Instance.AddtoScore(25); //TODO: Remove magic Constants
                 }
             }
+
         }
 
         private void HandleSpikes()

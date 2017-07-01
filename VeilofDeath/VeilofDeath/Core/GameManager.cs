@@ -10,7 +10,7 @@ namespace VeilofDeath
     {
         private static GameManager instance;
         /// <summary>
-        /// returns the only instance of the camere (singlton)
+        /// returns the only instance of the GameManager (singlton)
         /// </summary>
         public static GameManager Instance
         {

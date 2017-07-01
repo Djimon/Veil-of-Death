@@ -97,12 +97,12 @@ namespace VeilofDeath
                         this.isWalkable = false;
                         break;
                     }
-                case 2: //Loch (red)
+                case 2: //Stachelfalle (red)
                     {
-                        this.m_Block = modelDictionary["stachelfalle"];
-                        this.position = new Vector3(pos, GameConstants.fLevelHeight);
+                        //this.m_Block = modelDictionary["stachelfalle"]; //TODO: ersetze mit Loch
+                        this.position = new Vector3(pos.X, pos.Y ,GameConstants.fLevelHeight);
                         this.isWalkable = false;
-                        GameManager.Instance.AddSpike(new SpikeTrap(new Vector3(pos, GameConstants.fLevelHeight),this));
+                        GameManager.Instance.AddSpike(new SpikeTrap(this.position,this));
                         break;
                     }
                 case 3: //start (green)

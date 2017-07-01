@@ -12,6 +12,10 @@ namespace VeilofDeath.Objects
     {
         public bool isActive = true;
 
+        /// <summary>
+        /// CONSTRUCTOR
+        /// </summary>
+        /// <param name="pos">Position of the coin</param>
         public Coin(Vector3 pos)
         {
             Position = pos;
@@ -24,6 +28,9 @@ namespace VeilofDeath.Objects
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// sets model and bounding box
+        /// </summary>
         public void Initialize()
         {
             model = GameConstants.Content.Load<Model>("Models/coin");
@@ -42,7 +49,14 @@ namespace VeilofDeath.Objects
 
         public void Tick()
         {           
-            // handle Drehung
+            
+        }
+
+        public new void Draw()
+        {
+            //TODO: handle Drehung auf Model
+           
+            base.Draw();
         }
     }
 }

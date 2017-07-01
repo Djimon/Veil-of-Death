@@ -23,11 +23,19 @@ namespace VeilofDeath
         Player character;
        // private Player character;
 
+        /// <summary>
+        /// CONSTRUCTOR
+        /// </summary>
+        /// <param name="player">Main Player</param>
         public PlayerController(Player player)
         {
             character = player;
         }
 
+        /// <summary>
+        /// main update method for player movement
+        /// </summary>
+        /// <param name="oldKeyboardState">last state of the keyboard</param>
         public void Update (KeyboardState oldKeyboardState)
         {
             currentKeyboardState = Keyboard.GetState();
