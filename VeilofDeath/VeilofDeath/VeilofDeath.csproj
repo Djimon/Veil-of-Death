@@ -45,11 +45,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Core\GameManager.cs" />
+    <Compile Include="Core\GameStates\Credits.cs" />
     <Compile Include="Core\GameStates\GameOver.cs" />
     <Compile Include="Core\GameStates\GameState.cs" />
     <Compile Include="Core\GameStates\InGame.cs" />
     <Compile Include="Core\GameStates\MainMenu.cs" />
     <Compile Include="Core\GameStates\Score.cs" />
+    <Compile Include="Core\GameStates\Statistics.cs" />
     <Compile Include="Core\Spawner.cs" />
     <Compile Include="Core\TrapHandler.cs" />
     <Compile Include="Core\Veil.cs" />

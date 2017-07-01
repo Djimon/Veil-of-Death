@@ -291,7 +291,7 @@
 /processorParam:TextureFormat=Color
 /build:GUI/veil_3.png
 
-#begin Textures/StartButton.png
+#begin Textures/CreditsB.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -301,9 +301,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Textures/StartButton.png
+/build:Textures/CreditsB.png
 
-#begin Textures/StartButtonSelected.png
+#begin Textures/CreditsBS.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -313,7 +313,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Textures/StartButtonSelected.png
+/build:Textures/CreditsBS.png
 
 #begin Textures/ExitButton.png
 /importer:TextureImporter
@@ -339,7 +339,7 @@
 /processorParam:TextureFormat=Color
 /build:Textures/ExitButtonSelected.png
 
-#begin ../../../../../../../../Pictures/Winnerlist.png
+#begin Textures/StartButton.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -349,7 +349,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:../../../../../../../../Pictures/Winnerlist.png
+/build:Textures/StartButton.png
+
+#begin Textures/StartButtonSelected.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Textures/StartButtonSelected.png
 
 #begin Textures/Winnerlist.png
 /importer:TextureImporter
@@ -374,28 +386,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Textures/WinnerlistS.png
-
-#begin Textures/CreditsB.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Textures/CreditsB.png
-
-#begin Textures/CreditsBS.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Textures/CreditsBS.png
 

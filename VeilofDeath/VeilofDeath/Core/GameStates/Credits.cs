@@ -1,0 +1,63 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+
+namespace VeilofDeath.Core.GameStates
+{
+    class Credits : IGameState
+    {
+        public bool canLeave
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public EState newState
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public void Draw(GameTime time)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Initialize()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LoadContent()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UnloadContent()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(GameTime time)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
