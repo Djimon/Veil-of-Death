@@ -1,0 +1,11 @@
+17
+
+Run
+{
+Start = 0;
+StartLoop = 0;
+End = 16;
+Duration = 1.0;
+ForwardBackward = false;
+Loop = true;
+}

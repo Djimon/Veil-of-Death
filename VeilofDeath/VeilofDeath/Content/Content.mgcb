@@ -10,6 +10,8 @@
 
 #-------------------------------- References --------------------------------#
 
+/reference:C:\Users\Lars.F95048-1\Downloads\Telegram Desktop\animation\BetterSkinnedContent\AnimationPipeline\bin\Release\AnimationAux.dll
+/reference:C:\Users\Lars.F95048-1\Downloads\Telegram Desktop\animation\BetterSkinnedContent\AnimationPipeline\bin\Release\AnimationPipeline.dll
 
 #---------------------------------- Content ---------------------------------#
 
@@ -211,4 +213,29 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:winner.png
+
+#begin Shader/basicAnimated.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Shader/basicAnimated.fx
+
+#begin Models/Level1/BodyRunningAnimation.x
+/importer:XImporter
+/processor:ModelProcessor
+/processorParam:ColorKeyColor=0,0,0,0
+/processorParam:ColorKeyEnabled=True
+/processorParam:DefaultEffect=BasicEffect
+/processorParam:GenerateMipmaps=True
+/processorParam:GenerateTangentFrames=False
+/processorParam:PremultiplyTextureAlpha=True
+/processorParam:PremultiplyVertexColors=True
+/processorParam:ResizeTexturesToPowerOfTwo=False
+/processorParam:RotationX=0
+/processorParam:RotationY=0
+/processorParam:RotationZ=0
+/processorParam:Scale=1
+/processorParam:SwapWindingOrder=False
+/processorParam:TextureFormat=Compressed
+/build:Models/Level1/BodyRunningAnimation.x
 
