@@ -55,7 +55,6 @@
 #begin Fonts/Lucida Console.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Lucida Console.spritefont
 
@@ -220,12 +219,25 @@
 /processorParam:DebugMode=Auto
 /build:Shader/basicAnimated.fx
 
-#begin Models/Level1/BodyRunningAnimation.x
+#begin Textures/MAINTEXTURE.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Textures/MAINTEXTURE.png
+
+#begin Models/Level1/PlayerModell.x
 /importer:XImporter
-/processor:ModelProcessor
+/processor:AnimationProcessor
+/processorParam:DefaultEffect=SkinnedEffect
+/processorParam:ContentCulture=de-DE
 /processorParam:ColorKeyColor=0,0,0,0
 /processorParam:ColorKeyEnabled=True
-/processorParam:DefaultEffect=BasicEffect
 /processorParam:GenerateMipmaps=True
 /processorParam:GenerateTangentFrames=False
 /processorParam:PremultiplyTextureAlpha=True
@@ -234,8 +246,8 @@
 /processorParam:RotationX=0
 /processorParam:RotationY=0
 /processorParam:RotationZ=0
-/processorParam:Scale=1
+/processorParam:Scale=2
 /processorParam:SwapWindingOrder=False
-/processorParam:TextureFormat=Compressed
-/build:Models/Level1/BodyRunningAnimation.x
+/processorParam:TextureFormat=DxtCompressed
+/build:Models/Level1/PlayerModell.x
 

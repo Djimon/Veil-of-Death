@@ -17,6 +17,9 @@ namespace VeilofDeath
 
         // Camera and View
         public static Vector2 WINDOWSIZE = new Vector2(1200, 700);
+
+        #region camera variables
+
         /// <summary>
         /// fixed aspect ratio of the window
         /// </summary>
@@ -27,15 +30,18 @@ namespace VeilofDeath
         /// <summary>
         /// fixed window size width
         /// </summary>
-        public static float fCameraHeight = 7f;
+        public static float fCameraHeight = 7;
         /// <summary>
         /// Belongs to the Camera View Distance
         /// </summary>
-        public static float fFarClipPlane = 150;
+        public static float fFarClipPlane = 100;
         /// <summary>
         /// Belongs to the Camera View Distance
         /// </summary>
         public static float fNearClipPlane = 0.1f;
+
+        #endregion
+
         internal static SpriteBatch SpriteBatch;
 
         //Map/ level
@@ -45,15 +51,19 @@ namespace VeilofDeath
         public static int iBlockSize = 4;
         public static float fLaneCenter = (iBlockSize*6) /2;  // *3 <= * mapmask.width (actual 6) and :2 (center)
 
+        #region jump variables
+
         /// <summary>
         /// Length of the Jump
         /// </summary>
-        public static float fJumpWidth = 2.5f* iBlockSize;
+        public static float fJumpWidth = 2.5f * iBlockSize;
         /* to overjump one block: when jumping is pressed in the middle of the before-block, 
          * it takes 2 blocks to land in the middle of the after-block */
-        public static float fJumpHeight =  iBlockSize *6/5;
+        public static float fJumpHeight = iBlockSize * 6 / 5;
         public static float fJumpSpeed;
         public static float fjumpTime;
+
+        #endregion
 
         /// <summary>
         /// Dictionary which holds the models for each LevelBlock

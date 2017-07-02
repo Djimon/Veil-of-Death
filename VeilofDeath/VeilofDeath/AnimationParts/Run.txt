@@ -1,11 +1,18 @@
-17
+16
 
 Run
 {
 Start = 0;
 StartLoop = 0;
-End = 16;
-Duration = 1.0;
+End = 15;
+Duration = 0.5;
 ForwardBackward = false;
 Loop = true;
+}
+
+Idle
+{
+Start  = 0;
+StartLoop = 0;
+End = 0
 }

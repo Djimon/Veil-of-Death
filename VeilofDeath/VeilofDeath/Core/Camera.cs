@@ -9,7 +9,9 @@ namespace VeilofDeath
 {
      public class Camera
     {
-        
+
+        #region different Matrices
+
         public Matrix X_World
         {
             get
@@ -45,6 +47,10 @@ namespace VeilofDeath
             }
         }
 
+        #endregion
+
+        #region member, variables
+
         Player target;
         bool isTargetSet = false;
 
@@ -62,6 +68,9 @@ namespace VeilofDeath
         float CameraMidPoint;
         //Vector3 camUp;
 
+        #endregion
+
+        #region Constructor, Initialization
 
         /// <summary>
         /// Constructor
@@ -72,16 +81,53 @@ namespace VeilofDeath
             InitializeCameraMatrices();
         }
 
+        /// <summary>
+        /// initializes the matrices for the camera
+        /// </summary>
         void InitializeCameraMatrices()
         {
             x_world = Matrix.CreateTranslation(new Vector3(0, 0, 0));
-            x_view = Matrix.CreateLookAt(camPos,new Vector3(GameConstants.fLaneCenter,0,0), UP);
-            x_projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(GameConstants.CameraAngle), 
-                                                            GameConstants.fAspectRatio, 
-                                                            GameConstants.fNearClipPlane, 
-                                                            GameConstants.fFarClipPlane);
+            x_view = Matrix.CreateLookAt(camPos, new Vector3(GameConstants.fLaneCenter, 0, 0), UP);
+            x_projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(GameConstants.CameraAngle),
+                GameConstants.fAspectRatio,
+                GameConstants.fNearClipPlane,
+                GameConstants.fFarClipPlane);
 
         }
+
+        /// <summary>
+        /// initializes the camera for usage
+        /// </summary>
+        void InitializeCameraVectors()
+        {
+            ResetCamera();
+        }
+
+        #endregion
+
+        #region reset functions
+
+        /// <summary>
+        /// resets the camera to the start position
+        /// </summary>
+        public void ResetCamera()
+        {
+            if (GameConstants.isDebugMode)
+                Console.WriteLine("ResetCam");
+            camPos = new Vector3(GameConstants.fLaneCenter, GameConstants.CameraDistance, GameConstants.fCameraHeight); // x:= bloksize *3 <= *6 Lanes and :2 (center) 
+            lastPos = camPos;
+            ResetRotation();
+        }
+
+        /// <summary>
+        /// hard reset of the rotation to the vector (0, 0, 0)
+        /// </summary>
+        public void ResetRotation()
+        {
+            camTarget = new Vector3(0, 0, 0);
+        }
+
+        #endregion
 
         /// <summary>
         /// Updates the camera when a target is attached
@@ -117,29 +163,6 @@ namespace VeilofDeath
         {
             target = null;
             isTargetSet = false;
-        }
-
-
-        void InitializeCameraVectors()
-        {
-            ResetCamera();
-        }
-
-        /// <summary>
-        /// resets the camera to the start position
-        /// </summary>
-        public void ResetCamera()
-        {
-            if (GameConstants.isDebugMode)
-                Console.WriteLine("ResetCam");
-            camPos = new Vector3(GameConstants.fLaneCenter, GameConstants.CameraDistance, GameConstants.fCameraHeight); // x:= bloksize *3 <= *6 Lanes and :2 (center) 
-            lastPos = camPos;
-            ResetRotation();
-        }
-
-        public void ResetRotation()
-        {
-            camTarget = new Vector3(0, 0, 0);
         }
     }
 }
