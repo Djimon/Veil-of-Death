@@ -83,7 +83,7 @@ namespace VeilofDeath
             {
                 case 0: //weg (white)
                     {
-                        m_Block = modelDictionary["weg"];
+                        m_Block = modelDictionary["wegStone"];
                         this.position = new Vector3(pos,GameConstants.fLevelHeight);
                         this.isWalkable = true;
                         this.isFree = true;
@@ -92,7 +92,7 @@ namespace VeilofDeath
 
                 case 1: //Mauer (grey)
                     {
-                        this.m_Block = modelDictionary["mauer"];
+                        this.m_Block = modelDictionary["mauerGrey"];
                         this.position = new Vector3(pos, GameConstants.fLevelHeight); 
                         this.isWalkable = false;
                         break;
@@ -107,7 +107,7 @@ namespace VeilofDeath
                     }
                 case 3: //start (green)
                     {
-                        this.m_Block = modelDictionary["start"];
+                        this.m_Block = modelDictionary["wegStone"];
                         this.position = new Vector3(pos, GameConstants.fLevelHeight);
                         GameManager.Instance.StartPos = this.position;
                         this.isWalkable = true;                        
@@ -115,7 +115,7 @@ namespace VeilofDeath
                     }
                 case 4: //ziel (blue)
                     {
-                        this.m_Block = modelDictionary["ende"];
+                        this.m_Block = modelDictionary["wegStone"];
                         this.position = new Vector3(pos, GameConstants.fLevelHeight);
                         GameManager.Instance.ZielPos = this.position;
                         this.isWalkable = true;                      

@@ -68,7 +68,7 @@ namespace VeilofDeath
         /// <summary>
         /// Speed the player moves
         /// </summary>
-        public static float fMovingSpeed = 3;
+        public static float fMovingSpeed = 2;
         /// <summary>
         /// number of Traps in the Game
         /// </summary>

@@ -104,7 +104,7 @@ namespace VeilofDeath.Core.GameStates
         {
             
             m_player = LoadModel("Models/cube");
-            levelMask = new Bitmap("Content/Maps/testmap2.bmp"); //TODO: rename to "1" for level 1 and so on "2", "3" load in pendancy of level
+            levelMask = new Bitmap("Content/Maps/testmap.bmp"); //TODO: rename to "1" for level 1 and so on "2", "3" load in pendancy of level
             testmap = new Map(levelMask);
 
             //after Map generation
@@ -202,11 +202,11 @@ namespace VeilofDeath.Core.GameStates
         private void UpdateScore()
         {
             timesincelastupdate += fTimeDelta;
-            if (timesincelastupdate > 1000)
-            {
-                GameManager.Instance.AddtoScore((int)Math.Floor(timesincelastupdate/200));                
-                timesincelastupdate = timesincelastupdate % 1000;
-            }
+            //if (timesincelastupdate > 1000)
+            //{
+            //    GameManager.Instance.AddtoScore((int)Math.Floor(timesincelastupdate/200));                
+            //    timesincelastupdate = timesincelastupdate % 1000;
+            //}
             if (timesincelastupdate > 100)
                 UdpdateGUIPos();
 
