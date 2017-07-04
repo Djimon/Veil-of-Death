@@ -59,7 +59,7 @@ namespace VeilofDeath
             GameConstants.MainCam = new Camera();
             spriteBatch = new SpriteBatch(GraphicsDevice);
             GameConstants.SpriteBatch = spriteBatch;
-
+            GameConstants.Graphics = graphics;
             GameConstants.lucidaConsole = GameConstants.Content.Load<SpriteFont>("Fonts/Lucida Console");
 
             gameStates.Clear();
@@ -156,21 +156,19 @@ namespace VeilofDeath
                     return new MainMenu();
                 /*
             case EState.Settings: // Einstellungen
-                break;
-            case EState.Controlls: //Bedienung
-                break;
-                */
+                break;*/
+            case EState.Statistics: //Bedienung
+                    return new Statistics();
+               
             case EState.Ingame: //new Level
                     return new InGame(GameManager.Instance.Level);
                 
             case EState.Score: //Score
-                    return new Score(currentState);                    
+                    return new Score();                    
             case EState.GameOver: //Spielende
-                    return new GameOver(0);
-                /*
+                    return new GameOver(0);                
             case EState.Credits: //Credits
-                break;
-                */
+                    return new Credits();                        
                 default: return null;
             }
         }

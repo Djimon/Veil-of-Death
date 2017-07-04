@@ -22,6 +22,10 @@ namespace VeilofDeath
 
         Player character;
 
+        /// <summary>
+        /// CONSTRUCTOR
+        /// </summary>
+        /// <param name="player">Main Player</param>
         public PlayerController(Player player)
         {
             character = player;
@@ -85,6 +89,7 @@ namespace VeilofDeath
 
             if (isSpacePressed)
                 character.model.BlendToAnimationPart("Idle");
+
         }
 
 

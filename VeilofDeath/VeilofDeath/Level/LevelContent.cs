@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -30,7 +31,13 @@ namespace VeilofDeath
                 string key = Path.GetFileNameWithoutExtension(file.Name);
                 if (GameConstants.isDebugMode)
                     Console.WriteLine("...." + key);
-                result[key] = contentManager.Load<T>(contentFolder + "/" + key);
+                try
+                {
+                    result[key] = contentManager.Load<T>(contentFolder + "/" + key);
+                }catch(InvalidCastException e)
+                {
+                    //var xxx = contentManager.Load<Texture2D>(contentFolder + "/" + key);
+                }
             }
             return result;
         }

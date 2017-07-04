@@ -19,9 +19,9 @@ namespace VeilofDeath.Core.GameStates
         IGameState _callingGameState;
 
 
-        public Score(IGameState callingState)
+        public Score()
         {
-            _callingGameState = callingState;
+            //_callingGameState = callingState;
             spriteBatch = GameConstants.SpriteBatch;
 
             Initialize();
@@ -30,7 +30,7 @@ namespace VeilofDeath.Core.GameStates
 
         public void Initialize()
         {
-            //
+            newState = EState.none;
         }
 
         public void LoadContent()
