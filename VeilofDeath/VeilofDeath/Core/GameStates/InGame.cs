@@ -103,8 +103,6 @@ namespace VeilofDeath.Core.GameStates
             GameConstants.MainCam.SetTarget(Player);
 
 
-
-
             //Loads Textfile where Animation Settings are written
             m_player.LoadAnimationParts("AnimationParts/Run.txt");
 
