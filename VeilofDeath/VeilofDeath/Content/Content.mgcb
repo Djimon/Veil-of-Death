@@ -10,6 +10,8 @@
 
 #-------------------------------- References --------------------------------#
 
+/reference:C:\Users\Lars.F95048-1\Downloads\Telegram Desktop\animation\BetterSkinnedContent\AnimationPipeline\bin\Release\AnimationAux.dll
+/reference:C:\Users\Lars.F95048-1\Downloads\Telegram Desktop\animation\BetterSkinnedContent\AnimationPipeline\bin\Release\AnimationPipeline.dll
 
 #---------------------------------- Content ---------------------------------#
 
@@ -53,7 +55,6 @@
 #begin Fonts/Lucida Console.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Lucida Console.spritefont
 
@@ -199,6 +200,44 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:winner.png
+
+#begin Shader/basicAnimated.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Shader/basicAnimated.fx
+
+#begin Textures/MAINTEXTURE.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Textures/MAINTEXTURE.png
+
+#begin Models/Level1/PlayerModell.x
+/importer:XImporter
+/processor:AnimationProcessor
+/processorParam:DefaultEffect=SkinnedEffect
+/processorParam:ContentCulture=de-DE
+/processorParam:ColorKeyColor=0,0,0,0
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=True
+/processorParam:GenerateTangentFrames=False
+/processorParam:PremultiplyTextureAlpha=True
+/processorParam:PremultiplyVertexColors=True
+/processorParam:ResizeTexturesToPowerOfTwo=False
+/processorParam:RotationX=0
+/processorParam:RotationY=0
+/processorParam:RotationZ=0
+/processorParam:Scale=2
+/processorParam:SwapWindingOrder=False
+/processorParam:TextureFormat=DxtCompressed
+/build:Models/Level1/PlayerModell.x
 
 #begin Models/coin.fbx
 /importer:FbxImporter

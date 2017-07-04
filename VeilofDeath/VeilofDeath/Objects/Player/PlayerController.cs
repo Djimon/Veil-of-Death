@@ -18,10 +18,9 @@ namespace VeilofDeath
         bool isDownPressed = false;
         bool isRightPressed = false;
         bool isLeftPressed = false;
+        bool isOnGround = true;
 
-        bool isLanded = false ;
         Player character;
-       // private Player character;
 
         /// <summary>
         /// CONSTRUCTOR
@@ -33,11 +32,12 @@ namespace VeilofDeath
         }
 
         /// <summary>
-        /// main update method for player movement
+        /// updates the player movement related to the keyboard state
         /// </summary>
-        /// <param name="oldKeyboardState">last state of the keyboard</param>
+        /// <param name="oldKeyboardState">keyboard state of the predecessor tick</param>
         public void Update (KeyboardState oldKeyboardState)
         {
+
             currentKeyboardState = Keyboard.GetState();
 
             //Console.WriteLine(character.Position.X + " lars");
@@ -47,11 +47,13 @@ namespace VeilofDeath
                 //  Console.WriteLine(character.Position.X + " geeerd");
                 character.Position.X += 1  * GameConstants.iBlockSize;
                 isRightPressed = true;
+                //character.model.BlendToAnimationPart("Run");
             }
             if (currentKeyboardState.IsKeyDown(Keys.Left) && !oldKeyboardState.IsKeyDown(Keys.Left) && !isLeftPressed)
             {
                 character.Position.X -= 1  * GameConstants.iBlockSize;
                 isLeftPressed = true;
+                //character.model.BlendToAnimationPart("Run");
             }
             if (!character.isJumping && !isSpacePressed && currentKeyboardState.IsKeyDown(Keys.Space) && !oldKeyboardState.IsKeyDown(Keys.Space) )
             {
@@ -78,6 +80,22 @@ namespace VeilofDeath
 
             if (GameConstants.isDebugMode)
                 Console.WriteLine(character.Position.ToString());
+
+            Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxPlayercontroller PlayerPos:" + character.Position);
+            Console.WriteLine("xxxxxxxxxxxxxxxxisOnGround: "+isOnGround);
+
+            if (character.Position.Z <= 0.2f && !isOnGround)
+                character.model.BlendToAnimationPart("Run");
+
+            if (character.Position.Z <= 0.2f && !character.isJumping)
+                isOnGround = true;
+
+            if (isSpacePressed)
+                character.model.BlendToAnimationPart("Idle");
+
+            //Console.WriteLine("Playercontroller PlayerPos:"+character.Position);
+
+            
         }
 
 
@@ -98,6 +116,7 @@ namespace VeilofDeath
                 Console.WriteLine("Jump ends at " + character.Position.X+":"+fjumpEndPositionY);
             character.SetJumpingCurve(jumpMid,m, fjumpEndPositionY);
             character.isJumping = true;
+            isOnGround = false;
         }
 
         /// <summary>

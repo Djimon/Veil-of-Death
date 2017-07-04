@@ -21,7 +21,10 @@ namespace VeilofDeath.Objects
 
         private AGameObject O_Parent;
 
-        //public MyBoundingBox(AGameObject gameObject)
+        /// <summary>
+        /// set up the bounding box for a object
+        /// </summary>
+        /// <param name="gameObject">object on which the box is constructed</param>
         public MyBoundingBox(AGameObject gameObject)
         {
             //ToDO: size nciht von der Position abhängig machen -> Kracht beim Player, da sich die Pos stets ändert
@@ -49,6 +52,11 @@ namespace VeilofDeath.Objects
         }
         */
 
+        /// <summary>
+        /// calculates intersection of two objects
+        /// </summary>
+        /// <param name="other">other object which should be proved on intersection</param>
+        /// <returns></returns>
         public bool intersect(MyBoundingBox other)
         {
             
@@ -65,7 +73,10 @@ namespace VeilofDeath.Objects
             return O_Parent.hasCollided;
         }
 
-
+        /// <summary>
+        /// updates bounding box of the object
+        /// </summary>
+        /// <param name="gameObject">object which bounding box should be updated</param>
         public void update(AGameObject gameObject)
         {
             iminX = gameObject.Position.X - GameConstants.iBlockSize / 4;

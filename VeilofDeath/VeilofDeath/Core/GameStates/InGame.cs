@@ -8,11 +8,14 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using System.Drawing;
 using VeilofDeath.Objects;
+using Animations;
 
 namespace VeilofDeath.Core.GameStates
 {
     class InGame : IGameState
     {
+        #region member variablen
+
         /// <summary>
         /// newState defines in which GameState to go next
         /// Must be initialized to "EState.none"!
@@ -34,7 +37,7 @@ namespace VeilofDeath.Core.GameStates
 
         Player Player;
         PlayerController PController;
-        Model m_player;
+        AnimatedModel m_player;
 
         public Matrix[] x_playerModelTransforms;
         private Matrix x_projectionMatrix;
@@ -50,6 +53,9 @@ namespace VeilofDeath.Core.GameStates
 
         float fTimeDelta;
         private int score;
+
+        #endregion
+
 
         Spawner objectSpawner;
         private float timesincelastupdate;
@@ -69,7 +75,7 @@ namespace VeilofDeath.Core.GameStates
             LoadContent();
         }
 
-
+        #region initialize, content methods
 
         public void Initialize()
         {
@@ -102,8 +108,10 @@ namespace VeilofDeath.Core.GameStates
 
         public void LoadContent()
         {
-            
-            m_player = LoadModel("Models/cube");
+            //load Model with Animation and Textures ( UV-Mapping)
+            m_player = new AnimatedModel(GameConstants.Content, "Models/Level1/Playermodell","Textures/MAINTEXTURE");
+
+
             levelMask = new Bitmap("Content/Maps/testmap.bmp"); //TODO: rename to "1" for level 1 and so on "2", "3" load in pendancy of level
             testmap = new Map(levelMask);
 
@@ -114,7 +122,7 @@ namespace VeilofDeath.Core.GameStates
 
             objectSpawner.PlaceCoins(testmap.map);
             Player = new Player(m_player);
-            x_playerModelTransforms = SetupEffectDefaults(m_player);
+           // x_playerModelTransforms = SetupEffectDefaults(m_player);
             Player.Spawn(new Vector3(start.X, start.Y, 0));
             PController = new PlayerController(Player);
 
@@ -122,12 +130,44 @@ namespace VeilofDeath.Core.GameStates
             
 
             GameConstants.MainCam.SetTarget(Player);
+
+
+            //Loads Textfile where Animation Settings are written
+            m_player.LoadAnimationParts("AnimationParts/Run.txt");
+
+
+            //searching for the Animation you are looking
+            m_player.BlendToAnimationPart("Run");
+
+        }
+
+        /// <summary>
+        /// Loads a Model from content pipeline via string
+        /// and apply a basic effect
+        /// </summary>
+        /// <param name="assetName">name of model in content pipeline (with path)</param>
+        /// <returns>Model</returns>
+        private Model LoadModel(string assetName)
+        {
+            Model newModel = GameConstants.Content.Load<Model>(assetName);
+            foreach (ModelMesh mesh in newModel.Meshes)
+            {
+                foreach (ModelMeshPart meshPart in mesh.MeshParts)
+                {
+                    //meshPart.Effect = basicEffect.Clone();
+                }
+            }
+            return newModel;
         }
 
         public void UnloadContent()
         {
             
         }
+
+        #endregion
+
+        #region update methods
 
         public void Update(GameTime time)
         {
@@ -164,19 +204,30 @@ namespace VeilofDeath.Core.GameStates
             {
                 newState = EState.Score;
             }
+
+            //update Animation
+            m_player.Update(time);
         }
+
+        private void UpdateScore()
+        {
+            score = (int)(fTimeDelta * 10);
+            GameManager.UpdateScore(score);
+        }
+
+        #endregion
+
+        #region draw methods
 
         public void Draw(GameTime time)
         {
             testmap.Draw();
 
-            Player.Draw();
+            Player.Draw(time);
 
             DrawObject();
 
             DrawGUI();
-            
-        }
 
         private void DrawObject()
         {
@@ -245,6 +296,8 @@ namespace VeilofDeath.Core.GameStates
 
             spriteBatch.End(); ;
         }
+
+        #endregion
 
         /// <summary>
         /// Enables the default effect for the given model

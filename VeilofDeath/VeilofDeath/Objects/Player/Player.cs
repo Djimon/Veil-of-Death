@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Animations;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -13,6 +14,9 @@ namespace VeilofDeath
 {
      public class Player : AGameObject,ILivingEntity
     {
+
+        #region member, variables
+
         //Velocity of the model, applied each frame to the model's position
         public Vector3 Velocity;
         public bool isActive = false;
@@ -36,27 +40,38 @@ namespace VeilofDeath
         Vector2 S;
         float a;
         float afterJumpY;
-       
+
 
         //public Quaternion Rotation;
+
+        #endregion
+
+        #region constructor, initialize
 
         /// <summary>
         /// Constructor, needs model
         /// </summary>
         /// <param name="m">model of the player</param>
-        public Player(Model m)
+        public Player(AnimatedModel m)
         {
             model = m;
-            Position = new Vector3(GameConstants.fLaneCenter, 0,0);
+            Position = new Vector3(GameConstants.fLaneCenter, 0, 0);
             Console.WriteLine("Startposition: (" + this.Position.X + "/ " + this.Position.Y + "/" + this.Position.Z + ")");
             Initialize();
             this.name = "Player";
         }
 
+        /// <summary>
+        /// Initializes the bounding box of the player
+        /// </summary>
         public void Initialize()
         {
             box = new MyBoundingBox(this);
         }
+
+        #endregion
+
+        #region spawn, despawn methods
 
         /// <summary>
         /// Spawns the player
@@ -84,16 +99,32 @@ namespace VeilofDeath
         }
 
         /// <summary>
+        /// Deactivates the player.
+        /// Model is no longer drawn 
+        /// </summary>
+        public void DeSpawn()
+        {
+            //TODO: Model deaktivieren, nicht löschen, da öfter benötigt (Loading-Pools)
+            isActive = false; //wird nciht mehr gedrawt
+            Position = Vector3.Zero;
+        }
+
+        #endregion
+
+        #region update, move
+
+        /// <summary>
         /// Update method for the Player
         /// </summary>
         public void Tick()
-        {            
+        {
             Move();
 
             box.update(this);
             //if (! isJumping)
             HandleCollision();
 
+            model.Position = this.Position;
         }
 
         /// <summary>
@@ -107,12 +138,14 @@ namespace VeilofDeath
                 Jump();
             }
 
-            
-
-            Velocity = isSlowed ? fSpeed/5 * Vector3.Up : fSpeed * Vector3.Up;
+            Velocity = isSlowed ? fSpeed / 5 * Vector3.Up : fSpeed * Vector3.Up;
             Position += Velocity;
 
         }
+
+        #endregion
+
+        #region everything for setting up the jump and the jump itself
 
         /// <summary>
         /// performs the calculation oh the position during a jump
@@ -122,20 +155,53 @@ namespace VeilofDeath
             // Scheitelpunktform für Parabel 
             // using S.X like Position.Y because S is 2d and Position is 3D
             // same with S.Y and Position.Z
-            
-            Position.Z = a * ( (Position.Y - S.X)*(Position.Y - S.X))   + S.Y;
+
+            Position.Z = a * ((Position.Y - S.X) * (Position.Y - S.X)) + S.Y;
 
             if (GameConstants.isDebugMode)
                 Console.WriteLine("jumpheight: " + Position.Z);
-            if (Position.Z < 0 )
+            if (Position.Z < 0)
             {
                 isJumping = false;
                 Position.Z = 0;
                 UnsetJCurve();
-                
+
             }
         }
 
+        /// <summary>
+        /// Sets the parameters for the jumping curve to calculate the Player.Position
+        /// </summary>
+        /// <param name="jumpMid">S(x,y) - center point of the jump</param>
+        /// <param name="m">the factor for parabel-function</param>
+        /// <param name="endPos">position (y) where the jump ends</param>
+        internal void SetJumpingCurve(Vector2 jumpMid, float m, float endPos)
+        {
+            S = jumpMid;
+            a = m;
+
+            afterJumpY = endPos;
+            if (GameConstants.isDebugMode)
+                Console.WriteLine("S(" + S.X + "/" + S.Y + ") , a = " + a);
+        }
+
+        /// <summary>
+        /// Resets the jumping curve parameters
+        /// </summary>
+        public void UnsetJCurve()
+        {
+            S = Vector2.Zero;
+            a = 0;
+            afterJumpY = 0;
+        }
+
+        #endregion
+
+        #region TrapsHandler, CollisionHandler
+
+        /// <summary>
+        /// handles collision with the traps
+        /// </summary>
         protected void HandleCollision()
         {
             HandleSpikes();
@@ -166,6 +232,10 @@ namespace VeilofDeath
 
         }
 
+
+        /// <summary>
+        /// handles collison with traps which lead to death
+        /// </summary>
         private void HandleSpikes()
         {
             foreach (SpikeTrap trap in GameManager.Instance.getSpikeList())
@@ -183,12 +253,15 @@ namespace VeilofDeath
                     //GameConstants.currentGame.Exit();
                     Console.WriteLine("Collision");
                     Console.WriteLine("player: " + this.box.iminZ
-                                       + " box: " + trap.box.imaxZ);
+                                      + " box: " + trap.box.imaxZ);
                     this.isDead = true;
                 }
             }
         }
 
+        /// <summary>
+        /// handles collision which lead to slow effects
+        /// </summary>
         private void HandleSlowtraps()
         {
             isSlowed = false;
@@ -206,35 +279,11 @@ namespace VeilofDeath
                     Console.WriteLine("Slowdown");
                     this.isSlowed = true;
                 }
-                
+
             }
         }
 
-        /// <summary>
-        /// Sets the parameters for the jumping curve to calculate the Player.Position
-        /// </summary>
-        /// <param name="jumpMid">S(x,y) - center point of the jump</param>
-        /// <param name="m">the factor for parabel-function</param>
-        /// <param name="endPos">position (y) where the jump ends</param>
-        internal void SetJumpingCurve(Vector2 jumpMid,float m, float endPos)
-        {
-            S = jumpMid;
-            a = m;
-
-            afterJumpY = endPos;
-            if (GameConstants.isDebugMode)
-                Console.WriteLine("S(" + S.X + "/" + S.Y + ") , a = " + a);
-        }
-
-        /// <summary>
-        /// Resets the jumping curve parameters
-        /// </summary>
-        public void UnsetJCurve()
-        {
-            S = Vector2.Zero;
-            a = 0;
-            afterJumpY = 0;
-        }
+        #endregion
 
         private float calculateFactor(Vector2 mid, float height)
         {
@@ -245,48 +294,34 @@ namespace VeilofDeath
         /// <summary>
         /// Draws the player if active
         /// </summary>
-        public new void Draw()
+        public override void Draw(GameTime gameTime)
         {
             if (!isActive)
                 return;
 
-            foreach (ModelMesh mesh in this.model.Meshes)
-            {
-                foreach (BasicEffect effect in mesh.Effects)
-                {
-                    effect.EnableDefaultLighting();
+            //foreach (ModelMesh mesh in this.model.Meshes)
+            //{
+            //    foreach (BasicEffect effect in mesh.Effects)
+            //    {
+            //        effect.EnableDefaultLighting();
 
-                    effect.DirectionalLight0.DiffuseColor = new Vector3(0.5f, 0, 0); // a red light
-                    effect.DirectionalLight0.Direction = new Vector3(-1, 0, -1);  // coming along the x-axis
-                    effect.DirectionalLight0.SpecularColor = new Vector3(0, 1, 0); // with green highlights
+            //        effect.DirectionalLight0.DiffuseColor = new Vector3(0.5f, 0, 0); // a red light
+            //        effect.DirectionalLight0.Direction = new Vector3(-1, 0, -1);  // coming along the x-axis
+            //        effect.DirectionalLight0.SpecularColor = new Vector3(0, 1, 0); // with green highlights
 
-                    effect.AmbientLightColor = new Vector3(0.01f, 0.15f, 0.6f);
-                    effect.EmissiveColor = new Vector3(0f, 0.1f, 0.2f);
+            //        effect.AmbientLightColor = new Vector3(0.01f, 0.15f, 0.6f);
+            //        effect.EmissiveColor = new Vector3(0f, 0.1f, 0.2f);
 
 
-                    effect.World = GameConstants.MainCam.X_World * Matrix.CreateTranslation(this.Position);
-                    effect.View = GameConstants.MainCam.X_View;
-                    effect.Projection = GameConstants.MainCam.X_Projection;
-                }
+            //        effect.World = GameConstants.MainCam.X_World * Matrix.CreateTranslation(this.Position);
+            //        effect.View = GameConstants.MainCam.X_View;
+            //        effect.Projection = GameConstants.MainCam.X_Projection;
+            //    }
 
-                mesh.Draw();
-            }
+            //    mesh.Draw();
+            //}
+
+           base.Draw(gameTime);
         }
-
-   
-
-
-        /// <summary>
-        /// Deactivates the player.
-        /// Model is no longer drawn 
-        /// </summary>
-        public void DeSpawn()
-        {
-            //TODO: Model deaktivieren, nicht löschen, da öfter benötigt (Loading-Pools)
-            isActive = false; //wird nciht mehr gedrawt
-            Position = Vector3.Zero;
-        }
-
-
     }
 }

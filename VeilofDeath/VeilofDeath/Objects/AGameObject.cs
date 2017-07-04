@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Animations;
 using VeilofDeath.Objects;
 using VeilofDeath.Objects.Traps;
 
@@ -12,7 +13,7 @@ namespace VeilofDeath
 {
     public abstract class AGameObject
     {
-        public Model model;
+        public AnimatedModel model;
         public float angle;
         public Vector3 Position;
         public MyBoundingBox box;
@@ -31,14 +32,14 @@ namespace VeilofDeath
             //Destroy GameObject and all it's Effects and Dependencies
         }
 
-        public void Draw()
+        public virtual void Draw(GameTime gameTime)
         {
-            //TODO: Überprüfen, ob so wie in Player auch für normale GameObjects geeignet?
-            foreach (var mesh in model.Meshes)
-            {
-                foreach (BasicEffect effect in mesh.Effects)
-                {
-                    effect.EnableDefaultLighting();
+            ////TODO: Überprüfen, ob so wie in Player auch für normale GameObjects geeignet?
+            //foreach (var mesh in model.Meshes)
+            //{
+            //    foreach (BasicEffect effect in mesh.Effects)
+            //    {
+            //        effect.EnableDefaultLighting();
 
                     effect.DirectionalLight0.DiffuseColor = new Vector3(1, 1, 1); // a red light
                     effect.DirectionalLight0.Direction = new Vector3(-1, 0, -1);  // coming along the x-axis
@@ -52,8 +53,14 @@ namespace VeilofDeath
                     effect.Projection = GameConstants.MainCam.X_Projection;
                 }
 
-                mesh.Draw();
-            }
+            //    mesh.Draw();
+            //}
+
+
+            model.Draw(GameConstants.MainCam.X_View,GameConstants.MainCam.X_Projection);
+
+            //base.Draw(gameTime);
+
         }
 
         
