@@ -10,8 +10,8 @@
 
 #-------------------------------- References --------------------------------#
 
-/reference:C:\Users\Lars.F95048-1\Downloads\Telegram Desktop\animation\BetterSkinnedContent\AnimationPipeline\bin\Release\AnimationAux.dll
-/reference:C:\Users\Lars.F95048-1\Downloads\Telegram Desktop\animation\BetterSkinnedContent\AnimationPipeline\bin\Release\AnimationPipeline.dll
+/reference:..\AnimationAux.dll
+/reference:..\Animations.dll
 
 #---------------------------------- Content ---------------------------------#
 
@@ -55,6 +55,7 @@
 #begin Fonts/Lucida Console.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Lucida Console.spritefont
 

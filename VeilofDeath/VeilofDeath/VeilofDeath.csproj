@@ -77,10 +77,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="AnimationAux">
-      <HintPath>C:\Users\Lars.F95048-1\Downloads\Telegram Desktop\animation\BetterSkinnedContent\Animations\bin\Release\AnimationAux.dll</HintPath>
+      <HintPath>.\AnimationAux.dll</HintPath>
     </Reference>
     <Reference Include="Animations">
-      <HintPath>C:\Users\Lars.F95048-1\Downloads\Telegram Desktop\animation\BetterSkinnedContent\Animations\bin\Release\Animations.dll</HintPath>
+      <HintPath>.\Animations.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
