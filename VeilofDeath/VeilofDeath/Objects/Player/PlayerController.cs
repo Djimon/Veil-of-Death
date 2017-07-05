@@ -40,20 +40,15 @@ namespace VeilofDeath
 
             currentKeyboardState = Keyboard.GetState();
 
-            //Console.WriteLine(character.Position.X + " lars");
-
             if (currentKeyboardState.IsKeyDown(Keys.Right) && !oldKeyboardState.IsKeyDown(Keys.Right) && !isRightPressed)
             {
-                //  Console.WriteLine(character.Position.X + " geeerd");
                 character.Position.X += 1  * GameConstants.iBlockSize;
                 isRightPressed = true;
-                //character.model.BlendToAnimationPart("Run");
             }
             if (currentKeyboardState.IsKeyDown(Keys.Left) && !oldKeyboardState.IsKeyDown(Keys.Left) && !isLeftPressed)
             {
                 character.Position.X -= 1  * GameConstants.iBlockSize;
                 isLeftPressed = true;
-                //character.model.BlendToAnimationPart("Run");
             }
             if (!character.isJumping && !isSpacePressed && currentKeyboardState.IsKeyDown(Keys.Space) && !oldKeyboardState.IsKeyDown(Keys.Space) )
             {
@@ -82,13 +77,13 @@ namespace VeilofDeath
                 Console.WriteLine(character.Position.ToString());
 
             if (character.Position.Z <= 0.2f && !isOnGround)
-                character.model.BlendToAnimationPart("Run");
+                character.AniModel.BlendToAnimationPart("Run");
 
             if (character.Position.Z <= 0.2f && !character.isJumping)
                 isOnGround = true;
 
             if (isSpacePressed)
-                character.model.BlendToAnimationPart("Idle");
+                character.AniModel.BlendToAnimationPart("Idle");
 
         }
 

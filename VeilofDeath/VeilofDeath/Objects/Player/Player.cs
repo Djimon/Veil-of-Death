@@ -54,7 +54,7 @@ namespace VeilofDeath
         /// <param name="m">model of the player</param>
         public Player(AnimatedModel m)
         {
-            model = m;
+            AniModel = m;
             Position = new Vector3(GameConstants.fLaneCenter, 0, 0);
             Console.WriteLine("Startposition: (" + this.Position.X + "/ " + this.Position.Y + "/" + this.Position.Z + ")");
             Initialize();
@@ -124,7 +124,7 @@ namespace VeilofDeath
             //if (! isJumping)
             HandleCollision();
 
-            model.Position = this.Position;
+            AniModel.Position = this.Position;
         }
 
         /// <summary>

@@ -137,9 +137,8 @@ namespace VeilofDeath
         {
             if (!isTargetSet) return;
 
-            //TODO: fix (Die Kamera soll im prinzip nur mit der Y-Achse des Players bewegt werden
             camTarget = target.Position ; 
-            camPos += new Vector3(0, target.Velocity.Y ,0); //TODO: get rid of Magic numbers
+            camPos += new Vector3(0, target.Velocity.Y ,0);
 
             Vector3 targetVector = new Vector3(GameConstants.fLaneCenter, target.Position.Y, 0f);
             x_view = Matrix.CreateLookAt(camPos,targetVector,UP );

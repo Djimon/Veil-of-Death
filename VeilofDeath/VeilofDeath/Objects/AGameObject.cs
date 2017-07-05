@@ -13,7 +13,8 @@ namespace VeilofDeath
 {
     public abstract class AGameObject
     {
-        public AnimatedModel model;
+        public AnimatedModel AniModel;
+        public Model model;
         public float angle;
         public Vector3 Position;
         public MyBoundingBox box;
@@ -32,18 +33,31 @@ namespace VeilofDeath
             //Destroy GameObject and all it's Effects and Dependencies
         }
 
+
+        /// <summary>
+        /// Draw Method for AnimatedModels
+        /// </summary>
+        /// <param name="gameTime">important for the drawing because it depends on it</param>
         public virtual void Draw(GameTime gameTime)
         {
+            AniModel.Draw(GameConstants.MainCam.X_View, GameConstants.MainCam.X_Projection);
+        }
+
+        /// <summary>
+        /// Draw Method for normal Models
+        /// </summary>
+        public virtual void Draw()
+        {
             ////TODO: Überprüfen, ob so wie in Player auch für normale GameObjects geeignet?
-            //foreach (var mesh in model.Meshes)
-            //{
-            //    foreach (BasicEffect effect in mesh.Effects)
-            //    {
-            //        effect.EnableDefaultLighting();
+            foreach (var mesh in model.Meshes)
+            {
+                foreach (BasicEffect effect in mesh.Effects)
+                {
+                    effect.EnableDefaultLighting();
 
                     effect.DirectionalLight0.DiffuseColor = new Vector3(1, 1, 1); // a red light
                     effect.DirectionalLight0.Direction = new Vector3(-1, 0, -1);  // coming along the x-axis
-                    effect.DirectionalLight0.SpecularColor = new Vector3(0.2f,0.2f , 0.2f); // with green highlights
+                    effect.DirectionalLight0.SpecularColor = new Vector3(0.2f, 0.2f, 0.2f); // with green highlights
 
                     effect.AmbientLightColor = new Vector3(0f, 0f, 0f);
                     effect.EmissiveColor = new Vector3(0.15f, 0.15f, 0.0f);
@@ -53,17 +67,8 @@ namespace VeilofDeath
                     effect.Projection = GameConstants.MainCam.X_Projection;
                 }
 
-            //    mesh.Draw();
-            //}
-
-
-            model.Draw(GameConstants.MainCam.X_View,GameConstants.MainCam.X_Projection);
-
-            //base.Draw(gameTime);
-
+                mesh.Draw();
+            }
         }
-
-        
-
     }
 }

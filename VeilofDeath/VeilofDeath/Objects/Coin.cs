@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Animations;
 
 namespace VeilofDeath.Objects
 {
@@ -52,7 +53,7 @@ namespace VeilofDeath.Objects
             
         }
 
-        public new void Draw()
+        public override void Draw()
         {
             //TODO: handle Drehung auf Model
            

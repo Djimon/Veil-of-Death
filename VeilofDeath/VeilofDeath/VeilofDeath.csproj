@@ -76,10 +76,12 @@
     <Compile Include="Level\LevelContent.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="AnimationAux">
+    <Reference Include="AnimationAux, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>.\AnimationAux.dll</HintPath>
     </Reference>
-    <Reference Include="Animations">
+    <Reference Include="Animations, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>.\Animations.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework">

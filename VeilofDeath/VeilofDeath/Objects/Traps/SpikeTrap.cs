@@ -58,10 +58,6 @@ namespace VeilofDeath
             {
                 DeSpawn();
             }
-
-        
-
-
         }
 
         private void DoFloat()
