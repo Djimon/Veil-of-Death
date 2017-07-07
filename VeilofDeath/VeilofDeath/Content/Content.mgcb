@@ -10,8 +10,8 @@
 
 #-------------------------------- References --------------------------------#
 
-/reference:C:\Users\Lars.F95048-1\Downloads\Telegram Desktop\animation\BetterSkinnedContent\AnimationPipeline\bin\Release\AnimationAux.dll
-/reference:C:\Users\Lars.F95048-1\Downloads\Telegram Desktop\animation\BetterSkinnedContent\AnimationPipeline\bin\Release\AnimationPipeline.dll
+/reference:..\AnimationAux.dll
+/reference:..\AnimationPipeline.dll
 
 #---------------------------------- Content ---------------------------------#
 

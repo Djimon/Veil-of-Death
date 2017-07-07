@@ -126,7 +126,7 @@ namespace VeilofDeath.Core.GameStates
             objectSpawner.PlaceCoins(testmap.map);
             Player = new Player(m_player);
             // x_playerModelTransforms = SetupEffectDefaults(m_player);
-            Player.Spawn(new Vector3(start.X, start.Y, 0));
+            Player.Spawn(new Vector3(start.X, start.Y, -1));
             PController = new PlayerController(Player);
 
             TrapHandler = new TrapHandler();
