@@ -22,32 +22,46 @@ namespace VeilofDeath
                 }
                 return instance;
             }
-        }
-
-
-
-
-        /********* Session Data **********/
-        public int Level { get; private set; }
-        public static int Score { get; private set; }
-        public int Difficulty { get; set; }
-        public Vector3 StartPos { get; set; }
-        public Vector3 ZielPos { get; set; }
-        
-
-        public void UpdateScore(int value)
-        {
-            Score = value;
-        }
-
-        public void AddtoScore(int value)
-        {
-            Score += value;
-        }
+        }        
 
         public GameManager()
         {
             Load();
+        }
+
+        public void Load()
+        {
+            //TODO: aus datei laden (if Datei leer, then level = 1)
+            this.Level = 0;
+            Score = new int[GameConstants.iMaxLevel];
+        }
+
+        /********* Session Data **********/
+        public int Level { get; private set; }
+        private int[] Score { get; set; }
+        public int score {
+            get
+            {
+                return Score[Level];
+            } private set
+            { } }
+        public int Difficulty { get; set; }
+        public Vector3 StartPos { get; set; }
+        public Vector3 ZielPos { get; set; }
+
+
+        public void UpdateScore(int value)
+        {
+            Score[Level] = value;
+        }
+
+        public void AddtoScore(int value)
+        {
+            Score[Level] += value;
+        }
+        public void ResetScore()
+        {
+            Score[Level] = 0;
         }
         public void LevelUp()
         {
@@ -57,11 +71,7 @@ namespace VeilofDeath
         {           
             //TODO: Session-data in dateispeichern
         }
-        public void Load()
-        {
-            //TODO: aus datei laden (if Datei leer, then level = 1)
-            this.Level = 1;
-        }
+
 
         /**************** Ingame Features ********************/
         List<SpikeTrap> SpikeList = new List<SpikeTrap>();
@@ -77,6 +87,8 @@ namespace VeilofDeath
         {
             SlowList.Add(slow);
         }
+
+
 
         public List<SpikeTrap> getSpikeList()
         {

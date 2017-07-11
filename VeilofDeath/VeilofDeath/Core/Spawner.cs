@@ -146,12 +146,14 @@ namespace VeilofDeath.Core
             {
                 case 1:
                     GameManager.Instance.AddCoin(new Coin(new Vector3(pos.X, pos.Y - GameConstants.iBlockSize /2, 0)));
-                    Console.WriteLine("Placed Coin at " + pos);
+                    if (GameConstants.isDebugMode)
+                        Console.WriteLine("Placed Coin at " + pos);
                     break;
                 case 2:
                     GameManager.Instance.AddCoin(new Coin(new Vector3(pos.X, pos.Y - GameConstants.iBlockSize / 2, 0)));
                     GameManager.Instance.AddCoin(new Coin(new Vector3(pos.X, pos.Y + GameConstants.iBlockSize / 2, 0)));
-                    Console.WriteLine("Placed Coin at " + pos);
+                    if (GameConstants.isDebugMode)
+                        Console.WriteLine("Placed Coin at " + pos);
                     break;
                 case 3:
                     pos.Y += GameConstants.iBlockSize;

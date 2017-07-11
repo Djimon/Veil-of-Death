@@ -72,6 +72,7 @@ namespace VeilofDeath.Core.GameStates
             if (Keyboard.GetState().IsKeyDown(Keys.Enter))
             {
                 GameConstants.MainCam.ResetCamera();
+                GameManager.Instance.ResetScore();                
                 newState = EState.Ingame;
 
             }

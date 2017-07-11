@@ -11,7 +11,7 @@ namespace VeilofDeath
         /// <summary>
         /// If on puts some outputs to the console
         /// </summary>
-        public static bool isDebugMode = true;
+        public static bool isDebugMode = false;
         //mandatory things        
         public static ContentManager Content;
 

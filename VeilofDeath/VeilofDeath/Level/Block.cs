@@ -78,6 +78,7 @@ namespace VeilofDeath
         {
             modelDictionary = GameConstants.levelDictionary;
             this.blockType = blockType;
+            //Console.WriteLine("Type = " + blockType);
 
             switch (blockType)
             {
@@ -101,7 +102,7 @@ namespace VeilofDeath
                     {
                         //this.m_Block = modelDictionary["stachelfalle"]; //TODO: ersetze mit Loch
                         this.position = new Vector3(pos.X, pos.Y ,GameConstants.fLevelHeight);
-                        this.isWalkable = false;
+                        this.isWalkable = true;
                         GameManager.Instance.AddSpike(new SpikeTrap(this.position,this));
                         break;
                     }

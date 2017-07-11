@@ -35,20 +35,26 @@ namespace VeilofDeath
         /// updates the player movement related to the keyboard state
         /// </summary>
         /// <param name="oldKeyboardState">keyboard state of the predecessor tick</param>
-        public void Update (KeyboardState oldKeyboardState)
+        public void Update (KeyboardState oldKeyboardState, Map map)
         {
 
             currentKeyboardState = Keyboard.GetState();
 
             if (currentKeyboardState.IsKeyDown(Keys.Right) && !oldKeyboardState.IsKeyDown(Keys.Right) && !isRightPressed)
             {
-                character.Position.X += 1  * GameConstants.iBlockSize;
-                isRightPressed = true;
+                if (!GameConstants.isDebugMode && CheckFrontIsWalkable(map, "right"))
+                {
+                    character.Position.X += 1 * GameConstants.iBlockSize;
+                    isRightPressed = true;
+                }
             }
             if (currentKeyboardState.IsKeyDown(Keys.Left) && !oldKeyboardState.IsKeyDown(Keys.Left) && !isLeftPressed)
             {
-                character.Position.X -= 1  * GameConstants.iBlockSize;
-                isLeftPressed = true;
+                if (!GameConstants.isDebugMode && CheckFrontIsWalkable(map, "left"))
+                {
+                    character.Position.X -= 1 * GameConstants.iBlockSize;
+                    isLeftPressed = true;
+                }
             }
             if (!character.isJumping && !isSpacePressed && currentKeyboardState.IsKeyDown(Keys.Space) && !oldKeyboardState.IsKeyDown(Keys.Space) )
             {
@@ -88,6 +94,38 @@ namespace VeilofDeath
         }
 
 
+        private bool CheckFrontIsWalkable(Map map, string direction)
+        {
+
+            int GridX = (int)(character.Position.X - (GameConstants.iBlockSize / 2)) / GameConstants.iBlockSize;
+            int GridY = (int)(character.Position.Y - (GameConstants.iBlockSize / 2)) / GameConstants.iBlockSize;
+            Vector2 GridPos = new Vector2(GridX, GridY);
+            //Console.WriteLine("GridPos:" + GridPos);
+            //Console.WriteLine("MapPos:" + map.map[GridX, GridY].position + " - " + map.map[GridX, GridY].isWalkable);
+            try
+            {
+                switch (direction)
+                {
+                    case "left":
+                        if (!map.map[GridX - 1, GridY].isWalkable)
+                            return false;
+                        break;
+                    case "right":
+                        if (!map.map[GridX + 1, GridY].isWalkable)
+                            return false;
+                        break;
+                    default:
+                        return true;
+                        break;
+                }
+            } catch(IndexOutOfRangeException e)
+            {
+                Console.WriteLine("Indx Out of Range");
+                GameConstants.currentGame.Exit();
+            }
+            
+            return true;
+        }
         /// <summary>
         /// <p>calculates the mid point and endpoint of the jump</p>
         /// <p>and triggers the jumping to the Player</p>

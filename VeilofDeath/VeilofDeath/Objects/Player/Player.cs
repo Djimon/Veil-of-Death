@@ -56,7 +56,7 @@ namespace VeilofDeath
         {
             AniModel = m;
             Position = new Vector3(GameConstants.fLaneCenter, 0, 0);
-            Console.WriteLine("Startposition: (" + this.Position.X + "/ " + this.Position.Y + "/" + this.Position.Z + ")");
+            //Console.WriteLine("Startposition: (" + this.Position.X + "/ " + this.Position.Y + "/" + this.Position.Z + ")");
             Initialize();
             this.name = "Player";
         }
@@ -138,8 +138,7 @@ namespace VeilofDeath
                 Jump();
             }
 
-            CheckFrontIsWalkable(map);
-
+            if (CheckFrontIsWalkable(map))
                 Velocity = isSlowed ? fSpeed / 5 * Vector3.Up : fSpeed * Vector3.Up;
 
             Position += Velocity;
@@ -148,16 +147,22 @@ namespace VeilofDeath
 
         private bool CheckFrontIsWalkable(Map map)
         {
-            int GridX = (int)(Position.X + (GameConstants.iBlockSize / 2)) / GameConstants.iBlockSize;
-            int GridY = (int)(Position.Y + (GameConstants.iBlockSize / 2)) / GameConstants.iBlockSize;
+            int GridX = (int)(Position.X - (GameConstants.iBlockSize / 2)) / GameConstants.iBlockSize;
+            int GridY = (int)(Position.Y - (GameConstants.iBlockSize / 2)) / GameConstants.iBlockSize;
             Vector2 GridPos = new Vector2(GridX, GridY);
-            Console.WriteLine("GridPos:"+GridPos);
-
-            if (!map.map[GridX + 1, GridY].isWalkable)
+            if (GameConstants.isDebugMode)
             {
-                Console.WriteLine("Front blocked");
+                Console.WriteLine("GridPos:" + GridPos);
+                Console.WriteLine("MapPos:" + map.map[GridX, GridY].position + " - " + map.map[GridX, GridY].isWalkable);
             }
-            return false;
+
+            if (!map.map[GridX, GridY + 1].isWalkable)
+            {
+                if (GameConstants.isDebugMode)
+                    Console.WriteLine("Front blocked");
+                return false;
+            }
+            return true;
         }
 
         #endregion
@@ -241,7 +246,8 @@ namespace VeilofDeath
 
                 if (this.box.intersect(lc[i].box))
                 {
-                    Console.WriteLine("Coin");
+                    if (GameConstants.isDebugMode)
+                        Console.WriteLine("Coin collected");
                     GameManager.Instance.Delete(lc[i]);
                     GameManager.Instance.AddtoScore(25); //TODO: Remove magic Constants
                 }
@@ -268,9 +274,12 @@ namespace VeilofDeath
                 if (this.box.intersect(trap.box))
                 {
                     //GameConstants.currentGame.Exit();
-                    Console.WriteLine("Collision");
-                    Console.WriteLine("player: " + this.box.iminZ
-                                      + " box: " + trap.box.imaxZ);
+                    if (GameConstants.isDebugMode)
+                    {
+                        Console.WriteLine("Collision");
+                        Console.WriteLine("player: " + this.box.iminZ
+                                          + " box: " + trap.box.imaxZ);
+                    }
                     this.isDead = true;
                 }
             }
@@ -293,7 +302,8 @@ namespace VeilofDeath
 
                 if (this.box.intersect(slow.box))
                 {
-                    Console.WriteLine("Slowdown");
+                    if (GameConstants.isDebugMode)
+                        Console.WriteLine("Slowdown");
                     this.isSlowed = true;
                 }
 

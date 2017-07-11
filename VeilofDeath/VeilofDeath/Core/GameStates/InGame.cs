@@ -175,7 +175,7 @@ namespace VeilofDeath.Core.GameStates
         public void Update(GameTime time)
         {
             //TrapHandler.choseTraps(time);
-            PController.Update(currentKeyboardState);
+            PController.Update(currentKeyboardState, testmap);
             oldKeyboardState = currentKeyboardState;
             fTimeDelta = (float) time.ElapsedGameTime.Milliseconds;
             if (Player.isDead)
@@ -195,7 +195,8 @@ namespace VeilofDeath.Core.GameStates
                         Console.WriteLine("JumpSpeed: " + GameConstants.fJumpSpeed);
 
                     GameConstants.fjumpTime = GameConstants.fJumpWidth / GameConstants.fJumpSpeed;
-                    Console.WriteLine("JumpTime: " + GameConstants.fjumpTime);
+                    if (GameConstants.isDebugMode)
+                        Console.WriteLine("JumpTime: " + GameConstants.fjumpTime);
                 }
             }
 
@@ -287,7 +288,7 @@ namespace VeilofDeath.Core.GameStates
                     rasterizerState: GameConstants.Graphics.GraphicsDevice.RasterizerState);
 
                 // Vorlage: // spriteBatch.Draw(texture, position, color)
-                spriteBatch.DrawString(GameConstants.lucidaConsole, " Score: " + GameManager.Score,
+                spriteBatch.DrawString(GameConstants.lucidaConsole, " Score: " + GameManager.Instance.score,
                     GUI_Pos, Microsoft.Xna.Framework.Color.White);
 
 

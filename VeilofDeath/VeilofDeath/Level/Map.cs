@@ -76,7 +76,7 @@ namespace VeilofDeath
                 for (int col = 0; col < map.GetLength(1); col++)
                 {
                     if (GameConstants.isDebugMode)
-                        Console.WriteLine("P("+row*iBlockSize+":"+col*iBlockSize+") color = "+mask.GetPixel(row,col).Name);
+                        Console.WriteLine("P("+row+":"+col+") color = "+mask.GetPixel(row,col).Name);
 
                     if (mask.GetPixel(row, col).Name == sBlack)
                     {
