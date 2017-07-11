@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 
 namespace VeilofDeath
 {
-    class Map
+    public class Map
     {
         /// <summary>
         /// Position which triggers the level completion.

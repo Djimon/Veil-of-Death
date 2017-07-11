@@ -174,9 +174,7 @@ namespace VeilofDeath.Core.GameStates
 
         public void Update(GameTime time)
         {
-
             //TrapHandler.choseTraps(time);
-
             PController.Update(currentKeyboardState);
             oldKeyboardState = currentKeyboardState;
             fTimeDelta = (float) time.ElapsedGameTime.Milliseconds;
@@ -187,7 +185,7 @@ namespace VeilofDeath.Core.GameStates
             }
             else
             {
-                Player.Tick();
+                Player.Tick(testmap);
 
                 if (Player.Position.Y >= GameConstants.fJumpWidth
                     && Player.Position.Y <= GameConstants.fJumpWidth + 0.111f)
@@ -195,6 +193,7 @@ namespace VeilofDeath.Core.GameStates
                     GameConstants.fJumpSpeed = GameConstants.fJumpWidth / fTimeDelta;
                     if (GameConstants.isDebugMode)
                         Console.WriteLine("JumpSpeed: " + GameConstants.fJumpSpeed);
+
                     GameConstants.fjumpTime = GameConstants.fJumpWidth / GameConstants.fJumpSpeed;
                     Console.WriteLine("JumpTime: " + GameConstants.fjumpTime);
                 }

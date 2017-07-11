@@ -116,9 +116,9 @@ namespace VeilofDeath
         /// <summary>
         /// Update method for the Player
         /// </summary>
-        public void Tick()
+        public void Tick(Map map)
         {
-            Move();
+            Move(map);
 
             box.update(this);
             //if (! isJumping)
@@ -130,17 +130,34 @@ namespace VeilofDeath
         /// <summary>
         /// Handles the different moving states like: run, jump, glide
         /// </summary>
-        public void Move()
+        public void Move(Map map)
         {
-
+            Velocity = Vector3.Zero;
             if (isJumping)
             {
                 Jump();
             }
 
-            Velocity = isSlowed ? fSpeed / 5 * Vector3.Up : fSpeed * Vector3.Up;
+            CheckFrontIsWalkable(map);
+
+                Velocity = isSlowed ? fSpeed / 5 * Vector3.Up : fSpeed * Vector3.Up;
+
             Position += Velocity;
 
+        }
+
+        private bool CheckFrontIsWalkable(Map map)
+        {
+            int GridX = (int)(Position.X + (GameConstants.iBlockSize / 2)) / GameConstants.iBlockSize;
+            int GridY = (int)(Position.Y + (GameConstants.iBlockSize / 2)) / GameConstants.iBlockSize;
+            Vector2 GridPos = new Vector2(GridX, GridY);
+            Console.WriteLine("GridPos:"+GridPos);
+
+            if (!map.map[GridX + 1, GridY].isWalkable)
+            {
+                Console.WriteLine("Front blocked");
+            }
+            return false;
         }
 
         #endregion

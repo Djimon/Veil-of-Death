@@ -24,12 +24,12 @@ namespace VeilofDeath
         /// <summary>
         /// Behaves simmilar to an update function
         /// </summary>
-        void Tick();
+        void Tick(Map map);
 
         /// <summary>
         /// Basic movement handling
         /// </summary>
-        void Move();
+        void Move(Map map);
 
         /// <summary>
         /// Deletes the creature in the world
