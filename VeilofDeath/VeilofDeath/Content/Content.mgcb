@@ -154,11 +154,6 @@
 /processorParam:TextureFormat=Compressed
 /build:Models/Level1/stachelfalle.fbx
 
-#begin Maps/testmap.bmp
-/importer:TextureImporter
-/processor:PassThroughProcessor
-/build:Maps/testmap.bmp
-
 #begin Models/Level1/slowtrap.fbx
 /importer:FbxImporter
 /processor:ModelProcessor

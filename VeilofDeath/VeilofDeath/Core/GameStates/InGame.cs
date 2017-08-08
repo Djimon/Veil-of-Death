@@ -112,10 +112,10 @@ namespace VeilofDeath.Core.GameStates
             //load Model with Animation and Textures ( UV-Mapping)
             m_player = new AnimatedModel(GameConstants.Content, "AnimatedModels/Playermodell", "Textures/MAINTEXTURE");
 
-
+            String bitmapname = "Content/Maps/" + iLevel.ToString() + ".bmp";
+            Console.WriteLine("bitmap: " + bitmapname);
             levelMask =
-                new Bitmap(
-                    "Content/Maps/testmap.bmp"); //TODO: rename to "1" for level 1 and so on "2", "3" load in pendancy of level
+                new Bitmap(bitmapname); //TODO: rename to "1" for level 1 and so on "2", "3" load in pendancy of level
             testmap = new Map(levelMask);
 
             //after Map generation
@@ -224,7 +224,10 @@ namespace VeilofDeath.Core.GameStates
 
         public void Draw(GameTime time)
         {
-            testmap.Draw();
+            //float t0 = time.ElapsedGameTime.Milliseconds;
+            int GridY = (int)(Player.Position.Y - (GameConstants.iBlockSize / 2)) / GameConstants.iBlockSize;
+            testmap.Draw(GridY - 5, GridY + GameConstants.fFarClipPlane);
+            //Console.WriteLine("Drawtime: "+ (time.ElapsedGameTime.Milliseconds - t0)+ " seconds");
 
             Player.Draw(time);
 

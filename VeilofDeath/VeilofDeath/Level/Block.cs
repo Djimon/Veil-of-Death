@@ -162,8 +162,10 @@ namespace VeilofDeath
         /// </summary>
         public void Draw()
         {
-            if (m_Block != null)
-            {
+            if (m_Block != null
+                && this.position.Y > GameConstants.MainCam.camPos.Y
+                && this.position.Y < (GameConstants.MainCam.camPos.Y + GameConstants.fFarClipPlane + GameConstants.CameraDistance )) //performance optimierung
+            {                
                 foreach (var mesh in m_Block.Meshes)
                 {
                     foreach (BasicEffect effect in mesh.Effects)

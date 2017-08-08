@@ -167,13 +167,14 @@ namespace VeilofDeath
         /// <summary>
         /// Helper to draw each tile of the map
         /// </summary>
-        public void Draw()
+        public void Draw(float min, float max)
         {
             for (int i = 0; i < map.GetLength(0); i++)
             {
-                for (int j = 0; j < map.GetLength(1); j++)
+                for (int j = 0; j < map.GetLength(1); j++) //Culling to increase performance
                 {
-                    map[i, j].Draw();
+                    if (j> min && j<max)
+                        map[i, j].Draw();
                 }
             }
         }

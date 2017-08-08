@@ -52,7 +52,7 @@ namespace VeilofDeath.Core.GameStates
                 case 0: // Verliererbildschirm, Neuer Versuch
 				    UpdateLOSE();
                     break;
-                case 1: // Siegerbildschrm (nextLevt oder neuer Versuch
+                case 1: // Siegerbildschrm (nextLevt oder neuer Versuch)
                     //Anzeige der Zeit und der Sterne
 					UpdateWIN();
                     break;
@@ -62,9 +62,16 @@ namespace VeilofDeath.Core.GameStates
 
         private void UpdateWIN()
         {
-            GameManager.Instance.LevelUp();
-            if(Keyboard.GetState().IsKeyDown(Keys.Enter))
-                newState = EState.Ingame;
+            if (GameManager.Instance.Level < GameConstants.iMaxLevel)
+            {
+                GameManager.Instance.LevelUp();
+                if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                    newState = EState.Ingame;
+            }
+            else
+            {
+                // EndGame-Title + Credits
+            }
         }
 
         private void UpdateLOSE()

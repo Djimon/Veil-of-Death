@@ -60,7 +60,7 @@ namespace VeilofDeath
         Matrix x_projection;
 
         //Vectors
-        Vector3 camPos;
+        public Vector3 camPos { get; private set; }
         Vector3 lastPos;
         Vector3 camTarget;
         Vector3 offset = new Vector3(-2f, 0f, GameConstants.fCameraHeight);
