@@ -164,7 +164,7 @@ namespace VeilofDeath
         {
             if (m_Block != null
                 && this.position.Y > GameConstants.MainCam.camPos.Y
-                && this.position.Y < (GameConstants.MainCam.camPos.Y + GameConstants.fFarClipPlane + GameConstants.CameraDistance )) //performance optimierung
+                && this.position.Y < (GameConstants.MainCam.camPos.Y + GameConstants.fFarClipPlane + Math.Abs(GameConstants.CameraDistance) )) //performance optimierung
             {                
                 foreach (var mesh in m_Block.Meshes)
                 {
