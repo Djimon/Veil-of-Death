@@ -33,7 +33,7 @@ namespace VeilofDeath.SpecialFX
                 }
                 for (int i = 0; i < a; i++)
                 {
-                    particles.Add(GenerateNewParticle());                    
+                    particles.Add(GenerateNewParticleLeft());                    
                 }
                 if (GameConstants.isDebugMode)
                     Console.WriteLine(a + " particle(s) at " + z + " from: " + gt.TotalGameTime.Milliseconds);
@@ -51,7 +51,7 @@ namespace VeilofDeath.SpecialFX
             }
         }
 
-        public abstract Particle GenerateNewParticle();
+        public abstract Particle GenerateNewParticleLeft();
         
         public void Draw(SpriteBatch spriteBatch)
         {

@@ -21,7 +21,7 @@ namespace VeilofDeath.SpecialFX
         }
 
 
-        public override Particle GenerateNewParticle()
+        public override Particle GenerateNewParticleLeft()
         {
             Texture2D texture = textures[random.Next(textures.Count)];
             Vector2 position = EmitterLocation;

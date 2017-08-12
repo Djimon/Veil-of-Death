@@ -13,6 +13,8 @@ namespace VeilofDeath.Objects
     {
         public bool isActive = true;
 
+        private float fAngle;
+
         /// <summary>
         /// CONSTRUCTOR
         /// </summary>
@@ -49,14 +51,13 @@ namespace VeilofDeath.Objects
         }
 
         public void Tick()
-        {           
-            
+        {
+            fAngle++;
         }
 
         public override void Draw()
         {
-            //TODO: handle Drehung auf Model
-           
+            //TODO: handle Drehung auf Model           
             base.Draw();
         }
     }

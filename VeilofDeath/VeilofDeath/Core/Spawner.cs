@@ -63,7 +63,8 @@ namespace VeilofDeath.Core
                             Block tmp = Check("left");
                             if (tmp != null)
                             {
-                                iCoins += CalculateCoins(tmp);
+                                CalculateCoins(tmp);
+                                B.isFree = false;
                             }
                         }
                         else if (rnd.NextDouble() <= 0.33) // go right
@@ -71,12 +72,13 @@ namespace VeilofDeath.Core
                             Block tem = Check("right");
                             if (tem != null)
                             {
-                                iCoins += CalculateCoins(tem);
+                                CalculateCoins(tem);
+                                B.isFree = false;
                             }
                         }
                         else
                         {
-                            iCoins += CalculateCoins(B);
+                            CalculateCoins(B);
                         }
 
                     } /* if if (rnd.NextDouble() >= 0.85) */
@@ -84,7 +86,7 @@ namespace VeilofDeath.Core
             } /* foreach (Block B in map) */
 
             if (GameConstants.isDebugMode)
-                Console.WriteLine("Coins placed: " +iCoins);
+                Console.WriteLine("Coins placed: " +GameManager.Instance.getCoinList().Count);
         }
 
         /// <summary>
@@ -146,37 +148,46 @@ namespace VeilofDeath.Core
             switch (number)
             {
                 case 1:
-                    GameManager.Instance.AddCoin(new Coin(new Vector3(pos.X, pos.Y - GameConstants.iBlockSize /2, 0)));
-                    if (GameConstants.isDebugMode)
-                        Console.WriteLine("Placed Coin at " + pos);
+                    DropCoin(pos,1);
                     break;
                 case 2:
-                    GameManager.Instance.AddCoin(new Coin(new Vector3(pos.X, pos.Y - GameConstants.iBlockSize / 2, 0)));
-                    if (GameConstants.isDebugMode)
-                        Console.WriteLine("Placed Coin at " + pos);
-                    GameManager.Instance.AddCoin(new Coin(new Vector3(pos.X, pos.Y + GameConstants.iBlockSize / 2, 0)));
-                    if (GameConstants.isDebugMode)
-                        Console.WriteLine("Placed Coin at " + pos);
+                    DropCoin(pos,1);
+                    DropCoin(pos,-1); 
                     break;
                 case 3:
-                    pos.Y += GameConstants.iBlockSize;
+                    DropCoin(pos, 1);
+                    DropCoin(pos, -1);
+                    pos.Y += GameConstants.iBlockSize;                    
                     SpawnCoins(pos, 1);
                     break;
                 case 4:
+                    DropCoin(pos, 1);
+                    DropCoin(pos, -1);
                     pos.Y += GameConstants.iBlockSize;
                     SpawnCoins(pos, 2);
                     break;
                 case 5:
+                    DropCoin(pos, 1);
+                    DropCoin(pos, -1);
                     pos.Y += GameConstants.iBlockSize;
                     SpawnCoins(pos, 3);
                     break;
                 case 6:
+                    DropCoin(pos, 1);
+                    DropCoin(pos, -1);
                     pos.Y += GameConstants.iBlockSize;
                     SpawnCoins(pos, 4);
                     break;
                 default:
                     break;
             }    
+        }
+
+        private static void DropCoin(Vector3 pos, float sign)
+        {
+            GameManager.Instance.AddCoin(new Coin(new Vector3(pos.X, pos.Y - sign* GameConstants.iBlockSize / 2, 0)));
+            if (GameConstants.isDebugMode)
+                Console.WriteLine("Placed Coin at " + pos);
         }
     }
 }

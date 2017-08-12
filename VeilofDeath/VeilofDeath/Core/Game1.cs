@@ -76,10 +76,6 @@ namespace VeilofDeath
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            
-            // TODO: use this.Content to load your game content here
-
-
         }
 
         /// <summary>
@@ -88,7 +84,7 @@ namespace VeilofDeath
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+
         }
 
         /// <summary>
@@ -166,7 +162,7 @@ namespace VeilofDeath
             case EState.Score: //Score
                     return new Score();                    
             case EState.GameOver: //Spielende
-                    return new GameOver(0);                
+                    return new GameOver(GameConstants.iWinStauts);                
             case EState.Credits: //Credits
                     return new Credits();                        
                 default: return null;

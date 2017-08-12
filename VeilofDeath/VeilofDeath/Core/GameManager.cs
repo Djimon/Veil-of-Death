@@ -22,7 +22,7 @@ namespace VeilofDeath
                 }
                 return instance;
             }
-        }        
+        }
 
         public GameManager()
         {
@@ -34,6 +34,8 @@ namespace VeilofDeath
             //TODO: aus datei laden (if Datei leer, then level = 1)
             this.Level = 0;
             Score = new int[GameConstants.iMaxLevel];
+            fVeilDistance = 100;
+            iPhase = 0;
         }
 
         /********* Session Data **********/
@@ -48,7 +50,14 @@ namespace VeilofDeath
         public int Difficulty { get; set; }
         public Vector3 StartPos { get; set; }
         public Vector3 ZielPos { get; set; }
+        public float BestTime { get; internal set; }
 
+        public float fVeilDistance { get; private set; }
+        public int iPhase {get; private set;}
+
+        public int[] iCoinScore = new int[GameConstants.iMaxLevel];
+        public int[] iTimeBonus = new int[GameConstants.iMaxLevel];
+        public float[] fStageCleared = new float[GameConstants.iMaxLevel];
 
         public void UpdateScore(int value)
         {
@@ -70,6 +79,17 @@ namespace VeilofDeath
         public void Save()
         {           
             //TODO: Session-data in dateispeichern
+        }
+
+        public void EnterNextPhase()
+        {
+            iPhase = Math.Min(1+iPhase, 4);
+            Console.WriteLine("Entered Phase "+iPhase);
+        }
+
+        public void SetVeilDistance(float x)
+        {
+            fVeilDistance = x;
         }
 
 

@@ -12,19 +12,21 @@ namespace VeilofDeath.Core.GameStates
     class GameOver : IGameState
     {
         SpriteBatch spriteBatch;
-        private Texture2D background;
+        private Texture2D background,win;
         public bool canLeave { get; set; }       
         public EState newState { get; set; }
 
-        Vector2 GUI_Pos;
 
         int iStatus = 0;
 
+        int sumscore, sumTime;
+        float sumCompl;
 
         public GameOver(int status)
         {
             spriteBatch = GameConstants.SpriteBatch;
             Initialize();
+            iStatus = status;
             LoadContent();
         }
 
@@ -37,6 +39,25 @@ namespace VeilofDeath.Core.GameStates
         public void LoadContent()
         {
             background = GameConstants.Content.Load<Texture2D>("noob");
+            win = GameConstants.Content.Load<Texture2D>("winner");
+
+            sumscore = 0;
+            foreach (int A in GameManager.Instance.iCoinScore)
+            {
+                sumscore += A;
+            }
+            sumCompl = 0f;
+            for (int i = 0; i < GameManager.Instance.fStageCleared.Count<float>(); i++)
+            {
+                sumCompl += GameManager.Instance.fStageCleared[i];
+            }
+            sumCompl = sumCompl / GameManager.Instance.fStageCleared.Count<float>();
+            sumTime = 0;
+            foreach (int A in GameManager.Instance.iTimeBonus)
+            {
+                sumTime += A;
+            }
+
             //Load other Textures, like Buttons
         }
 
@@ -62,16 +83,7 @@ namespace VeilofDeath.Core.GameStates
 
         private void UpdateWIN()
         {
-            if (GameManager.Instance.Level < GameConstants.iMaxLevel)
-            {
-                GameManager.Instance.LevelUp();
-                if (Keyboard.GetState().IsKeyDown(Keys.Enter))
-                    newState = EState.Ingame;
-            }
-            else
-            {
-                // EndGame-Title + Credits
-            }
+            // TODO
         }
 
         private void UpdateLOSE()
@@ -87,9 +99,6 @@ namespace VeilofDeath.Core.GameStates
 
         public void Draw(GameTime time)
         {
-           
-            //TODO: Draw background
-
             switch (iStatus)
             {
                 case 0: // Verliererbildschirm, Neuer Versuch
@@ -101,16 +110,28 @@ namespace VeilofDeath.Core.GameStates
                     break;
                 default: break;
             }
-
             //TODO: Draw Statistics
-
-         
+    
 
         }
 
         private void DrawWIN()
         {
-            throw new NotImplementedException();
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Opaque);
+            //Debug - Anzeige
+            spriteBatch.Draw(win, new Rectangle(0, 0, (int)GameConstants.WINDOWSIZE.X, (int)GameConstants.WINDOWSIZE.Y), Color.White);
+
+
+            spriteBatch.DrawString(GameConstants.lucidaConsole, "Score: " + sumscore,
+                new Vector2(200,200) , Color.White);
+            spriteBatch.DrawString(GameConstants.lucidaConsole, "Completeness: " + (int)100 * sumCompl + "%",
+                new Vector2(200, 240), Color.White);
+            spriteBatch.DrawString(GameConstants.lucidaConsole, "ZeitBonus: " + sumTime,
+                new Vector2(200, 280), Color.White);
+
+
+            spriteBatch.End();
+
         }
 
         private void DrawLOSE()
@@ -119,7 +140,7 @@ namespace VeilofDeath.Core.GameStates
             //Debug - Anzeige
             spriteBatch.Draw(background, new Rectangle(0, 0, (int)GameConstants.WINDOWSIZE.X, (int)GameConstants.WINDOWSIZE.Y), Color.White);
 
-            spriteBatch.End(); ;
+            spriteBatch.End();
         
     }
 

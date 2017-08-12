@@ -42,15 +42,16 @@ namespace VeilofDeath
 
             if (currentKeyboardState.IsKeyDown(Keys.Right) && !oldKeyboardState.IsKeyDown(Keys.Right) && !isRightPressed)
             {
-                if (!GameConstants.isDebugMode && CheckFrontIsWalkable(map, "right"))
+                if (CheckFrontIsWalkable(map, "right"))
                 {
                     character.Position.X += 1 * GameConstants.iBlockSize;
                     isRightPressed = true;
                 }
+                
             }
             if (currentKeyboardState.IsKeyDown(Keys.Left) && !oldKeyboardState.IsKeyDown(Keys.Left) && !isLeftPressed)
             {
-                if (!GameConstants.isDebugMode && CheckFrontIsWalkable(map, "left"))
+                if (CheckFrontIsWalkable(map, "left"))
                 {
                     character.Position.X -= 1 * GameConstants.iBlockSize;
                     isLeftPressed = true;
@@ -63,12 +64,12 @@ namespace VeilofDeath
                 isSpacePressed = true;
             }
 
-            if (!character.isSliding && currentKeyboardState.IsKeyDown(Keys.LeftShift) && !oldKeyboardState.IsKeyDown(Keys.LeftShift) && !isDownPressed)
-            {
-                character.isSliding = true; ;
-                //TODO: Just Change the Animation and check if the Collision-boxes follow the Animation (= is small enough to pass under a obsticle)
-                isDownPressed = true;
-            }
+            //if (!character.isSliding && currentKeyboardState.IsKeyDown(Keys.LeftShift) && !oldKeyboardState.IsKeyDown(Keys.LeftShift) && !isDownPressed)
+            //{
+            //    character.isSliding = true; ;
+            //    //TODO: Just Change the Animation and check if the Collision-boxes follow the Animation (= is small enough to pass under a obsticle)
+            //    isDownPressed = true;
+            //}
 
             if (isRightPressed && currentKeyboardState.IsKeyUp(Keys.Right))
                 isRightPressed = false;
@@ -76,8 +77,8 @@ namespace VeilofDeath
                 isLeftPressed = false;
             if (isSpacePressed && currentKeyboardState.IsKeyUp(Keys.Space))
                 isSpacePressed = false;
-            if (isDownPressed && currentKeyboardState.IsKeyUp(Keys.LeftShift))
-                isDownPressed = false;
+            //if (isDownPressed && currentKeyboardState.IsKeyUp(Keys.LeftShift))
+            //    isDownPressed = false;
 
             if (GameConstants.isDebugMode)
                 Console.WriteLine(character.Position.ToString());
