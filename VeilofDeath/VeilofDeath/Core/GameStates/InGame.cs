@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Drawing;
 using VeilofDeath.Objects;
 using Animations;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 
 namespace VeilofDeath.Core.GameStates
 {
@@ -66,6 +68,8 @@ namespace VeilofDeath.Core.GameStates
         private float playeTexStart;
         private float veilTexStart;
         private float angle;
+
+        private Song music;
 
         public InGame(int Level)
         {
@@ -126,7 +130,7 @@ namespace VeilofDeath.Core.GameStates
             objectSpawner.PlaceCoins(testmap.map);
             Player = new Player(m_player);
             // x_playerModelTransforms = SetupEffectDefaults(m_player);
-            Player.Spawn(new Vector3(start.X, start.Y, -1));
+            Player.Spawn(new Vector3(start.X, start.Y, 0));
             PController = new PlayerController(Player);
 
             TrapHandler = new TrapHandler();
@@ -142,6 +146,15 @@ namespace VeilofDeath.Core.GameStates
             //searching for the Animation you are looking
             m_player.BlendToAnimationPart("Run");
 
+            GameConstants.CoinCollect = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/PickupCoin");
+            GameConstants.Landing = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/LandAfterJump");
+            GameConstants.CharactersJump = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/JumpHupHuman");
+           
+            music = GameConstants.Content.Load<Song>("Music/Background");
+            MediaPlayer.Play(music);
+
+            MediaPlayer.Volume = 0.7f;
+            SoundEffect.MasterVolume = 1f;
         }
 
         /// <summary>
