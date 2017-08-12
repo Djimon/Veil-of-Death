@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using VeilofDeath.SpecialFX;
 
 namespace VeilofDeath.Core.GameStates
 {
@@ -25,6 +26,7 @@ namespace VeilofDeath.Core.GameStates
         bool ispressed = false;
 
         private Texture2D background;
+        private Texture2D bubble;
 
         public EState newState { get; set; }
 
@@ -35,6 +37,8 @@ namespace VeilofDeath.Core.GameStates
         private Texture2D[] SelectedButtons;
 
         private Button m_selected;
+
+        AParticleEnginge ParticleTest, ParticleTest2;
 
         public MainMenu()
         {
@@ -63,7 +67,9 @@ namespace VeilofDeath.Core.GameStates
             SelectedButtons[(int)Button.Credits] = GameConstants.Content.Load<Texture2D>("Textures/CreditsBS");
             SelectedButtons[(int)Button.Winnerlist] = GameConstants.Content.Load<Texture2D>("Textures/WinnerListS");
             SelectedButtons[(int)Button.Exit] = GameConstants.Content.Load<Texture2D>("Textures/ExitButtonSelected");
+
             //Load other Textures, like Buttons
+            
         }
 
         public void UnloadContent()
@@ -110,6 +116,7 @@ namespace VeilofDeath.Core.GameStates
                 }
             }
 
+            //ParticleTest.Update(time);
 
         }
 
@@ -129,9 +136,9 @@ namespace VeilofDeath.Core.GameStates
                 {
                     spriteBatch.Draw(Buttons[i], Anker + new Vector2(0, i * 100), Color.White);
                 }
-            } 
+            }
 
-                
+            //ParticleTest.Draw(spriteBatch);
 
             spriteBatch.End();
         }

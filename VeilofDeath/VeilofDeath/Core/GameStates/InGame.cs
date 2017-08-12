@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Drawing;
 using VeilofDeath.Objects;
 using Animations;
+using VeilofDeath.SpecialFX;
 
 namespace VeilofDeath.Core.GameStates
 {
@@ -60,6 +61,7 @@ namespace VeilofDeath.Core.GameStates
 
         Spawner objectSpawner;
         private float timesincelastupdate;
+        AParticleEnginge ParticleTest;
 
         private Vector2 playerTexPos = new Vector2(0, 0);
         private Vector2 VeilTexPos = new Vector2(0, 0);
@@ -142,6 +144,15 @@ namespace VeilofDeath.Core.GameStates
             //searching for the Animation you are looking
             m_player.BlendToAnimationPart("Run");
 
+            //particleSystems
+            List<Texture2D> texList = new List<Texture2D>();
+            texList.Add(GameConstants.Content.Load<Texture2D>("Particles/bubble"));
+            //texList.Add(GameConstants.Content.Load<Texture2D>("Particles/cloud1"));
+            //texList.Add(GameConstants.Content.Load<Texture2D>("Particles/cloud2"));
+            //texList.Add(GameConstants.Content.Load<Texture2D>("Particles/cloud3"));
+            ParticleTest = new VeilOfDath(texList, new Vector2(0, 0), new Vector2(0, 720), 10, 1f, new Vector2(0.5f, 0.5f));
+
+
         }
 
         /// <summary>
@@ -210,6 +221,8 @@ namespace VeilofDeath.Core.GameStates
 
             //update Animation
             m_player.Update(time);
+
+            ParticleTest.Update(time);
         }
 
         //private void UpdateScore()
@@ -285,37 +298,44 @@ namespace VeilofDeath.Core.GameStates
             /// Helper to draw 2-dimensional GUI-Objects using the SpriteBatch
             /// </summary>
             private void DrawGUI()
-            {
-                //spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Opaque);
-                spriteBatch.Begin(depthStencilState: GameConstants.Graphics.GraphicsDevice.DepthStencilState,
-                    rasterizerState: GameConstants.Graphics.GraphicsDevice.RasterizerState);
+        {
+            //spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Opaque);
+            spriteBatch.Begin(depthStencilState: GameConstants.Graphics.GraphicsDevice.DepthStencilState,
+                rasterizerState: GameConstants.Graphics.GraphicsDevice.RasterizerState);
 
-                // Vorlage: // spriteBatch.Draw(texture, position, color)
-                spriteBatch.DrawString(GameConstants.lucidaConsole, " Score: " + GameManager.Instance.score,
-                    GUI_Pos, Microsoft.Xna.Framework.Color.White);
+            // Vorlage: // spriteBatch.Draw(texture, position, color)
+            spriteBatch.DrawString(GameConstants.lucidaConsole, " Score: " + GameManager.Instance.score,
+                GUI_Pos, Microsoft.Xna.Framework.Color.White);
 
+            DrawVeil();
 
-                spriteBatch.Draw(txLine, new Vector2(1, 1), Microsoft.Xna.Framework.Color.White);
-                spriteBatch.Draw(txPlayer, playerTexPos, Microsoft.Xna.Framework.Color.White);
-                //spriteBatch.Draw(txVeil[0], VeilTexPos, Microsoft.Xna.Framework.Color.White);
-                //Vector2 location = new Vector2(400, 240);
-                //Microsoft.Xna.Framework.Rectangle sourceRectangle = new Microsoft.Xna.Framework.Rectangle(0, 0, txVeil[1].Width, txVeil[1].Height);
-                //Vector2 origin = new Vector2(0, 0);
-                //angle += 0.11f;
-                //spriteBatch.Draw(txVeil[0], location, sourceRectangle, Microsoft.Xna.Framework.Color.White, angle, origin, 1.0f, SpriteEffects.None, 1);
+            // GUI
+            spriteBatch.Draw(txLine, new Vector2(1, 1), Microsoft.Xna.Framework.Color.White);
+            spriteBatch.Draw(txPlayer, playerTexPos, Microsoft.Xna.Framework.Color.White);
+            //spriteBatch.Draw(txVeil[0], VeilTexPos, Microsoft.Xna.Framework.Color.White);
+            //Vector2 location = new Vector2(400, 240);
+            //Microsoft.Xna.Framework.Rectangle sourceRectangle = new Microsoft.Xna.Framework.Rectangle(0, 0, txVeil[1].Width, txVeil[1].Height);
+            //Vector2 origin = new Vector2(0, 0);
+            //angle += 0.11f;
+            //spriteBatch.Draw(txVeil[0], location, sourceRectangle, Microsoft.Xna.Framework.Color.White, angle, origin, 1.0f, SpriteEffects.None, 1);
 
-                spriteBatch.End();
-                ;
-            }
+            spriteBatch.End();
+            ;
+        }
 
-            #endregion
+        private void DrawVeil()
+        {
+            ParticleTest.Draw(spriteBatch);
+        }
 
-            /// <summary>
-            /// Enables the default effect for the given model
-            /// </summary>
-            /// <param name="myModel">3D Model</param>
-            /// <returns>absolute bone transforms as Matrix[]</returns>
-            private Matrix[] SetupEffectDefaults(Model myModel)
+        #endregion
+
+        /// <summary>
+        /// Enables the default effect for the given model
+        /// </summary>
+        /// <param name="myModel">3D Model</param>
+        /// <returns>absolute bone transforms as Matrix[]</returns>
+        private Matrix[] SetupEffectDefaults(Model myModel)
             {
                 Matrix[] absoluteTransforms = new Matrix[myModel.Bones.Count];
                 myModel.CopyAbsoluteBoneTransformsTo(absoluteTransforms);
