@@ -9,8 +9,9 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Drawing;
 using VeilofDeath.Objects;
 using Animations;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 using VeilofDeath.SpecialFX;
-
 namespace VeilofDeath.Core.GameStates
 {
     class InGame : IGameState
@@ -71,13 +72,12 @@ namespace VeilofDeath.Core.GameStates
         private float veilTexStart;
         private float angle;
 
+        private Song music;
         private int MaxCoins;
         float percentageCoins;
         private bool isJumpCalculated;
         private float t0;
-        private bool isSetTime = false;
-
-        public InGame(int Level)
+        private bool isSetTime = false;        public InGame(int Level)
         {
             spriteBatch = GameConstants.SpriteBatch;
             iLevel = Level;
@@ -137,11 +137,8 @@ namespace VeilofDeath.Core.GameStates
             MaxCoins = GameManager.Instance.getCoinList().Count;
             Player = new Player(m_player);
             // x_playerModelTransforms = SetupEffectDefaults(m_player);
-            Player.Spawn(new Vector3(start.X, start.Y, -3));            
-
-            GameConstants.MainCam.SetTarget(Player);
-
-            PController = new PlayerController(Player);
+            Player.Spawn(new Vector3(start.X, start.Y, 0));
+            GameConstants.MainCam.SetTarget(Player);            PController = new PlayerController(Player);
             TrapHandler = new TrapHandler();
 
 
@@ -161,9 +158,17 @@ namespace VeilofDeath.Core.GameStates
             //texList.Add(GameConstants.Content.Load<Texture2D>("Particles/cloud3"));
             ParticleTest = new VeilOfDath(texList, 10, 1f, new Vector2(0.5f, 0.5f));
 
-
+			//sounds and music
+            GameConstants.CoinCollect = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/PickupCoin");
+            GameConstants.Landing = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/LandAfterJump");
+            GameConstants.CharactersJump = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/JumpHupHuman");
+           
+            music = GameConstants.Content.Load<Song>("Music/Background");
+            MediaPlayer.Play(music);
             VeilofDeath = new Veil(GameConstants.iDifficulty, Player, ParticleTest);
 
+            MediaPlayer.Volume = 0.7f;
+            SoundEffect.MasterVolume = 1f;
         }
 
         /// <summary>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Media;
 using VeilofDeath.Objects;
 using VeilofDeath.Objects.Traps;
 
@@ -132,6 +133,7 @@ namespace VeilofDeath
 
         internal void Delete(Coin c)
         {
+            GameConstants.CoinCollect.Play();
             CoinList.Remove(c);
         }
     }

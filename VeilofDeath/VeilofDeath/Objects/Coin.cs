@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Animations;
+using Microsoft.Xna.Framework.Media;
 
 namespace VeilofDeath.Objects
 {

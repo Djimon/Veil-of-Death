@@ -145,6 +145,7 @@ namespace VeilofDeath
             character.SetJumpingCurve(jumpMid,m, fjumpEndPositionY);
             character.isJumping = true;
             isOnGround = false;
+            GameConstants.CharactersJump.Play();
         }
 
         /// <summary>

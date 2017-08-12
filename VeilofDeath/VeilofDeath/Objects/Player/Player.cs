@@ -209,6 +209,7 @@ namespace VeilofDeath
             S = Vector2.Zero;
             a = 0;
             afterJumpY = 0;
+            GameConstants.Landing.Play();
         }
 
         #endregion

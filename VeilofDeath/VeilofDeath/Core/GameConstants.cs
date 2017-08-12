@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using System.Collections;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 
 namespace VeilofDeath
 {
@@ -96,6 +98,15 @@ namespace VeilofDeath
         internal static int iWinStauts = 0;
 
         public static GraphicsDeviceManager Graphics { get; internal set; }
+
+        #region Sound Variables
+
+        public static SoundEffect CoinCollect;
+        public static SoundEffect Landing;
+        public static SoundEffect CharactersJump;
+
+
+        #endregion
     }
 
 }
