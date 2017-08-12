@@ -74,6 +74,10 @@
     <Compile Include="Objects\Traps\SpikeTrap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Level\LevelContent.cs" />
+    <Compile Include="SpecialFX\AParticleEnginge.cs" />
+    <Compile Include="SpecialFX\VeilOfDeath.cs" />
+    <Compile Include="SpecialFX\Particle.cs" />
+    <Compile Include="SpecialFX\RainbowTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="AnimationAux, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

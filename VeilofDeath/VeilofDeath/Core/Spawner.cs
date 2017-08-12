@@ -56,34 +56,35 @@ namespace VeilofDeath.Core
                     && B.position.Y > 2 * GameConstants.iBlockSize)
                 {
                     freePos.Add(B);
-                    if (rnd.NextDouble() >= 0.85)
+                    if (rnd.NextDouble() >= 0.8)
                     {
-                        iCoins = CalculateCoins(B);
-                        // calculate Coin spawnning
-                    }
-                }
-            }           
+                        if (rnd.NextDouble() >= 0.67) // go left
+                        {
+                            Block tmp = Check("left");
+                            if (tmp != null)
+                            {
+                                iCoins += CalculateCoins(tmp);
+                            }
+                        }
+                        else if (rnd.NextDouble() <= 0.33) // go right
+                        {
+                            Block tem = Check("right");
+                            if (tem != null)
+                            {
+                                iCoins += CalculateCoins(tem);
+                            }
+                        }
+                        else
+                        {
+                            iCoins += CalculateCoins(B);
+                        }
 
-            if (rnd.NextDouble() >= 0.67) // go left
-            {
-                Block tmp = Check("left");
-                if (tmp != null)
-                {
-                    CalculateCoins(tmp);
-                }
-            }
-            else if (rnd.NextDouble() <= 0.33) // go right
-            {
-                Block tem = Check("left");
-                if (tem != null)
-                {
-                    CalculateCoins(tem);
-                }
-            }
-            else
-            {
-                //leave
-            }
+                    } /* if if (rnd.NextDouble() >= 0.85) */
+                } /* if (B.blockType == 0 */
+            } /* foreach (Block B in map) */
+
+            if (GameConstants.isDebugMode)
+                Console.WriteLine("Coins placed: " +iCoins);
         }
 
         /// <summary>
@@ -151,6 +152,8 @@ namespace VeilofDeath.Core
                     break;
                 case 2:
                     GameManager.Instance.AddCoin(new Coin(new Vector3(pos.X, pos.Y - GameConstants.iBlockSize / 2, 0)));
+                    if (GameConstants.isDebugMode)
+                        Console.WriteLine("Placed Coin at " + pos);
                     GameManager.Instance.AddCoin(new Coin(new Vector3(pos.X, pos.Y + GameConstants.iBlockSize / 2, 0)));
                     if (GameConstants.isDebugMode)
                         Console.WriteLine("Placed Coin at " + pos);

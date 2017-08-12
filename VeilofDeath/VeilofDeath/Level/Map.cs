@@ -171,9 +171,9 @@ namespace VeilofDeath
         {
             for (int i = 0; i < map.GetLength(0); i++)
             {
-                for (int j = 0; j < map.GetLength(1); j++) //Culling to increase performance
+                for (int j = 0; j < map.GetLength(1); j++) 
                 {
-                    if (j> min && j<max)
+                    if (j> min && j<max) //Culling to increase performance
                         map[i, j].Draw();
                 }
             }
