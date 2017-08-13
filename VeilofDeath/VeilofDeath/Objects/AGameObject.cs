@@ -48,7 +48,6 @@ namespace VeilofDeath
         /// </summary>
         public virtual void Draw()
         {
-            ////TODO: Überprüfen, ob so wie in Player auch für normale GameObjects geeignet?
             foreach (var mesh in model.Meshes)
             {
                 foreach (BasicEffect effect in mesh.Effects)

@@ -42,7 +42,7 @@ namespace VeilofDeath
         /// <para>7 - Falle 3 </para>
         /// <para>8 - Falle 4 </para>
         /// </summary>
-        public int blockType; //TODO: wieder private machen!!
+        public int blockType { get; private set; } 
 
         /// <summary>
         /// Set the model of this block.
@@ -119,6 +119,7 @@ namespace VeilofDeath
                         this.m_Block = modelDictionary["wegStone"];
                         this.position = new Vector3(pos, GameConstants.fLevelHeight);
                         GameManager.Instance.ZielPos = this.position;
+                        Console.WriteLine("Ziel gesezt: " +position);
                         this.isWalkable = true;                      
                         break;
                     }

@@ -11,12 +11,16 @@ namespace VeilofDeath.SpecialFX
     class VeilOfDath : AParticleEnginge
     {
         private Vector2 attraction;
-        private Vector2 em1, em2;
 
-        public VeilOfDath(List<Texture2D> textures, Vector2 location1, Vector2 location2, float PartsPerSeconds, float time2life, Vector2 gravityCentre)
+        /// <summary>
+        /// Constructor of Veil-Particle Engine
+        /// </summary>
+        /// <param name="textures"></param>
+        /// <param name="PartsPerSeconds">Particles, which are spawnt per Seconds</param>
+        /// <param name="time2life">Time to life for each Particle (in Seconds)</param>
+        /// <param name="gravityCentre">an additional Attractor where the particles fly to</param>
+        public VeilOfDath(List<Texture2D> textures, float PartsPerSeconds, float time2life, Vector2 gravityCentre)
         {
-            em1 = location1;
-            em2 = location2;
             this.textures = textures;
             this.particles = new List<Particle>();
             random = new Random();
@@ -27,7 +31,7 @@ namespace VeilofDeath.SpecialFX
 
         public override void Update(GameTime gt)
         {
-            float x = 1000 / total;
+            float x = 1000 / (total * Math.Max(1,GameManager.Instance.iPhase));
             float z = gt.ElapsedGameTime.Milliseconds;
             if (gt.TotalGameTime.Milliseconds % (x) < z)
             {
@@ -38,7 +42,10 @@ namespace VeilofDeath.SpecialFX
                 }
                 for (int i = 0; i < a; i++)
                 {
-                    particles.Add(GenerateNewParticle());
+                    particles.Add(GenerateNewParticleLeft());
+                    particles.Add(GenerateNewParticleRight());
+                    particles.Add(GenerateNewParticleTop());
+                    particles.Add(GenerateNewParticleBottom());
                 }
                 if (GameConstants.isDebugMode)
                     Console.WriteLine(a + " partix at " + z + " from: " + gt.TotalGameTime.Milliseconds);
@@ -60,11 +67,44 @@ namespace VeilofDeath.SpecialFX
         }
 
 
-        public override Particle GenerateNewParticle()
+        private Particle GenerateNewParticleBottom()
+        {
+            Vector2 position = new Vector2(random.Next((int)1, (int)GameConstants.WINDOWSIZE.X),
+                                random.Next((int)GameConstants.WINDOWSIZE.Y, (int)GameConstants.WINDOWSIZE.Y));
+            return Spawnparticle(position);
+        }
+
+        private Particle GenerateNewParticleTop()
+        {
+            Vector2 position = new Vector2(random.Next((int)1, (int)GameConstants.WINDOWSIZE.X),
+                                random.Next((int)1, (int)1));
+            return Spawnparticle(position);
+        }
+
+        private Particle GenerateNewParticleRight()
+        {
+            Vector2 position = new Vector2(random.Next((int)GameConstants.WINDOWSIZE.X, (int)GameConstants.WINDOWSIZE.X),
+                                random.Next((int)1, (int)GameConstants.WINDOWSIZE.Y));
+            return Spawnparticle(position);
+        }
+
+        public override Particle GenerateNewParticleLeft()
+        {
+            Vector2 position = new Vector2( random.Next((int)1, (int)1),
+                                            random.Next((int)1, (int)GameConstants.WINDOWSIZE.Y));
+
+            return Spawnparticle(position);
+        }
+
+        /// <summary>
+        /// Main method to Spawn Particles for the Veil
+        /// </summary>
+        /// <param name="position">Position of the spawn point</param>
+        /// <returns></returns>
+        private Particle Spawnparticle(Vector2 position)
         {
             Texture2D texture = textures[random.Next(textures.Count)];
-            Vector2 position = new Vector2( random.Next((int)em1.X, (int)em2.X),
-                                            random.Next((int)em1.Y, (int)em2.Y));
+
             Vector2 velocity = new Vector2(
                                     1f * (float)(random.NextDouble() * 2 - 1), //links-rechts
                                     1f * (float)(random.NextDouble() * 2 - 1) //vor-zurück
@@ -76,9 +116,9 @@ namespace VeilofDeath.SpecialFX
             //may have to use quaternion? or yan-pitch-roll Vector
             float angularVelocity = 0.1f * (float)(random.NextDouble() * 2 - 1);
             float brghtness = (float)random.NextDouble();
-            Color color = new Color(brghtness,brghtness,brghtness,brghtness);
-            float size = Math.Max(0.1f, ((float)random.NextDouble()/3));
-            int ttl = (int)lifetime * 50 + random.Next(50);
+            Color color = new Color(brghtness, brghtness, brghtness, brghtness);
+            float size = Math.Max(0.1f, ((float)random.NextDouble() / 3));
+            int ttl = (int)lifetime * 50 + random.Next(10 * Math.Max(1, GameManager.Instance.iPhase * 3));
 
             return new Particle(texture, position, velocity, angle, angularVelocity, Color.White, size, ttl);
         }

@@ -27,7 +27,6 @@ namespace VeilofDeath
         /// triggers the jumping animation
         /// </summary>
         public bool isJumping = false;
-        //TODO: Animationszeit = GameCOnstants.fJumpingWidth / GameConstants.fJumpSpeed (für Jump und Slide gleich)
 
         /// <summary>
         /// triggers the Sliding animation
@@ -80,9 +79,7 @@ namespace VeilofDeath
         public void Spawn(Vector3 pos)
         {
             Position = pos;
-            //Rotation = Quaternion.Identity;
             Velocity = Vector3.Zero;
-            //TODO: Reset Level, all Buffs and Debuffs
             isActive = true;
         }
 
@@ -91,9 +88,7 @@ namespace VeilofDeath
         /// </summary>
         public void Spawn()
         {
-            //Rotation = Quaternion.Identity;
             Velocity = Vector3.Zero;
-            //TODO: Reset Level, all Buffs and Debuffs
             isActive = true;
             Position = GameManager.Instance.StartPos;
         }
@@ -104,7 +99,6 @@ namespace VeilofDeath
         /// </summary>
         public void DeSpawn()
         {
-            //TODO: Model deaktivieren, nicht löschen, da öfter benötigt (Loading-Pools)
             isActive = false; //wird nciht mehr gedrawt
             Position = Vector3.Zero;
         }
@@ -227,7 +221,7 @@ namespace VeilofDeath
         /// </summary>
         protected void HandleCollision()
         {
-            HandleSpikes();
+            //HandleSpikes();
             HandleSlowtraps();
             HandleCoins();
         }
@@ -250,6 +244,7 @@ namespace VeilofDeath
                     if (GameConstants.isDebugMode)
                         Console.WriteLine("Coin collected");
                     GameManager.Instance.Delete(lc[i]);
+                    GameManager.Instance.iCoinScore[GameManager.Instance.Level]++;
                     GameManager.Instance.AddtoScore(25); //TODO: Remove magic Constants
                 }
             }

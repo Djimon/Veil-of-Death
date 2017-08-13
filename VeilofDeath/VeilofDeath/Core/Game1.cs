@@ -76,10 +76,6 @@ namespace VeilofDeath
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            
-            // TODO: use this.Content to load your game content here
-
-
         }
 
         /// <summary>
@@ -88,7 +84,7 @@ namespace VeilofDeath
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+
         }
 
         /// <summary>
@@ -101,15 +97,18 @@ namespace VeilofDeath
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed
                 || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            
 
             currentState = gameStates.Peek();
+
             currentState.Update(gameTime);
             GameConstants.MainCam.Update(gameTime);
 
-            EState nextState = currentState.newState;
             if (currentState.canLeave)
-                gameStates.Pop();
+                gameStates.Pop();            
+            
+
+            EState nextState = currentState.newState;
+            
             if (nextState != EState.none)
             {
                 currentState.newState = nextState;
@@ -127,7 +126,7 @@ namespace VeilofDeath
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.DarkSlateBlue);
+            GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
 
             gameStates.Peek().Draw(gameTime);
@@ -146,7 +145,7 @@ namespace VeilofDeath
             switch (state)
             {
                 case EState.none:
-                    Exit(); //Exceptionr
+                    Exit(); //Exception
                     return null;
                 /*
             case EState.Start: //Boot-Screen
@@ -161,12 +160,13 @@ namespace VeilofDeath
                     return new Statistics();
                
             case EState.Ingame: //new Level
+                    GameManager.Instance.ResetLevel();
                     return new InGame(GameManager.Instance.Level);
                 
             case EState.Score: //Score
                     return new Score();                    
             case EState.GameOver: //Spielende
-                    return new GameOver(0);                
+                    return new GameOver(GameConstants.iWinStauts);                
             case EState.Credits: //Credits
                     return new Credits();                        
                 default: return null;

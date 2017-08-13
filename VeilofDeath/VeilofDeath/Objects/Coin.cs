@@ -13,8 +13,9 @@ namespace VeilofDeath.Objects
     class Coin : AGameObject, IStaticEntity
     {
         public bool isActive = true;
-
         private Vector3 rotationAxis = new Vector3(0,0,1);
+
+        private float fAngle;
 
         /// <summary>
         /// CONSTRUCTOR
@@ -52,13 +53,12 @@ namespace VeilofDeath.Objects
         }
 
         public void Tick()
-        {           
-            
+        {
+            fAngle++;
         }
 
         public override void Draw()
         {
-            //TODO: handle Drehung auf Model
             foreach (var mesh in model.Meshes)
             {
                 foreach (BasicEffect effect in mesh.Effects)
@@ -72,7 +72,10 @@ namespace VeilofDeath.Objects
                     effect.AmbientLightColor = new Vector3(0f, 0f, 0f);
                     effect.EmissiveColor = new Vector3(0.15f, 0.15f, 0.0f);
 
-                    effect.World = GameConstants.MainCam.X_World * Matrix.CreateScale(fModelScale) * (Matrix.CreateFromAxisAngle(rotationAxis, GameConstants.rotation) * Matrix.CreateTranslation(Position));
+                    effect.World = GameConstants.MainCam.X_World * 
+                                   Matrix.CreateScale(fModelScale) * 
+                                   (Matrix.CreateFromAxisAngle(rotationAxis,GameConstants.rotation) * 
+                                   Matrix.CreateTranslation(this.Position));
                     effect.View = GameConstants.MainCam.X_View;
                     effect.Projection = GameConstants.MainCam.X_Projection;
                 }

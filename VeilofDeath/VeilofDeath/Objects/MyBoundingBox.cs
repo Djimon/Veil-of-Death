@@ -27,7 +27,6 @@ namespace VeilofDeath.Objects
         /// <param name="gameObject">object on which the box is constructed</param>
         public MyBoundingBox(AGameObject gameObject)
         {
-            //ToDO: size nciht von der Position abhängig machen -> Kracht beim Player, da sich die Pos stets ändert
             O_Parent = gameObject;
             iminX = gameObject.Position.X - GameConstants.iBlockSize / 4;
             iminY = gameObject.Position.Y - GameConstants.iBlockSize / 4;

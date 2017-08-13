@@ -46,8 +46,10 @@ namespace VeilofDeath.Core.GameStates
         private Matrix x_projectionMatrix;
         private Matrix x_viewMatrix;
 
-        Vector2 GUI_Pos = new Vector2(1000, 20); //TODO get rid of magicConstants
-        Vector2 GUI_Stuff = new Vector2(100, 400); //TODO get rid of magicConstants
+        private Veil VeilofDeath;
+
+        Vector2 GUI_Pos = new Vector2(1000, 20); 
+        Vector2 GUI_Stuff = new Vector2(100, 400); 
 
         Texture2D txLine, txPlayer;
         Texture2D[] txVeil;
@@ -71,7 +73,11 @@ namespace VeilofDeath.Core.GameStates
         private float angle;
 
         private Song music;
-
+        private int MaxCoins;
+        float percentageCoins;
+        private bool isJumpCalculated;
+        private float t0;
+        private bool isSetTime = false;
         public InGame(int Level)
         {
             spriteBatch = GameConstants.SpriteBatch;
@@ -119,8 +125,8 @@ namespace VeilofDeath.Core.GameStates
 
             String bitmapname = "Content/Maps/" + iLevel.ToString() + ".bmp";
             Console.WriteLine("bitmap: " + bitmapname);
-            levelMask =
-                new Bitmap(bitmapname); //TODO: rename to "1" for level 1 and so on "2", "3" load in pendancy of level
+            levelMask = new Bitmap(bitmapname);
+            testmap = null;
             testmap = new Map(levelMask);
 
             //after Map generation
@@ -129,23 +135,21 @@ namespace VeilofDeath.Core.GameStates
 
 
             objectSpawner.PlaceCoins(testmap.map);
+            MaxCoins = GameManager.Instance.getCoinList().Count;
             Player = new Player(m_player);
             // x_playerModelTransforms = SetupEffectDefaults(m_player);
             Player.Spawn(new Vector3(start.X, start.Y, 0));
-            PController = new PlayerController(Player);
-
+            GameConstants.MainCam.SetTarget(Player);            PController = new PlayerController(Player);
             TrapHandler = new TrapHandler();
-
-
-            GameConstants.MainCam.SetTarget(Player);
 
 
             //Loads Textfile where Animation Settings are written
             m_player.LoadAnimationParts("AnimationParts/Animations.txt");
-
-
             //searching for the Animation you are looking
             m_player.BlendToAnimationPart("Run");
+
+
+            
 
             //particleSystems
             List<Texture2D> texList = new List<Texture2D>();
@@ -153,7 +157,7 @@ namespace VeilofDeath.Core.GameStates
             //texList.Add(GameConstants.Content.Load<Texture2D>("Particles/cloud1"));
             //texList.Add(GameConstants.Content.Load<Texture2D>("Particles/cloud2"));
             //texList.Add(GameConstants.Content.Load<Texture2D>("Particles/cloud3"));
-            ParticleTest = new VeilOfDath(texList, new Vector2(0, 0), new Vector2(0, 720), 10, 1f, new Vector2(0.5f, 0.5f));
+            ParticleTest = new VeilOfDath(texList, 10, 1f, new Vector2(0.5f, 0.5f));
 
 			//sounds and music
             GameConstants.CoinCollect = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/PickupCoin");
@@ -162,6 +166,7 @@ namespace VeilofDeath.Core.GameStates
            
             music = GameConstants.Content.Load<Song>("Music/Background");
             MediaPlayer.Play(music);
+            VeilofDeath = new Veil(GameConstants.iDifficulty, Player, ParticleTest);
 
             MediaPlayer.Volume = 0.7f;
             SoundEffect.MasterVolume = 1f;
@@ -199,12 +204,74 @@ namespace VeilofDeath.Core.GameStates
         {
             GameConstants.rotation += GameConstants.rotationSpeed;
 
+            if (!isSetTime)
+            {
+                t0 = time.TotalGameTime.Seconds * 1000 + time.TotalGameTime.Milliseconds;
+                Console.WriteLine("t0 = " + t0);
+                isSetTime = true;
+            }
+
             //TrapHandler.choseTraps(time);
             PController.Update(currentKeyboardState, testmap);
             oldKeyboardState = currentKeyboardState;
-            fTimeDelta = (float) time.ElapsedGameTime.Milliseconds;
+            fTimeDelta = (float)time.ElapsedGameTime.Milliseconds;
+
+            UpdatePlayer(time);
+
+            m_player.Update(time);
+
+            VeilofDeath.Update(time);
+
+            //GameConstants.MainCam.Update(time);
+            UpdateScore();
+
+            if (reachedFinish())
+            {
+                float temp = time.TotalGameTime.Minutes * 60 * 1000 + time.TotalGameTime.Seconds * 1000 + time.TotalGameTime.Milliseconds;
+                float fTimeRecord = GameManager.Instance.BestTime / (temp - t0);
+
+                if (fTimeRecord > 0.93f)
+                {
+                    //TODO: Feedback "+1000" über Spieler
+                    GameManager.Instance.iTimeBonus[GameManager.Instance.Level] = 1000;
+                }                    
+                else if (fTimeRecord > 0.75f)
+                {
+                    //TODO: Feedback "+500" über Spieler
+                    GameManager.Instance.iTimeBonus[GameManager.Instance.Level] = 500;
+                }                
+                else if (fTimeRecord > 0.5f)
+                {
+                    //TODO: Feedback "+250" über Spieler
+                    GameManager.Instance.iTimeBonus[GameManager.Instance.Level] = 250;
+                }                
+                else
+                    GameManager.Instance.iTimeBonus[GameManager.Instance.Level] = 0;
+
+                GameManager.Instance.AddtoScore(GameManager.Instance.iTimeBonus[GameManager.Instance.Level]);
+                Console.WriteLine("finished in " + (temp - t0));
+                Console.WriteLine("speed: " + fTimeRecord * 100 + "%");
+                GameManager.Instance.SetVeilDistance(VeilofDeath.fDistance);
+                GameManager.Instance.fStageCleared[GameManager.Instance.Level] = (float)GameManager.Instance.iCoinScore[GameManager.Instance.Level] / (float)MaxCoins;
+                canLeave = true;
+                testmap = null;                
+                newState = EState.Score;
+                
+
+                //WICHTIG: damit sich die Map etc. löscht
+                
+            }
+
+            //update Animation
+            
+            //ParticleTest.Update(time);
+        }
+
+        private void UpdatePlayer(GameTime time)
+        {
             if (Player.isDead)
             {
+                Console.WriteLine("thy dieded!");
                 Player = null;
                 newState = EState.GameOver;
             }
@@ -213,30 +280,23 @@ namespace VeilofDeath.Core.GameStates
                 Player.Tick(testmap);
 
                 if (Player.Position.Y >= GameConstants.fJumpWidth
-                    && Player.Position.Y <= GameConstants.fJumpWidth + 0.111f)
+                    && !isJumpCalculated)
                 {
-                    GameConstants.fJumpSpeed = GameConstants.fJumpWidth / fTimeDelta;
-                    if (GameConstants.isDebugMode)
-                        Console.WriteLine("JumpSpeed: " + GameConstants.fJumpSpeed);
+                    //GameConstants.fJumpSpeed = GameConstants.fJumpWidth / fTimeDelta;
+                    GameManager.Instance.BestTime = (float)(GameManager.Instance.ZielPos.Y - GameManager.Instance.StartPos.Y) / (float)((Player.Position.Y - 2) / (time.TotalGameTime.Seconds * 1000 + time.TotalGameTime.Milliseconds - t0));
 
-                    GameConstants.fjumpTime = GameConstants.fJumpWidth / GameConstants.fJumpSpeed;
-                    if (GameConstants.isDebugMode)
-                        Console.WriteLine("JumpTime: " + GameConstants.fjumpTime);
+                    //if (GameConstants.isDebugMode)
+                    //    Console.WriteLine("JumpSpeed: " + GameConstants.fJumpSpeed);
+
+                    //GameConstants.fjumpTime = GameConstants.fJumpWidth / GameConstants.fJumpSpeed;
+                    //if (GameConstants.isDebugMode)
+                    //    Console.WriteLine("JumpTime: " + GameConstants.fjumpTime);
+
+                    Console.WriteLine("best possible time = " + GameManager.Instance.BestTime);
+
+                    isJumpCalculated = true;
                 }
-            }
-
-            //GameConstants.MainCam.Update(time);
-            UpdateScore();
-
-            if (reachedFinish())
-            {
-                newState = EState.Score;
-            }
-
-            //update Animation
-            m_player.Update(time);
-
-            ParticleTest.Update(time);
+            } /*else (if (Player.isDead))*/
         }
 
         //private void UpdateScore()
@@ -253,11 +313,12 @@ namespace VeilofDeath.Core.GameStates
         {
             //float t0 = time.ElapsedGameTime.Milliseconds;
             int GridY = (int)(Player.Position.Y - (GameConstants.iBlockSize / 2)) / GameConstants.iBlockSize;
-            testmap.Draw(GridY - 5, GridY + GameConstants.fFarClipPlane);
+            if (testmap != null)
+                testmap.Draw(GridY - 5, GridY + GameConstants.fFarClipPlane);
             //Console.WriteLine("Drawtime: "+ (time.ElapsedGameTime.Milliseconds - t0)+ " seconds");
 
             Player.Draw(time);
-
+            
             DrawObject();
 
             DrawGUI();
@@ -304,14 +365,17 @@ namespace VeilofDeath.Core.GameStates
                     playerTexPos.Y = GameConstants.WINDOWSIZE.Y -
                                      GameConstants.WINDOWSIZE.Y *
                                      Math.Max(0, Player.Position.Y / GameManager.Instance.ZielPos.Y);
-                //veilTexStart.Y = Math.Max(0, veil.Position.Y / lange);
+
+                VeilTexPos.Y =    GameConstants.WINDOWSIZE.Y -
+                                    GameConstants.WINDOWSIZE.Y * 
+                                    Math.Max(0, VeilofDeath.Position.Y / GameManager.Instance.ZielPos.Y);
 
             }
 
-            /// <summary>
-            /// Helper to draw 2-dimensional GUI-Objects using the SpriteBatch
-            /// </summary>
-            private void DrawGUI()
+        /// <summary>
+        /// Helper to draw 2-dimensional GUI-Objects using the SpriteBatch
+        /// </summary>
+        private void DrawGUI()
         {
             //spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Opaque);
             spriteBatch.Begin(depthStencilState: GameConstants.Graphics.GraphicsDevice.DepthStencilState,
@@ -321,25 +385,18 @@ namespace VeilofDeath.Core.GameStates
             spriteBatch.DrawString(GameConstants.lucidaConsole, " Score: " + GameManager.Instance.score,
                 GUI_Pos, Microsoft.Xna.Framework.Color.White);
 
-            DrawVeil();
+            VeilofDeath.Draw(spriteBatch);
 
             // GUI
             spriteBatch.Draw(txLine, new Vector2(1, 1), Microsoft.Xna.Framework.Color.White);
             spriteBatch.Draw(txPlayer, playerTexPos, Microsoft.Xna.Framework.Color.White);
-            //spriteBatch.Draw(txVeil[0], VeilTexPos, Microsoft.Xna.Framework.Color.White);
-            //Vector2 location = new Vector2(400, 240);
-            //Microsoft.Xna.Framework.Rectangle sourceRectangle = new Microsoft.Xna.Framework.Rectangle(0, 0, txVeil[1].Width, txVeil[1].Height);
-            //Vector2 origin = new Vector2(0, 0);
-            //angle += 0.11f;
-            //spriteBatch.Draw(txVeil[0], location, sourceRectangle, Microsoft.Xna.Framework.Color.White, angle, origin, 1.0f, SpriteEffects.None, 1);
+
+            //TODO: Texturshader -> Merging the different Textures in txVeil[]
+            spriteBatch.Draw(txVeil[0], VeilTexPos, Microsoft.Xna.Framework.Color.White);
+
 
             spriteBatch.End();
             ;
-        }
-
-        private void DrawVeil()
-        {
-            ParticleTest.Draw(spriteBatch);
         }
 
         #endregion

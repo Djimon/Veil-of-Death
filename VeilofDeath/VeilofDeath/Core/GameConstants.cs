@@ -14,7 +14,7 @@ namespace VeilofDeath
         /// <summary>
         /// If on puts some outputs to the console
         /// </summary>
-        public static bool isDebugMode = true;
+        public static bool isDebugMode = false;
         //mandatory things        
         public static ContentManager Content;
 
@@ -63,8 +63,8 @@ namespace VeilofDeath
         /* to overjump one block: when jumping is pressed in the middle of the before-block, 
          * it takes 2 blocks to land in the middle of the after-block */
         public static float fJumpHeight = iBlockSize * 6 / 5;
-        public static float fJumpSpeed;
-        public static float fjumpTime;
+        //public static float fJumpSpeed;
+        //public static float fjumpTime;
 
         #endregion
 
@@ -86,16 +86,21 @@ namespace VeilofDeath
         /// number of Traps in the Game
         /// </summary>
         public static int iTrapNumber = 4;
-        public static int iMaxLevel = 1;
+        public static int iMaxLevel = 3;
+        /// <summary>
+        /// Diificulty can be 1,3 or 5
+        /// </summary>
+        public static int iDifficulty = 1; 
 
         public static bool isCollided = false;
 
         public static Game currentGame;
         public static SpriteFont lucidaConsole;
+        internal static int iWinStauts = 0;
 
         public static GraphicsDeviceManager Graphics { get; internal set; }
 
-        //needed for rotating the coins
+        //variables for rotating the coins
         public static float rotation = 0f;
         public static float rotationSpeed = 0.05f;
 

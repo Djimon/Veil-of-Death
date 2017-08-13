@@ -14,9 +14,6 @@ namespace VeilofDeath
         public float fStartFloating;
         private Block identity;
 
-        //TODO: Spiketraps aus der mapgeneration rausholen und stattdessen leere blocks in der Map genereieren und markieren,
-        //      nach der Mapgeneration, werdne dann auf die markierten positionen Die Traps instantiiert
-
         public SpikeTrap(Vector3 pos, Block self)
         {
             Position = pos;
