@@ -46,6 +46,7 @@ namespace VeilofDeath.Core.GameStates
             {
                 sumscore += A;
             }
+            sumscore *= 25;
             sumCompl = 0f;
             for (int i = 0; i < GameManager.Instance.fStageCleared.Count<float>(); i++)
             {

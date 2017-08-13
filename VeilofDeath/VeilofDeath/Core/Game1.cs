@@ -97,15 +97,18 @@ namespace VeilofDeath
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed
                 || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            
 
             currentState = gameStates.Peek();
+
             currentState.Update(gameTime);
             GameConstants.MainCam.Update(gameTime);
 
-            EState nextState = currentState.newState;
             if (currentState.canLeave)
-                gameStates.Pop();
+                gameStates.Pop();            
+            
+
+            EState nextState = currentState.newState;
+            
             if (nextState != EState.none)
             {
                 currentState.newState = nextState;
@@ -123,7 +126,7 @@ namespace VeilofDeath
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.DarkSlateBlue);
+            GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
 
             gameStates.Peek().Draw(gameTime);
@@ -142,7 +145,7 @@ namespace VeilofDeath
             switch (state)
             {
                 case EState.none:
-                    Exit(); //Exceptionr
+                    Exit(); //Exception
                     return null;
                 /*
             case EState.Start: //Boot-Screen
@@ -157,6 +160,7 @@ namespace VeilofDeath
                     return new Statistics();
                
             case EState.Ingame: //new Level
+                    GameManager.Instance.ResetLevel();
                     return new InGame(GameManager.Instance.Level);
                 
             case EState.Score: //Score

@@ -21,6 +21,17 @@ namespace VeilofDeath.SpecialFX
         private int maxLifetime;
         private float maxSize;
 
+        /// <summary>
+        /// Constructor of a particle
+        /// </summary>
+        /// <param name="texture">Texture</param>
+        /// <param name="position">Start position</param>
+        /// <param name="velocity">Direction where it moves</param>
+        /// <param name="angle">defines rotation</param>
+        /// <param name="angularVelocity">Movement aorund the angle</param>
+        /// <param name="color"></param>
+        /// <param name="size"></param>
+        /// <param name="ttl">Time To Life (decreases over time)</param>
         public Particle(Texture2D texture, Vector2 position, Vector2 velocity,
             float angle, float angularVelocity, Color color, float size, int ttl)
         {
@@ -42,11 +53,21 @@ namespace VeilofDeath.SpecialFX
             Angle += AngularVelocity;
         }
 
+
+        /// <summary>
+        /// Can be affected by an attractor (e.g. Black Hole)
+        /// </summary>
+        /// <param name="attraction">Attractor</param>
         public void Affect(ref Vector2 attraction)
         {
             Velocity += attraction;
         }
 
+        /// <summary>
+        /// Manipulates the transparancy over time
+        /// </summary>
+        /// <param name="sign">if positive transparency increases,
+        /// if negative transparency decreases</param>
         public void TransformAlpha(float sign)
         {
             if (TTL > 0)
@@ -56,6 +77,11 @@ namespace VeilofDeath.SpecialFX
             }             
         }
 
+        /// <summary>
+        /// Manipulates the Size
+        /// </summary>
+        /// <param name="sign">if positive size grow,
+        /// if negative size shrinks</param>
         public void TransformSize(float sign)
         {
             if (TTL > 0)

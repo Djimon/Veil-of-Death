@@ -10,6 +10,7 @@ namespace VeilofDeath
 {
     public class Map
     {
+
         /// <summary>
         /// Position which triggers the level completion.
         /// </summary>
@@ -132,6 +133,7 @@ namespace VeilofDeath
                 }
             }
         }
+
 
         /// <summary>
         /// generates a random Trap

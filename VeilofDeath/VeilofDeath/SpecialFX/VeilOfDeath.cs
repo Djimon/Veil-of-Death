@@ -12,6 +12,13 @@ namespace VeilofDeath.SpecialFX
     {
         private Vector2 attraction;
 
+        /// <summary>
+        /// Constructor of Veil-Particle Engine
+        /// </summary>
+        /// <param name="textures"></param>
+        /// <param name="PartsPerSeconds">Particles, which are spawnt per Seconds</param>
+        /// <param name="time2life">Time to life for each Particle (in Seconds)</param>
+        /// <param name="gravityCentre">an additional Attractor where the particles fly to</param>
         public VeilOfDath(List<Texture2D> textures, float PartsPerSeconds, float time2life, Vector2 gravityCentre)
         {
             this.textures = textures;
@@ -59,6 +66,7 @@ namespace VeilofDeath.SpecialFX
             }
         }
 
+
         private Particle GenerateNewParticleBottom()
         {
             Vector2 position = new Vector2(random.Next((int)1, (int)GameConstants.WINDOWSIZE.X),
@@ -88,6 +96,11 @@ namespace VeilofDeath.SpecialFX
             return Spawnparticle(position);
         }
 
+        /// <summary>
+        /// Main method to Spawn Particles for the Veil
+        /// </summary>
+        /// <param name="position">Position of the spawn point</param>
+        /// <returns></returns>
         private Particle Spawnparticle(Vector2 position)
         {
             Texture2D texture = textures[random.Next(textures.Count)];

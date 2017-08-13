@@ -77,7 +77,8 @@ namespace VeilofDeath.Core.GameStates
         float percentageCoins;
         private bool isJumpCalculated;
         private float t0;
-        private bool isSetTime = false;        public InGame(int Level)
+        private bool isSetTime = false;
+        public InGame(int Level)
         {
             spriteBatch = GameConstants.SpriteBatch;
             iLevel = Level;
@@ -124,8 +125,8 @@ namespace VeilofDeath.Core.GameStates
 
             String bitmapname = "Content/Maps/" + iLevel.ToString() + ".bmp";
             Console.WriteLine("bitmap: " + bitmapname);
-            levelMask =
-                new Bitmap(bitmapname);
+            levelMask = new Bitmap(bitmapname);
+            testmap = null;
             testmap = new Map(levelMask);
 
             //after Map generation
@@ -215,6 +216,8 @@ namespace VeilofDeath.Core.GameStates
 
             UpdatePlayer(time);
 
+            m_player.Update(time);
+
             VeilofDeath.Update(time);
 
             //GameConstants.MainCam.Update(time);
@@ -248,12 +251,17 @@ namespace VeilofDeath.Core.GameStates
                 Console.WriteLine("speed: " + fTimeRecord * 100 + "%");
                 GameManager.Instance.SetVeilDistance(VeilofDeath.fDistance);
                 GameManager.Instance.fStageCleared[GameManager.Instance.Level] = (float)GameManager.Instance.iCoinScore[GameManager.Instance.Level] / (float)MaxCoins;
+                canLeave = true;
+                testmap = null;                
                 newState = EState.Score;
+                
+
+                //WICHTIG: damit sich die Map etc. löscht
+                
             }
 
             //update Animation
-            m_player.Update(time);
-
+            
             //ParticleTest.Update(time);
         }
 
@@ -303,7 +311,8 @@ namespace VeilofDeath.Core.GameStates
         {
             //float t0 = time.ElapsedGameTime.Milliseconds;
             int GridY = (int)(Player.Position.Y - (GameConstants.iBlockSize / 2)) / GameConstants.iBlockSize;
-            testmap.Draw(GridY - 5, GridY + GameConstants.fFarClipPlane);
+            if (testmap != null)
+                testmap.Draw(GridY - 5, GridY + GameConstants.fFarClipPlane);
             //Console.WriteLine("Drawtime: "+ (time.ElapsedGameTime.Milliseconds - t0)+ " seconds");
 
             Player.Draw(time);

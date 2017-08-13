@@ -73,6 +73,8 @@
     <Compile Include="Objects\Traps\SlowTrap.cs" />
     <Compile Include="Objects\Traps\SpikeTrap.cs" />
     <Compile Include="Objects\Veil.cs" />
+    <Compile Include="PanelStuff\Panel.cs" />
+    <Compile Include="PanelStuff\PanelElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Level\LevelContent.cs" />
     <Compile Include="SpecialFX\AParticleEnginge.cs" />

@@ -19,7 +19,6 @@ namespace VeilofDeath.SpecialFX
         public float lifetime { get;  set;}
 
 
-
         public virtual void Update(GameTime gt)
         {
             float x = 1000 / total;
@@ -51,6 +50,10 @@ namespace VeilofDeath.SpecialFX
             }
         }
 
+        /// <summary>
+        /// Main method to generate a new Particle
+        /// </summary>
+        /// <returns>Particle</returns>
         public abstract Particle GenerateNewParticleLeft();
         
         public void Draw(SpriteBatch spriteBatch)

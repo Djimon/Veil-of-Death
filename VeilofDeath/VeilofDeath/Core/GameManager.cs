@@ -39,6 +39,13 @@ namespace VeilofDeath
             iPhase = 0;
         }
 
+        public void ResetLevel()
+        {
+            SpikeList.Clear();
+            SlowList.Clear();
+            CoinList.Clear();
+        }
+
         /********* Session Data **********/
         public int Level { get; private set; }
         private int[] Score { get; set; }
