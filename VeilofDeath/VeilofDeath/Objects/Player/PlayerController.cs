@@ -42,7 +42,7 @@ namespace VeilofDeath
 
             if (currentKeyboardState.IsKeyDown(Keys.Right) && !oldKeyboardState.IsKeyDown(Keys.Right) && !isRightPressed)
             {
-                if (!GameConstants.isDebugMode && CheckFrontIsWalkable(map, "right"))
+                if (GameConstants.isDebugMode && CheckFrontIsWalkable(map, "right"))
                 {
                     character.Position.X += 1 * GameConstants.iBlockSize;
                     isRightPressed = true;
@@ -50,7 +50,7 @@ namespace VeilofDeath
             }
             if (currentKeyboardState.IsKeyDown(Keys.Left) && !oldKeyboardState.IsKeyDown(Keys.Left) && !isLeftPressed)
             {
-                if (!GameConstants.isDebugMode && CheckFrontIsWalkable(map, "left"))
+                if (GameConstants.isDebugMode && CheckFrontIsWalkable(map, "left"))
                 {
                     character.Position.X -= 1 * GameConstants.iBlockSize;
                     isLeftPressed = true;

@@ -197,6 +197,7 @@ namespace VeilofDeath.Core.GameStates
 
         public void Update(GameTime time)
         {
+            GameConstants.rotation += GameConstants.rotationSpeed;
             //TrapHandler.choseTraps(time);
             PController.Update(currentKeyboardState, testmap);
             oldKeyboardState = currentKeyboardState;
