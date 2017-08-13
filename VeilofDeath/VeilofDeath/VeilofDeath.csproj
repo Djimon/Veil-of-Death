@@ -111,7 +111,7 @@
     <Content Include="Content\Maps\cointest.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="AnimationParts\Run.txt">
+    <Content Include="AnimationParts\Animations.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Maps\testmap2.bmp">

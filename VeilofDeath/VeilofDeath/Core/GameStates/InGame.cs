@@ -141,7 +141,7 @@ namespace VeilofDeath.Core.GameStates
 
 
             //Loads Textfile where Animation Settings are written
-            m_player.LoadAnimationParts("AnimationParts/Run.txt");
+            m_player.LoadAnimationParts("AnimationParts/Animations.txt");
 
 
             //searching for the Animation you are looking
@@ -197,6 +197,8 @@ namespace VeilofDeath.Core.GameStates
 
         public void Update(GameTime time)
         {
+            GameConstants.rotation += GameConstants.rotationSpeed;
+
             //TrapHandler.choseTraps(time);
             PController.Update(currentKeyboardState, testmap);
             oldKeyboardState = currentKeyboardState;

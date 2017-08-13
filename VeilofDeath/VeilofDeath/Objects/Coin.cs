@@ -14,6 +14,8 @@ namespace VeilofDeath.Objects
     {
         public bool isActive = true;
 
+        private Vector3 rotationAxis = new Vector3(0,0,1);
+
         /// <summary>
         /// CONSTRUCTOR
         /// </summary>
@@ -57,8 +59,26 @@ namespace VeilofDeath.Objects
         public override void Draw()
         {
             //TODO: handle Drehung auf Model
-           
-            base.Draw();
+            foreach (var mesh in model.Meshes)
+            {
+                foreach (BasicEffect effect in mesh.Effects)
+                {
+                    effect.EnableDefaultLighting();
+
+                    effect.DirectionalLight0.DiffuseColor = new Vector3(1, 1, 1); // a red light
+                    effect.DirectionalLight0.Direction = new Vector3(-1, 0, -1);  // coming along the x-axis
+                    effect.DirectionalLight0.SpecularColor = new Vector3(0.2f, 0.2f, 0.2f); // with green highlights
+
+                    effect.AmbientLightColor = new Vector3(0f, 0f, 0f);
+                    effect.EmissiveColor = new Vector3(0.15f, 0.15f, 0.0f);
+
+                    effect.World = GameConstants.MainCam.X_World * Matrix.CreateScale(fModelScale) * (Matrix.CreateFromAxisAngle(rotationAxis, GameConstants.rotation) * Matrix.CreateTranslation(Position));
+                    effect.View = GameConstants.MainCam.X_View;
+                    effect.Projection = GameConstants.MainCam.X_Projection;
+                }
+
+                mesh.Draw();
+            }
         }
     }
 }

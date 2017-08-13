@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Content;
 using System.Collections;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
+using VeilofDeath.Objects;
 
 namespace VeilofDeath
 {
@@ -93,6 +94,10 @@ namespace VeilofDeath
         public static SpriteFont lucidaConsole;
 
         public static GraphicsDeviceManager Graphics { get; internal set; }
+
+        //needed for rotating the coins
+        public static float rotation = 0f;
+        public static float rotationSpeed = 0.05f;
 
         #region Sound Variables
 
