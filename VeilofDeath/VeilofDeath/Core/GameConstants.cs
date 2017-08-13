@@ -99,6 +99,10 @@ namespace VeilofDeath
 
         public static GraphicsDeviceManager Graphics { get; internal set; }
 
+        //variables for rotating the coins
+        public static float rotation = 0f;
+        public static float rotationSpeed = 0.05f;
+
         #region Sound Variables
 
         public static SoundEffect CoinCollect;

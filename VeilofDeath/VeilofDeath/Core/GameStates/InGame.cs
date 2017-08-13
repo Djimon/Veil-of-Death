@@ -202,6 +202,8 @@ namespace VeilofDeath.Core.GameStates
 
         public void Update(GameTime time)
         {
+            GameConstants.rotation += GameConstants.rotationSpeed;
+
             if (!isSetTime)
             {
                 t0 = time.TotalGameTime.Seconds * 1000 + time.TotalGameTime.Milliseconds;

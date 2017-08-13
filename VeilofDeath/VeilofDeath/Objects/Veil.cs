@@ -25,7 +25,6 @@ namespace VeilofDeath.Objects
         public Veil(int toughness, Player victim, AParticleEnginge PE)
         {
             Initialize(toughness, victim, PE);
-
             LoadContent();
         }
 
@@ -41,7 +40,7 @@ namespace VeilofDeath.Objects
         {
             Position = new Vector3(GameManager.Instance.StartPos.X,
                                                 (GameManager.Instance.Level > 0 ?
-                                                    GameManager.Instance.StartPos.Y - GameManager.Instance.fVeilDistance :
+                                                    GameManager.Instance.StartPos.Y - ((100 - 6 * toughness) + GameManager.Instance.fVeilDistance)/2 :
                                                     GameManager.Instance.StartPos.Y - (100 - 6 * toughness)),
                                                 0);
             //float temp = GameConstants.fMovingSpeed + (0.25f* (float)Math.Log(0.3f * 1));
