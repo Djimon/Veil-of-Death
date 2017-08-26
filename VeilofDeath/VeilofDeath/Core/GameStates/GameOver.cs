@@ -84,7 +84,15 @@ namespace VeilofDeath.Core.GameStates
 
         private void UpdateWIN()
         {
-            // TODO
+            //TODO: Platzhalter
+            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+            {
+                GameConstants.MainCam.ResetCamera();
+                GameManager.Instance.ResetScore();
+                newState = EState.MainMenu;
+                canLeave = true;
+
+            }
         }
 
         private void UpdateLOSE()
@@ -94,6 +102,7 @@ namespace VeilofDeath.Core.GameStates
                 GameConstants.MainCam.ResetCamera();
                 GameManager.Instance.ResetScore();                
                 newState = EState.Ingame;
+                canLeave = true;
 
             }
         }

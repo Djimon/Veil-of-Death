@@ -157,12 +157,10 @@ namespace VeilofDeath
             case EState.Settings: // Einstellungen
                 break;*/
             case EState.Statistics: //Bedienung
-                    return new Statistics();
-               
+                    return new Statistics();               
             case EState.Ingame: //new Level
                     GameManager.Instance.ResetLevel();
-                    return new InGame(GameManager.Instance.Level);
-                
+                    return new InGame(GameManager.Instance.Level);                
             case EState.Score: //Score
                     return new Score();                    
             case EState.GameOver: //Spielende

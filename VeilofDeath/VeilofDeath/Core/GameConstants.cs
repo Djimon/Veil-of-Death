@@ -28,7 +28,7 @@ namespace VeilofDeath
         public static float fAspectRatio = WINDOWSIZE.X / WINDOWSIZE.Y;
         public static Camera MainCam;
         public static int CameraAngle = 35;
-        public static float CameraDistance = -20;
+        public static float CameraDistance = -20; //TODO: Fix staert of game is behind the Map
         /// <summary>
         /// fixed window size width
         /// </summary>

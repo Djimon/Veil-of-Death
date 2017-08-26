@@ -114,6 +114,8 @@ namespace VeilofDeath.Core.GameStates
                         newState = EState.none;
                         break;
                 }
+
+                canLeave = true;
             }
 
 
