@@ -35,6 +35,7 @@ namespace VeilofDeath.Core.GameStates
         private float fcompletenes;
         private int ilevelscore, ilevelCoins, iTimeBonus;
         private bool mustRetry = true;
+        private bool isPlayed = false;
 
         //PANEL STUFF
         Panel MainPanel;
@@ -171,17 +172,30 @@ namespace VeilofDeath.Core.GameStates
         public void Update(GameTime time)
         {
 
+            if (!isPlayed)
+            {
+                if (mustRetry)
+                    ;//LARS: Play Sound: verloren
+                else
+                    ;//LARS: play sound: gewonnen
+
+                isPlayed = true;
+            }
+
+
             if (!mustRetry)
             {
                 if (!ispressed && Keyboard.GetState().IsKeyDown(Keys.Left))
                 {
                     m_selected = (btn)(((int)m_selected + 1) % (int)btn.Count);
                     ispressed = true;
+                    //LARS: Play sound: switch selected Button
                 }
                 if (!ispressed && Keyboard.GetState().IsKeyDown(Keys.Right))
                 {
                     m_selected = (btn)(((int)m_selected + 1) % (int)btn.Count);
                     ispressed = true;
+                    //LARS: Play sound: switch selected Button
                 }
                 if (Keyboard.GetState().IsKeyUp(Keys.Left) && Keyboard.GetState().IsKeyUp(Keys.Right))
                     ispressed = false;
@@ -190,6 +204,8 @@ namespace VeilofDeath.Core.GameStates
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Enter))
                 {
+                    //LARS: play sound: Menüpunkt bestätigen
+
                     switch (m_selected)
                     {
                         case btn.confirm:
@@ -200,24 +216,22 @@ namespace VeilofDeath.Core.GameStates
                                 GameManager.Instance.iCoinScore[GameManager.Instance.Level] -= ilevelCoins * 2 / 3;
                                 GameManager.Instance.LevelUp();
                                 newState = EState.Ingame;
+                                canLeave = true;
                             }
                             else
                             {
                                 GameConstants.iWinStauts = 1;
                                 newState = EState.GameOver;
+                                canLeave = true;
                             }
                             break;
                         case btn.Retry:
-                            GameConstants.MainCam.ResetCamera();
-                            GameManager.Instance.ResetScore();
-                            newState = EState.Ingame;
+                            Retry();
                             break;
                         default:
                             newState = EState.none;
                             break;
-                    }
-
-                    canLeave = true;
+                    }                  
                 }
 
                 switch (m_selected)
@@ -250,13 +264,20 @@ namespace VeilofDeath.Core.GameStates
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Enter))
                 {
-                    GameConstants.MainCam.ResetCamera();
-                    GameManager.Instance.ResetScore();
-                    newState = EState.Ingame;
-                    canLeave = true;
+                    Retry();
                 }
             }
 
+        }
+
+        private void Retry()
+        {
+            //LARS: play sound: Menüpunkt bestätigen
+
+            GameConstants.MainCam.ResetCamera();
+            GameManager.Instance.ResetScore();
+            newState = EState.Ingame;
+            canLeave = true;
         }
 
         public void Draw(GameTime time)

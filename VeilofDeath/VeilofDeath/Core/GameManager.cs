@@ -105,6 +105,9 @@ namespace VeilofDeath
         public void EnterNextPhase()
         {
             iPhase = Math.Min(1+iPhase, 4);
+
+            //LARS: Play Sound: nächste Phase des Schleiers ( z.B. Dröhnen, wie bei Inception?)
+
             if (GameConstants.isDebugMode)
                 Console.WriteLine("Entered Phase "+iPhase);
         }

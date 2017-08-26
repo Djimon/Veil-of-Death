@@ -86,12 +86,14 @@ namespace VeilofDeath.Core.GameStates
             {
                 m_selected = (Button)(((int)m_selected + 1) % (int)Button.Count);
                 ispressed = true;
+                //LARS: Play sound: switch menu selection
             }
 
             if (!ispressed && Keyboard.GetState().IsKeyDown(Keys.Up))
             {
                 m_selected = (Button)(((int)m_selected +(int)Button.Count - 1) % (int)Button.Count);
                 ispressed = true;
+                //LARS: Play sound: switch menu selection
             }
 
             if (Keyboard.GetState().IsKeyUp(Keys.Down) && Keyboard.GetState().IsKeyUp(Keys.Up)) 
@@ -99,6 +101,8 @@ namespace VeilofDeath.Core.GameStates
 
             if (Keyboard.GetState().IsKeyDown(Keys.Enter))
             {
+                //LARS: Play sound: Menüpunkt bestätigen
+
                 switch (m_selected)
                 {
                     case Button.Start:

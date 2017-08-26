@@ -16,6 +16,7 @@ namespace VeilofDeath.Core.GameStates
         public bool canLeave { get; set; }       
         public EState newState { get; set; }
 
+        private bool isPlayed = false;
 
         int iStatus = 0;
 
@@ -34,6 +35,7 @@ namespace VeilofDeath.Core.GameStates
         public void Initialize()
         {
             newState = EState.none;
+            isPlayed = false;
         }
 
         public void LoadContent()
@@ -84,6 +86,13 @@ namespace VeilofDeath.Core.GameStates
 
         private void UpdateWIN()
         {
+            if (!isPlayed)
+            {
+                ;//LARS: Play Sound: Gewonnen! Spiel durchgepsielt
+
+                isPlayed = true;
+            }
+
             //TODO: Platzhalter
             if (Keyboard.GetState().IsKeyDown(Keys.Enter))
             {
@@ -97,6 +106,14 @@ namespace VeilofDeath.Core.GameStates
 
         private void UpdateLOSE()
         {
+            if (!isPlayed)
+            {
+                ;//LARS: Play Sound: Sterbesound
+
+                isPlayed = true;
+            }
+                
+
             if (Keyboard.GetState().IsKeyDown(Keys.Enter))
             {
                 GameConstants.MainCam.ResetCamera();

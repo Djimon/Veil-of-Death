@@ -309,7 +309,7 @@ namespace VeilofDeath.Core.GameStates
         private void UpdateRun(GameTime time)
         {
             GameConstants.rotation += GameConstants.rotationSpeed;
-
+            
             if (!isSetTime)
             {
                 t0 = time.TotalGameTime.Seconds * 1000 + time.TotalGameTime.Milliseconds;
@@ -322,9 +322,11 @@ namespace VeilofDeath.Core.GameStates
             oldKeyboardState = currentKeyboardState;
             fTimeDelta = (float)time.ElapsedGameTime.Milliseconds;
 
+            UpdateHeartBeat(time);
+
             UpdatePlayer(time);
 
-            m_player.Update(time);            
+            m_player.Update(time);
 
             UpdateScore();
 
@@ -335,6 +337,36 @@ namespace VeilofDeath.Core.GameStates
             if (VeilofDeath.hasReachedPlayer)
             {
                 newState = EState.GameOver;
+            }
+        }
+
+        /// <summary>
+        ///  Allways plyas one heartbeat, depending on the actual phase, frequent and volume are higher
+        /// </summary>
+        /// <param name="time">Gametime</param>
+        private static void UpdateHeartBeat(GameTime time)
+        {
+            switch (GameManager.Instance.iPhase)
+            {
+                
+                case 1:
+                    if (time.TotalGameTime.Milliseconds % 1000 == 0)
+                        ;//LARS: Play heartbeat @Lautstärke 1
+                    break;
+                case 2:
+                    if (time.TotalGameTime.Milliseconds % 1000 == 0)
+                        ;//LARS: Play heartbeat @Lautstärke 2
+                    break;
+                case 3:
+                    if (time.TotalGameTime.Milliseconds % 500 == 0)
+                        ;//LARS: Play heartbeat @Lautstärke 3
+                    break;
+                case 4:
+                    if (time.TotalGameTime.Milliseconds % 200 == 0)
+                        ;//LARS: Play heartbeat @Lautstärke 4
+                    break;
+                default:
+                    break;
             }
         }
 
