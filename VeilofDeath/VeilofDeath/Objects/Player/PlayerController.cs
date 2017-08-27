@@ -64,12 +64,12 @@ namespace VeilofDeath
                 isSpacePressed = true;
             }
 
-            //if (!character.isSliding && currentKeyboardState.IsKeyDown(Keys.LeftShift) && !oldKeyboardState.IsKeyDown(Keys.LeftShift) && !isDownPressed)
-            //{
-            //    character.isSliding = true; ;
-            //    //TODO: Just Change the Animation and check if the Collision-boxes follow the Animation (= is small enough to pass under a obsticle)
-            //    isDownPressed = true;
-            //}
+            if (!character.isSliding && !isDownPressed && currentKeyboardState.IsKeyDown(Keys.LeftShift) && !oldKeyboardState.IsKeyDown(Keys.LeftShift) )
+            {
+                character.isSliding = true; ;
+                //TODO: Just Change the Animation and check if the Collision-boxes follow the Animation (= is small enough to pass under a obsticle)
+                isDownPressed = true;
+            }
 
             if (isRightPressed && currentKeyboardState.IsKeyUp(Keys.Right))
                 isRightPressed = false;
@@ -77,8 +77,8 @@ namespace VeilofDeath
                 isLeftPressed = false;
             if (isSpacePressed && currentKeyboardState.IsKeyUp(Keys.Space))
                 isSpacePressed = false;
-            //if (isDownPressed && currentKeyboardState.IsKeyUp(Keys.LeftShift))
-            //    isDownPressed = false;
+            if (isDownPressed && currentKeyboardState.IsKeyUp(Keys.LeftShift))
+                isDownPressed = false;
 
             if (GameConstants.isDebugMode)
                 Console.WriteLine(character.Position.ToString());
@@ -90,7 +90,10 @@ namespace VeilofDeath
                 isOnGround = true;
 
             if (isSpacePressed)
-                character.AniModel.BlendToAnimationPart("Idle");
+                character.AniModel.BlendToAnimationPart("Jump");
+
+            if (isDownPressed)
+                character.AniModel.BlendToAnimationPart("Slide");
 
         }
 
@@ -134,6 +137,7 @@ namespace VeilofDeath
         /// <param name="character">the Player</param>
         void Jump(Player character)
         {
+            
             if (GameConstants.isDebugMode)
                 Console.WriteLine("Jump");
             float fjumpEndPositionY = character.Position.Y + GameConstants.fJumpWidth;

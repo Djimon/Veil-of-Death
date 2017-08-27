@@ -173,7 +173,7 @@ namespace VeilofDeath.Core.GameStates
 
 
             //Loads Textfile where Animation Settings are written
-            m_player.LoadAnimationParts("AnimationParts/Run.txt");
+            m_player.LoadAnimationParts("AnimationParts/Animations.txt");
             //searching for the Animation you are looking
             m_player.BlendToAnimationPart("Run");
         }

@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Content;
 using System.Collections;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
+using VeilofDeath.Objects;
 
 namespace VeilofDeath
 {
