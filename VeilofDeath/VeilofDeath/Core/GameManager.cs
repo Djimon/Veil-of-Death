@@ -44,6 +44,7 @@ namespace VeilofDeath
             SpikeList.Clear();
             SlowList.Clear();
             CoinList.Clear();
+            ResetPhase();
         }
 
         /********* Session Data **********/
@@ -110,6 +111,11 @@ namespace VeilofDeath
 
             if (GameConstants.isDebugMode)
                 Console.WriteLine("Entered Phase "+iPhase);
+        }
+
+        public void ResetPhase()
+        {
+            iPhase = 0;
         }
 
         public void SetVeilDistance(float x)

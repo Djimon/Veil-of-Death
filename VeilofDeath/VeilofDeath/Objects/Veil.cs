@@ -41,8 +41,8 @@ namespace VeilofDeath.Objects
         {
             Position = new Vector3(GameManager.Instance.StartPos.X,
                                                 (GameManager.Instance.Level > 0 ?
-                                                    GameManager.Instance.StartPos.Y - ((100 - 6 * toughness) + GameManager.Instance.fVeilDistance)/2 :
-                                                    GameManager.Instance.StartPos.Y - (100 - 6 * toughness)),
+                                                    GameManager.Instance.StartPos.Y - ((100 - 8 * toughness) + GameManager.Instance.fVeilDistance)/2 :
+                                                    GameManager.Instance.StartPos.Y - (100 - 8 * toughness)),
                                                 0);
             //float temp = GameConstants.fMovingSpeed + (0.25f* (float)Math.Log(0.3f * 1));
             //float temp2 = GameConstants.fMovingSpeed + (0.25f * (float)Math.Log(0.3f * 3));
@@ -50,9 +50,11 @@ namespace VeilofDeath.Objects
             //Console.WriteLine("Log_test: "+temp+","+temp2+","+temp3 );
             fSpeed = Math.Max(0.1f * GameConstants.fMovingSpeed, 0.1f * (GameConstants.fMovingSpeed + (0.25f * (float)Math.Log(0.3f * 5))));
             Victim = victim;
-            Console.WriteLine("VeilSpeed: " + fSpeed);
+            if (GameConstants.isDebugMode)
+                Console.WriteLine("VeilSpeed: " + fSpeed);
             fStartDistance = fDistance = Victim.Position.Y - Position.Y;
-            Console.WriteLine("Distance: " + fDistance);
+            if (GameConstants.isDebugMode)
+                Console.WriteLine("Distance: " + fDistance);
             particleEngine = PE;
         }
 

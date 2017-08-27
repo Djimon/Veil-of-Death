@@ -157,7 +157,7 @@ namespace VeilofDeath
             case EState.Settings: // Einstellungen
                 break;*/
             case EState.Statistics: //Bedienung
-                    return new Statistics();               
+                    return new Settings();               
             case EState.Ingame: //new Level
                     GameManager.Instance.ResetLevel();
                     return new InGame(GameManager.Instance.Level);                

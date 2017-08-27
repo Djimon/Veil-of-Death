@@ -15,7 +15,7 @@ namespace VeilofDeath.Core.GameStates
     {
         Start,
         Credits,
-        Winnerlist,
+        Settings,
         Exit,
 
         Count
@@ -59,13 +59,13 @@ namespace VeilofDeath.Core.GameStates
             Buttons = new Texture2D[(int)Button.Count];
             Buttons[(int)Button.Start] = GameConstants.Content.Load<Texture2D>("Textures/StartButton");
             Buttons[(int)Button.Credits] = GameConstants.Content.Load<Texture2D>("Textures/CreditsB");
-            Buttons[(int)Button.Winnerlist] = GameConstants.Content.Load<Texture2D>("Textures/Winnerlist");
+            Buttons[(int)Button.Settings] = GameConstants.Content.Load<Texture2D>("Textures/Winnerlist");
             Buttons[(int)Button.Exit] = GameConstants.Content.Load<Texture2D>("Textures/ExitButton");
             //more buttons
             SelectedButtons = new Texture2D[(int)Button.Count];
             SelectedButtons[(int)Button.Start] = GameConstants.Content.Load<Texture2D>("Textures/StartButtonSelected");
             SelectedButtons[(int)Button.Credits] = GameConstants.Content.Load<Texture2D>("Textures/CreditsBS");
-            SelectedButtons[(int)Button.Winnerlist] = GameConstants.Content.Load<Texture2D>("Textures/WinnerListS");
+            SelectedButtons[(int)Button.Settings] = GameConstants.Content.Load<Texture2D>("Textures/WinnerListS");
             SelectedButtons[(int)Button.Exit] = GameConstants.Content.Load<Texture2D>("Textures/ExitButtonSelected");
 
             //Load other Textures, like Buttons
@@ -107,10 +107,16 @@ namespace VeilofDeath.Core.GameStates
                 {
                     case Button.Start:
                         newState = EState.Ingame;
+                        canLeave = true;
                         break;
 
                     case Button.Exit:
                         GameConstants.currentGame.Exit();
+                        break;
+
+                    case Button.Settings:
+                        newState = EState.Settings;
+                        canLeave = true;
                         break;
                         
 

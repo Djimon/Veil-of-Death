@@ -110,7 +110,7 @@ namespace VeilofDeath.Core.GameStates
         {
             newState = EState.none;
             currentKeyboardState = Keyboard.GetState();
-            oldKeyboardState = new KeyboardState();
+            oldKeyboardState = new KeyboardState();        
 
             GameConstants.levelDictionary = LevelContent.LoadListContent<Model>(GameConstants.Content, "Models/Level"+GameManager.Instance.Level);
             foreach (KeyValuePair<string, Model> SM in GameConstants.levelDictionary)

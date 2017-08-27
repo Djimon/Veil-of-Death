@@ -88,7 +88,7 @@ namespace VeilofDeath
         public static int iTrapNumber = 4;
         public static int iMaxLevel = 3;
         /// <summary>
-        /// Diificulty can be 1,3 or 5
+        /// Diificulty can be 1,2,3 or 4
         /// </summary>
         public static int iDifficulty = 1; 
 

@@ -16,6 +16,7 @@ namespace VeilofDeath.PanelStuff
         private SpriteFont Font;
         private Color textColor;
         private string text;
+        private float sizefactor;
         public bool isActive;
 
         
@@ -42,11 +43,12 @@ namespace VeilofDeath.PanelStuff
         /// <param name="font">Font for the Text</param>
         /// <param name="t">Text that should be displayed</param>
         /// <param name="texColor">Color of the Text</param>
-        public void AddText(SpriteFont font, string t,Color texColor)
+        public void AddText(SpriteFont font, string t,Color texColor, float scale = 1.7f)
         {
             Font = font;
             textColor = texColor;
             text = t;
+            sizefactor = scale;
         }
 
         /// <summary>
