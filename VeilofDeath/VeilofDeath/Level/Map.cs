@@ -167,8 +167,10 @@ namespace VeilofDeath
         }
 
         /// <summary>
-        /// Helper to draw each tile of the map
+        /// Draws the map, within a given draw Range
         /// </summary>
+        /// <param name="min">minimal draw position (should be after the player)</param>
+        /// <param name="max">maximal draw positon (shouldn't be larger then camera farplane)</param>
         public void Draw(float min, float max)
         {
             for (int i = 0; i < map.GetLength(0); i++)

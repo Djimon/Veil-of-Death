@@ -35,7 +35,7 @@ namespace VeilofDeath
             //TODO: aus datei laden (if Datei leer, then level = 1)
             this.Level = 0;
             Score = new int[GameConstants.iMaxLevel];
-            fVeilDistance = 100;
+            fVeilDistance = 100; //TODO: abhängig von GameConstants.iDifficulty machen
             iPhase = 0;
         }
 
@@ -47,6 +47,16 @@ namespace VeilofDeath
         }
 
         /********* Session Data **********/
+
+        /// <summary>
+        /// Actual Level
+        /// <para> 0 - tutorial</para>
+        /// <para> 1 - Spike-Trap (Castle)</para>
+        /// <para> 2 - Spike + Slow (Castle)</para>
+        /// <para> 3 - + Sword (Dessert)</para>
+        /// <para> 4 - + Spikeroll (Dessert)</para>
+        /// <para>99 - Hidden Bonus-Level</para>
+        /// </summary>
         public int Level { get; private set; }
         private int[] Score { get; set; }
         public int score {
@@ -55,7 +65,7 @@ namespace VeilofDeath
                 return Score[Level];
             } private set
             { } }
-        public int Difficulty { get; set; }
+
         public Vector3 StartPos { get; set; }
         public Vector3 ZielPos { get; set; }
         public float BestTime { get; internal set; }
@@ -79,6 +89,9 @@ namespace VeilofDeath
         public void ResetScore()
         {
             Score[Level] = 0;
+            iCoinScore[Level] = 0;
+            iTimeBonus[Level] = 0;
+            fStageCleared[Level] = 0;
         }
         public void LevelUp()
         {
@@ -92,7 +105,11 @@ namespace VeilofDeath
         public void EnterNextPhase()
         {
             iPhase = Math.Min(1+iPhase, 4);
-            Console.WriteLine("Entered Phase "+iPhase);
+
+            //LARS: Play Sound: nächste Phase des Schleiers ( z.B. Dröhnen, wie bei Inception?)
+
+            if (GameConstants.isDebugMode)
+                Console.WriteLine("Entered Phase "+iPhase);
         }
 
         public void SetVeilDistance(float x)

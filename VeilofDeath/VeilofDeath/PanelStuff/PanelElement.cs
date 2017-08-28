@@ -18,6 +18,8 @@ namespace VeilofDeath.PanelStuff
         private string text;
         public bool isActive;
 
+        
+
         private List<Texture2D> additionalTex;
 
         //public bool isAnimated { get; private set; }
@@ -72,7 +74,7 @@ namespace VeilofDeath.PanelStuff
                 }
 
             if (Font != null)
-                spriteBatch.DrawString(Font, text, Position, textColor, 0, new Vector2(0.5f,0.5f), 1.7f,SpriteEffects.None, 1);     
+                spriteBatch.DrawString(Font, text, Position, textColor, 0, new Vector2(1f,1f), 1.7f, SpriteEffects.None, 1);     
         }
 
     }

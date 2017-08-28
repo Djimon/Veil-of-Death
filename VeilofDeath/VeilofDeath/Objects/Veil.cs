@@ -13,6 +13,7 @@ namespace VeilofDeath.Objects
     {
         public Vector3 Position { get; private set; }        
         public float fSpeed;
+        public bool hasReachedPlayer = false;
 
         private Player Victim;
         private Vector3 Velocity;
@@ -61,10 +62,17 @@ namespace VeilofDeath.Objects
             Position += Velocity;            
             fDistance = Victim.Position.Y - Position.Y;
 
+            if (fDistance <= 0)
+            {
+                hasReachedPlayer = true;
+                fDistance = 0;
+            }
+                
+
             //Console.WriteLine("V:" + Position.Y + "  P:" + Victim.Position.Y + " = " + fDistance);
 
 
-            if (time.TotalGameTime.Seconds % 2 == 0)
+            if (time.TotalGameTime.Seconds % 2 == 0 && GameConstants.isDebugMode)
                 Console.WriteLine(GameManager.Instance.iPhase);
 
             HandleCurse();

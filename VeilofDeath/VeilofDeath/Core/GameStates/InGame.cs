@@ -12,6 +12,8 @@ using Animations;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 using VeilofDeath.SpecialFX;
+using VeilofDeath.PanelStuff;
+
 namespace VeilofDeath.Core.GameStates
 {
     class InGame : IGameState
@@ -64,7 +66,7 @@ namespace VeilofDeath.Core.GameStates
 
         Spawner objectSpawner;
         private float timesincelastupdate;
-        AParticleEnginge ParticleTest;
+        AParticleEnginge VeilParticles;
 
         private Vector2 playerTexPos = new Vector2(0, 0);
         private Vector2 VeilTexPos = new Vector2(0, 0);
@@ -78,6 +80,21 @@ namespace VeilofDeath.Core.GameStates
         private bool isJumpCalculated;
         private float t0;
         private bool isSetTime = false;
+        private bool isStarted = false;
+
+        Panel MainPanel;
+        PanelElement peRdy, // Read?
+                        pePressJump, // press jump to start
+                        pePressJump2, // press jump anim state 2
+                        ptRun, // description controls
+                        peRunA, // Controlls animationstate 1
+                        peRunB, // COntrools animationstate 2
+                        ptJump, // description jump
+                        peJumpA, // Jump anim state 1
+                        peJumpB; // jump anim state 2
+                        
+
+
         public InGame(int Level)
         {
             spriteBatch = GameConstants.SpriteBatch;
@@ -87,7 +104,7 @@ namespace VeilofDeath.Core.GameStates
             LoadContent();
         }
 
-        #region initialize, content methods
+        #region initialize, load content
 
         public void Initialize()
         {
@@ -95,7 +112,7 @@ namespace VeilofDeath.Core.GameStates
             currentKeyboardState = Keyboard.GetState();
             oldKeyboardState = new KeyboardState();
 
-            GameConstants.levelDictionary = LevelContent.LoadListContent<Model>(GameConstants.Content, "Models/Level1");
+            GameConstants.levelDictionary = LevelContent.LoadListContent<Model>(GameConstants.Content, "Models/Level"+GameManager.Instance.Level);
             foreach (KeyValuePair<string, Model> SM in GameConstants.levelDictionary)
             {
                 if (GameConstants.isDebugMode)
@@ -120,6 +137,18 @@ namespace VeilofDeath.Core.GameStates
 
         public void LoadContent()
         {
+            LoadMapAndPlayer();
+
+            LoadParticleSystem();
+
+            LoadSoundMusic();            
+
+            LoadPanel();
+
+        }
+
+        private void LoadMapAndPlayer()
+        {
             //load Model with Animation and Textures ( UV-Mapping)
             m_player = new AnimatedModel(GameConstants.Content, "AnimatedModels/Playermodell", "AnimatedModels/MAINTEXTURE");
 
@@ -136,7 +165,6 @@ namespace VeilofDeath.Core.GameStates
             objectSpawner = new Spawner();
             start = GameManager.Instance.StartPos;
 
-
             objectSpawner.PlaceCoins(testmap.map);
             MaxCoins = GameManager.Instance.getCoinList().Count;
             Player = new Player(m_player);
@@ -151,29 +179,63 @@ namespace VeilofDeath.Core.GameStates
             m_player.LoadAnimationParts("AnimationParts/Animations.txt");
             //searching for the Animation you are looking
             m_player.BlendToAnimationPart("Run");
+        }
 
-
-            
-
+        private void LoadParticleSystem()
+        {
             //particleSystems
             List<Texture2D> texList = new List<Texture2D>();
             texList.Add(GameConstants.Content.Load<Texture2D>("Particles/bubble"));
             //texList.Add(GameConstants.Content.Load<Texture2D>("Particles/cloud1"));
             //texList.Add(GameConstants.Content.Load<Texture2D>("Particles/cloud2"));
             //texList.Add(GameConstants.Content.Load<Texture2D>("Particles/cloud3"));
-            ParticleTest = new VeilOfDath(texList, 10, 1f, new Vector2(0.5f, 0.5f));
+            VeilParticles = new VeilOfDath(texList, 10, 1f, new Vector2(0.5f, 0.5f));
 
-			//sounds and music
+            VeilofDeath = new Veil(GameConstants.iDifficulty, Player, VeilParticles);
+        }
+
+        private void LoadSoundMusic()
+        {
             GameConstants.CoinCollect = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/PickupCoin");
             GameConstants.Landing = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/LandAfterJump");
             GameConstants.CharactersJump = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/JumpHupHuman");
-           
+
             music = GameConstants.Content.Load<Song>("Music/Background");
             MediaPlayer.Play(music);
-            VeilofDeath = new Veil(GameConstants.iDifficulty, Player, ParticleTest);
 
             MediaPlayer.Volume = 0.7f;
             SoundEffect.MasterVolume = 1f;
+        }
+
+        private void LoadPanel()
+        {
+            MainPanel = new Panel(GameConstants.Content.Load<Texture2D>("Panels/panel"),
+                                    new Vector2(0.1f * GameConstants.WINDOWSIZE.X,
+                                                0.1f * GameConstants.WINDOWSIZE.Y));
+
+            peRdy = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/Rdy"), true);
+            pePressJump = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/pressA"), true);
+            pePressJump2 = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/pressB"), false);
+            ptJump = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), true);
+            ptJump.AddText(GameConstants.lucidaConsole, "press space \n to Jump", Microsoft.Xna.Framework.Color.White);
+            peJumpA = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/JumpA"), true);
+            peJumpB = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/JumpB"), false);
+            ptRun = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), true);
+            ptRun.AddText(GameConstants.lucidaConsole, "switch lane \n with arrow buttons", Microsoft.Xna.Framework.Color.White);
+            peRunA = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/RunA"), false);
+            peRunB = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/RunB"), true);
+
+
+            //TODO: FIX THAT ptRUN and ptJump werent shown
+            MainPanel.Add( peRdy, new Vector2(0.3f,0.44f));
+            MainPanel.Add( pePressJump, new Vector2(0.3f, 0.62f));
+            MainPanel.Add( pePressJump2, new Vector2(0.3f, 0.62f));            
+            MainPanel.Add(peRunA, new Vector2(0.6f, 0.2f));
+            MainPanel.Add(peRunB, new Vector2(0.6f, 0.2f));
+            MainPanel.Add(ptRun, new Vector2(0.6f, 0.1f));            
+            MainPanel.Add(peJumpA, new Vector2(0.15f, 0.2f));
+            MainPanel.Add(peJumpB, new Vector2(0.15f, 0.2f));
+            MainPanel.Add(ptJump, new Vector2(0.15f, 0.1f));
         }
 
         /// <summary>
@@ -206,8 +268,51 @@ namespace VeilofDeath.Core.GameStates
 
         public void Update(GameTime time)
         {
-            GameConstants.rotation += GameConstants.rotationSpeed;
+            if (isStarted)
+                UpdateRun(time);
+            else
+                UpdateWarmUp(time);
 
+        }
+
+        private void UpdateWarmUp(GameTime time)
+        {
+            // See the map, but with Overblend of the Startscreen (with Blinking Controls)
+
+            HandlePanelStates(time);
+
+            // If Player Presse Enter, count down with 3 big Numbers
+            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            {
+                //TODO: 3,2,1 GO!
+
+                isStarted = true;
+            }              
+            // Go to isStarted = true and enter runing time
+
+        }
+
+        private void HandlePanelStates(GameTime time)
+        {
+            if (time.TotalGameTime.Milliseconds % 500 == 0)
+            {
+                peJumpA.isActive = !peJumpA.isActive;
+                peJumpB.isActive = !peJumpB.isActive;
+                peRunA.isActive = !peRunA.isActive;
+                peRunB.isActive = !peRunB.isActive;
+            }
+
+            if (time.TotalGameTime.Milliseconds % 200 == 0)
+            {
+                pePressJump.isActive = !pePressJump.isActive;
+                pePressJump2.isActive = !pePressJump2.isActive;
+            }
+        }
+
+        private void UpdateRun(GameTime time)
+        {
+            GameConstants.rotation += GameConstants.rotationSpeed;
+            
             if (!isSetTime)
             {
                 t0 = time.TotalGameTime.Seconds * 1000 + time.TotalGameTime.Milliseconds;
@@ -220,16 +325,57 @@ namespace VeilofDeath.Core.GameStates
             oldKeyboardState = currentKeyboardState;
             fTimeDelta = (float)time.ElapsedGameTime.Milliseconds;
 
+            UpdateHeartBeat(time);
+
             UpdatePlayer(time);
 
             //update Animation
             m_player.Update(time);
 
-            VeilofDeath.Update(time);
-
-            //GameConstants.MainCam.Update(time);
             UpdateScore();
 
+            UpdateFinishLine(time);
+
+            VeilofDeath.Update(time);
+
+            if (VeilofDeath.hasReachedPlayer)
+            {
+                newState = EState.GameOver;
+            }
+        }
+
+        /// <summary>
+        ///  Allways plyas one heartbeat, depending on the actual phase, frequent and volume are higher
+        /// </summary>
+        /// <param name="time">Gametime</param>
+        private static void UpdateHeartBeat(GameTime time)
+        {
+            switch (GameManager.Instance.iPhase)
+            {
+                
+                case 1:
+                    if (time.TotalGameTime.Milliseconds % 1000 == 0)
+                        ;//LARS: Play heartbeat @Lautstärke 1
+                    break;
+                case 2:
+                    if (time.TotalGameTime.Milliseconds % 1000 == 0)
+                        ;//LARS: Play heartbeat @Lautstärke 2
+                    break;
+                case 3:
+                    if (time.TotalGameTime.Milliseconds % 500 == 0)
+                        ;//LARS: Play heartbeat @Lautstärke 3
+                    break;
+                case 4:
+                    if (time.TotalGameTime.Milliseconds % 200 == 0)
+                        ;//LARS: Play heartbeat @Lautstärke 4
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void UpdateFinishLine(GameTime time)
+        {
             if (reachedFinish())
             {
                 float temp = time.TotalGameTime.Minutes * 60 * 1000 + time.TotalGameTime.Seconds * 1000 + time.TotalGameTime.Milliseconds;
@@ -239,17 +385,17 @@ namespace VeilofDeath.Core.GameStates
                 {
                     //TODO: Feedback "+1000" über Spieler
                     GameManager.Instance.iTimeBonus[GameManager.Instance.Level] = 1000;
-                }                    
+                }
                 else if (fTimeRecord > 0.75f)
                 {
                     //TODO: Feedback "+500" über Spieler
                     GameManager.Instance.iTimeBonus[GameManager.Instance.Level] = 500;
-                }                
+                }
                 else if (fTimeRecord > 0.5f)
                 {
                     //TODO: Feedback "+250" über Spieler
                     GameManager.Instance.iTimeBonus[GameManager.Instance.Level] = 250;
-                }                
+                }
                 else
                     GameManager.Instance.iTimeBonus[GameManager.Instance.Level] = 0;
 
@@ -259,12 +405,10 @@ namespace VeilofDeath.Core.GameStates
                 GameManager.Instance.SetVeilDistance(VeilofDeath.fDistance);
                 GameManager.Instance.fStageCleared[GameManager.Instance.Level] = (float)GameManager.Instance.iCoinScore[GameManager.Instance.Level] / (float)MaxCoins;
                 canLeave = true;
-                testmap = null;                
+                testmap = null;
                 newState = EState.Score;
-                
 
-                //WICHTIG: damit sich die Map etc. löscht
-                
+                //WICHTIG: damit sich die Map etc. löscht          
             }
 
             //ParticleTest.Update(time);
@@ -302,11 +446,7 @@ namespace VeilofDeath.Core.GameStates
             } /*else (if (Player.isDead))*/
         }
 
-        //private void UpdateScore()
-        //{
-        //    score = (int) (fTimeDelta * 10);
-        //    GameManager.Instance.UpdateScore(score);
-        //}
+
 
         #endregion
 
@@ -316,8 +456,8 @@ namespace VeilofDeath.Core.GameStates
         {
             //float t0 = time.ElapsedGameTime.Milliseconds;
             int GridY = (int)(Player.Position.Y - (GameConstants.iBlockSize / 2)) / GameConstants.iBlockSize;
-            if (testmap != null)
-                testmap.Draw(GridY - 5, GridY + GameConstants.fFarClipPlane);
+            if (testmap != null) 
+                testmap.Draw(GridY -6, GridY -7 + GameConstants.fFarClipPlane);
             //Console.WriteLine("Drawtime: "+ (time.ElapsedGameTime.Milliseconds - t0)+ " seconds");
 
             Player.Draw(time);
@@ -325,6 +465,19 @@ namespace VeilofDeath.Core.GameStates
             DrawObject();
 
             DrawGUI();
+
+            if (!isStarted)
+                DrawReadyPanel();
+        }
+
+        private void DrawReadyPanel()
+        {
+            spriteBatch.Begin(depthStencilState: GameConstants.Graphics.GraphicsDevice.DepthStencilState,
+                rasterizerState: GameConstants.Graphics.GraphicsDevice.RasterizerState);
+
+            MainPanel.Draw(spriteBatch);
+
+            spriteBatch.End();
         }
 
         private void DrawObject()
