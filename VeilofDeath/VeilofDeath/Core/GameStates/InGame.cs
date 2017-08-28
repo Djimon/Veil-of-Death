@@ -200,8 +200,8 @@ namespace VeilofDeath.Core.GameStates
             music = GameConstants.Content.Load<Song>("Music/Background");
             MediaPlayer.Play(music);
 
-            MediaPlayer.Volume = 0.7f;
-            SoundEffect.MasterVolume = 1f;
+            MediaPlayer.Volume = GameConstants.Volume *2/3;
+            SoundEffect.MasterVolume = GameConstants.Volume;
         }
 
         private void LoadPanel()
@@ -281,7 +281,7 @@ namespace VeilofDeath.Core.GameStates
             // If Player Presse Enter, count down with 3 big Numbers
             if (Keyboard.GetState().IsKeyDown(Keys.Space))
             {
-                //TODO: 3,2,1 GO!
+                //TODO: 3,2,1 GO! single Emitting ParticelEngine -> on Player for multiple things and Ingame-Fedback
 
                 isStarted = true;
             }              
@@ -379,7 +379,7 @@ namespace VeilofDeath.Core.GameStates
 
                 if (fTimeRecord > 0.93f)
                 {
-                    //TODO: Feedback "+1000" über Spieler
+                    //TODO: Feedback "+1000" über Spieler (Player-particleEnginge)
                     GameManager.Instance.iTimeBonus[GameManager.Instance.Level] = 1000;
                 }
                 else if (fTimeRecord > 0.75f)
@@ -540,8 +540,6 @@ namespace VeilofDeath.Core.GameStates
             // GUI
             spriteBatch.Draw(txLine, new Vector2(1, 1), Microsoft.Xna.Framework.Color.White);
             spriteBatch.Draw(txPlayer, playerTexPos, Microsoft.Xna.Framework.Color.White);
-
-            //TODO: Texturshader -> Merging the different Textures in txVeil[]
             spriteBatch.Draw(txVeil[0], VeilTexPos, Microsoft.Xna.Framework.Color.White);
 
 

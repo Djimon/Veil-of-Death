@@ -14,8 +14,9 @@ namespace VeilofDeath.Core.GameStates
     enum Button
     {
         Start,
-        Credits,
         Settings,
+        Statistics,
+        Credits,
         Exit,
 
         Count
@@ -24,6 +25,7 @@ namespace VeilofDeath.Core.GameStates
     {
         SpriteBatch spriteBatch;
         bool ispressed = false;
+        private bool isEnterDown = true;
 
         private Texture2D background;
         private Texture2D bubble;
@@ -55,21 +57,32 @@ namespace VeilofDeath.Core.GameStates
 
         public void LoadContent()
         {
+            //TODO: Rearragne the TitleMenu
+            /*
+             -> Start Game
+             -> Settings
+             -> Statistics
+             -> Credits
+             -> Quit
+             */
+
             background = GameConstants.Content.Load<Texture2D>("titleBG");
             Buttons = new Texture2D[(int)Button.Count];
             Buttons[(int)Button.Start] = GameConstants.Content.Load<Texture2D>("Textures/StartButton");
             Buttons[(int)Button.Credits] = GameConstants.Content.Load<Texture2D>("Textures/CreditsB");
             Buttons[(int)Button.Settings] = GameConstants.Content.Load<Texture2D>("Textures/Winnerlist");
             Buttons[(int)Button.Exit] = GameConstants.Content.Load<Texture2D>("Textures/ExitButton");
+            //Buttons[(int)Button.Statistics] = GameConstants.Content.Load<Texture2D>("Textures/StatisticButton");
             //more buttons
             SelectedButtons = new Texture2D[(int)Button.Count];
             SelectedButtons[(int)Button.Start] = GameConstants.Content.Load<Texture2D>("Textures/StartButtonSelected");
             SelectedButtons[(int)Button.Credits] = GameConstants.Content.Load<Texture2D>("Textures/CreditsBS");
             SelectedButtons[(int)Button.Settings] = GameConstants.Content.Load<Texture2D>("Textures/WinnerListS");
             SelectedButtons[(int)Button.Exit] = GameConstants.Content.Load<Texture2D>("Textures/ExitButtonSelected");
+            //SelectedButtons[(int)Button.Statistics] = GameConstants.Content.Load<Texture2D>("Textures/StatisticButtonSelected");
 
             //Load other Textures, like Buttons
-            
+
         }
 
         public void UnloadContent()
@@ -78,9 +91,7 @@ namespace VeilofDeath.Core.GameStates
         }
 
         public void Update(GameTime time)
-        {
-            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
-                newState = EState.Ingame;
+        {             
 
             if (!ispressed && Keyboard.GetState().IsKeyDown(Keys.Down))
             {
@@ -99,8 +110,9 @@ namespace VeilofDeath.Core.GameStates
             if (Keyboard.GetState().IsKeyUp(Keys.Down) && Keyboard.GetState().IsKeyUp(Keys.Up)) 
                 ispressed = false;
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+            if (!isEnterDown && Keyboard.GetState().IsKeyDown(Keys.Enter))
             {
+                isEnterDown = true;
                 //LARS: Play sound: Menüpunkt bestätigen
 
                 switch (m_selected)
@@ -109,24 +121,30 @@ namespace VeilofDeath.Core.GameStates
                         newState = EState.Ingame;
                         canLeave = true;
                         break;
-
                     case Button.Exit:
                         GameConstants.currentGame.Exit();
                         break;
-
                     case Button.Settings:
                         newState = EState.Settings;
                         canLeave = true;
                         break;
-                        
-
+                    case Button.Statistics:
+                        newState = EState.Statistics;
+                        canLeave = true;
+                        break;
+                    case Button.Credits:
+                        newState = EState.Credits;
+                        canLeave = true;
+                        break;
                     default:
                         newState = EState.none;
                         break;
-                }
-
-                canLeave = true;
+                }             
             }
+
+            if (Keyboard.GetState().IsKeyUp(Keys.Enter))
+                isEnterDown = false;
+                
 
 
             //ParticleTest.Update(time);

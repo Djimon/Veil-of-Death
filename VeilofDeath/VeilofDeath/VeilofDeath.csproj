@@ -54,6 +54,7 @@
     <Compile Include="Core\GameStates\MainMenu.cs" />
     <Compile Include="Core\GameStates\Score.cs" />
     <Compile Include="Core\GameStates\Settings.cs" />
+    <Compile Include="Core\GameStates\Statistics.cs" />
     <Compile Include="Core\Spawner.cs" />
     <Compile Include="Core\TrapHandler.cs" />
     <Compile Include="Level\Block.cs" />

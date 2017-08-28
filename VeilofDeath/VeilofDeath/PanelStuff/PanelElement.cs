@@ -60,6 +60,16 @@ namespace VeilofDeath.PanelStuff
             additionalTex.Add(tex);
         }
 
+        public void UpdatePositionY(float relPosY)
+        {
+            Position = new Vector2(Position.X , relPosY * Parent.Y + Parent.Position.Y);
+        }
+
+        public void UpdatePositionX(float relPosX)
+        {
+            Position = new Vector2( relPosX * Parent.X + Parent.Position.X, Position.Y);
+        }
+
         public void Update(GameTime time)
         {
             // Make Updates

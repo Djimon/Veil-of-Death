@@ -18,11 +18,12 @@ namespace VeilofDeath.PanelStuff
         
         // BASE PANEL
         public Vector2 Position;
-        private float X, Y;
+        public float X { get; private set; }
+        public float Y { get; private set; }
         private Texture2D TX;
 
         //CHILD PANNELS
-        private List<PanelElement> children;
+        public List<PanelElement> children;
 
         /// <summary>
         /// Is a 2D structure which can hold many Panel Elements

@@ -30,27 +30,28 @@ namespace VeilofDeath.Core.GameStates
     {
         Texture2D background;
         private SpriteBatch spriteBatch;
+        private bool enterMenu = false;
 
-        Panel DifficultyPanel,VolumePanel,ControlsPanel;
-        PanelElement ptHeader,
-                        ptEasy,
-                        ptMedium,
-                        ptHard,
-                        ptExtreme,
-                        ptEasy2,
-                        ptMedium2,
-                        ptHard2,
-                        ptExtreme2,
-                        ptWarning,
-                        ptConfirm,
-                        peEnter,
-                        ptBack,
-                        peEsc;
+        private float volumeterPos;
+
+        Panel DifficultyPanel,VolumePanel,ControlsPanel,MainPanel;
+        //Panelelements for MainPanel;
+        PanelElement ptSettings, ptDiff, ptSound, ptCon, ptDiff2, ptSound2, ptCon2, ptMBack, peCursor;
+        //PanelElements for all Panels
+        PanelElement ptConfirm, peEnter, ptBack, peEsc;
+        // PanelElements for DifficultyPanel
+        PanelElement ptHeader, ptEasy, ptMedium, ptHard, ptExtreme,ptEasy2, ptMedium2, ptHard2, ptExtreme2, ptWarning;
+        //PanelElements for VolumePanel
+        PanelElement ptHeader2, ptVolume, ptPlus,ptMinus, pePlusMinus, peLine, peMarker;
+        //PanelElements for ControlsPanel
+        PanelElement ptHeader3, ptSpace, peSpace, ptShift, peShift, ptLR, peLR;
+                     
 
         SettingState State;
         Difficulty DiffMode;
 
         private bool ispressed = false;
+        private bool isEnterDown = false;
 
         public bool canLeave { get; set; }
 
@@ -68,6 +69,18 @@ namespace VeilofDeath.Core.GameStates
             newState = EState.none;
             State = SettingState.Difficulty;
             DiffMode = (Difficulty) Math.Max(0,GameConstants.iDifficulty - 1);
+            volumeterPos = GetVolPos(GameConstants.Volume);
+            enterMenu = false;
+        }
+
+        private float GetVolPos(float v)
+        {
+            return (v * 0.72f) + 0.1f;
+        }
+
+        private float GetVolReal(float x)
+        {
+            return (x - 0.1f) / 0.72f;
         }
 
         public void LoadContent()
@@ -82,15 +95,37 @@ namespace VeilofDeath.Core.GameStates
 
         private void LoadSubmenu()
         {
-            //TODO: Continue here
-            /*
-             -> Difficulty
-             -> Volume
-             -> Controls
+            MainPanel = new Panel(GameConstants.Content.Load<Texture2D>("Panels/menu/MenuBG"),new Vector2(0,0));
+            // ptDiff, ptCol, ptCon, peCursor;
 
-             -> back
-                          
-             */
+            ptSettings = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), true);
+            ptSettings.AddText(GameConstants.lucidaConsole, "SETTINGS", Color.White, 1f);
+            ptDiff = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), true);
+            ptDiff.AddText(GameConstants.lucidaConsole, "Difficulty", Color.White, 2.2f);
+            ptSound = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), true);
+            ptSound.AddText(GameConstants.lucidaConsole, "Sound", Color.White, 2.2f);
+            ptCon = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), true);
+            ptCon.AddText(GameConstants.lucidaConsole, "Controls", Color.White, 2.2f);
+            ptMBack = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), true);
+            ptMBack.AddText(GameConstants.lucidaConsole, "Back", Color.White);
+            ptDiff2 = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), false);
+            ptDiff2.AddText(GameConstants.lucidaConsole, "Difficulty", Color.Red, 2.2f);
+            ptSound2 = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), false);
+            ptSound2.AddText(GameConstants.lucidaConsole, "Sound", Color.Red, 2.2f);
+            ptCon2 = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), false);
+            ptCon2.AddText(GameConstants.lucidaConsole, "Controls", Color.Red, 2.2f);
+            peCursor = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/menu/cursor"), true);
+
+            MainPanel.Add(ptSettings, new Vector2(0.05f, 0.05f));
+            MainPanel.Add(ptDiff, new Vector2(0.1f, 0.3f));
+            MainPanel.Add(ptSound, new Vector2(0.1f, 0.45f));
+            MainPanel.Add(ptCon, new Vector2(0.1f, 0.6f));
+            MainPanel.Add(ptDiff2, new Vector2(0.1f, 0.3f));
+            MainPanel.Add(ptSound2, new Vector2(0.1f, 0.45f));
+            MainPanel.Add(ptCon2, new Vector2(0.1f, 0.6f));
+            MainPanel.Add(ptMBack, new Vector2(0.1f, 0.75f));
+            // Can be 0.31 ; 0,46; 0,61; 0,76
+            MainPanel.Add(peCursor, new Vector2(0.05f, 0.31f));
         }
 
         private void LoadVolumePanel()
@@ -98,6 +133,40 @@ namespace VeilofDeath.Core.GameStates
             VolumePanel = new Panel(GameConstants.Content.Load<Texture2D>("Panels/menu/panelMenu"),
                                                 new Vector2(0.35f * GameConstants.WINDOWSIZE.X,
                                                             0.1f * GameConstants.WINDOWSIZE.Y));
+
+            // ptHeader2, ptVolume, ptPlus, ptMinus, pePlus, peMinus, peLine, peMarker
+            ptHeader2 = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), true);
+            ptHeader2.AddText(GameConstants.lucidaConsole, "Sound", Color.White);
+            peEnter = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/menu/Enter"), true);
+            peEsc = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/menu/esc"), true);
+            ptBack = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), true); // Text: number of Coins
+            ptBack.AddText(GameConstants.lucidaConsole, "Back", Color.White);
+            ptConfirm = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), true);
+            ptConfirm.AddText(GameConstants.lucidaConsole, "Confirm", Color.White);
+
+            ptVolume = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), true);
+            ptVolume.AddText(GameConstants.lucidaConsole, "Volume", Color.White, 2.2f);
+            ptPlus = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), true);
+            ptPlus.AddText(GameConstants.lucidaConsole, "++", Color.White);
+            ptMinus = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), true);
+            ptMinus.AddText(GameConstants.lucidaConsole, "--", Color.White);
+            pePlusMinus = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/menu/leftright-small"), true);
+            peLine = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/menu/volume"), true);
+            peMarker = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/menu/volumeter"), true);
+
+            VolumePanel.Add(ptHeader2, new Vector2(0.1f, 0.1f));
+            VolumePanel.Add(peEnter, new Vector2(0.13f, 0.8f));
+            VolumePanel.Add(ptConfirm, new Vector2(0.25f, 0.8f));
+            VolumePanel.Add(peEsc, new Vector2(0.7f, 0.8f));
+            VolumePanel.Add(ptBack, new Vector2(0.82f, 0.8f));
+            VolumePanel.Add(ptVolume, new Vector2(0.42f, 0.2f));
+            VolumePanel.Add(ptPlus, new Vector2(0.55f, 0.33f));
+            VolumePanel.Add(ptMinus, new Vector2(0.4f, 0.33f));
+            VolumePanel.Add(pePlusMinus, new Vector2(0.4f, 0.38f));
+            VolumePanel.Add(peLine, new Vector2(0.1f, 0.55f));
+            // X in Range (0.1 - 0.82)
+            VolumePanel.Add(peMarker, new Vector2(0.1f, 0.55f));
+
         }
 
         private void LoadControlsPanel()
@@ -105,6 +174,12 @@ namespace VeilofDeath.Core.GameStates
             ControlsPanel = new Panel(GameConstants.Content.Load<Texture2D>("Panels/menu/panelMenu"),
                                                 new Vector2(0.35f * GameConstants.WINDOWSIZE.X,
                                                             0.1f * GameConstants.WINDOWSIZE.Y));
+
+            ptHeader3 = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/menu/controlscomplete"),true);
+            //TODO: mit den einzelnen Elementen umsetzen, hier aus Faulheit ein großes .png für die Controls
+
+
+            ControlsPanel.Add(ptHeader3, new Vector2(0.1f, 0.1f));
         }
 
         private void LoadDifficultyPanel()
@@ -115,29 +190,30 @@ namespace VeilofDeath.Core.GameStates
 
 
             ptHeader = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), true);
-            ptHeader.AddText(GameConstants.lucidaConsole, "Back", Color.White);
+            ptHeader.AddText(GameConstants.lucidaConsole, "Difficulty", Color.White);
             peEnter = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/menu/Enter"), true);
             peEsc = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/menu/esc"), true);
             ptBack = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), true); // Text: number of Coins
             ptBack.AddText(GameConstants.lucidaConsole, "Back", Color.White);
             ptConfirm = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), true);
-            ptConfirm.AddText(GameConstants.lucidaConsole, "Back", Color.White);
-            ptEasy = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), false);
-            ptEasy.AddText(GameConstants.lucidaConsole, "Back", Color.White, 2.2f);
-            ptExtreme = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), false);
-            ptExtreme.AddText(GameConstants.lucidaConsole, "Back", Color.Violet, 2.2f);
-            ptHard = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), false);
-            ptHard.AddText(GameConstants.lucidaConsole, "Back", Color.White, 2.2f);
-            ptMedium = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), false);
-            ptMedium.AddText(GameConstants.lucidaConsole, "Back", Color.White);
+            ptConfirm.AddText(GameConstants.lucidaConsole, "Confirm", Color.White);
+
+            ptEasy = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), true);
+            ptEasy.AddText(GameConstants.lucidaConsole, "easy", Color.White, 2.2f);
+            ptExtreme = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), true);
+            ptExtreme.AddText(GameConstants.lucidaConsole, "extreme", Color.Violet, 2.2f);
+            ptHard = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), true);
+            ptHard.AddText(GameConstants.lucidaConsole, "hard", Color.White, 2.2f);
+            ptMedium = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), true);
+            ptMedium.AddText(GameConstants.lucidaConsole, "medium", Color.White);
             ptEasy2 = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), false);
-            ptEasy2.AddText(GameConstants.lucidaConsole, "Back", Color.Red, 2.2f);
+            ptEasy2.AddText(GameConstants.lucidaConsole, "easy", Color.Red, 2.2f);
             ptExtreme2 = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), false);
-            ptExtreme2.AddText(GameConstants.lucidaConsole, "Back", Color.Red, 2.2f);
+            ptExtreme2.AddText(GameConstants.lucidaConsole, "extreme", Color.Red, 2.2f);
             ptHard2 = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), false);
-            ptHard2.AddText(GameConstants.lucidaConsole, "Back", Color.Red, 2.2f);
+            ptHard2.AddText(GameConstants.lucidaConsole, "hard", Color.Red, 2.2f);
             ptMedium2 = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/void"), false);
-            ptMedium2.AddText(GameConstants.lucidaConsole, "Back", Color.Red);
+            ptMedium2.AddText(GameConstants.lucidaConsole, "medium", Color.Red);
 
             DifficultyPanel.Add(ptHeader, new Vector2(0.1f, 0.1f));
             DifficultyPanel.Add(peEnter, new Vector2(0.13f, 0.8f));
@@ -161,63 +237,142 @@ namespace VeilofDeath.Core.GameStates
 
         public void Update(GameTime time)
         {
+
+            if (enterMenu)
+                switch (State)
+                {
+                    case SettingState.Difficulty:
+                        ptDiff2.isActive = true;
+                        ptCon2.isActive = false;
+                        ptSound2.isActive = false;
+                        UpdateDifficulty();
+                        break;
+                    case SettingState.Volume:
+                        ptDiff2.isActive = false;
+                        ptCon2.isActive = false;
+                        ptSound2.isActive = true;
+                        UpdateVolume();
+                        break;
+                    case SettingState.Controls:
+                        ptDiff2.isActive = false;
+                        ptCon2.isActive = true;
+                        ptSound2.isActive = false;
+                        UpdateControls();
+                        break;
+                    case SettingState.back:
+                        newState = EState.MainMenu;
+                        canLeave = true;
+                        break;
+                }
+            else
+            {
+                ptDiff2.isActive = false;
+                ptCon2.isActive = false;
+                ptSound2.isActive = false;
+
+                if (!ispressed && Keyboard.GetState().IsKeyDown(Keys.Down))
+                {
+                    State = (SettingState) Math.Min((int)State + 1, 3);
+                    UpdateCursor();
+                    ispressed = true;
+                }
+                if (!ispressed && Keyboard.GetState().IsKeyDown(Keys.Up))
+                {
+                    State = (SettingState) Math.Max((int)State - 1, 0);
+                    UpdateCursor();
+                    ispressed = true;
+                }
+
+                if (Keyboard.GetState().IsKeyUp(Keys.Down) && Keyboard.GetState().IsKeyUp(Keys.Up) && Keyboard.GetState().IsKeyUp(Keys.Escape))
+                    ispressed = false;
+
+                if (!isEnterDown && Keyboard.GetState().IsKeyDown(Keys.Enter))
+                {
+                    enterMenu = true;
+                    isEnterDown = true;
+                }
+
+                if (Keyboard.GetState().IsKeyUp(Keys.Enter))
+                    isEnterDown = false;
+
+                //if (!ispressed && Keyboard.GetState().IsKeyDown(Keys.Escape))
+                //{
+                //    ispressed = true;
+                //    newState = EState.MainMenu;
+                //    canLeave = true;
+                //}
+                    
+            }
+
+
+
+        }
+
+        private void UpdateCursor()
+        {
             switch (State)
             {
                 case SettingState.Difficulty:
-                    UpdateDifficulty();
+                    peCursor.UpdatePositionY( 0.31f);
                     break;
                 case SettingState.Volume:
-                    UpdateVolume();
+                    peCursor.UpdatePositionY( 0.46f);
                     break;
                 case SettingState.Controls:
-                    UpdateControls();
+                    peCursor.UpdatePositionY( 0.61f);
                     break;
                 case SettingState.back:
-                    newState = EState.MainMenu;
-                    canLeave = true;
+                    peCursor.UpdatePositionY( 0.75f);
                     break;
             }
-            //Pfeiltasten hoch runter
-
-
         }
 
         private void UpdateControls()
         {
-            throw new NotImplementedException();
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+
+                enterMenu = false;
+            }
         }
 
         private void UpdateVolume()
         {
-            throw new NotImplementedException();
+            peMarker.UpdatePositionX(volumeterPos);
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Left))
+            {
+                volumeterPos = Math.Max(0.1f, volumeterPos - 0.01f);
+                ispressed = true;
+                //LARS: Play sound: switch selected Button
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.Right))
+            {
+                volumeterPos = Math.Min(volumeterPos + 0.01f, 0.82f);
+                ispressed = true;
+                //LARS: Play sound: switch selected Button
+            }
+
+
+            if (!isEnterDown && Keyboard.GetState().IsKeyDown(Keys.Enter))
+            {
+                GameConstants.Volume = GetVolReal(volumeterPos);
+                isEnterDown = true;
+                enterMenu = false;
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                volumeterPos = GetVolPos(GameConstants.Volume);
+                enterMenu = false;
+            }
+
+            if (Keyboard.GetState().IsKeyUp(Keys.Enter))
+                isEnterDown = false;
         }
 
         private void UpdateDifficulty()
         {
-            if (!ispressed && Keyboard.GetState().IsKeyDown(Keys.Down))
-            {
-                DiffMode = (Difficulty) Math.Min((int)DiffMode+1, 3);
-                ispressed = true;
-            }
-            if (!ispressed && Keyboard.GetState().IsKeyDown(Keys.Up))
-            {
-                DiffMode = (Difficulty)Math.Max((int)DiffMode - 1, 0);
-                ispressed = true;
-            }
-
-            if (Keyboard.GetState().IsKeyUp(Keys.Down) && Keyboard.GetState().IsKeyUp(Keys.Down))
-                ispressed = false;
-
-            if (Keyboard.GetState().IsKeyUp(Keys.Enter))
-            {
-                GameConstants.iDifficulty =  Math.Min(1, (int)DiffMode + 1);
-            }
-            if (Keyboard.GetState().IsKeyUp(Keys.Escape))
-            {
-                DiffMode = (Difficulty) Math.Max(0, GameConstants.iDifficulty - 1);
-            }
-
-
             switch (DiffMode)
             {
                 case Difficulty.easy:
@@ -246,7 +401,46 @@ namespace VeilofDeath.Core.GameStates
                     break;
             }
 
+            if (!ispressed && Keyboard.GetState().IsKeyDown(Keys.Down))
+            {
+                DiffMode = (Difficulty) Math.Min((int)DiffMode + 1, 3);
+                ispressed = true;
+            }
+            if (!ispressed && Keyboard.GetState().IsKeyDown(Keys.Up))
+            {
+                DiffMode = (Difficulty) Math.Max((int)DiffMode - 1, 0);
+                ispressed = true;
+            }
 
+            if (Keyboard.GetState().IsKeyUp(Keys.Down) && Keyboard.GetState().IsKeyUp(Keys.Up))
+                ispressed = false;
+
+            if (!isEnterDown && Keyboard.GetState().IsKeyDown(Keys.Enter))
+            {
+                GameConstants.iDifficulty =  Math.Max(1, (int)DiffMode + 1);
+                if (GameConstants.isDebugMode)
+                    Console.WriteLine("Difficulty: "+ GameConstants.iDifficulty);
+                enterMenu = false;
+                isEnterDown = true;
+                ptEasy2.isActive = false;
+                ptMedium2.isActive = false;
+                ptHard2.isActive = false;
+                ptExtreme2.isActive = false;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                DiffMode = (Difficulty) Math.Max(0, GameConstants.iDifficulty - 1);
+                if (GameConstants.isDebugMode)
+                    Console.WriteLine("Difficulty: " + GameConstants.iDifficulty);
+                enterMenu = false;
+                ptEasy2.isActive = false;
+                ptMedium2.isActive = false;
+                ptHard2.isActive = false;
+                ptExtreme2.isActive = false;
+            }
+
+            if (Keyboard.GetState().IsKeyUp(Keys.Enter))
+                isEnterDown = false;
 
         }
 
@@ -256,22 +450,23 @@ namespace VeilofDeath.Core.GameStates
 
             spriteBatch.Draw(background, new Rectangle(0, 0, (int)GameConstants.WINDOWSIZE.X, (int)GameConstants.WINDOWSIZE.Y), Color.White);
 
+            MainPanel.Draw(spriteBatch);
+
             switch (State)
             {
                 case SettingState.Difficulty:
                     DifficultyPanel.Draw(spriteBatch);
                     break;
                 case SettingState.Volume:
-                    //VolumePanel.Draw(spriteBatch);
+                    VolumePanel.Draw(spriteBatch);
                     break;
                 case SettingState.Controls:
-                    //ControlsPanel.Draw(spriteBatch);
+                    ControlsPanel.Draw(spriteBatch);
                     break;
             }
 
             spriteBatch.End();
         }
-
 
     }
 }

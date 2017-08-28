@@ -95,20 +95,18 @@ namespace VeilofDeath
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed
-                || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                || Keyboard.GetState().IsKeyDown(Keys.F4))
                 Exit();
 
             currentState = gameStates.Peek();
 
             currentState.Update(gameTime);
-            GameConstants.MainCam.Update(gameTime);
-
-            if (currentState.canLeave)
-                gameStates.Pop();            
-            
+            GameConstants.MainCam.Update(gameTime);                           
 
             EState nextState = currentState.newState;
-            
+            if (currentState.canLeave)
+                gameStates.Pop();
+
             if (nextState != EState.none)
             {
                 currentState.newState = nextState;
@@ -156,7 +154,7 @@ namespace VeilofDeath
                 /*
             case EState.Settings: // Einstellungen
                 break;*/
-            case EState.Statistics: //Bedienung
+            case EState.Settings: //Bedienung
                     return new Settings();               
             case EState.Ingame: //new Level
                     GameManager.Instance.ResetLevel();

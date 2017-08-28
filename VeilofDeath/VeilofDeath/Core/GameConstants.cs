@@ -14,7 +14,7 @@ namespace VeilofDeath
         /// <summary>
         /// If on puts some outputs to the console
         /// </summary>
-        public static bool isDebugMode = false;
+        public static bool isDebugMode = true;
         //mandatory things        
         public static ContentManager Content;
 
@@ -110,6 +110,7 @@ namespace VeilofDeath
         public static SoundEffect Landing;
         public static SoundEffect CharactersJump;
 
+        public static float Volume = 0.75f; // 1 = 100%
 
         #endregion
     }
