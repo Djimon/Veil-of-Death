@@ -88,18 +88,6 @@
 /processorParam:DebugMode=Auto
 /build:Shader/basicAnimated.fx
 
-#begin Textures/MAINTEXTURE.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Textures/MAINTEXTURE.png
-
 #begin Models/coin.fbx
 /importer:FbxImporter
 /processor:ModelProcessor
@@ -514,9 +502,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Panels/void.png
-
-
-
 
 #begin Models/Level0/weg.fbx
 /importer:FbxImporter
@@ -1185,22 +1170,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Panels/RunB.png
-
-#begin Menu/BGmenu.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Menu/BGmenu.png
-
-#begin FX/Test.fx
-/importer:EffectImporter
-/processor:EffectProcessor
-/processorParam:DebugMode=Auto
-/build:FX/Test.fx
 

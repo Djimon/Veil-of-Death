@@ -153,7 +153,7 @@ namespace VeilofDeath.Core.GameStates
             m_player = new AnimatedModel(GameConstants.Content, "AnimatedModels/Playermodell", "AnimatedModels/MAINTEXTURE");
 
             //load Light-Shader for Ambient,Diffus,Specular Light
-            GameConstants.lightEffect = GameConstants.Content.Load<Effect>("FX/Test");
+            //GameConstants.lightEffect = GameConstants.Content.Load<Effect>("FX/Test");
 
             String bitmapname = "Content/Maps/" + iLevel.ToString() + ".bmp";
             Console.WriteLine("bitmap: " + bitmapname);
