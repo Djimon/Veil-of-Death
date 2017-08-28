@@ -104,6 +104,9 @@ namespace VeilofDeath
         public static float rotation = 0f;
         public static float rotationSpeed = 0.05f;
 
+        //variable for saving effect, which does ambient, diffuse, specular lightning
+        public static Effect lightEffect;
+
         #region Sound Variables
 
         public static SoundEffect CoinCollect;

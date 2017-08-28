@@ -121,7 +121,10 @@ namespace VeilofDeath.Core.GameStates
         public void LoadContent()
         {
             //load Model with Animation and Textures ( UV-Mapping)
-            m_player = new AnimatedModel(GameConstants.Content, "AnimatedModels/Playermodell", "Textures/MAINTEXTURE");
+            m_player = new AnimatedModel(GameConstants.Content, "AnimatedModels/Playermodell", "AnimatedModels/MAINTEXTURE");
+
+            //load Light-Shader for Ambient,Diffus,Specular Light
+            GameConstants.lightEffect = GameConstants.Content.Load<Effect>("FX/Test");
 
             String bitmapname = "Content/Maps/" + iLevel.ToString() + ".bmp";
             Console.WriteLine("bitmap: " + bitmapname);
@@ -139,7 +142,8 @@ namespace VeilofDeath.Core.GameStates
             Player = new Player(m_player);
             // x_playerModelTransforms = SetupEffectDefaults(m_player);
             Player.Spawn(new Vector3(start.X, start.Y, 0));
-            GameConstants.MainCam.SetTarget(Player);            PController = new PlayerController(Player);
+            GameConstants.MainCam.SetTarget(Player);
+            PController = new PlayerController(Player);
             TrapHandler = new TrapHandler();
 
 
@@ -218,6 +222,7 @@ namespace VeilofDeath.Core.GameStates
 
             UpdatePlayer(time);
 
+            //update Animation
             m_player.Update(time);
 
             VeilofDeath.Update(time);
@@ -262,8 +267,6 @@ namespace VeilofDeath.Core.GameStates
                 
             }
 
-            //update Animation
-            
             //ParticleTest.Update(time);
         }
 
