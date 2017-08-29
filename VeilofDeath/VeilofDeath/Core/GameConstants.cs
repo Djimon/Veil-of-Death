@@ -120,6 +120,9 @@ namespace VeilofDeath
         public static SoundEffect HeartBeat;
         public static SoundEffect Select;
         public static SoundEffect Switch;
+
+        public static SoundEffectInstance HBInstance;
+
         #endregion
     }
 

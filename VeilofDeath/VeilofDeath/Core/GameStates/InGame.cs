@@ -205,6 +205,10 @@ namespace VeilofDeath.Core.GameStates
             GameConstants.TotalWinner = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/TotalWinner");
             GameConstants.Loser = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Loser");
 
+            GameConstants.HBInstance = GameConstants.HeartBeat.CreateInstance();
+            GameConstants.HBInstance.Volume = 0f;
+            GameConstants.HBInstance.Play();
+
             music = GameConstants.Content.Load<Song>("Music/Background");
             MediaPlayer.Play(music);
 
@@ -355,27 +359,24 @@ namespace VeilofDeath.Core.GameStates
         /// <param name="time">Gametime</param>
         private static void UpdateHeartBeat(GameTime time)
         {
-            var instance = GameConstants.HeartBeat.CreateInstance();
-            instance.Volume = 0f;
-            instance.Play();
 
             switch (GameManager.Instance.iPhase)
             {
                 case 1:
                     if (time.TotalGameTime.Milliseconds % 1000 == 0)
-                        instance.Volume = 0.25f;//LARS: Play heartbeat @Lautstärke 1
+                        GameConstants.HBInstance.Volume = 0.25f;//LARS: Play heartbeat @Lautstärke 1
                     break;
                 case 2:
                     if (time.TotalGameTime.Milliseconds % 1000 == 0)
-                        instance.Volume = 0.5f;//LARS: Play heartbeat @Lautstärke 2
+                        GameConstants.HBInstance.Volume = 0.5f;//LARS: Play heartbeat @Lautstärke 2
                     break;
                 case 3:
                     if (time.TotalGameTime.Milliseconds % 500 == 0)
-                        instance.Volume = 0.75f;//LARS: Play heartbeat @Lautstärke 3
+                        GameConstants.HBInstance.Volume = 0.75f;//LARS: Play heartbeat @Lautstärke 3
                     break;
                 case 4:
                     if (time.TotalGameTime.Milliseconds % 200 == 0)
-                        instance.Volume = 1f;//LARS: Play heartbeat @Lautstärke 4
+                        GameConstants.HBInstance.Volume = 1f;//LARS: Play heartbeat @Lautstärke 4
                     break;
                 default:
                     break;
