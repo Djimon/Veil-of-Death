@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
@@ -69,7 +70,10 @@ namespace VeilofDeath.Core.GameStates
             SelectedButtons[(int)Button.Exit] = GameConstants.Content.Load<Texture2D>("Textures/ExitButtonSelected");
 
             //Load other Textures, like Buttons
-            
+
+            //Sounds for buttons
+            GameConstants.Select = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Select");
+            GameConstants.Switch = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Switch");
         }
 
         public void UnloadContent()
@@ -86,14 +90,14 @@ namespace VeilofDeath.Core.GameStates
             {
                 m_selected = (Button)(((int)m_selected + 1) % (int)Button.Count);
                 ispressed = true;
-                //LARS: Play sound: switch menu selection
+                GameConstants.Switch.Play();//LARS: Play sound: switch menu selection
             }
 
             if (!ispressed && Keyboard.GetState().IsKeyDown(Keys.Up))
             {
                 m_selected = (Button)(((int)m_selected +(int)Button.Count - 1) % (int)Button.Count);
                 ispressed = true;
-                //LARS: Play sound: switch menu selection
+                GameConstants.Switch.Play();//LARS: Play sound: switch menu selection
             }
 
             if (Keyboard.GetState().IsKeyUp(Keys.Down) && Keyboard.GetState().IsKeyUp(Keys.Up)) 
@@ -101,7 +105,7 @@ namespace VeilofDeath.Core.GameStates
 
             if (Keyboard.GetState().IsKeyDown(Keys.Enter))
             {
-                //LARS: Play sound: Menüpunkt bestätigen
+                GameConstants.Select.Play();//LARS: Play sound: Menüpunkt bestätigen
 
                 switch (m_selected)
                 {

@@ -199,6 +199,11 @@ namespace VeilofDeath.Core.GameStates
             GameConstants.CoinCollect = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/PickupCoin");
             GameConstants.Landing = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/LandAfterJump");
             GameConstants.CharactersJump = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/JumpHupHuman");
+            GameConstants.HeartBeat = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Heartbeat");
+            GameConstants.ChangePhase = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Roaring");
+            GameConstants.Winner = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Winner");
+            GameConstants.TotalWinner = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/TotalWinner");
+            GameConstants.Loser = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Loser");
 
             music = GameConstants.Content.Load<Song>("Music/Background");
             MediaPlayer.Play(music);
@@ -350,24 +355,27 @@ namespace VeilofDeath.Core.GameStates
         /// <param name="time">Gametime</param>
         private static void UpdateHeartBeat(GameTime time)
         {
+            var instance = GameConstants.HeartBeat.CreateInstance();
+            instance.Volume = 0f;
+            instance.Play();
+
             switch (GameManager.Instance.iPhase)
             {
-                
                 case 1:
                     if (time.TotalGameTime.Milliseconds % 1000 == 0)
-                        ;//LARS: Play heartbeat @Lautstärke 1
+                        instance.Volume = 0.25f;//LARS: Play heartbeat @Lautstärke 1
                     break;
                 case 2:
                     if (time.TotalGameTime.Milliseconds % 1000 == 0)
-                        ;//LARS: Play heartbeat @Lautstärke 2
+                        instance.Volume = 0.5f;//LARS: Play heartbeat @Lautstärke 2
                     break;
                 case 3:
                     if (time.TotalGameTime.Milliseconds % 500 == 0)
-                        ;//LARS: Play heartbeat @Lautstärke 3
+                        instance.Volume = 0.75f;//LARS: Play heartbeat @Lautstärke 3
                     break;
                 case 4:
                     if (time.TotalGameTime.Milliseconds % 200 == 0)
-                        ;//LARS: Play heartbeat @Lautstärke 4
+                        instance.Volume = 1f;//LARS: Play heartbeat @Lautstärke 4
                     break;
                 default:
                     break;

@@ -175,9 +175,9 @@ namespace VeilofDeath.Core.GameStates
             if (!isPlayed)
             {
                 if (mustRetry)
-                    ;//LARS: Play Sound: verloren
+                    GameConstants.Loser.Play();//LARS: Play Sound: verloren
                 else
-                    ;//LARS: play sound: gewonnen
+                    GameConstants.Winner.Play();//LARS: play sound: gewonnen
 
                 isPlayed = true;
             }
@@ -189,13 +189,13 @@ namespace VeilofDeath.Core.GameStates
                 {
                     m_selected = (btn)(((int)m_selected + 1) % (int)btn.Count);
                     ispressed = true;
-                    //LARS: Play sound: switch selected Button
+                    GameConstants.Switch.Play(); //LARS: Play sound: switch selected Button
                 }
                 if (!ispressed && Keyboard.GetState().IsKeyDown(Keys.Right))
                 {
                     m_selected = (btn)(((int)m_selected + 1) % (int)btn.Count);
                     ispressed = true;
-                    //LARS: Play sound: switch selected Button
+                    GameConstants.Switch.Play();//LARS: Play sound: switch selected Button
                 }
                 if (Keyboard.GetState().IsKeyUp(Keys.Left) && Keyboard.GetState().IsKeyUp(Keys.Right))
                     ispressed = false;
@@ -204,7 +204,7 @@ namespace VeilofDeath.Core.GameStates
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Enter))
                 {
-                    //LARS: play sound: Menüpunkt bestätigen
+                    GameConstants.Select.Play();//LARS: play sound: Menüpunkt bestätigen
 
                     switch (m_selected)
                     {
@@ -272,7 +272,7 @@ namespace VeilofDeath.Core.GameStates
 
         private void Retry()
         {
-            //LARS: play sound: Menüpunkt bestätigen
+            GameConstants.Select.Play();//LARS: play sound: Menüpunkt bestätigen
 
             GameConstants.MainCam.ResetCamera();
             GameManager.Instance.ResetScore();

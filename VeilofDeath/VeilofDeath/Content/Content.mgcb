@@ -1171,3 +1171,45 @@
 /processorParam:TextureFormat=Color
 /build:Panels/RunB.png
 
+#begin Music/SoundEffects/Heartbeat.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/SoundEffects/Heartbeat.mp3
+
+#begin Music/SoundEffects/Loser.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/SoundEffects/Loser.mp3
+
+#begin Music/SoundEffects/Roaring.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/SoundEffects/Roaring.mp3
+
+#begin Music/SoundEffects/Winner.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/SoundEffects/Winner.mp3
+
+#begin Music/SoundEffects/TotalWinner.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/SoundEffects/TotalWinner.mp3
+
+#begin Music/SoundEffects/Select.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/SoundEffects/Select.mp3
+
+#begin Music/SoundEffects/Switch.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/SoundEffects/Switch.mp3
+

@@ -88,7 +88,7 @@ namespace VeilofDeath.Core.GameStates
         {
             if (!isPlayed)
             {
-                ;//LARS: Play Sound: Gewonnen! Spiel durchgepsielt
+                GameConstants.TotalWinner.Play();//LARS: Play Sound: Gewonnen! Spiel durchgepsielt
 
                 isPlayed = true;
             }
@@ -108,7 +108,7 @@ namespace VeilofDeath.Core.GameStates
         {
             if (!isPlayed)
             {
-                ;//LARS: Play Sound: Sterbesound
+                GameConstants.Loser.Play();//LARS: Play Sound: Sterbesound
 
                 isPlayed = true;
             }

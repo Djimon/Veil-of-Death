@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using System.Collections;
+using System.Runtime.InteropServices;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 using VeilofDeath.Objects;
@@ -112,8 +113,13 @@ namespace VeilofDeath
         public static SoundEffect CoinCollect;
         public static SoundEffect Landing;
         public static SoundEffect CharactersJump;
-
-
+        public static SoundEffect Winner;
+        public static SoundEffect TotalWinner;
+        public static SoundEffect Loser;
+        public static SoundEffect ChangePhase;
+        public static SoundEffect HeartBeat;
+        public static SoundEffect Select;
+        public static SoundEffect Switch;
         #endregion
     }
 
