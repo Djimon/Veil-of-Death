@@ -150,7 +150,10 @@ namespace VeilofDeath.Core.GameStates
         private void LoadMapAndPlayer()
         {
             //load Model with Animation and Textures ( UV-Mapping)
-            m_player = new AnimatedModel(GameConstants.Content, "AnimatedModels/Playermodell", "Textures/MAINTEXTURE");
+            m_player = new AnimatedModel(GameConstants.Content, "AnimatedModels/Playermodell", "AnimatedModels/MAINTEXTURE");
+
+            //load Light-Shader for Ambient,Diffus,Specular Light
+            //GameConstants.lightEffect = GameConstants.Content.Load<Effect>("FX/Test");
 
             String bitmapname = "Content/Maps/" + iLevel.ToString() + ".bmp";
             Console.WriteLine("bitmap: " + bitmapname);
@@ -196,6 +199,16 @@ namespace VeilofDeath.Core.GameStates
             GameConstants.CoinCollect = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/PickupCoin");
             GameConstants.Landing = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/LandAfterJump");
             GameConstants.CharactersJump = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/JumpHupHuman");
+            GameConstants.HeartBeat = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/HBeat");
+            GameConstants.ChangePhase = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Roaring");
+            GameConstants.Winner = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Winner");
+            GameConstants.TotalWinner = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/TotalWinner");
+            GameConstants.Loser = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Loser");
+
+
+            //GameConstants.HBInstance = GameConstants.HeartBeat.CreateInstance();
+            //GameConstants.HBInstance.Volume = 0f;
+            //GameConstants.HBInstance.Play();
 
             music = GameConstants.Content.Load<Song>("Music/Background");
             MediaPlayer.Play(music);
@@ -326,6 +339,7 @@ namespace VeilofDeath.Core.GameStates
 
             UpdatePlayer(time);
 
+            //update Animation
             m_player.Update(time);
 
             UpdateScore();
@@ -346,24 +360,24 @@ namespace VeilofDeath.Core.GameStates
         /// <param name="time">Gametime</param>
         private static void UpdateHeartBeat(GameTime time)
         {
+
             switch (GameManager.Instance.iPhase)
             {
-                
                 case 1:
-                    if (time.TotalGameTime.Milliseconds % 1000 == 0)
-                        ;//LARS: Play heartbeat @Lautstärke 1
+                    if ((time.TotalGameTime.Seconds*1000 + time.TotalGameTime.Milliseconds) % 2500 == 0)
+                        GameConstants.HeartBeat.Play();
                     break;
                 case 2:
-                    if (time.TotalGameTime.Milliseconds % 1000 == 0)
-                        ;//LARS: Play heartbeat @Lautstärke 2
+                    if ((time.TotalGameTime.Seconds * 1000 + time.TotalGameTime.Milliseconds) % 1500 == 0)
+                        GameConstants.HeartBeat.Play();
                     break;
                 case 3:
-                    if (time.TotalGameTime.Milliseconds % 500 == 0)
-                        ;//LARS: Play heartbeat @Lautstärke 3
+                    if ((time.TotalGameTime.Seconds * 1000 + time.TotalGameTime.Milliseconds) % 9000 == 0)
+                        GameConstants.HeartBeat.Play();
                     break;
                 case 4:
-                    if (time.TotalGameTime.Milliseconds % 200 == 0)
-                        ;//LARS: Play heartbeat @Lautstärke 4
+                    if ((time.TotalGameTime.Seconds * 1000 + time.TotalGameTime.Milliseconds) % 600 == 0)
+                        GameConstants.HeartBeat.Play();
                     break;
                 default:
                     break;
@@ -406,6 +420,8 @@ namespace VeilofDeath.Core.GameStates
 
                 //WICHTIG: damit sich die Map etc. löscht          
             }
+
+            //ParticleTest.Update(time);
         }
 
         private void UpdatePlayer(GameTime time)
@@ -531,20 +547,24 @@ namespace VeilofDeath.Core.GameStates
             spriteBatch.Begin(depthStencilState: GameConstants.Graphics.GraphicsDevice.DepthStencilState,
                 rasterizerState: GameConstants.Graphics.GraphicsDevice.RasterizerState);
 
+
+            VeilofDeath.Draw(spriteBatch);
+
+
             // Vorlage: // spriteBatch.Draw(texture, position, color)
             spriteBatch.DrawString(GameConstants.lucidaConsole, " Score: " + GameManager.Instance.score,
                 GUI_Pos, Microsoft.Xna.Framework.Color.White);
 
-            VeilofDeath.Draw(spriteBatch);
-
             // GUI
             spriteBatch.Draw(txLine, new Vector2(1, 1), Microsoft.Xna.Framework.Color.White);
-            spriteBatch.Draw(txPlayer, playerTexPos, Microsoft.Xna.Framework.Color.White);
-            spriteBatch.Draw(txVeil[0], VeilTexPos, Microsoft.Xna.Framework.Color.White);
+            if (isStarted)
+            {
+                spriteBatch.Draw(txPlayer, playerTexPos, Microsoft.Xna.Framework.Color.White);
+                spriteBatch.Draw(txVeil[0], VeilTexPos, Microsoft.Xna.Framework.Color.White);
+            } 
 
 
             spriteBatch.End();
-            ;
         }
 
         #endregion
