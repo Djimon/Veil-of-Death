@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using System.Collections;
+using System.Runtime.InteropServices;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 using VeilofDeath.Objects;
@@ -104,13 +105,24 @@ namespace VeilofDeath
         public static float rotation = 0f;
         public static float rotationSpeed = 0.05f;
 
+        //variable for saving effect, which does ambient, diffuse, specular lightning
+        public static Effect lightEffect;
+
         #region Sound Variables
 
         public static SoundEffect CoinCollect;
         public static SoundEffect Landing;
         public static SoundEffect CharactersJump;
+        public static SoundEffect Winner;
+        public static SoundEffect TotalWinner;
+        public static SoundEffect Loser;
+        public static SoundEffect ChangePhase;
+        public static SoundEffect HeartBeat;
+        public static SoundEffect Select;
+        public static SoundEffect Switch;
 
         public static float Volume = 0.75f; // 1 = 100%
+        //public static SoundEffectInstance HBInstance;
 
         #endregion
     }

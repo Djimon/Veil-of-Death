@@ -86,6 +86,16 @@ namespace VeilofDeath.Objects
             imaxZ = gameObject.Position.Z + GameConstants.iBlockSize;
         }
 
+        public void updateSlide(AGameObject gameObject)
+        {
+            iminX = gameObject.Position.X - GameConstants.iBlockSize / 4;
+            iminY = gameObject.Position.Y - GameConstants.iBlockSize / 4;
+            iminZ = gameObject.Position.Z;
+            imaxX = gameObject.Position.X + GameConstants.iBlockSize / 4;
+            imaxY = gameObject.Position.Y + GameConstants.iBlockSize / 4;
+            imaxZ = gameObject.Position.Z + GameConstants.iBlockSize / 2;
+        }
+
 
     }
 }

@@ -15,7 +15,7 @@ Jump
 Start = 19;
 StartLoop = 19;
 End = 39;
-Duration = 2;
+Duration = 1;
 ForwardBackward = false;
 Loop = false;
 }
@@ -25,7 +25,7 @@ Slide
 Start = 50;
 StartLoop = 50;
 End = 64;
-Duration = 2;
+Duration = 1;
 ForwardBackward = false;
 Loop = false;
 }

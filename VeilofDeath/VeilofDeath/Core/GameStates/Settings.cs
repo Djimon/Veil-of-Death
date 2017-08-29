@@ -274,12 +274,14 @@ namespace VeilofDeath.Core.GameStates
                 {
                     State = (SettingState) Math.Min((int)State + 1, 3);
                     UpdateCursor();
+                    GameConstants.Switch.Play();
                     ispressed = true;
                 }
                 if (!ispressed && Keyboard.GetState().IsKeyDown(Keys.Up))
                 {
                     State = (SettingState) Math.Max((int)State - 1, 0);
                     UpdateCursor();
+                    GameConstants.Switch.Play();
                     ispressed = true;
                 }
 
@@ -288,6 +290,7 @@ namespace VeilofDeath.Core.GameStates
 
                 if (!isEnterDown && Keyboard.GetState().IsKeyDown(Keys.Enter))
                 {
+                    GameConstants.Select.Play();
                     enterMenu = true;
                     isEnterDown = true;
                 }
@@ -344,21 +347,22 @@ namespace VeilofDeath.Core.GameStates
             {
                 volumeterPos = Math.Max(0.1f, volumeterPos - 0.01f);
                 ispressed = true;
-                //LARS: Play sound: switch selected Button
+                GameConstants.Switch.Play();
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
                 volumeterPos = Math.Min(volumeterPos + 0.01f, 0.82f);
                 ispressed = true;
-                //LARS: Play sound: switch selected Button
+                GameConstants.Switch.Play();
             }
 
 
             if (!isEnterDown && Keyboard.GetState().IsKeyDown(Keys.Enter))
-            {
+            {                
                 GameConstants.Volume = GetVolReal(volumeterPos);
                 isEnterDown = true;
                 enterMenu = false;
+                GameConstants.Select.Play();
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -404,11 +408,13 @@ namespace VeilofDeath.Core.GameStates
             if (!ispressed && Keyboard.GetState().IsKeyDown(Keys.Down))
             {
                 DiffMode = (Difficulty) Math.Min((int)DiffMode + 1, 3);
+                GameConstants.Switch.Play();
                 ispressed = true;
             }
             if (!ispressed && Keyboard.GetState().IsKeyDown(Keys.Up))
             {
                 DiffMode = (Difficulty) Math.Max((int)DiffMode - 1, 0);
+                GameConstants.Switch.Play();
                 ispressed = true;
             }
 
@@ -426,6 +432,7 @@ namespace VeilofDeath.Core.GameStates
                 ptMedium2.isActive = false;
                 ptHard2.isActive = false;
                 ptExtreme2.isActive = false;
+                GameConstants.Select.Play();
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {

@@ -20,6 +20,8 @@ namespace VeilofDeath
         bool isLeftPressed = false;
         bool isOnGround = true;
 
+        private float SlideEndPos;
+
         Player character;
 
         /// <summary>
@@ -35,19 +37,20 @@ namespace VeilofDeath
         /// updates the player movement related to the keyboard state
         /// </summary>
         /// <param name="oldKeyboardState">keyboard state of the predecessor tick</param>
-        public void Update (KeyboardState oldKeyboardState, Map map)
+        public void Update(KeyboardState oldKeyboardState, Map map)
         {
 
             currentKeyboardState = Keyboard.GetState();
 
-            if (currentKeyboardState.IsKeyDown(Keys.Right) && !oldKeyboardState.IsKeyDown(Keys.Right) && !isRightPressed)
+            if (currentKeyboardState.IsKeyDown(Keys.Right) && !oldKeyboardState.IsKeyDown(Keys.Right) &&
+                !isRightPressed)
             {
                 if (CheckFrontIsWalkable(map, "right"))
                 {
                     character.Position.X += 1 * GameConstants.iBlockSize;
                     isRightPressed = true;
                 }
-                
+
             }
             if (currentKeyboardState.IsKeyDown(Keys.Left) && !oldKeyboardState.IsKeyDown(Keys.Left) && !isLeftPressed)
             {
@@ -57,17 +60,20 @@ namespace VeilofDeath
                     isLeftPressed = true;
                 }
             }
-            if (!character.isJumping && !isSpacePressed && currentKeyboardState.IsKeyDown(Keys.Space) && !oldKeyboardState.IsKeyDown(Keys.Space) )
+            if (!character.isJumping && !isSpacePressed && currentKeyboardState.IsKeyDown(Keys.Space) &&
+                !oldKeyboardState.IsKeyDown(Keys.Space))
             {
                 //character.Position.Z += 1 * GameConstants.iBlockSize;
                 Jump(character);
                 isSpacePressed = true;
             }
 
-            if (!character.isSliding && !isDownPressed && currentKeyboardState.IsKeyDown(Keys.LeftShift) && !oldKeyboardState.IsKeyDown(Keys.LeftShift) )
+            if (!character.isSliding && !isDownPressed && currentKeyboardState.IsKeyDown(Keys.LeftShift) &&
+                !oldKeyboardState.IsKeyDown(Keys.LeftShift))
             {
-                character.isSliding = true; ;
+                character.isSliding = true;
                 //TODO: Just Change the Animation and check if the Collision-boxes follow the Animation (= is small enough to pass under a obsticle)
+                slide();
                 isDownPressed = true;
             }
 
@@ -83,17 +89,40 @@ namespace VeilofDeath
             if (GameConstants.isDebugMode)
                 Console.WriteLine(character.Position.ToString());
 
-            if (character.Position.Z <= 0.2f && !isOnGround)
-                character.AniModel.BlendToAnimationPart("Run");
-
-            if (character.Position.Z <= 0.2f && !character.isJumping)
-                isOnGround = true;
+            // first events for the animations
 
             if (isSpacePressed)
                 character.AniModel.BlendToAnimationPart("Jump");
 
             if (isDownPressed)
                 character.AniModel.BlendToAnimationPart("Slide");
+
+            // return to the run animation
+
+            // jump -> run, then setting isOnGround true, otherwise we cannot return to the run animation
+
+            if (character.Position.Z <= 0.2f && !isOnGround)
+            {
+                character.AniModel.BlendToAnimationPart("Run");
+            }
+
+            if (character.Position.Z <= 0.2f && !character.isJumping)
+
+                isOnGround = true;
+
+            if (character.isSliding && (SlideEndPos < character.Position.Y))
+            {
+                character.AniModel.BlendToAnimationPart("Run");
+                character.isSliding = false;
+            }
+
+            if (character.isSliding)
+            {
+                character.box.update(character);
+                Console.Out.WriteLine("----------------------------Boundingbox Character Z-Max: "+character.box.imaxZ);
+            }
+                
+            
 
         }
 
@@ -150,6 +179,11 @@ namespace VeilofDeath
             character.isJumping = true;
             isOnGround = false;
             GameConstants.CharactersJump.Play();
+        }
+
+        private void slide()
+        {
+            SlideEndPos = character.Position.Y + 3 * GameConstants.iBlockSize;
         }
 
         /// <summary>

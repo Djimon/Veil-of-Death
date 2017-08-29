@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
@@ -72,17 +73,20 @@ namespace VeilofDeath.Core.GameStates
             Buttons[(int)Button.Credits] = GameConstants.Content.Load<Texture2D>("Textures/CreditsB");
             Buttons[(int)Button.Settings] = GameConstants.Content.Load<Texture2D>("Textures/Winnerlist");
             Buttons[(int)Button.Exit] = GameConstants.Content.Load<Texture2D>("Textures/ExitButton");
-            //Buttons[(int)Button.Statistics] = GameConstants.Content.Load<Texture2D>("Textures/StatisticButton");
+            Buttons[(int)Button.Statistics] = GameConstants.Content.Load<Texture2D>("Textures/CreditsB");
             //more buttons
             SelectedButtons = new Texture2D[(int)Button.Count];
             SelectedButtons[(int)Button.Start] = GameConstants.Content.Load<Texture2D>("Textures/StartButtonSelected");
             SelectedButtons[(int)Button.Credits] = GameConstants.Content.Load<Texture2D>("Textures/CreditsBS");
             SelectedButtons[(int)Button.Settings] = GameConstants.Content.Load<Texture2D>("Textures/WinnerListS");
             SelectedButtons[(int)Button.Exit] = GameConstants.Content.Load<Texture2D>("Textures/ExitButtonSelected");
-            //SelectedButtons[(int)Button.Statistics] = GameConstants.Content.Load<Texture2D>("Textures/StatisticButtonSelected");
+            SelectedButtons[(int)Button.Statistics] = GameConstants.Content.Load<Texture2D>("Textures/CreditsBS");
 
             //Load other Textures, like Buttons
 
+            //Sounds for buttons
+            GameConstants.Select = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Select");
+            GameConstants.Switch = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Switch");
         }
 
         public void UnloadContent()
@@ -97,14 +101,14 @@ namespace VeilofDeath.Core.GameStates
             {
                 m_selected = (Button)(((int)m_selected + 1) % (int)Button.Count);
                 ispressed = true;
-                //LARS: Play sound: switch menu selection
+                GameConstants.Switch.Play();//LARS: Play sound: switch menu selection
             }
 
             if (!ispressed && Keyboard.GetState().IsKeyDown(Keys.Up))
             {
                 m_selected = (Button)(((int)m_selected +(int)Button.Count - 1) % (int)Button.Count);
                 ispressed = true;
-                //LARS: Play sound: switch menu selection
+                GameConstants.Switch.Play();//LARS: Play sound: switch menu selection
             }
 
             if (Keyboard.GetState().IsKeyUp(Keys.Down) && Keyboard.GetState().IsKeyUp(Keys.Up)) 
@@ -113,8 +117,7 @@ namespace VeilofDeath.Core.GameStates
             if (!isEnterDown && Keyboard.GetState().IsKeyDown(Keys.Enter))
             {
                 isEnterDown = true;
-                //LARS: Play sound: Menüpunkt bestätigen
-
+                GameConstants.Select.Play();//LARS: Play sound: Menüpunkt bestätigen
                 switch (m_selected)
                 {
                     case Button.Start:

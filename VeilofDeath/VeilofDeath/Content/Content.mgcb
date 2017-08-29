@@ -1172,17 +1172,47 @@
 /processorParam:TextureFormat=Color
 /build:Panels/RunB.png
 
-#begin Menu/BGmenu.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Menu/BGmenu.png
+#begin Music/SoundEffects/Heartbeat.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/SoundEffects/Heartbeat.mp3
+
+#begin Music/SoundEffects/Loser.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/SoundEffects/Loser.mp3
+
+#begin Music/SoundEffects/Roaring.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/SoundEffects/Roaring.mp3
+
+#begin Music/SoundEffects/Winner.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/SoundEffects/Winner.mp3
+
+#begin Music/SoundEffects/TotalWinner.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/SoundEffects/TotalWinner.mp3
+
+#begin Music/SoundEffects/Select.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/SoundEffects/Select.mp3
+
+#begin Music/SoundEffects/Switch.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/SoundEffects/Switch.mp3
 
 #begin Panels/menu/Enter.png
 /importer:TextureImporter
@@ -1327,4 +1357,22 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Panels/menu/menuBG.png
+
+#begin Menu/BGmenu.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Menu/BGmenu.png
+
+#begin Music/SoundEffects/HBeat.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/SoundEffects/HBeat.ogg
 

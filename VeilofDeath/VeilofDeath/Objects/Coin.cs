@@ -72,9 +72,9 @@ namespace VeilofDeath.Objects
                     effect.AmbientLightColor = new Vector3(0f, 0f, 0f);
                     effect.EmissiveColor = new Vector3(0.15f, 0.15f, 0.0f);
 
-                    effect.World = GameConstants.MainCam.X_World * 
-                                   Matrix.CreateScale(fModelScale) * 
-                                   (Matrix.CreateFromAxisAngle(rotationAxis,GameConstants.rotation) * 
+                    effect.World = GameConstants.MainCam.X_World *
+                                   Matrix.CreateScale(fModelScale) *
+                                   (Matrix.CreateFromAxisAngle(rotationAxis, GameConstants.rotation) *
                                    Matrix.CreateTranslation(this.Position));
                     effect.View = GameConstants.MainCam.X_View;
                     effect.Projection = GameConstants.MainCam.X_Projection;
@@ -82,6 +82,27 @@ namespace VeilofDeath.Objects
 
                 mesh.Draw();
             }
+
+            //foreach(ModelMesh mesh in model.Meshes)
+            //{
+            //    foreach (ModelMeshPart part in mesh.MeshParts)
+            //    {
+            //        part.Effect = GameConstants.lightEffect;
+            //        GameConstants.lightEffect.Parameters["World"].SetValue(GameConstants.MainCam.X_World *
+            //                                                               mesh.ParentBone.Transform *
+            //                                                                Matrix.CreateScale(fModelScale) *
+            //                                                                (Matrix.CreateFromAxisAngle(rotationAxis, GameConstants.rotation) *
+            //                                                                Matrix.CreateTranslation(this.Position)));
+            //        GameConstants.lightEffect.Parameters["View"].SetValue(GameConstants.MainCam.X_View);
+            //        GameConstants.lightEffect.Parameters["Projection"].SetValue(GameConstants.MainCam.X_Projection);
+            //        Vector3 viewVector = Position - GameConstants.MainCam.camPos;
+            //        GameConstants.lightEffect.Parameters["ViewVector"].SetValue(viewVector);
+
+            //        Matrix worldInverseTransposeMatrix = Matrix.Transpose(Matrix.Invert(mesh.ParentBone.Transform * GameConstants.MainCam.X_World));
+            //        GameConstants.lightEffect.Parameters["WorldInverseTranspose"].SetValue(worldInverseTransposeMatrix);
+            //    }
+            //    mesh.Draw();
+            //}
         }
     }
 }
