@@ -147,6 +147,11 @@ namespace VeilofDeath.Core.GameStates
 
             LoadPanel();
 
+            Console.WriteLine("Levels" + GameManager.Instance.Score[0] + "," 
+                + GameManager.Instance.Score[1] + "," 
+                + GameManager.Instance.Score[2] + "," 
+                + GameManager.Instance.Score[3] );
+
         }
 
         private void LoadMapAndPlayer()
