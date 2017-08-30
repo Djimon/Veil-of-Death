@@ -178,10 +178,10 @@ namespace VeilofDeath.Objects.PlayerStuff
 
             if (GameConstants.isDebugMode)
                 Console.WriteLine("jumpheight: " + Position.Z);
-            if (Position.Z < 0)
+            if (Position.Z < -1f)
             {
                 isJumping = false;
-                Position.Z = 0;
+                Position.Z = -1f;
                 UnsetJCurve();
 
             }
@@ -223,10 +223,10 @@ namespace VeilofDeath.Objects.PlayerStuff
         /// </summary>
         protected void HandleCollision()
         {
-            //HandleSpikes();
+            HandleSpikes();
             HandleSlowtraps();
             HandleCoins();
-            //HandleSpikeRolls();
+            HandleSpikeRolls();
         }
 
         private void HandleCoins()

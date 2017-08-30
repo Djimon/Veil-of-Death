@@ -112,7 +112,7 @@ namespace VeilofDeath.Level
                     {
                         this.m_Block = modelDictionary["wegStone"];
                         this.position = new Vector3(pos, GameConstants.fLevelHeight);
-                        GameManager.Instance.StartPos = this.position;
+                        GameManager.Instance.StartPos = new Vector3(this.position.X, this.position.Y, -4f);
                         this.isWalkable = true;                        
                         break;
                     }
