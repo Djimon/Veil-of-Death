@@ -41,13 +41,16 @@ namespace VeilofDeath.Core
 
         }
 
-
+        /// <summary>
+        /// Resets the actual Level
+        /// </summary>
         public void ResetLevel()
         {
             SpikeList.Clear();
             SlowList.Clear();
             CoinList.Clear();
             RollList.Clear();
+            ResetScore();
             ResetPhase();
         }
 
@@ -117,6 +120,10 @@ namespace VeilofDeath.Core
         {
             Score[Level] += value;
         }
+
+        /// <summary>
+        /// Resets the Score of the actual Level
+        /// </summary>
         public void ResetScore()
         {
             Score[Level] = 0;

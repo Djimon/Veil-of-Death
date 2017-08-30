@@ -185,99 +185,109 @@ namespace VeilofDeath.Core.GameStates
 
             if (!mustRetry)
             {
-                if (!ispressed && Keyboard.GetState().IsKeyDown(Keys.Left))
-                {
-                    m_selected = (btn)(((int)m_selected + 1) % (int)btn.Count);
-                    ispressed = true;
-                    GameConstants.Switch.Play(); //LARS: Play sound: switch selected Button
-                }
-                if (!ispressed && Keyboard.GetState().IsKeyDown(Keys.Right))
-                {
-                    m_selected = (btn)(((int)m_selected + 1) % (int)btn.Count);
-                    ispressed = true;
-                    GameConstants.Switch.Play();//LARS: Play sound: switch selected Button
-                }
-                if (Keyboard.GetState().IsKeyUp(Keys.Left) && Keyboard.GetState().IsKeyUp(Keys.Right) && Keyboard.GetState().IsKeyUp(Keys.Enter))
-                    ispressed = false;
-
-
-
-                if (Keyboard.GetState().IsKeyDown(Keys.Enter))
-                {
-                    GameConstants.Select.Play();//LARS: play sound: Menüpunkt bestätigen
-                    ispressed = true;
-                    switch (m_selected)
-                    {
-                        case btn.confirm:
-                            if (GameManager.Instance.Level + 1 < GameConstants.iMaxLevel)
-                            {        
-                                GameConstants.MainCam.ResetCamera();                                
-                                GameManager.Instance.iCoinScore[GameManager.Instance.Level] -= ilevelCoins * 1 / 2;
-                                GameManager.Instance.LevelUp();
-                                newState = EState.Ingame;
-                                canLeave = true;
-                                // TODO: nach Level 3 Story(2) einfügen
-                            }
-                            else
-                            {
-                                //TODO: hier Story(3) einfügen
-                                GameConstants.iWinStauts = 1;
-                                GameConstants.hasGameWon = true;
-                                newState = EState.GameOver;
-                                canLeave = true;
-                            }
-                            break;
-                        case btn.Retry:
-                            Retry();
-                            break;
-                        default:
-                            newState = EState.none;
-                            break;
-                    }                  
-                }
-
-                switch (m_selected)
-                {
-                    case btn.confirm:
-                        ptRetry.isActive = true;
-                        ptRetryS.isActive = false;
-                        ptConfirm.isActive = false;
-                        ptConfirmS.isActive = true;
-                        break;
-                    case btn.Retry:
-                        ptRetry.isActive = false;
-                        ptRetryS.isActive = true;
-                        ptConfirm.isActive = true;
-                        ptConfirmS.isActive = false;
-                        break;
-                    default:
-                        ptRetry.isActive = false;
-                        ptRetryS.isActive = true;
-                        ptConfirm.isActive = true;
-                        ptConfirmS.isActive = false;
-                        break;
-                }
-
-            } /* if (!mustretry) */
+                UpdateRetry();
+            } 
             else
             {
                 ptRetry.isActive = false;
                 ptRetryS.isActive = true;
-
                 if (Keyboard.GetState().IsKeyDown(Keys.Enter))
                 {
                     Retry();
                 }
             }
 
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                GameConstants.MainCam.ResetCamera();
+                GameManager.Instance.ResetLevel();
+                newState = EState.MainMenu;
+                canLeave = true;
+            }
+
+        }
+
+        private void UpdateRetry()
+        {
+            if (!ispressed && Keyboard.GetState().IsKeyDown(Keys.Left))
+            {
+                m_selected = (btn)(((int)m_selected + 1) % (int)btn.Count);
+                ispressed = true;
+                GameConstants.Switch.Play(); //LARS: Play sound: switch selected Button
+            }
+            if (!ispressed && Keyboard.GetState().IsKeyDown(Keys.Right))
+            {
+                m_selected = (btn)(((int)m_selected + 1) % (int)btn.Count);
+                ispressed = true;
+                GameConstants.Switch.Play();//LARS: Play sound: switch selected Button
+            }
+            if (Keyboard.GetState().IsKeyUp(Keys.Left) && Keyboard.GetState().IsKeyUp(Keys.Right) && Keyboard.GetState().IsKeyUp(Keys.Enter))
+                ispressed = false;
+
+
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+            {
+                GameConstants.Select.Play();//LARS: play sound: Menüpunkt bestätigen
+                ispressed = true;
+                switch (m_selected)
+                {
+                    case btn.confirm:
+                        if (GameManager.Instance.Level + 1 < GameConstants.iMaxLevel)
+                        {
+                            GameConstants.MainCam.ResetCamera();
+                            GameManager.Instance.iCoinScore[GameManager.Instance.Level] -= ilevelCoins * 1 / 2;
+                            GameManager.Instance.LevelUp();
+                            newState = EState.Ingame;
+                            canLeave = true;
+                            // TODO: nach Level 3 Story(2) einfügen
+                        }
+                        else
+                        {
+                            //TODO: hier Story(3) einfügen
+                            GameConstants.iWinStauts = 1;
+                            GameConstants.hasGameWon = true;
+                            newState = EState.GameOver;
+                            canLeave = true;
+                        }
+                        break;
+                    case btn.Retry:
+                        Retry();
+                        break;
+                    default:
+                        newState = EState.none;
+                        break;
+                }
+            }
+
+            switch (m_selected)
+            {
+                case btn.confirm:
+                    ptRetry.isActive = true;
+                    ptRetryS.isActive = false;
+                    ptConfirm.isActive = false;
+                    ptConfirmS.isActive = true;
+                    break;
+                case btn.Retry:
+                    ptRetry.isActive = false;
+                    ptRetryS.isActive = true;
+                    ptConfirm.isActive = true;
+                    ptConfirmS.isActive = false;
+                    break;
+                default:
+                    ptRetry.isActive = false;
+                    ptRetryS.isActive = true;
+                    ptConfirm.isActive = true;
+                    ptConfirmS.isActive = false;
+                    break;
+            }
         }
 
         private void Retry()
         {
             GameConstants.Select.Play();//LARS: play sound: Menüpunkt bestätigen
-
             GameConstants.MainCam.ResetCamera();
-            GameManager.Instance.ResetScore();
+            GameManager.Instance.ResetLevel();
             newState = EState.Ingame;
             canLeave = true;
         }
