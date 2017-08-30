@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VeilofDeath.Core;
 using VeilofDeath.Objects.Traps;
 
-namespace VeilofDeath.Core
+namespace VeilofDeath.Objects
 {
     class TrapHandler
     {

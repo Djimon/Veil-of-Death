@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using VeilofDeath.Core;
 
-namespace VeilofDeath
+namespace VeilofDeath.Level
 {
     class Level
     {
@@ -18,8 +19,6 @@ namespace VeilofDeath
 
         VertexPositionTexture[] x_groundPlane;
         BasicEffect effect;
-        GraphicsDevice device;
-        GraphicsDeviceManager graphicsManager;
 
         /// <summary>
         /// Defines the vertices for the ground.

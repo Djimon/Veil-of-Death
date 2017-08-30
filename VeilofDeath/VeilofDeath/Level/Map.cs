@@ -5,8 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using VeilofDeath.Core;
 
-namespace VeilofDeath
+namespace VeilofDeath.Level
 {
     public class Map
     {
@@ -42,8 +43,8 @@ namespace VeilofDeath
         public static String sBlue = "ff0000ff"; //Ziel
         public static String sGrey = "ff424242"; //Mauer Horizontal
         public static String sOrange = "ffff8800"; // Slowtrap
-        public static String sCyan = "ff008080"; // geheimer Weg Vorderansicht
-        public static String sDarkGreen = "ff004000"; // 
+        public static String sCyan = "ff00ffff"; // spikerolll
+        public static String sDarkGreen = "ff004000"; // Door
 
         /// <summary>
         ///  <para>generates a map with random traps and the possibility of fixed traps ("taktische Falle")</para>
@@ -57,7 +58,7 @@ namespace VeilofDeath
         ///  <para>Sblack     = "ff000000" Falle (random)             false     </para>
         ///  <para>Sorange    = "ffff8800" taktische Falle 1          true      </para>
         ///  <para>Scyan      = "ff008080" taktische Falle 2          true      </para>
-        ///  <para>Sdarkgreen = "ff004000" taktische Falle 3          true      </para>
+        ///  <para>Sdarkgreen = "ff004000" door          true      </para>
         ///  
         ///  <para>Sred is default.                                       </para>
         /// </summary>
@@ -96,7 +97,7 @@ namespace VeilofDeath
                     else if (mask.GetPixel(row, col).Name == sRed)
                     {
                         map[row, col] = new Block(2, new Vector2(row * iBlockSize + scale, col * iBlockSize + scale));
-                        // loch
+                        // spike
                     }
                     else if (mask.GetPixel(row, col).Name == sGreen)
                     {
@@ -113,17 +114,17 @@ namespace VeilofDeath
                     else if (mask.GetPixel(row, col).Name == sOrange)
                     {
                         map[row, col] = new Block(5, new Vector2(row * iBlockSize + scale, col * iBlockSize + scale));
-                        // Falle 1
+                        // Slow
                     }
                     else if (mask.GetPixel(row, col).Name == sCyan)
                     {
                         map[row, col] = new Block(6, new Vector2(row * iBlockSize + scale, col * iBlockSize + scale));
-                        // Falle 2
+                        // SpikeRoll
                     }
                     else if (mask.GetPixel(row, col).Name == sDarkGreen)
                     {
                         map[row, col] = new Block(7, new Vector2(row * iBlockSize + scale, col * iBlockSize + scale));
-                        // Falle 3
+                        // Door
                     }
                     else
                     {

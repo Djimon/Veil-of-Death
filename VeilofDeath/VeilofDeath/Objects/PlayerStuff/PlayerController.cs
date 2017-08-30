@@ -7,8 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using VeilofDeath.Core;
+using VeilofDeath.Level;
 
-namespace VeilofDeath
+namespace VeilofDeath.Objects.PlayerStuff
 {
     class PlayerController
     {
@@ -149,7 +151,6 @@ namespace VeilofDeath
                         break;
                     default:
                         return true;
-                        break;
                 }
             } catch(IndexOutOfRangeException e)
             {

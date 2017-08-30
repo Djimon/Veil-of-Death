@@ -13,6 +13,9 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 using VeilofDeath.SpecialFX;
 using VeilofDeath.PanelStuff;
+using VeilofDeath.Objects.Traps;
+using VeilofDeath.Level;
+using VeilofDeath.Objects.PlayerStuff;
 
 namespace VeilofDeath.Core.GameStates
 {
@@ -59,7 +62,6 @@ namespace VeilofDeath.Core.GameStates
         private Vector3 start;
 
         float fTimeDelta;
-        private int score;
 
         #endregion
 
@@ -72,11 +74,9 @@ namespace VeilofDeath.Core.GameStates
         private Vector2 VeilTexPos = new Vector2(0, 0);
         private float playeTexStart;
         private float veilTexStart;
-        private float angle;
 
         private Song music;
         private int MaxCoins;
-        float percentageCoins;
         private bool isJumpCalculated;
         private float t0;
         private bool isSetTime = false;
@@ -110,7 +110,9 @@ namespace VeilofDeath.Core.GameStates
         {
             newState = EState.none;
             currentKeyboardState = Keyboard.GetState();
-            oldKeyboardState = new KeyboardState();        
+            oldKeyboardState = new KeyboardState();
+            GameConstants.MainCam.ResetCamera();
+            GameConstants.fMovingSpeed = 1.5f + (0.25f * GameConstants.iDifficulty);
 
             GameConstants.levelDictionary = LevelContent.LoadListContent<Model>(GameConstants.Content, "Models/Level"+GameManager.Instance.Level);
             foreach (KeyValuePair<string, Model> SM in GameConstants.levelDictionary)
@@ -156,7 +158,8 @@ namespace VeilofDeath.Core.GameStates
             //GameConstants.lightEffect = GameConstants.Content.Load<Effect>("FX/Test");
 
             String bitmapname = "Content/Maps/" + iLevel.ToString() + ".bmp";
-            Console.WriteLine("bitmap: " + bitmapname);
+            if (GameConstants.isDebugMode)
+                Console.WriteLine("bitmap: " + bitmapname);
             levelMask = new Bitmap(bitmapname);
             testmap = null;
             testmap = new Map(levelMask);
@@ -169,7 +172,7 @@ namespace VeilofDeath.Core.GameStates
             MaxCoins = GameManager.Instance.getCoinList().Count;
             Player = new Player(m_player);
             // x_playerModelTransforms = SetupEffectDefaults(m_player);
-            Player.Spawn(new Vector3(start.X, start.Y, 0));
+            Player.Spawn(new Vector3(start.X, start.Y, -3)); // -3 is richtig, sonst schwebt er die Ganze Zeit.
             GameConstants.MainCam.SetTarget(Player);
             PController = new PlayerController(Player);
             TrapHandler = new TrapHandler();
@@ -196,25 +199,27 @@ namespace VeilofDeath.Core.GameStates
 
         private void LoadSoundMusic()
         {
-            GameConstants.CoinCollect = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/PickupCoin");
-            GameConstants.Landing = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/LandAfterJump");
-            GameConstants.CharactersJump = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/JumpHupHuman");
-            GameConstants.HeartBeat = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/HBeat");
-            GameConstants.ChangePhase = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Roaring");
-            GameConstants.Winner = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Winner");
-            GameConstants.TotalWinner = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/TotalWinner");
-            GameConstants.Loser = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Loser");
+            //GameConstants.CoinCollect = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/PickupCoin");
+            //GameConstants.Landing = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/LandAfterJump");
+            //GameConstants.CharactersJump = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/JumpHupHuman");
+            //GameConstants.HeartBeat = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/HBeat");
+            //GameConstants.ChangePhase = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Roaring");
+            //GameConstants.Winner = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Winner");
+            //GameConstants.TotalWinner = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/TotalWinner");
+            //GameConstants.Loser = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Loser");
 
 
             //GameConstants.HBInstance = GameConstants.HeartBeat.CreateInstance();
             //GameConstants.HBInstance.Volume = 0f;
             //GameConstants.HBInstance.Play();
 
+            //SoundEffect.MasterVolume = GameConstants.Volume;
+
             music = GameConstants.Content.Load<Song>("Music/Background");
             MediaPlayer.Play(music);
 
             MediaPlayer.Volume = GameConstants.Volume *2/3;
-            SoundEffect.MasterVolume = GameConstants.Volume;
+
         }
 
         private void LoadPanel()
@@ -322,11 +327,12 @@ namespace VeilofDeath.Core.GameStates
         private void UpdateRun(GameTime time)
         {
             GameConstants.rotation += GameConstants.rotationSpeed;
-            
+           
             if (!isSetTime)
             {
                 t0 = time.TotalGameTime.Seconds * 1000 + time.TotalGameTime.Milliseconds;
-                Console.WriteLine("t0 = " + t0);
+                if (GameConstants.isDebugMode)
+                    Console.WriteLine("t0 = " + t0);
                 isSetTime = true;
             }
 
@@ -336,6 +342,7 @@ namespace VeilofDeath.Core.GameStates
             fTimeDelta = (float)time.ElapsedGameTime.Milliseconds;
 
             UpdateHeartBeat(time);
+            UpdateSpikerolls();
 
             UpdatePlayer(time);
 
@@ -343,6 +350,8 @@ namespace VeilofDeath.Core.GameStates
             m_player.Update(time);
 
             UpdateScore();
+
+            UpdateCheating();
 
             UpdateFinishLine(time);
 
@@ -352,6 +361,29 @@ namespace VeilofDeath.Core.GameStates
             {
                 newState = EState.GameOver;
             }
+
+           
+        }
+
+        private void UpdateCheating()
+        {
+
+            if (Keyboard.GetState().IsKeyDown(Keys.O))
+            {
+                GameManager.Instance.iCoinScore[GameManager.Instance.Level] = MaxCoins;
+                GameManager.Instance.Score[GameManager.Instance.Level] = (int) MaxCoins * GameConstants.ScorePerCoin;
+                Player.Position.Y = GameManager.Instance.ZielPos.Y;
+            }
+
+        }
+
+        private void UpdateSpikerolls()
+        {
+            if (GameManager.Instance.getRollList().Count > 0)
+                foreach (SpikeRoll SR in GameManager.Instance.getRollList())
+                {
+                    SR.Update(testmap);
+                }
         }
 
         /// <summary>
@@ -372,7 +404,7 @@ namespace VeilofDeath.Core.GameStates
                         GameConstants.HeartBeat.Play();
                     break;
                 case 3:
-                    if ((time.TotalGameTime.Seconds * 1000 + time.TotalGameTime.Milliseconds) % 9000 == 0)
+                    if ((time.TotalGameTime.Seconds * 1000 + time.TotalGameTime.Milliseconds) % 900 == 0)
                         GameConstants.HeartBeat.Play();
                     break;
                 case 4:
@@ -410,8 +442,12 @@ namespace VeilofDeath.Core.GameStates
                     GameManager.Instance.iTimeBonus[GameManager.Instance.Level] = 0;
 
                 GameManager.Instance.AddtoScore(GameManager.Instance.iTimeBonus[GameManager.Instance.Level]);
-                Console.WriteLine("finished in " + (temp - t0));
-                Console.WriteLine("speed: " + fTimeRecord * 100 + "%");
+                if (GameConstants.isDebugMode)
+                {
+                    Console.WriteLine("finished in " + (temp - t0));
+                    Console.WriteLine("speed: " + fTimeRecord * 100 + "%");
+                }
+                
                 GameManager.Instance.SetVeilDistance(VeilofDeath.fDistance);
                 GameManager.Instance.fStageCleared[GameManager.Instance.Level] = (float)GameManager.Instance.iCoinScore[GameManager.Instance.Level] / (float)MaxCoins;
                 canLeave = true;
@@ -428,7 +464,8 @@ namespace VeilofDeath.Core.GameStates
         {
             if (Player.isDead)
             {
-                Console.WriteLine("thy dieded!");
+                if (GameConstants.isDebugMode) 
+                    Console.WriteLine("thy dieded!");
                 Player = null;
                 newState = EState.GameOver;
             }
@@ -449,7 +486,8 @@ namespace VeilofDeath.Core.GameStates
                     //if (GameConstants.isDebugMode)
                     //    Console.WriteLine("JumpTime: " + GameConstants.fjumpTime);
 
-                    Console.WriteLine("best possible time = " + GameManager.Instance.BestTime);
+                    if (GameConstants.isDebugMode)
+                        Console.WriteLine("best possible time = " + GameManager.Instance.BestTime);
 
                     isJumpCalculated = true;
                 }
@@ -491,24 +529,23 @@ namespace VeilofDeath.Core.GameStates
         }
 
         private void DrawObject()
+        {
+            foreach (Coin c in GameManager.Instance.getCoinList())
             {
-                foreach (Coin c in GameManager.Instance.getCoinList())
-                {
-                    c.Draw();
-                }
-
-                foreach (SpikeTrap sp in GameManager.Instance.getSpikeList())
-                {
-                    sp.Draw();
-                }
-
-                // Spikes
-
-
-                // Drehdinger
-
-
+                c.Draw();
             }
+
+            foreach (SpikeTrap sp in GameManager.Instance.getSpikeList())
+            {
+                sp.Draw();
+            }
+
+            foreach (SpikeRoll sr in GameManager.Instance.getRollList())
+            {
+                sr.Draw();
+            }
+
+        }
 
 
         private void UpdateScore()

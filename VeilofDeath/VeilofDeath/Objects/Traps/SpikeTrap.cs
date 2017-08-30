@@ -5,8 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using VeilofDeath.Objects;
+using VeilofDeath.Level;
+using VeilofDeath.Core;
 
-namespace VeilofDeath
+namespace VeilofDeath.Objects.Traps
 {
     public class SpikeTrap : AGameObject, IStaticEntity
     {

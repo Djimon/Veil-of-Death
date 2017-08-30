@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 using Animations;
 using VeilofDeath.Objects;
 using VeilofDeath.Objects.Traps;
+using VeilofDeath.Core;
 
-namespace VeilofDeath
+namespace VeilofDeath.Objects
 {
     public abstract class AGameObject
     {

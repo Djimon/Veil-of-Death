@@ -22,12 +22,13 @@ namespace VeilofDeath.Core.GameStates
 
         int sumscore, sumTime;
         float sumCompl;
+        private bool isppressed = true;
 
         public GameOver(int status)
         {
-            spriteBatch = GameConstants.SpriteBatch;
-            Initialize();
             iStatus = status;
+            spriteBatch = GameConstants.SpriteBatch;
+            Initialize();            
             LoadContent();
         }
 
@@ -36,12 +37,15 @@ namespace VeilofDeath.Core.GameStates
         {
             newState = EState.none;
             isPlayed = false;
+
+            if (iStatus == 0)
+                GameManager.Instance.DeathUp();
         }
 
         public void LoadContent()
         {
             background = GameConstants.Content.Load<Texture2D>("noob");
-            win = GameConstants.Content.Load<Texture2D>("winner");
+            win = GameConstants.Content.Load<Texture2D>("gamewon");
 
             sumscore = 0;
             foreach (int A in GameManager.Instance.iCoinScore)
@@ -92,13 +96,16 @@ namespace VeilofDeath.Core.GameStates
 
                 isPlayed = true;
             }
+            if (Keyboard.GetState().IsKeyUp(Keys.Enter))
+                isppressed = false;
 
             //TODO: Platzhalter
-            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+            if (!isppressed && Keyboard.GetState().IsKeyDown(Keys.Enter))
             {
+                isppressed = true;
                 GameConstants.MainCam.ResetCamera();
-                GameManager.Instance.ResetScore();
-                newState = EState.MainMenu;
+                GameManager.Instance.Save();
+                newState = EState.Statistics;
                 canLeave = true;
 
             }
@@ -122,6 +129,16 @@ namespace VeilofDeath.Core.GameStates
                 canLeave = true;
 
             }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                GameConstants.MainCam.ResetCamera();
+                GameManager.Instance.ResetScore();
+                GameManager.Instance.Save();
+                newState = EState.MainMenu;
+                canLeave = true;
+            }
+
         }
 
         public void Draw(GameTime time)
@@ -147,14 +164,6 @@ namespace VeilofDeath.Core.GameStates
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Opaque);
             //Debug - Anzeige
             spriteBatch.Draw(win, new Rectangle(0, 0, (int)GameConstants.WINDOWSIZE.X, (int)GameConstants.WINDOWSIZE.Y), Color.White);
-
-
-            spriteBatch.DrawString(GameConstants.lucidaConsole, "Score: " + sumscore,
-                new Vector2(200,200) , Color.White);
-            spriteBatch.DrawString(GameConstants.lucidaConsole, "Completeness: " + (int)100 * sumCompl + "%",
-                new Vector2(200, 240), Color.White);
-            spriteBatch.DrawString(GameConstants.lucidaConsole, "ZeitBonus: " + sumTime,
-                new Vector2(200, 280), Color.White);
 
 
             spriteBatch.End();

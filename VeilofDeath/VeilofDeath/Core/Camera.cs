@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VeilofDeath.Objects.PlayerStuff;
 
-namespace VeilofDeath
+namespace VeilofDeath.Core
 {
      public class Camera
     {
@@ -65,7 +66,6 @@ namespace VeilofDeath
         Vector3 camTarget;
         Vector3 offset = new Vector3(-2f, 0f, GameConstants.fCameraHeight);
         public Vector3 UP = Vector3.UnitZ;
-        float CameraMidPoint;
         //Vector3 camUp;
 
         #endregion

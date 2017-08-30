@@ -8,8 +8,9 @@ using System.Drawing;
 using System.IO;
 using VeilofDeath.Core;
 using VeilofDeath.Core.GameStates;
+using Microsoft.Xna.Framework.Audio;
 
-namespace VeilofDeath
+namespace VeilofDeath.Core
 {
     /// <summary>
     /// This is the main type for your game.
@@ -19,7 +20,7 @@ namespace VeilofDeath
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Stack<Core.IGameState> gameStates = new Stack<Core.IGameState>();
+        Stack<IGameState> gameStates = new Stack<IGameState>();
 
         Vector3 lightDirection = new Vector3(3, -2, 5);
 
@@ -53,7 +54,7 @@ namespace VeilofDeath
             graphics.PreferredBackBufferHeight = (int)GameConstants.WINDOWSIZE.Y;
             graphics.IsFullScreen = false;
             graphics.ApplyChanges();
-            Window.Title = "Veil of Death (alpha 0.01a)";
+            Window.Title = "Veil of Death (1.001)";
             lightDirection.Normalize();
 
             GameConstants.MainCam = new Camera();
@@ -76,6 +77,31 @@ namespace VeilofDeath
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
+            //TODO: Sounds und Music laden initial hierher, damit überall im Game erreichbar
+            GameConstants.CoinCollect = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/PickupCoin");
+            GameConstants.Landing = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/LandAfterJump");
+            GameConstants.CharactersJump = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/JumpHupHuman");
+            GameConstants.HeartBeat = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/HBeat");
+            GameConstants.ChangePhase = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Roaring");
+            GameConstants.Winner = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Winner");
+            GameConstants.TotalWinner = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/TotalWinner");
+            GameConstants.Loser = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Loser");
+            GameConstants.Select = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Select");
+            GameConstants.Switch = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Switch");
+
+            GameConstants.Sounds.Add(GameConstants.CoinCollect);
+            GameConstants.Sounds.Add(GameConstants.Landing);
+            GameConstants.Sounds.Add(GameConstants.CharactersJump);
+            GameConstants.Sounds.Add(GameConstants.HeartBeat);
+            GameConstants.Sounds.Add(GameConstants.ChangePhase);
+            GameConstants.Sounds.Add(GameConstants.Winner);
+            GameConstants.Sounds.Add(GameConstants.TotalWinner);
+            GameConstants.Sounds.Add(GameConstants.Loser);
+            GameConstants.Sounds.Add(GameConstants.Select);
+            GameConstants.Sounds.Add(GameConstants.Switch);
+
+            SoundEffect.MasterVolume = GameConstants.Volume;
+
         }
 
         /// <summary>
@@ -146,24 +172,23 @@ namespace VeilofDeath
                     Exit(); //Exception
                     return null;
                 /*
-            case EState.Start: //Boot-Screen
-                break;
+                case EState.Start: //Boot-Screen
+                    break;
                 */
                 case EState.MainMenu:  //Hauptmenü
                     return new MainMenu();
-                /*
-            case EState.Settings: // Einstellungen
-                break;*/
-            case EState.Settings: //Bedienung
-                    return new Settings();               
-            case EState.Ingame: //new Level
+                case EState.Settings: //Bedienung
+                    return new Settings();
+                case EState.Statistics: //Stats
+                    return new Statistics();             
+                case EState.Ingame: //new Level
                     GameManager.Instance.ResetLevel();
                     return new InGame(GameManager.Instance.Level);                
-            case EState.Score: //Score
+                case EState.Score: //Score
                     return new Score();                    
-            case EState.GameOver: //Spielende
+                case EState.GameOver: //Spielende
                     return new GameOver(GameConstants.iWinStauts);                
-            case EState.Credits: //Credits
+                case EState.Credits: //Credits
                     return new Credits();                        
                 default: return null;
             }

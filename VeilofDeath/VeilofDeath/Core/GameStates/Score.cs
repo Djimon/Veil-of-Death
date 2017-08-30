@@ -54,7 +54,7 @@ namespace VeilofDeath.Core.GameStates
                         ptConfirm; // Buttontext: confirm
 
         private btn m_selected;
-        private bool ispressed;
+        private bool ispressed = true;
 
         /// <summary>
         /// constructor for the Score Screen at the nd of each level
@@ -127,7 +127,7 @@ namespace VeilofDeath.Core.GameStates
             //LOADNG THE ELEMENTS
             if (!mustRetry)
             {
-                string pay = "Pay $" + (ilevelCoins * 2 / 3);
+                string pay = "Pay $" + (ilevelCoins * 1 / 2);
                 ptText = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/ConfirmText"), true); // Text: Main-Info Text
                 pePictuer = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/door_0-0_short"), true); // Sprite of Warden or Door
                 pbtConfirm = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/button"), true); // Button: pay fee and go on
@@ -197,7 +197,7 @@ namespace VeilofDeath.Core.GameStates
                     ispressed = true;
                     GameConstants.Switch.Play();//LARS: Play sound: switch selected Button
                 }
-                if (Keyboard.GetState().IsKeyUp(Keys.Left) && Keyboard.GetState().IsKeyUp(Keys.Right))
+                if (Keyboard.GetState().IsKeyUp(Keys.Left) && Keyboard.GetState().IsKeyUp(Keys.Right) && Keyboard.GetState().IsKeyUp(Keys.Enter))
                     ispressed = false;
 
 
@@ -205,22 +205,24 @@ namespace VeilofDeath.Core.GameStates
                 if (Keyboard.GetState().IsKeyDown(Keys.Enter))
                 {
                     GameConstants.Select.Play();//LARS: play sound: Menüpunkt bestätigen
-
+                    ispressed = true;
                     switch (m_selected)
                     {
                         case btn.confirm:
                             if (GameManager.Instance.Level + 1 < GameConstants.iMaxLevel)
                             {        
-                                GameConstants.MainCam.ResetCamera();
-                                GameManager.Instance.ResetScore();
-                                GameManager.Instance.iCoinScore[GameManager.Instance.Level] -= ilevelCoins * 2 / 3;
+                                GameConstants.MainCam.ResetCamera();                                
+                                GameManager.Instance.iCoinScore[GameManager.Instance.Level] -= ilevelCoins * 1 / 2;
                                 GameManager.Instance.LevelUp();
                                 newState = EState.Ingame;
                                 canLeave = true;
+                                // TODO: nach Level 3 Story(2) einfügen
                             }
                             else
                             {
+                                //TODO: hier Story(3) einfügen
                                 GameConstants.iWinStauts = 1;
+                                GameConstants.hasGameWon = true;
                                 newState = EState.GameOver;
                                 canLeave = true;
                             }

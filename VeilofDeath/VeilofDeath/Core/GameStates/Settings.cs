@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using VeilofDeath.PanelStuff;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 
 namespace VeilofDeath.Core.GameStates
 {
@@ -33,6 +34,8 @@ namespace VeilofDeath.Core.GameStates
         private bool enterMenu = false;
 
         private float volumeterPos;
+
+        private float priorVolume;
 
         Panel DifficultyPanel,VolumePanel,ControlsPanel,MainPanel;
         //Panelelements for MainPanel;
@@ -71,6 +74,7 @@ namespace VeilofDeath.Core.GameStates
             DiffMode = (Difficulty) Math.Max(0,GameConstants.iDifficulty - 1);
             volumeterPos = GetVolPos(GameConstants.Volume);
             enterMenu = false;
+            priorVolume = GameConstants.Volume;
         }
 
         private float GetVolPos(float v)
@@ -82,6 +86,8 @@ namespace VeilofDeath.Core.GameStates
         {
             return (x - 0.1f) / 0.72f;
         }
+
+        #region LoadContent
 
         public void LoadContent()
         {
@@ -167,6 +173,8 @@ namespace VeilofDeath.Core.GameStates
             // X in Range (0.1 - 0.82)
             VolumePanel.Add(peMarker, new Vector2(0.1f, 0.55f));
 
+            peMarker.UpdatePositionX(volumeterPos);
+
         }
 
         private void LoadControlsPanel()
@@ -235,6 +243,10 @@ namespace VeilofDeath.Core.GameStates
             
         }
 
+        #endregion
+        
+        #region Update
+
         public void Update(GameTime time)
         {
 
@@ -298,13 +310,13 @@ namespace VeilofDeath.Core.GameStates
                 if (Keyboard.GetState().IsKeyUp(Keys.Enter))
                     isEnterDown = false;
 
-                //if (!ispressed && Keyboard.GetState().IsKeyDown(Keys.Escape))
-                //{
-                //    ispressed = true;
-                //    newState = EState.MainMenu;
-                //    canLeave = true;
-                //}
-                    
+                if (!ispressed && Keyboard.GetState().IsKeyDown(Keys.Escape))
+                {
+                    ispressed = true;
+                    newState = EState.MainMenu;
+                    canLeave = true;
+                }
+
             }
 
 
@@ -334,9 +346,13 @@ namespace VeilofDeath.Core.GameStates
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
-
+                ispressed = true;
                 enterMenu = false;
             }
+
+            if (Keyboard.GetState().IsKeyUp(Keys.Escape))
+                ispressed = false;
+
         }
 
         private void UpdateVolume()
@@ -346,12 +362,16 @@ namespace VeilofDeath.Core.GameStates
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
                 volumeterPos = Math.Max(0.1f, volumeterPos - 0.01f);
+                GameConstants.Volume = GetVolReal(volumeterPos);
+                SoundEffect.MasterVolume = GameConstants.Volume;
                 ispressed = true;
                 GameConstants.Switch.Play();
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
                 volumeterPos = Math.Min(volumeterPos + 0.01f, 0.82f);
+                GameConstants.Volume = GetVolReal(volumeterPos);
+                SoundEffect.MasterVolume = GameConstants.Volume;
                 ispressed = true;
                 GameConstants.Switch.Play();
             }
@@ -360,15 +380,22 @@ namespace VeilofDeath.Core.GameStates
             if (!isEnterDown && Keyboard.GetState().IsKeyDown(Keys.Enter))
             {                
                 GameConstants.Volume = GetVolReal(volumeterPos);
+                SoundEffect.MasterVolume = GameConstants.Volume;
                 isEnterDown = true;
                 enterMenu = false;
                 GameConstants.Select.Play();
             }
 
+            if (Keyboard.GetState().IsKeyUp(Keys.Escape))
+                ispressed = false;
+
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
+                GameConstants.Volume = priorVolume;
                 volumeterPos = GetVolPos(GameConstants.Volume);
+                SoundEffect.MasterVolume = GameConstants.Volume;
                 enterMenu = false;
+                ispressed = true;
             }
 
             if (Keyboard.GetState().IsKeyUp(Keys.Enter))
@@ -418,7 +445,7 @@ namespace VeilofDeath.Core.GameStates
                 ispressed = true;
             }
 
-            if (Keyboard.GetState().IsKeyUp(Keys.Down) && Keyboard.GetState().IsKeyUp(Keys.Up))
+            if (Keyboard.GetState().IsKeyUp(Keys.Down) && Keyboard.GetState().IsKeyUp(Keys.Up) && Keyboard.GetState().IsKeyUp(Keys.Escape))
                 ispressed = false;
 
             if (!isEnterDown && Keyboard.GetState().IsKeyDown(Keys.Enter))
@@ -444,12 +471,15 @@ namespace VeilofDeath.Core.GameStates
                 ptMedium2.isActive = false;
                 ptHard2.isActive = false;
                 ptExtreme2.isActive = false;
+                ispressed = true;
             }
 
             if (Keyboard.GetState().IsKeyUp(Keys.Enter))
                 isEnterDown = false;
 
         }
+
+        #endregion
 
         public void Draw(GameTime time)
         {

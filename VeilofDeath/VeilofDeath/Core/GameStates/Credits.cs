@@ -5,13 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using VeilofDeath.PanelStuff;
+using Microsoft.Xna.Framework.Input;
 
 namespace VeilofDeath.Core.GameStates
 {
     class Credits : IGameState
     {
-        Texture2D background;
         private SpriteBatch spriteBatch;
+
+        Panel MainPanel;
+        PanelElement peHeader;
 
         public bool canLeave { get; set; }
         
@@ -32,7 +36,13 @@ namespace VeilofDeath.Core.GameStates
 
         public void LoadContent()
         {
-            background = GameConstants.Content.Load<Texture2D>("Menu/menuBG");
+            MainPanel = new Panel(GameConstants.Content.Load<Texture2D>("Panels/menu/MenuBG"), new Vector2(0, 0));
+
+            peHeader = new PanelElement(GameConstants.Content.Load<Texture2D>("Panels/menu/creditscomplete"), true);
+            //TODO: mit den einzelnen Elementen umsetzen, hier aus Faulheit ein großes .png für die Controls
+
+
+            MainPanel.Add(peHeader, new Vector2(0.1f, 0.1f));
         }
 
         public void UnloadContent()
@@ -42,13 +52,17 @@ namespace VeilofDeath.Core.GameStates
 
         public void Update(GameTime time)
         {
-            throw new NotImplementedException();
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                newState = EState.MainMenu;
+                canLeave = true;
+            }
         }
         public void Draw(GameTime time)
         {
             spriteBatch.Begin();
 
-            spriteBatch.Draw(background, new Rectangle(0, 0, (int)GameConstants.WINDOWSIZE.X, (int)GameConstants.WINDOWSIZE.Y), Color.White);
+            MainPanel.Draw(spriteBatch);
 
             spriteBatch.End();
         }

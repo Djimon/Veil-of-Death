@@ -4,13 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VeilofDeath.Core;
 
 namespace VeilofDeath.Objects
 {
    public class MyBoundingBox
     {
-        private Vector3 center;
-
         private float iminX;
         private float iminY;
         public float iminZ;

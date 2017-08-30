@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Media;
 using VeilofDeath.Objects;
 using VeilofDeath.Objects.Traps;
 
-namespace VeilofDeath
+namespace VeilofDeath.Core
 {
     class GameManager
     {
@@ -27,7 +27,7 @@ namespace VeilofDeath
 
         public GameManager()
         {
-            Load();
+           
         }
 
         public void Load()
@@ -37,13 +37,17 @@ namespace VeilofDeath
             Score = new int[GameConstants.iMaxLevel];
             fVeilDistance = 100; //TODO: abhängig von GameConstants.iDifficulty machen
             iPhase = 0;
+            LoadScores();
+
         }
+
 
         public void ResetLevel()
         {
             SpikeList.Clear();
             SlowList.Clear();
             CoinList.Clear();
+            RollList.Clear();
             ResetPhase();
         }
 
@@ -59,7 +63,7 @@ namespace VeilofDeath
         /// <para>99 - Hidden Bonus-Level</para>
         /// </summary>
         public int Level { get; private set; }
-        private int[] Score { get; set; }
+        public int[] Score { get; private set; }
         public int score {
             get
             {
@@ -74,9 +78,35 @@ namespace VeilofDeath
         public float fVeilDistance { get; private set; }
         public int iPhase {get; private set;}
 
+        public int DeathCounter { get; private set; }
+
+        public int DeathUp()
+        {
+            DeathCounter++;
+            return DeathCounter;
+        }
+
         public int[] iCoinScore = new int[GameConstants.iMaxLevel];
         public int[] iTimeBonus = new int[GameConstants.iMaxLevel];
         public float[] fStageCleared = new float[GameConstants.iMaxLevel];
+
+
+        private void LoadScores()
+        {
+            //TODO: don use FlushStats and Read from file!!!
+            FlushStats();
+        }
+
+        public void FlushStats()
+        {
+            for (int i = 0; i < GameConstants.iMaxLevel; i++)
+            {
+                iCoinScore[i] = 0;
+                iTimeBonus[i] = 0;
+                fStageCleared[i] = 0;
+                Score[i] = 0;
+            }
+        }
 
         public void UpdateScore(int value)
         {
@@ -94,6 +124,12 @@ namespace VeilofDeath
             iTimeBonus[Level] = 0;
             fStageCleared[Level] = 0;
         }
+
+        public void ResetToLevel0()
+        {
+            Level = 0;
+        }
+
         public void LevelUp()
         {
             Level++;
@@ -129,6 +165,7 @@ namespace VeilofDeath
         List<SpikeTrap> SpikeList = new List<SpikeTrap>();
         List<SlowTrap> SlowList = new List<SlowTrap>();
         List<Coin> CoinList = new List<Coin>();
+        List<SpikeRoll> RollList = new List<SpikeRoll>();
 
         public List<SlowTrap> getSlowList()
         {
@@ -140,7 +177,10 @@ namespace VeilofDeath
             SlowList.Add(slow);
         }
 
-
+        public void AddRoll(SpikeRoll roll)
+        {
+            RollList.Add(roll);
+        }
 
         public List<SpikeTrap> getSpikeList()
         {
@@ -166,6 +206,11 @@ namespace VeilofDeath
         {
             GameConstants.CoinCollect.Play();
             CoinList.Remove(c);
+        }
+
+        internal List<SpikeRoll> getRollList()
+        {
+            return RollList;
         }
     }
 }

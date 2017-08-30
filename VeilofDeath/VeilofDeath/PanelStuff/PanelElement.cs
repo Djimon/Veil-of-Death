@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VeilofDeath.Core;
 
 namespace VeilofDeath.PanelStuff
 {
@@ -30,10 +31,18 @@ namespace VeilofDeath.PanelStuff
         /// </summary>
         /// <param name="tex">Texture</param>
         /// <param name="on">if it is active by default</param>
-        public PanelElement(Texture2D tex, bool on)
+        public PanelElement(Texture2D tex, bool on=true)
         {
             tx = tex;
             isActive = on;
+            additionalTex = new List<Texture2D>();
+        }
+
+        public PanelElement(string text, SpriteFont font, Color color, bool on=true)
+        {
+            tx = GameConstants.Content.Load<Texture2D>("Panels/void"); ;
+            isActive = on;
+            this.AddText(font, text, color);
             additionalTex = new List<Texture2D>();
         }
 

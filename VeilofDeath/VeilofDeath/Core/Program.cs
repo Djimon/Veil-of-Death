@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VeilofDeath
+namespace VeilofDeath.Core
 {
 #if WINDOWS || LINUX
     /// <summary>

@@ -8,14 +8,14 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 using VeilofDeath.Objects;
 
-namespace VeilofDeath
+namespace VeilofDeath.Core
 {
     static class GameConstants
     {
         /// <summary>
         /// If on puts some outputs to the console
         /// </summary>
-        public static bool isDebugMode = true;
+        public static bool isDebugMode = false;
         //mandatory things        
         public static ContentManager Content;
 
@@ -82,12 +82,12 @@ namespace VeilofDeath
         /// <summary>
         /// Speed the player moves
         /// </summary>
-        public static float fMovingSpeed = 2;
+        public static float fMovingSpeed = 1.5f +  (0.25f * iDifficulty) ;
         /// <summary>
         /// number of Traps in the Game
         /// </summary>
         public static int iTrapNumber = 4;
-        public static int iMaxLevel = 3;
+        public static int iMaxLevel = 5;
         /// <summary>
         /// Diificulty can be 1,2,3 or 4
         /// </summary>
@@ -95,9 +95,12 @@ namespace VeilofDeath
 
         public static bool isCollided = false;
 
+        public static int ScorePerCoin = 25;
+
         public static Game currentGame;
         public static SpriteFont lucidaConsole;
         internal static int iWinStauts = 0;
+        internal static bool hasGameWon = false;
 
         public static GraphicsDeviceManager Graphics { get; internal set; }
 
@@ -120,6 +123,8 @@ namespace VeilofDeath
         public static SoundEffect HeartBeat;
         public static SoundEffect Select;
         public static SoundEffect Switch;
+
+        public static List<SoundEffect> Sounds = new List<SoundEffect>();
 
         public static float Volume = 0.75f; // 1 = 100%
         //public static SoundEffectInstance HBInstance;

@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VeilofDeath.SpecialFX;
+using VeilofDeath.Objects.PlayerStuff;
+using VeilofDeath.Core;
 
 namespace VeilofDeath.Objects
 {
@@ -15,7 +17,7 @@ namespace VeilofDeath.Objects
         public float fSpeed;
         public bool hasReachedPlayer = false;
 
-        private Player Victim;
+        private Player  Victim;
         private Vector3 Velocity;
         public float fDistance { get; private set; }
         private float fStartDistance;
@@ -41,17 +43,17 @@ namespace VeilofDeath.Objects
         {
             Position = new Vector3(GameManager.Instance.StartPos.X,
                                                 (GameManager.Instance.Level > 0 ?
-                                                    GameManager.Instance.StartPos.Y - ((100 - 8 * toughness) + GameManager.Instance.fVeilDistance)/2 :
-                                                    GameManager.Instance.StartPos.Y - (100 - 8 * toughness)),
+                                                    GameManager.Instance.StartPos.Y - ((180 - 12 * toughness) + GameManager.Instance.fVeilDistance)/2 :
+                                                    GameManager.Instance.StartPos.Y - (180 - 12 * toughness)),
                                                 0);
             //float temp = GameConstants.fMovingSpeed + (0.25f* (float)Math.Log(0.3f * 1));
             //float temp2 = GameConstants.fMovingSpeed + (0.25f * (float)Math.Log(0.3f * 3));
             //float temp3 = GameConstants.fMovingSpeed + (0.25f * (float)Math.Log(0.3f * 5));
             //Console.WriteLine("Log_test: "+temp+","+temp2+","+temp3 );
-            fSpeed = Math.Max(0.1f * GameConstants.fMovingSpeed, 0.1f * (GameConstants.fMovingSpeed + (0.25f * (float)Math.Log(0.3f * 5))));
+            fSpeed = Math.Max(0.1f * GameConstants.fMovingSpeed, 0.1f * (GameConstants.fMovingSpeed + (0.25f * (float)Math.Log(0.1f* GameConstants.iDifficulty * 5))));
             Victim = victim;
             if (GameConstants.isDebugMode)
-                Console.WriteLine("VeilSpeed: " + fSpeed);
+                Console.WriteLine("PlayerSpeed: "+ GameConstants.fMovingSpeed + "  VeilSpeed: " + fSpeed);
             fStartDistance = fDistance = Victim.Position.Y - Position.Y;
             if (GameConstants.isDebugMode)
                 Console.WriteLine("Distance: " + fDistance);

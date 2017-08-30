@@ -6,8 +6,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VeilofDeath.Core;
 
-namespace VeilofDeath
+namespace VeilofDeath.Level
 {
     public static class LevelContent
     {

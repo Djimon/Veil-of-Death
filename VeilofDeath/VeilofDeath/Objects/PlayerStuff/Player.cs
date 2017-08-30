@@ -7,10 +7,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VeilofDeath.Core;
+using VeilofDeath.Level;
 using VeilofDeath.Objects;
 using VeilofDeath.Objects.Traps;
 
-namespace VeilofDeath
+namespace VeilofDeath.Objects.PlayerStuff
 {
      public class Player : AGameObject,ILivingEntity
     {
@@ -54,7 +56,7 @@ namespace VeilofDeath
         public Player(AnimatedModel m)
         {
             AniModel = m;
-            Position = new Vector3(GameConstants.fLaneCenter, 0, 0);
+            Position = new Vector3(GameConstants.fLaneCenter, 0, -3f);
             //Console.WriteLine("Startposition: (" + this.Position.X + "/ " + this.Position.Y + "/" + this.Position.Z + ")");
             Initialize();
             this.name = "Player";
@@ -224,6 +226,7 @@ namespace VeilofDeath
             //HandleSpikes();
             HandleSlowtraps();
             HandleCoins();
+            //HandleSpikeRolls();
         }
 
         private void HandleCoins()
@@ -245,7 +248,7 @@ namespace VeilofDeath
                         Console.WriteLine("Coin collected");
                     GameManager.Instance.Delete(lc[i]);
                     GameManager.Instance.iCoinScore[GameManager.Instance.Level]++;
-                    GameManager.Instance.AddtoScore(25); //TODO: Remove magic Constants
+                    GameManager.Instance.AddtoScore(GameConstants.ScorePerCoin);
                 }
             }
 
@@ -258,6 +261,32 @@ namespace VeilofDeath
         private void HandleSpikes()
         {
             foreach (SpikeTrap trap in GameManager.Instance.getSpikeList())
+            {
+
+                if (trap.Position.Y > (this.Position.Y + 2 * GameConstants.iBlockSize)
+                    || trap.Position.Y < (this.Position.Y - GameConstants.iBlockSize))
+                {
+                    continue;
+                }
+
+
+                if (this.box.intersect(trap.box))
+                {
+                    //GameConstants.currentGame.Exit();
+                    if (GameConstants.isDebugMode)
+                    {
+                        Console.WriteLine("Collision");
+                        Console.WriteLine("player: " + this.box.iminZ
+                                          + " box: " + trap.box.imaxZ);
+                    }
+                    this.isDead = true;
+                }
+            }
+        }
+
+        private void HandleSpikeRolls()
+        {
+            foreach (SpikeRoll trap in GameManager.Instance.getRollList())
             {
 
                 if (trap.Position.Y > (this.Position.Y + 2 * GameConstants.iBlockSize)

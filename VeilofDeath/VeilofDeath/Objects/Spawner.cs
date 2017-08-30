@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VeilofDeath.Core;
+using VeilofDeath.Level;
 using VeilofDeath.Objects;
 
-namespace VeilofDeath.Core
+namespace VeilofDeath.Objects
 {
     class Spawner
     {
@@ -47,8 +49,6 @@ namespace VeilofDeath.Core
         /// <param name="map">block matrix of the actual map</param>
         public void PlaceCoins(Block[,] map)
         {
-            int iCoins = 0;
-
             foreach (Block B in map)
             {
                 if (B.blockType == 0

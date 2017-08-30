@@ -5,9 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VeilofDeath.Core;
+using VeilofDeath.Objects;
 using VeilofDeath.Objects.Traps;
 
-namespace VeilofDeath
+namespace VeilofDeath.Level
 {
     public class Block
     {
@@ -119,7 +121,8 @@ namespace VeilofDeath
                         this.m_Block = modelDictionary["wegStone"];
                         this.position = new Vector3(pos, GameConstants.fLevelHeight);
                         GameManager.Instance.ZielPos = this.position;
-                        Console.WriteLine("Ziel gesezt: " +position);
+                        if (GameConstants.isDebugMode)
+                            Console.WriteLine("Ziel gesezt: " +position);
                         this.isWalkable = true;                      
                         break;
                     }
@@ -133,16 +136,18 @@ namespace VeilofDeath
                         break;
                     }
 
-                case 6: //Falle 2
+                case 6: //SpikeRoll
                     {
-                        this.m_Block = modelDictionary[""];
+                        this.m_Block = modelDictionary["wegStone"];
                         this.position = new Vector3(pos, GameConstants.fLevelHeight);
+                        GameManager.Instance.AddRoll(new SpikeRoll(new Vector3(pos, -3f)));
                         this.isWalkable = true;
+                        this.isFree = false;
                         break;
                     }
-                case 7: //Falle 3
+                case 7: //Door
                     {
-                        this.m_Block = modelDictionary[""];
+                        this.m_Block = modelDictionary["ende"];
                         this.position = new Vector3(pos, GameConstants.fLevelHeight);
                         this.isWalkable = true;
                         break;
