@@ -245,7 +245,7 @@ namespace VeilofDeath.Core.GameStates
                         else
                         {
                             //TODO: hier Story(3) einfügen
-                            GameConstants.iWinStauts = 1;
+                            GameConstants.iWinStatus = 1;
                             GameConstants.hasGameWon = true;
                             newState = EState.GameOver;
                             canLeave = true;
