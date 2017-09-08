@@ -187,7 +187,7 @@ namespace VeilofDeath.Core
                 case EState.Score: //Score
                     return new Score();                    
                 case EState.GameOver: //Spielende
-                    return new GameOver(GameConstants.iWinStauts);                
+                    return new GameOver(GameConstants.iWinStatus);                
                 case EState.Credits: //Credits
                     return new Credits();                        
                 default: return null;

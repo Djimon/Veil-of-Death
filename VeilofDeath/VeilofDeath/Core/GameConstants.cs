@@ -99,7 +99,7 @@ namespace VeilofDeath.Core
 
         public static Game currentGame;
         public static SpriteFont lucidaConsole;
-        internal static int iWinStauts = 0;
+        internal static int iWinStatus = 0;
         internal static bool hasGameWon = false;
 
         public static GraphicsDeviceManager Graphics { get; internal set; }

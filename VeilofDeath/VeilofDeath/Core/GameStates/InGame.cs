@@ -222,6 +222,7 @@ namespace VeilofDeath.Core.GameStates
 
             music = GameConstants.Content.Load<Song>("Music/Background");
             MediaPlayer.Play(music);
+            MediaPlayer.IsRepeating = true;
 
             MediaPlayer.Volume = GameConstants.Volume *2/3;
 
