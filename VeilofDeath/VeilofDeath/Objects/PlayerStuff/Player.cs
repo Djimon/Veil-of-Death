@@ -306,6 +306,8 @@ namespace VeilofDeath.Objects.PlayerStuff
                                           + " box: " + trap.box.imaxZ);
                     }
                     this.isDead = true;
+
+                    //TODO: insert Sound "Zerquetschen oder Aufspießen" hier
                 }
             }
         }
