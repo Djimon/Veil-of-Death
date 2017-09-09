@@ -172,7 +172,12 @@ welche ihm gegen die Hindernisse und Gegner helfen. Er sammelt auf dem Weg Coins
 \subsubsection{Klassendiagramme}
 
 %Klassendiagramm einfügen
-
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{classdiagramm.png}
+	\caption{Klassendiagramm Veil of Death
+		\label{fig:classdiagramm}}
+\end{figure}
 
 Die Game-Klasse ist die Hauptklasse unseres Spieles. Von Ihr aus geht der allgemeine Game-Loop, der in allen Zuständen des Spiels vorkommt. Die unterschiedlichen Zustände des Spiels werden mit Hilfe eines Interfaces (IGameStates) mit gemeinsamen Funktionen (z.B. Initialisierung, Game-Loop, Draw) gespeist.
 Für alle Objekte im Spiel die miteinander agieren können, haben wir eine übergeordnete abstrakte Klasse (AGameObject) erschaffen, von der die einzelnen Objektklassen erben.
@@ -186,19 +191,19 @@ Die Block-Klasse holt sich die Informationen, welches Model, oder Textur geladen
 Wir haben zwei zentrale Klassen für wichtige Steuerungs- und Speicherfunktionen. GameConstants ist eine statische Klasse, die sämtliche wichtigen Einstellungen und Standartwerte für das Spiel beinhaltet. Des weiteren haben wir einen Singelton-Klasse implementiert, die zwischen den verschiedenen Leveln und GameStates die wichtigsten Informationen überträgt und managed.
 Ein Gesamtüberblick über alle unserer Klassen sind der \ref{fig:classdiagramm} zu entnehmen.
 
-\begin{figure}
-	\centering
-	\includegraphics[width=1\textwidth]{classdiagramm.png}
-	\caption{Klassendiagramm Veil of Death
-		\label{fig:classdiagramm}}
-\end{figure}
-
 
 \newpage
 
 \subsubsection{Use-Cases}
 
-% 1. Use-Case einfügen
+% 1. Use-Case Hauptmenü
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{UCM}
+	\caption{Use-Case Hauptmenü 
+		\label{fig:UCM}}
+\end{figure}
 
 Hauptmenü\newline
 Das Hauptmenü zeigt eine Auswahl von fünf Buttons, die je nach Auswahl entsprechend hervorgehoben werden.
@@ -215,9 +220,43 @@ In den Credits gibt es eine kurze Nennung der am Spiel beteiligten Teammitgliede
 • Exit\newline
 Exit beendet das Programm. \newline
 
+% 2. Use-Case Settings
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{UCS}
+	\caption{Use-Case Settings
+		\label{fig:UCS}}
+\end{figure}
+
+\noindent Settings\newline
+In den Settings kann der Spieler die persönlichen Einstellungen an den folgenden Unterpunkten vornehmen.
+Durch betätigen der Pfeiltasten oben/ unten kann der Spieler durch die Optionen wechseln. Mit der Enter-Taste wird
+dann der Menüpunkt ausgewählt und der Spieler kann die Parameter an seine persönliche Belieben anpassen.
+Folgende Optionen stehen zur Auswahl:\newline
+• Difficulty\newline
+In diesem Punkt der Spieler den Schwierigkeitsgrad des Spiels festlegen. Er hat die Auswahl zwischen den Optionen
+easy, medium, hard, extreme.\newline
+• Sounds\newline
+Hier kann die Lautstärke des Spiels angepast werden.\newline
+• Controls\newline
+Unter diesem Punkt ist die Steuerung des Spiels sichtbar.\newline
+\newline
+Aus den jeweiligen Untermenüs kommt der Spieler mit dem Betätigen der ESC-Taste zurück zu den Einstellungsoptionen.
+Mit einem weiteren Betätigen der ESC-Taste landet der Spieler wieder im Hauptmenü.\newline
+\newline
+Dieser Use-Case besteht im Grunde aus vier Separaten. Die Use-Cases auf der Rechten Seite erweitern jeweils die dazugehörigen
+Optionen auf der linken Seite, dies können sie der \ref{fig:UCS} entnehmen. \newline
 
 
-% 2. Use-Case einfügen
+% 3. Use-Case Player - Environment
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{UCIPE}
+	\caption{Use-Case Ingame Player-Environment
+		\label{fig:UCIPE}}
+\end{figure}
 
 \noindent Ingame (Player vs. Environment)\newline
 Ingame kann der Spieler den Protagonisten verschiedene Aktionen ausführen lassen um
@@ -225,7 +264,7 @@ Hindernissen aus dem Weg zu gehen:\newline
 • Lane wechseln\newline
 • Springen\newline
 • Dodgen\newline
-Er kann durch drüberlaufen verschiedene Collectables wie Coins oder Schwert aufnehmen.
+Er kann verschiedene Collectables wie Coins oder Schwert aufnehmen, in dem er darüberläuft.
 Er wechselt Lanes um Fallen, Hindernissen und Mobs aus dem Weg zu gehen, denn eine Kollision
 bedeutet im besten Fall einen Debuff aber meist den sofortigen Tod. \newline
 

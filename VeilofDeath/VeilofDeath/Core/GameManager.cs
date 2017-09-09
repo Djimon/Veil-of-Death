@@ -135,7 +135,7 @@ namespace VeilofDeath.Core
         public void ResetToLevel0()
         {
             Level = 0;
-            GameConstants.iWinStauts = 0;
+            GameConstants.iWinStatus = 0;
         }
 
         public void LevelUp()
