@@ -10,6 +10,7 @@
 \usepackage{pdfpages}
 
 \usepackage{color}
+\usepackage{verbatim}
 
 \usepackage{varioref}
 	\labelformat{figure}{Abbildung~#1}
@@ -115,10 +116,31 @@
 - Jump-Funktion (Parabel anhand von Geschwindigkeit)}
 
 \vspace{1cm}
-\subsubsection{Collision \textcolor{red}{(in Arbeit - Lars)}}
+\subsubsection{Collision \textcolor{blue}{(QA - Lars )}}
+
+\begin{comment}
 \textcolor{green}{2 Arten: \newline
 - AABB für Spiketrap und spikeroll \newline
 - Gridposition für Coins und Slowtrap}
+\end{comment}
+
+In unserem Spiel haben wir zwei unterschiedliche Kollisionmethoden verwendet.
+Zum Einen Arbeiten wir mit Gridpositions für statische Objekte und mit den
+Axis-Alligned-Bounding-Boxes für bewegbare Objekte.\newline
+\newline
+Gridpositions eignen sich hervorragend für statische Objekte in Spielen, daher werden die Kollisionen
+von Münzen und Slowtraps von ihnen verwaltet. Hier für werden die Positionen von unseren kollidirbaren
+Objekten abgespeichert. Die Kollision wird dann mit Hilfe von if-Bedingungen berechnet.\newline
+\newline
+Axis-Alligned-Bounding-Boxes berechnen für uns die Kollisionen mit beweglichen Obejkten, so dass jedes Objekt seine eigene
+Bounding Box hat. Hier für wird um das Objekt eine Hülle gespannt. In unserem Spiel haben wir die jeweiligen Maximalwerte
+der Modelle in Betrachtung der Achsen gewählt. Die Kollision entsteht wenn die Minimalwerte der Achsen von Körper A kleiner
+als die Maximalwerte von Körper B sind. Sowie die Maximalwerte der Achsen von Körper A größer sind als die Minimalwerte der
+Achsen von Körper B. Anders gesagt wenn die erweiterte konvexe Hülle des einen Körpers, die des Anderen schneidet.
+
+%Grafik einfügen
+
+
 
 \vspace{1cm}
 \subsubsection{Sontiges}
@@ -139,7 +161,19 @@
 \subsubsection{Weltkoordinaten}
 
 \vspace{1cm}
-\subsubsection{Animation \textcolor{red}{(in Arbeit - Lars)}}
+\subsubsection{Animation \textcolor{blue}{(QA - Lars )}}
+Die Animation der Modelle erfolgt unter den Gebrauch einer Bibliothek. Hierfür benötigt man eine .x-Datei.
+Des Weiteren wird eine Textdatei benötigt, in der festgehalten ist, wie das Modell animiert werden soll.
+In dieser Textdatei kann man auf das jeweilige Modell bezogen so viele Methoden (Animationparts) erstellen
+wie man möchte. Man kann entscheiden, ob die Animation wiederholt werden soll oder einfach gespielt wird.
+Außerdem wird hier das Start- und Endframe der Animation festgelegt. Auch die Animationsdauer ist eine weitere
+Einstellungsoption. Nach dem man die jeweiligen Einstellungen für seine Methoden festgelegt hat, kann man diese
+im späteren Code unter ihrem angegebenen Namen aufrufen. Bevor man diese jedoch aufrufen kann, muss die
+Textdatei gelesen werden. Es gilt weiterhin zu beachten, dass nur eine Animations gleichzeitig abgespielt werden kann.
+Darunter ist zu verstehen, dass es nicht möglich ist die Animation in mehrere Schichten aufzuteilen, sodass es möglich ist
+mehrere Animationen abzuspielen aber nur Eine sichtbar zu zeichnen, während die Anderen im Hintergrund weiterlaufen.
+Diese Option würde den Übergang zwischen unterschiedlichen Animationen vereinfachen, da man die Zweite einfach auf
+transparent stellen würde.
 
 \vspace{1cm}
 \subsubsection{Partikel Effekte}
@@ -161,7 +195,14 @@
 \subsubsection{Prototyp 2 - Christoph Dollase und ???}
 
 \vspace{1cm}
-\subsubsection{Prototyp 3 - Lars Wagner und Mattis Hagen}
+\subsubsection{Prototyp 3 - Lars Wagner und Mattis Hagen \textcolor{blue}{(QA - Lars )}}
+Unser Prototyp war ein Spaceshooter indem man ein Raumschiff steuern konnte, welches Meteoriten ausweichen musste.
+Es ist auch möglich gewesen die Meteoriten abzuschießen. Für den Abschuss der Meteoriten hat man Punkte gekriegt. Das Spiel endet sobald das Raumschiff keine Trefferpunkte mehr hat, welche man verliert wenn man mit den Meteoriten kollidiert. Ziel des Spiels ist es solange wie möglich zu überleben und seinen Highscore zu maximieren.
+
+Das Spiel basiert auf einem Grid-System, da die Meteoriten nur in einem Grid aus festgelegten Punkten spawnen können. Die Kamera ist starr fixiert und lässt sich nur zu Debugzwecken bewegen. Die Meteoriten rotieren um eine zufällig gewählte Achse während sie sich dem Spieler nähern. Mit der Zeit nimmt die Geschwindigkeit der Meteoriten zu.
+Unsere Laserstrahlen sind Punkte die wir dann als separate von einander getrennte Linien zeichnen lassen.
+Auch wurde der Spieler über die GUI über seinen Score, seine verbliebenen Trefferpunkte informiert.
+Die Asteroiden werden durch den MeteorHandler verwaltet. Dadurch sind nie mehr als 20 Meteoriten auf dem Bildschirm, sobald ein Meteor hinter der Kamera despawned, spawned sofort ein Neuer.
 
 \vspace{2cm}
 \subsection{Meilensteine}
