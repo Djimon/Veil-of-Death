@@ -1,0 +1,52 @@
+\contentsline {section}{\numberline {1}Einleitung}{4}
+\contentsline {subsection}{\numberline {1.1}Spielprinzip}{4}
+\contentsline {subsection}{\numberline {1.2}Zielsetzung}{4}
+\contentsline {subsection}{\numberline {1.3}Projektumfeld}{4}
+\contentsline {section}{\numberline {2}Projektplanung \leavevmode {\color {red}(in Arbeit - Chris )}}{5}
+\contentsline {subsection}{\numberline {2.1}Projektphasen \leavevmode {\color {red}(in Arbeit - Chris )}}{5}
+\contentsline {subsection}{\numberline {2.2}Ressourcenplanung \leavevmode {\color {red}(in Arbeit - Chris )}}{5}
+\contentsline {subsection}{\numberline {2.3}Entwicklungsprozess \leavevmode {\color {red}(in Arbeit - Chris )}}{5}
+\contentsline {section}{\numberline {3}Das Spiel}{6}
+\contentsline {subsection}{\numberline {3.1}Hauptmen\IeC {\"u}}{6}
+\contentsline {subsubsection}{\numberline {3.1.1}Spiel Starten}{6}
+\contentsline {subsubsection}{\numberline {3.1.2}Einstellungen}{6}
+\contentsline {subsubsection}{\numberline {3.1.3}Statistiken}{6}
+\contentsline {subsubsection}{\numberline {3.1.4}Credits}{6}
+\contentsline {subsubsection}{\numberline {3.1.5}Sonstiges}{6}
+\contentsline {subsection}{\numberline {3.2}Spielwelt}{6}
+\contentsline {subsubsection}{\numberline {3.2.1}Levelgenerator \leavevmode {\color {red}(in Arbeit - Chris )}}{6}
+\contentsline {subsubsection}{\numberline {3.2.2}Player}{6}
+\contentsline {subsubsection}{\numberline {3.2.3}Fallen}{6}
+\contentsline {subsubsection}{\numberline {3.2.4}Feedback}{6}
+\contentsline {subsubsection}{\numberline {3.2.5}Assets}{6}
+\contentsline {section}{\numberline {4}Technische Umsetzung}{7}
+\contentsline {subsection}{\numberline {4.1}Codestruktur}{7}
+\contentsline {subsubsection}{\numberline {4.1.1}GameStates}{7}
+\contentsline {subsubsection}{\numberline {4.1.2}Globale Klassen}{7}
+\contentsline {subsection}{\numberline {4.2}InGame}{7}
+\contentsline {subsubsection}{\numberline {4.2.1}Movement}{7}
+\contentsline {subsubsection}{\numberline {4.2.2}Collision}{7}
+\contentsline {subsubsection}{\numberline {4.2.3}Sontiges}{8}
+\contentsline {subsection}{\numberline {4.3}GUI}{8}
+\contentsline {subsubsection}{\numberline {4.3.1}Panel System \leavevmode {\color {red}(in Arbeit - Chris)}}{8}
+\contentsline {subsection}{\numberline {4.4}Rendering}{8}
+\contentsline {subsubsection}{\numberline {4.4.1}Aufbau}{8}
+\contentsline {subsubsection}{\numberline {4.4.2}Weltkoordinaten}{8}
+\contentsline {subsubsection}{\numberline {4.4.3}Animation}{8}
+\contentsline {subsubsection}{\numberline {4.4.4}Partikel Effekte}{8}
+\contentsline {subsection}{\numberline {4.5}Statistik}{8}
+\contentsline {section}{\numberline {5}Projektverlauf}{9}
+\contentsline {subsection}{\numberline {5.1}Prototypen}{9}
+\contentsline {subsubsection}{\numberline {5.1.1}Prototyp 1 - Alexander Heck und Robert Jendersie}{9}
+\contentsline {subsubsection}{\numberline {5.1.2}Prototyp 2 - Christoph Dollase und ???}{9}
+\contentsline {subsubsection}{\numberline {5.1.3}Prototyp 3 - Lars Wagner und Mattis Hagen}{9}
+\contentsline {subsection}{\numberline {5.2}Meilensteine}{9}
+\contentsline {subsubsection}{\numberline {5.2.1}MS I}{9}
+\contentsline {subsubsection}{\numberline {5.2.2}MS II}{9}
+\contentsline {subsubsection}{\numberline {5.2.3}MS III}{9}
+\contentsline {subsubsection}{\numberline {5.2.4}MS IV}{9}
+\contentsline {subsubsection}{\numberline {5.2.5}Abgabe}{9}
+\contentsline {section}{\numberline {6}Fazit}{10}
+\contentsline {subsection}{\numberline {6.1}Soll - Ist - Vergleich}{10}
+\contentsline {subsection}{\numberline {6.2}Lessons Learned}{10}
+\contentsline {subsection}{\numberline {6.3}Ausblick}{10}
