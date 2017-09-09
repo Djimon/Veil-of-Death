@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="VeilofDeath.Core.Camera" Collapsed="true">
+    <Position X="9" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gUSAAAAAAAACAAAAIAgCAAAAAkIAAABgAHAAAQEAAAI=</HashCode>
+      <FileName>Core\Camera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VeilofDeath.Core.Game1" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEEAEAAAAAwAAIAAAAAAQAAAAAAgQAAAAAAAAAAQ=</HashCode>
+      <FileName>Core\Game1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VeilofDeath.Core.GameConstants" Collapsed="true">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AARAIAEgShDIMISAkkSAAAAACAAIEIAURA5gQiBABAA=</HashCode>
+      <FileName>Core\GameConstants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VeilofDeath.Core.GameManager" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIgowBAABgCAoAAZAIAAAjAkNCIAAJQAAACEGIEoA=</HashCode>
+      <FileName>Core\GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VeilofDeath.Core.Program" Collapsed="true">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Core\Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VeilofDeath.Core.GameStates.Credits" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEEAAACAAAwAAAAAAAAAAAAAAAAEAAAAAAAAQAIQ=</HashCode>
+      <FileName>Core\GameStates\Credits.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VeilofDeath.Core.GameStates.GameOver" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEEEABAEAAQwAAEAAAACAAAAAAAAEAIAAAQBAAIIQ=</HashCode>
+      <FileName>Core\GameStates\GameOver.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VeilofDeath.Core.GameStates.InGame" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAWQEUwECihhiwBkAEAfCEwhQgYAACGADFACgwUCDMY=</HashCode>
+      <FileName>Core\GameStates\InGame.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VeilofDeath.Core.GameStates.MainMenu" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEEAAAgAgIwAEEAAAIAAQAAAAAAEBEBAACAQAIIQ=</HashCode>
+      <FileName>Core\GameStates\MainMenu.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VeilofDeath.Core.GameStates.Score" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUkEEAAAGIAAwBAACAEQAAAAICCEAEBABAACg4goJQ=</HashCode>
+      <FileName>Core\GameStates\Score.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VeilofDeath.Core.GameStates.Settings" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAUCEkCYC2AAE0ZAEwAQgCCEAUAQWBGoAgBIDEiAqbQ=</HashCode>
+      <FileName>Core\GameStates\Settings.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VeilofDeath.Core.GameStates.Statistics" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEEAAACAAAwAAAAAAAAAAAAAAAAEAAAAAAAAAAIQ=</HashCode>
+      <FileName>Core\GameStates\Statistics.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VeilofDeath.Core.GameStates.Story" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEEAAACAAAwAAAAAAAAAQAAAAAAEAAAAAAAAQQIc=</HashCode>
+      <FileName>Core\GameStates\Story.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VeilofDeath.Level.Block" Collapsed="true">
+    <Position X="7" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAoAAABAAAAAgAAAACAIAACAAARAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Level\Block.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VeilofDeath.Level.Level" Collapsed="true">
+    <Position X="3.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAQAAAAQAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Level\Level.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VeilofDeath.Level.LevelContent" Collapsed="true">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Level\LevelContent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VeilofDeath.Level.Map" Collapsed="true">
+    <Position X="5.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AARAEAKACCAAAiAAAAAAAEECACgAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Level\Map.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VeilofDeath.Objects.AGameObject" Collapsed="true">
+    <Position X="5.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAgAgAgAAAQAgAAABAEAAAAAIAAAABIAAA=</HashCode>
+      <FileName>Objects\AGameObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VeilofDeath.Objects.Coin" Collapsed="true">
+    <Position X="7.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAwAAAAEAEBAAMAAAAAAAAAAAQAAAQAA=</HashCode>
+      <FileName>Objects\Coin.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VeilofDeath.Objects.MyBoundingBox" Collapsed="true">
+    <Position X="0.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAABAAQAIAAAAIAAACABAAAAAQAAAAAAAAEBAA=</HashCode>
+      <FileName>Objects\MyBoundingBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VeilofDeath.Objects.Spawner" Collapsed="true">
+    <Position X="7.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAEgAAAAAAAAACAAAAAAAAAFAAgAAQAAAAAIAAAA=</HashCode>
+      <FileName>Objects\Spawner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VeilofDeath.Objects.SpikeRoll" Collapsed="true">
+    <Position X="3" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEAAAAAIAAAwAAAAEAHBAAMAAAAAAAAAAAQAAAQAA=</HashCode>
+      <FileName>Objects\SpikeRoll.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VeilofDeath.Objects.TrapHandler" Collapsed="true">
+    <Position X="3" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAEAAIAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\TrapHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VeilofDeath.Objects.Veil" Collapsed="true">
+    <Position X="9" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQAQAAAEIAAAwBgAAAQCAAAAABICAAACQCAAAAEAAQ=</HashCode>
+      <FileName>Objects\Veil.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VeilofDeath.Objects.PlayerStuff.Player" Collapsed="true">
+    <Position X="9.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAEQRgQAAoAAAxgAAAEAGBAIQAAAABQgAAAAAACEQEA=</HashCode>
+      <FileName>Objects\PlayerStuff\Player.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VeilofDeath.Objects.PlayerStuff.PlayerController" Collapsed="true">
+    <Position X="9.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQIAAAAAiQAAAgAAAAAAEAAAIAAABAQAACEIAAAAAA=</HashCode>
+      <FileName>Objects\PlayerStuff\PlayerController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VeilofDeath.Objects.Traps.SlowTrap" Collapsed="true">
+    <Position X="5.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAEAEAAAIAAAAAAAAAAAAABAQAA=</HashCode>
+      <FileName>Objects\Traps\SlowTrap.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VeilofDeath.Objects.Traps.SpikeTrap" Collapsed="true">
+    <Position X="0.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAQAAAAEAEABAIAAAQAAAAAAAAABAQAA=</HashCode>
+      <FileName>Objects\Traps\SpikeTrap.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VeilofDeath.PanelStuff.Panel" Collapsed="true">
+    <Position X="9" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAEAAAgQgAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+      <FileName>PanelStuff\Panel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VeilofDeath.PanelStuff.PanelElement" Collapsed="true">
+    <Position X="10.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAQAAQAAAAAAAiAhAAAASBIAAAAAAAAIAAQAAAACAAA=</HashCode>
+      <FileName>PanelStuff\PanelElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VeilofDeath.SpecialFX.AParticleEnginge" Collapsed="true">
+    <Position X="5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAEAAAgAAAAgAAAAAAAAEAEAAAEQAAABAAAA=</HashCode>
+      <FileName>SpecialFX\AParticleEnginge.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VeilofDeath.SpecialFX.Particle" Collapsed="true">
+    <Position X="6.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAQAAAAABggAgAAAAAAABAIACAACAAEIAgAAEAAQ=</HashCode>
+      <FileName>SpecialFX\Particle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VeilofDeath.SpecialFX.RainbowTest" Collapsed="true">
+    <Position X="5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>SpecialFX\RainbowTest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VeilofDeath.SpecialFX.VeilOfDath" Collapsed="true">
+    <Position X="7" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASAADAAAAAAAAAABAAAAAAAAAAAIEAAAAAAAAAAAAA=</HashCode>
+      <FileName>SpecialFX\VeilOfDeath.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="VeilofDeath.Core.GameStates.IGameState" Collapsed="true">
+    <Position X="0.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEAAAAAAAAwAAAAAAAAAAAAAAAAEAAAAAAAAAAIQ=</HashCode>
+      <FileName>Core\GameStates\GameState.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VeilofDeath.Objects.ILivingEntity" Collapsed="true">
+    <Position X="9.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAQAAAAEAEAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Objects\ILivingEntity.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VeilofDeath.Objects.IStaticEntity" Collapsed="true">
+    <Position X="0.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAEAEAAAIAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Objects\IStaticEntity.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="VeilofDeath.Core.GameStates.EState" Collapsed="true">
+    <Position X="2.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gQAAgAAAACAAAAgEBAAAAAAQAEAACAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Core\GameStates\GameState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="VeilofDeath.Core.GameStates.Button" Collapsed="true">
+    <Position X="9.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAACAAAAAEAAAAAAQAAAAAAAAAoAAAAAAAAAA=</HashCode>
+      <FileName>Core\GameStates\MainMenu.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="VeilofDeath.Core.GameStates.btn" Collapsed="true">
+    <Position X="6.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAEAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\GameStates\Score.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="VeilofDeath.Core.GameStates.SettingState" Collapsed="true">
+    <Position X="4.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAQAAAAAAAAAAAAAAAAAAAAIgAAAAAAA=</HashCode>
+      <FileName>Core\GameStates\Settings.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="VeilofDeath.Core.GameStates.Difficulty" Collapsed="true">
+    <Position X="8" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQAAAAEAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\GameStates\Settings.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
