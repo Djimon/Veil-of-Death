@@ -56,19 +56,40 @@
 \section{Das Spiel}
 
 \vspace{2cm}
-\subsection{Hauptmenü}
+\subsection{Hauptmenü \textcolor{blue}{(QA - Lars )}}
+
+Das Hauptmenü stellt den Einstieg in unser Spiel dar. Hier wird der Spieler empfangen.
 
 \vspace{1cm}
-\subsubsection{Spiel Starten}
+\subsubsection{Spiel Starten \textcolor{blue}{(QA - Lars )}}
+
+Durch das Betätigen des Buttons „Starten“ gelangt man in den Ingame-Bereich. Bevor es mit dem Spielen losgeht, öffnet sich am Anfang jedes
+Levels ein kleiner Tutorialbildschirm, welcher auch als Pause für den Spieler gedacht ist. Weiterhin kann er hier kurz verweilen um sich vorzubereiten
+und so die Konzentration zu steigern.
 
 \vspace{1cm}
-\subsubsection{Einstellungen}
+\subsubsection{Einstellungen \textcolor{blue}{(QA - Lars )}}
+
+Mit den Settings kann man seine persönlichen Einstellungen an dem Spiel vornehmen. Es lassen sich der Schwierigkeitsgrad und die Musiklautstärke
+ändern. Auch gibt es hier eine ausführliche Beschreibung der Steuerung.
 
 \vspace{1cm}
-\subsubsection{Statistiken}
+\subsubsection{Statistiken \textcolor{blue}{(QA - Lars )}}
+
+Unter Statistics lässt sich der Spielfortschritt in den einzelnen Leveln begutachten. So findet man eine detaillierte Auflistung von Timeboni, eingesammelten
+Münzen und den Score für jedes Level. Des Weiteren werden auch die gesamte Todeszahl und der Totalscore erfasst. Nach Beenden des Spiels wird die Statistik gelöscht. Die Statistik wird zu dem  nur zu einem Run aufgestellt, sobald der Spieler das Spiel durchgespielt hat und einen neuen Run startet wird die alte Statistik gelöscht.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{Statistics}
+	\caption{Statistik
+		\label{fig:statistics}}
+\end{figure}
 
 \vspace{1cm}
-\subsubsection{Credits}
+\subsubsection{Credits \textcolor{blue}{(QA - Lars )}}
+
+Diese Option gibt Auskunft über die Konstellation des Teams und die jeweiligen Aufgabenbereiche.
 
 \vspace{1cm}
 \subsubsection{Sonstiges}
@@ -83,9 +104,14 @@
 \subsubsection{Player}
 
 \vspace{1cm}
-\subsubsection{Fallen \textcolor{red}{(in Arbeit - Lars)}}
+\subsubsection{Fallen \textcolor{blue}{(QA - Lars )}}
 
-
+In unserem Spiel finden zwei Arten von Fallen Verwendung. Es gibt Fallen, die den Spieler verlangsamen. Weiterhin haben wir eine
+weitere Art Fallen, die zum plötzlichen Tod führen. Dieser wird durch die Kollision mit den Fallen ausgelöst. Der Tod wird durch die
+Spiketrap und die Spikeroll verursacht. Außerdem ist zu erwähnen, dass die Spikeroll beweglich ist. Je nach Schwierigkeitsgrad nimmt
+die Bewegungsgeschwindigkeit dieser zu. Bei der Slowtrap wird der Spieler für eine bestimmte Dauer verlangsamt. Nach dem der Spieler
+mehrere Male durch die Slowtrap gelaufen ist, wird er letztendlich vom Veil eingeholt und stirbt. Dadurch haben wir verschiedene Faktoren,
+die das Spiel zusätzlich erschweren sollen.
 
 \vspace{1cm}
 \subsubsection{Feedback}
@@ -105,17 +131,36 @@
 \textcolor{green}{- alle mal kurz anreißen}
 
 \vspace{1cm}
-\subsubsection{Globale Klassen}
-\textcolor{green}{- GameConstants \newline
-- Gamemanager (siehe TDD)}
+\subsubsection{Globale Klassen \textcolor{blue}{(QA - Lars )}}
+%\textcolor{green}{- GameConstants \newline
+%- Gamemanager (siehe TDD)}
+
+In der GameConstants-Klasse wurden alle static-Objekte des Projektes angelegt. Hier zu gehören Variablen die klassenübergreifend gebraucht werden.
+Weiterhin sind hier alle wichtigen Soundeffekte hinterlegt. Eine Kamerainstanz ist auch hinterlegt. Des Weiteren sind auch wichtige Angaben zum Sprung
+hier hinterlegt, wie die Sprungweite und Sprunghöhe. Der Vorteil dieser Klasse ist, dass hier alle Zahlenwerte gebündelt gesammelt wurden, die global im
+Projekt verwendet werden. Dadurch sind Änderungen sehr schnell vornehmbar.
+
+Der GameManager ist ein Singelton-Pattern in dem das Spiels verwaltet wird und bildet somit das Herz des Spiels. Durch unsere Mapgeneration auf die wir
+vorhin eingegangen sind, ist es notwendig zu wissen, welche Fallen aktiv sind und welche nicht. Dafür werden die Fallen in ihren Listen gespeichert, welche
+immer aktualisiert werden, durch hinzufügen oder löschen der Fallen. So gibt es für jede Fallenart eine Liste. Das gleiche Prinzip gilt auch für die Münzen.
+Der Todesschleier wird von hier aus gesteuert. Levelverwaltung, Scorehandhabung und das Speichern der Statistik sind ein weiterer Bestandteil des GameManagers.
 
 \vspace{2cm}
 \subsection{InGame}
 
 \vspace{1cm}
-\subsubsection{Movement}
-\textcolor{green}{- Lane prinzip \newline
-- Jump-Funktion (Parabel anhand von Geschwindigkeit)}
+\subsubsection{Movement \textcolor{blue}{(QA/ Grafik fehlt - Lars )}}
+%\textcolor{green}{- Lane prinzip \newline
+%- Jump-Funktion (Parabel anhand von Geschwindigkeit)}
+
+Unser Spielercharakter kann sich auf drei Arten fortbewegen. Er kann Rennen, Sliden und Springen. Der Sprung wurde an eine
+Wurfparabel angepasst, sodass sich der Sprung wie ein Wurf verhält. Der Spielercharakter gewinnt an Höhe bis er den Scheitelpunkt
+erreicht und sinkt danach wieder zu Boden. Dadurch ist der Sprung symmetrisch, sowohl die Anstiegs- und Abstiegskurve sind gleich.
+
+%Grafik Wurfparabel einfügen
+
+Durch das Laneprinzip unseres Spiels haben wir uns gegen einen flüssigen Übergang des Spielercharakters beim Wechseln der Lanes
+entschieden. Wir lassen ihn wirklich zwischen den Lanes switchen, so dass er sich nicht in Zwischenbereichen aufhalten kann.
 
 \vspace{1cm}
 \subsubsection{Collision \textcolor{blue}{(QA - Lars )}}
@@ -160,7 +205,21 @@ Achsen von Körper B. Anders gesagt wenn die erweiterte konvexe Hülle des einen
 \subsubsection{Aufbau}
 
 \vspace{1cm}
-\subsubsection{Weltkoordinaten}
+\subsubsection{Weltkoordinaten \textcolor{blue}{(QA - Lars )}}
+
+Der Up-Vektor in unserem Spiel ist nicht wie üblich die y-Achse sondern die z-Achse. Weiterhin bildet der Koordinatenursprung am 
+Anfang nicht die Mitte unserer Lanes, er liegt am linken Rand. Darauf aufbauend wird die Spielwelt mit Hilfe unserer Blocksize generiert. Hierfür 
+werden lediglich die x- und y-Achse benötigt. Die z-Achse wird für die Kollisionsberechnung benötigt. Die Kamera befindet sich am Anfang 
+vor unserer eigentlich Spielwelt, um die gewünschte Perspektive zu erzeugen. Im weiteren Verlauf des Spiels verfolgt sie dann den Spieler
+auf einer Linie entlang der y-Achse mit konstanter Geschwindigkeit. Die Kamera wurde somit aus dem Koordinatenursprung zu ihrem letztendlichen
+Platz verschoben. Somit bildet die Weltmatrix diese Translation ab. Eine genaue Darstellung können sie \ref{fig:coordinates} entnehmen.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{Weltkoordinaten}
+	\caption{Weltkoordinaten
+		\label{fig:coordinates}}
+\end{figure}
 
 \vspace{1cm}
 \subsubsection{Animation \textcolor{blue}{(QA - Lars )}}
