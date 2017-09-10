@@ -91,11 +91,11 @@ namespace VeilofDeath.Core.GameStates
         private void UpdateStory1()
         {
             /* Unser Held wurde gefangen genommen in einer dunklen Festung
-             * und versucht nun dieser Festun zu entkommen.
+             * und versucht nun dieser Festung zu entkommen.
              * Der Herscher dieser Festung, "Dreg Naffets", ist ein dunkler Magier
              * und verfügt über den dunklen Zauber des Todesschleiers. Dieser breitet
              * sich aus wie eine Wolke und verzerrt Alles und jeden um sich herum
-             * Als der Magier merkte, dass wir auf der Flucht sind, beschwört er seinen schleier,
+             * Als der Magier merkte, dass wir auf der Flucht sind, beschwört er seinen Schleier,
              * der unseren Helden verfolgt un aufhalten will.
              */
         }
