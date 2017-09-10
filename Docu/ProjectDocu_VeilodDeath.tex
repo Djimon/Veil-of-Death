@@ -1,10 +1,11 @@
-\documentclass{article}
+\documentclass[12pt]{article}
 
 \usepackage[utf8]{inputenc}
 \usepackage{ngerman}
 
 \usepackage{graphicx}
 \usepackage{subfigure}
+\usepackage{hyperref}
 
 \usepackage{lipsum}
 \usepackage{pdfpages}
@@ -77,7 +78,9 @@ Mit den Settings kann man seine persönlichen Einstellungen an dem Spiel vornehm
 \subsubsection{Statistiken \textcolor{blue}{(QA - Lars )}}
 
 Unter Statistics lässt sich der Spielfortschritt in den einzelnen Leveln begutachten. So findet man eine detaillierte Auflistung von Timeboni, eingesammelten
-Münzen und den Score für jedes Level. Des Weiteren werden auch die gesamte Todeszahl und der Totalscore erfasst. Nach Beenden des Spiels wird die Statistik gelöscht. Die Statistik wird zu dem  nur zu einem Run aufgestellt, sobald der Spieler das Spiel durchgespielt hat und einen neuen Run startet wird die alte Statistik gelöscht.
+Münzen und den Score für jedes Level. Des Weiteren werden auch die gesamte Todeszahl und der Totalscore erfasst. Nach Beenden des Spiels wird
+die Statistik gelöscht. Die Statistik wird zu dem  nur zu einem Run aufgestellt, sobald der Spieler das Spiel durchgespielt hat und einen neuen Run startet
+wird die alte Statistik gelöscht.
 
 \begin{figure}
 	\centering
@@ -101,7 +104,11 @@ Diese Option gibt Auskunft über die Konstellation des Teams und die jeweiligen 
 \subsubsection{Levelgenerator  \textcolor{red}{(in Arbeit - Chris )}}
 
 \vspace{1cm}
-\subsubsection{Player}
+\subsubsection{Player \textcolor{blue}{(QA - Lars )}}
+
+Der Spieler kann den Spielercharakter mit Hilfe der Pfeiltasten bewegen. Der Character kann Rennen, Springen und Sliden. Es ist ihm weiterhin möglich
+während er bei einem Sprung in der Luft ist, die Lanes zu wechseln. Diese Tatsache ist ein gewolltes Feature, da es sonst unmöglich ist manche Hindernisse
+auszuweichen.
 
 \vspace{1cm}
 \subsubsection{Fallen \textcolor{blue}{(QA - Lars )}}
@@ -114,21 +121,116 @@ mehrere Male durch die Slowtrap gelaufen ist, wird er letztendlich vom Veil eing
 die das Spiel zusätzlich erschweren sollen.
 
 \vspace{1cm}
-\subsubsection{Feedback}
+\subsubsection{Feedback \textcolor{blue}{(vorläufig - Lars )}}
+
+Das Spiel arbeitet mit sehr vielen Soundeffekten, die dem Spieler Feedback geben sollen.
+Zusätzlich gibt es eine atmosphärische Hintergrundmusik. So gibt es zum Beispiel einen Herzschlag, der durch das Triggern einer Slowtrap ausgelöst
+wird. Weiterhin nimmt die Frequenz mit der Annäherung an das Ziel zu. Auch wurde das Menü mit Sounds für die Buttons unterlegt, damit es stimmig
+ist. Das Bestehen oder nicht Bestehen eines Levels wird auch durch einen Sound symbolisiert. \newline
+
+\noindent Zu den Soundeffekten kriegt der Spieler zusätzliches Feedback dadurch, dass der Todesschleier nach dem Passieren einer Slowtrap einen Teil des
+Bildschirms einnimmt. Der Bereich der Einverleibung nimmt mit den unterschiedlichen Phasen des Schleiers zu. 
 
 \vspace{1cm}
 \subsubsection{Assets}
+
+\tiny Alle Assets die in diesem Unterpunkt beschrieben werden, finden sie im Anhang wieder.\newline
+
+\noindent Der Protagonist:\newline
+
+\noindent Der Protagonist des Spiels sollte ein Mensch sein, ein entflohener Gefangener auf der Flucht. 
+Hierzu gab es zwei Modellierungsansätze welche sich von der Machart und vom Aussehen stark unterschieden. 
+Der erste Versuch wurde von Null aufgezogen über das Programm Blender. Die Idee war zunächst ein Low-Polymodell zu erstellen und dieses dann zu verfeinern
+und mit den von Blender gegebenen Werkzeugen zu manipulieren um es mehr nach Mensch aussehen zu lassen. Das Gesicht des Protagonisten spielt keine Rolle,
+da man ihn nie von vorne sieht. Die Textur wurde über eine UV-Map realisiert welche direkt auf die Flächen des Modells aufgetragen wird. 
+Anschließend wurden für das Modell Animationen wie Rennen und Springen über Knochen in Blender erstellt. Das Ergebnis war jedoch nicht den Erwartungen entsprechend.
+Das passende Asset ist die \ref{fig:lowpoly}\newline
+
+\noindent Der zweite Versuch basierte auf einem vorher nach Wünschen erstellten Modell von dem Programm MakeHuman. Das hieraus gezogene Modell hat im Vergleich zum vorherigen
+viel mehr Flächen. Das Programm bietet einem zusätzlich noch den Service an, passende Texturen mit zu exportieren. Diese wurden jedoch verworfen. Ebenfalls konnte man zum
+Modell passende Kleidung mit Texturen exportieren. Die Modelle wurden übernommen, aber die Texturen ebenfalls verworfen. Um dem Protagonisten eine glaubwürdige
+Gefangenenmontur zu geben wurde die UV-Map, aus welcher die Texturen entstehen, mit entsprechenden Schmutzflecken und Blut gekennzeichnet. Auch die ikonische Figur
+auf der Rückseite seines T-Shirts soll hier nicht unerwähnt bleiben.Der nächste Schritt waren die Animationen, welche wie vorher über Knochen in Blender realisiert wurden.
+Es waren von MakeHuman schon Knochen vorgegeben diese wurden jedoch durch neue ersetzt. 
+Der Protagonist hat folgende Animationen:\newline
+	-Rennen\newline
+	-Springen\newline
+	-Sliden\newline
+
+\noindent Da der Spieler im Verlauf des Spiels ein Power-Up, ein Schwert, aufnehmen kann, wurden sämtliche Animationen nochmal mit Schwert an der Hüfte erstellt. Dies basiert auf
+einem anderen Modell, welches aber nur wenig abweicht von dem ursprünglichen Modell. Hier wurde noch eine Animation hinzugefügt, der Schwertstreich um Hindernisse aus dem
+Weg zu räumen. Das Resultat des zweiten Versuchs: \ref{fig:highpoly} \newline
+
+Die Fallen:\newline
+
+Alle Fallen wurden in Solidedge modelliert. Dies war einfacher und präziser als in Blender, da Solidedge zum Modellieren von Maschinenteilen verwendet wird und hier schon Wissen vorlag.
+Die Fallen wurden dort modelliert dann als stl-Datei exportiert und in Blender importiert um hier die Texturen, welche in Form von UV-Maps existieren, zu erstellen. Auch skalierte Solidedge
+nicht korrekt, dies konnte jedoch auch in Blender nachgebessert werden. Sämtliche Modelle wurden aus dem nichts erstellt.\newline
+
+Die Fallen sind ein Kernelement des Spiels, da sie neben dem Nebel das einzige sind, was dem Spieler gefährlich werden kann. Sie mussten immersiv werden und am besten glaubwürdig
+in ein Dungeon oder Folterkeller passen. Die erste Idee war die Stachelfalle wie sie im Folgenden genannt wird. Sie besteht aus einer Platte und einigen Stacheln, in Form von gespitzten
+Stäben, welche aus ihr in Richtung des Protagonisten hervorragen. Als Textur wurde ein einheitliches schimmerndes Grau gewählt, um den Eindruck von Stahl zu erwecken. Das Asset finden
+sie im Anhang unter der \ref{fig:spiketrap}\newline
+
+Um dem Spiel etwas Diversität zu verleihen wurden noch andere Fallen bzw Hindernisse entworfen wie etwa die sich drehende Stachelrolle. \ref{fig:spikeroll}\newline
+
+Oder eine unterschiedlich einsetzbare Wand aus Holz. Durch ihre Größe kann sie zu unterschiedlichen Zwecken verwendet werden, so kann der Spieler bespielsweise durch ihren Einsatz zum 
+Springen oder Sliden gezwungen werden. \ref{fig:woodwall}\newline
+
+Da das Spiel in einem Dungeon spielt, und dieses ja auch eine Besatzung hat, jedenfalls theoretisch, wurden noch Zellenwände zur Dekoration und Waffenständer in das Spiel implementiert
+um die Umgebung nicht ganz so trist wirken zu lassen. \ref{fig:prisonwall}\newline
+
+Das Ziel eines jeden Levels ist die Tür, welche das Ende des aktuellen Levels markiert. \ref{fig:door}\newline
+
+Es gibt noch weitere Modelle und Fallen welche es jedoch nicht in die aktuelle Version des Spiels geschafft haben, jedoch evtl. ihren Platz in einer späteren Version haben werden wie z.B. das
+explodierende Fass. Die Grafik zu dem Modell finden sie unter \ref{fig:barrel}\newline
+
+Zusätzlich wurden wie bereits erwähnt noch Gegenstände ins Spiel integriert, die der Spieler aufnehmen kann, wie ein Schwert und die Münzen nach denen sich die Punktzahl richten. \ref{fig:sword}\newline
 
 \newpage
 \section{Technische Umsetzung}
 
 \vspace{2cm}
-\subsection{Codestruktur}
-\textcolor{green}{- siehe TDD}
+\subsection{Codestruktur \textcolor{blue}{(QA - Lars )}}
+%\textcolor{green}{- siehe TDD}
+
+%Klassendiagramm einfügen
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{classdiagramm.png}
+	\caption{Klassendiagramm Veil of Death
+		\label{fig:classdiagramm}}
+\end{figure}
+
+Die Game-Klasse ist die Hauptklasse unseres Spieles. Von Ihr aus geht der allgemeine Game-Loop, der in allen Zuständen des Spiels vorkommt. Die
+unterschiedlichen Zustände des Spiels werden mit Hilfe eines Interfaces (IGameStates) mit gemeinsamen Funktionen (z.B. Initialisierung, Game-Loop, Draw) gespeist.
+Für alle Objekte im Spiel die miteinander agieren können, haben wir eine übergeordnete abstrakte Klasse (AGameObject) erschaffen, von der die einzelnen Objektklassen erben.
+Hierzu gibt es noch 2 verschiedene Interfaces, die die Objekte in starre (IStaticEntity) und bewegliche (IMovingEntity) einteilen.
+Die Collision-Klasse berechnet alle Kollisionen des Spielers mit der Umgebung. Sie erhält Input
+aus der Level- und Player-Klasse.
+Die Player-Klasse, welche ebenfalls ein GameObject ist, wird durch die PlayerController-Klasse
+gesteuert. Hier wird vor Allem die Bewegung des Spielers und die Kommunikation mit dem Rest der Umgebung (Position im Grid, Animation) übernommen.
+Unsere Map-Klasse lädt die Spielwelt aus einer Bitmap-Grafik, welche die verschiedenen Blöcke kodiert.
+Die Block-Klasse holt sich die Informationen, welches Model, oder Textur geladen werden soll aus einem Dictionary, die Klasse LevelContent.
+Wir haben zwei zentrale Klassen für wichtige Steuerungs- und Speicherfunktionen. GameConstants ist eine statische Klasse, die sämtliche wichtigen
+Einstellungen und Standartwerte für das Spiel beinhaltet. Des weiteren haben wir einen Singelton-Klasse implementiert, die zwischen den verschiedenen
+Leveln und GameStates die wichtigsten Informationen überträgt und managed.
+Ein Gesamtüberblick über alle unserer Klassen sind der \ref{fig:classdiagramm} zu entnehmen.
 
 \vspace{1cm}
-\subsubsection{GameStates}
-\textcolor{green}{- alle mal kurz anreißen}
+\subsubsection{GameStates \textcolor{blue}{(QA - Lars )}}
+%\textcolor{green}{- alle mal kurz anreißen}
+
+Die GameState-Klasse dient als Interface für alle anderen GameStates. Weiterhin wird sie zum Wechseln zwischen den einzelnen GameStates benötigt.\newline\newline
+Die MainMenu-State beinhaltet die Aufmachung des Hauptmenüs sowie die Steuerung zum Wechseln der Optionen. Auch die Weiterleitung zu den
+anderen States ist hier verankert.\newline\newline
+Der Ingame-State behandelt das Ingame-Content, s o befindet sich hier die Ingameroutine mit der Gameloop, so dass sich das Spiel nicht nach einem Aufruf schließt.\newline\newline
+Der GameOver-State wird erreicht, sobald der Spieler stirbt. Die dazugehörigen Screens werden hier gesetzt.\newline\newline
+Der gegenteilige Part ist der Score-State, welcher durch erfolgreichen Beendens eines Levels oder dem Abschluss des Spiels ausgelöst wird.\newline\newline
+Der Credits-State beinhaltet die Informationen von den Credits und stellt diese dar. Die Einstellungen werden im Settings-State verwaltet und dargestellt.
+Auch die Aktualisierung der Einstellungen wird in dem State verwirktlicht.\newline\newline
+Für das Darstellen des Spielsfortschritts ist der Statistics-State zuständig. Hier werden die einzelnen Daten aufbereitet und dann dargestellt.\newline\newline
+Der Story-State updatet das Storytelling innerhalb des Spiels. Je nach Fortschritt des Spiels lädt dieser State die passende Story.
 
 \vspace{1cm}
 \subsubsection{Globale Klassen \textcolor{blue}{(QA - Lars )}}
@@ -140,7 +242,7 @@ Weiterhin sind hier alle wichtigen Soundeffekte hinterlegt. Eine Kamerainstanz i
 hier hinterlegt, wie die Sprungweite und Sprunghöhe. Der Vorteil dieser Klasse ist, dass hier alle Zahlenwerte gebündelt gesammelt wurden, die global im
 Projekt verwendet werden. Dadurch sind Änderungen sehr schnell vornehmbar.
 
-Der GameManager ist ein Singelton-Pattern in dem das Spiels verwaltet wird und bildet somit das Herz des Spiels. Durch unsere Mapgeneration auf die wir
+\noindent Der GameManager ist ein Singelton-Pattern in dem das Spiels verwaltet wird und bildet somit das Herz des Spiels. Durch unsere Mapgeneration auf die wir
 vorhin eingegangen sind, ist es notwendig zu wissen, welche Fallen aktiv sind und welche nicht. Dafür werden die Fallen in ihren Listen gespeichert, welche
 immer aktualisiert werden, durch hinzufügen oder löschen der Fallen. So gibt es für jede Fallenart eine Liste. Das gleiche Prinzip gilt auch für die Münzen.
 Der Todesschleier wird von hier aus gesteuert. Levelverwaltung, Scorehandhabung und das Speichern der Statistik sind ein weiterer Bestandteil des GameManagers.
@@ -159,7 +261,7 @@ erreicht und sinkt danach wieder zu Boden. Dadurch ist der Sprung symmetrisch, s
 
 %Grafik Wurfparabel einfügen
 
-Durch das Laneprinzip unseres Spiels haben wir uns gegen einen flüssigen Übergang des Spielercharakters beim Wechseln der Lanes
+\noindent Durch das Laneprinzip unseres Spiels haben wir uns gegen einen flüssigen Übergang des Spielercharakters beim Wechseln der Lanes
 entschieden. Wir lassen ihn wirklich zwischen den Lanes switchen, so dass er sich nicht in Zwischenbereichen aufhalten kann.
 
 \vspace{1cm}
@@ -203,6 +305,8 @@ Achsen von Körper B. Anders gesagt wenn die erweiterte konvexe Hülle des einen
 
 \vspace{1cm}
 \subsubsection{Aufbau}
+
+Unser Spiel benutzt die interne Rendering Pipeline von Monogame.
 
 \vspace{1cm}
 \subsubsection{Weltkoordinaten \textcolor{blue}{(QA - Lars )}}
@@ -250,7 +354,22 @@ transparent stellen würde.
 \subsection{Prototypen}
 
 \vspace{1cm}
-\subsubsection{Prototyp 1 - Alexander Heck und Robert Jendersie}
+\subsubsection{Prototyp 1 - Alexander Heck und Robert Jendersie \textcolor{blue}{(QA - Lars )}}
+
+Ziel des Prototyps war es, ein simples flipperartiges Spiel zu kreieren. Dies sollte jedoch anderen Regeln folgen. Die Vision
+bestand aus einem Ball, welcher ein unendlich langes Brett runterrollt, und dann beim Rammen verschiedener Hindernisse
+Punkte erhält, bei anderen Hindernissen nur Geschwindigkeit verliert. Die Menge der Punkte errechnete sich aus der Geschwindigkeit
+der Kugel beim Zusammenstoß mit sog. Bumpern, welche dann die Punkte ausgeben. Die Kugel konnte mit den Pfeiltasten
+in eine bestimmte Richtung beim Runterrollen geführt werden um bestimmten Hindernissen auszuweichen oder gezielt Bumper
+zu treffen. Die Vision wurde leicht verändert umgesetzt, mit dem Unterschied, dass die Kugel ein Brett runterrollt mit einer
+vorgeschriebenen Länge. Somit ist das Spiel vorbei, wenn man unten ankommt und es werden einem die Punkte ausgegeben
+die man auf dem Weg gesammelt hat. Vor dem eigentlichen Spiel kommt man in ein Menü, durch das man in das Spiel
+reinkommt oder das Spiel wieder verlassen kann. Auch geschieht die Auswahl über die Pfeiltasten.\newline\newline
+
+Das Spiel benutzt eine Fallphysik, damit der Ball zu Boden fliegt und das Abbruchkriterium erreicht werden kann. Die Kollision
+zwischen dem Ball und den Bumpern wird durch eine Boundigns-Sphere berechnet.
+
+Das Spiel selbst wurde mit Hilfe des Frameworks Monogames geschrieben und bedient sich der Sprache C\#.
 
 \vspace{1cm}
 \subsubsection{Prototyp 2 - Christoph Dollase und ???}
@@ -258,30 +377,88 @@ transparent stellen würde.
 \vspace{1cm}
 \subsubsection{Prototyp 3 - Lars Wagner und Mattis Hagen \textcolor{blue}{(QA - Lars )}}
 Unser Prototyp war ein Spaceshooter indem man ein Raumschiff steuern konnte, welches Meteoriten ausweichen musste.
-Es ist auch möglich gewesen die Meteoriten abzuschießen. Für den Abschuss der Meteoriten hat man Punkte gekriegt. Das Spiel endet sobald das Raumschiff keine Trefferpunkte mehr hat, welche man verliert wenn man mit den Meteoriten kollidiert. Ziel des Spiels ist es solange wie möglich zu überleben und seinen Highscore zu maximieren.
+Es ist auch möglich gewesen die Meteoriten abzuschießen. Für den Abschuss der Meteoriten hat man Punkte gekriegt. Das Spiel endet
+sobald das Raumschiff keine Trefferpunkte mehr hat, welche man verliert wenn man mit den Meteoriten kollidiert. Ziel des Spiels ist es
+solange wie möglich zu überleben und seinen Highscore zu maximieren.
 
-\noindent Das Spiel basiert auf einem Grid-System, da die Meteoriten nur in einem Grid aus festgelegten Punkten spawnen können. Die Kamera ist starr fixiert und lässt sich nur zu Debugzwecken bewegen. Die Meteoriten rotieren um eine zufällig gewählte Achse während sie sich dem Spieler nähern. Mit der Zeit nimmt die Geschwindigkeit der Meteoriten zu.
+\noindent Das Spiel basiert auf einem Grid-System, da die Meteoriten nur in einem Grid aus festgelegten Punkten spawnen können. Die
+Kamera ist starr fixiert und lässt sich nur zu Debugzwecken bewegen. Die Meteoriten rotieren um eine zufällig gewählte Achse während
+sie sich dem Spieler nähern. Mit der Zeit nimmt die Geschwindigkeit der Meteoriten zu.\newline\newline
+
 Unsere Laserstrahlen sind Punkte die wir dann als separate von einander getrennte Linien zeichnen lassen.
 Auch wurde der Spieler über die GUI über seinen Score, seine verbliebenen Trefferpunkte informiert.
-Die Asteroiden werden durch den MeteorHandler verwaltet. Dadurch sind nie mehr als 20 Meteoriten auf dem Bildschirm, sobald ein Meteor hinter der Kamera despawnte, spawnte sofort ein Neuer.
+Die Asteroiden werden durch den MeteorHandler verwaltet. Dadurch sind nie mehr als 20 Meteoriten auf dem Bildschirm, sobald ein Meteor
+hinter der Kamera despawnte, spawnte sofort ein Neuer.
 
 \vspace{2cm}
-\subsection{Meilensteine}
+\subsection{Meilensteine \textcolor{blue}{(QA - Lars )}}
 
 \vspace{1cm}
 \subsubsection{MS I}
 
+Game-Summary (Einleitung): Alex\newline
+Coding Conventions: Chris\newline
+Bibliotheken und Frameworks: Lars\newline
+Verwendete Tools: Chris\newline
+UML- und Klassendiagramme: Lars\newline
+Projektmanagement, Aufgabenpakete: Chris\newline
+Technische Mindestanforderung: Lars\newline
+(Als Aufgaben nehmen wir jeweils die Überschriften und wer sie bearbeitet hat)\newline
+\newline
+
 \vspace{1cm}
 \subsubsection{MS II}
+
+Gamestates: Chris\newline
+Player: Lars\newline
+Movement: Lars
+MapGeneration (Bitmap): Chris\newline
+StartMenü: Alex\newline
+Modell Player: Alex\newline
+Modelle Wände, Boden: Alex\newline
+Texturen: Wände und Boden: Chris, Alex\newline
+Model Collactables: Alex\newline
+\newline
 
 \vspace{1cm}
 \subsubsection{MS III}
 
+GUI + Scoresystem: Lars, Chris\newline
+SoundSystem: Lars\newline
+VisualEffects: Chris, Alex\newline
+Prototyp Shader: Chris\newline
+Fallen Mechaniken: Lars\newline
+Mechanik des Todes Schleier: Chris\newline
+Model Fallen: Alex\newline
+Model Gegner: Alex\newline
+Refactoring: Chris\newline
+
 \vspace{1cm}
 \subsubsection{MS IV}
 
+Ein Komplettes Level mit allen mechaniken Spielbar: Lars\newline
+Prototyp Proceduale mapgeneration: Chris\newline
+Animationen Laufen, Springen, Rutschen: Alex\newline
+Weitere Shader für Effekte und Postprocessing: Chris\newline
+Balancing Belohnung und Score: Lars\newline
+Levelübersicht: Chris\newline
+
+\vspace{1cm}
+\subsubsection{MS V}
+
+Procedural Mapgeneration: Chris\newline
+Playtests, Feedback: Alle\newline
+Balancing Belohnung, Bestrafung: Lars\newline
+Polishing Models und Animationen: Alex\newline
+Polishing Menüs: Alex\newline
+Achievements: Alle\newline
+Refactoring: Lars, Chris\newline
+
 \vspace{1cm}
 \subsubsection{Abgabe}
+
+Debugging: Alle\newline
+Polishing: Alle\newline
 
 \newpage
 \section{Fazit}
@@ -294,6 +471,80 @@ Die Asteroiden werden durch den MeteorHandler verwaltet. Dadurch sind nie mehr a
 
 \vspace{2cm}
 \subsection{Ausblick}
+
+\section{Anhang}
+
+%Bild Low-Poly Modell
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\textwidth]{lowPoly}
+	\caption{Erste Modell des Hauptcharakters
+		\label{fig:lowpoly}}
+\end{figure}
+
+%bild High-Poly Modell
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\textwidth]{stevevonhinten}
+	\caption{Zweite Modell des Hauptcharakters
+		\label{fig:highpoly}}
+\end{figure}
+
+%Bild Stachelfalle
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{Stachelfalle}
+	\caption{Stachelfalle
+		\label{fig:spiketrap}}
+\end{figure}
+
+%Bild Stachelrolle
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\textwidth]{stachelrolle}
+	\caption{Stachelrolle
+		\label{fig:spikeroll}}
+\end{figure}
+
+%Bild Holzwand
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\textwidth]{Holzwandhindernis}
+	\caption{Holzwand
+		\label{fig:woodwall}}
+\end{figure}
+
+%Zellwand
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\textwidth]{zellwand}
+	\caption{Zellwand
+		\label{fig:prisonwall}}
+\end{figure}
+
+%Tür
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\textwidth]{door}
+	\caption{Tür am Ende des Levels
+		\label{fig:door}}
+\end{figure}
+
+%explosives Fass
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\textwidth]{barrel}
+	\caption{explosives Fass
+		\label{fig:barrel}}
+\end{figure}
+
+%Schwert
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\textwidth]{Schwert}
+	\caption{Schwert
+		\label{fig:sword}}
+\end{figure}
 	
 \end{document}
 
