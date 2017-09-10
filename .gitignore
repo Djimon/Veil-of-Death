@@ -241,3 +241,7 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 *.cache
+/Docu/*.pdf
+/Docu/*.gz
+/Docu/*.pdf
+/Docu/*.gz

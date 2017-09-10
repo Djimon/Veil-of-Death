@@ -1,0 +1,28 @@
+\contentsline {section}{\numberline {1}Kurzbeschreibung}{2}
+\contentsline {subsection}{\numberline {1.1}Genre}{2}
+\contentsline {section}{\numberline {2}Erfolgskriterien}{3}
+\contentsline {section}{\numberline {3}Set und Setting}{3}
+\contentsline {section}{\numberline {4}Story}{3}
+\contentsline {subsection}{\numberline {4.1}Spielziel}{4}
+\contentsline {section}{\numberline {5}Gameplay}{4}
+\contentsline {subsection}{\numberline {5.1}Kernmechaniken}{4}
+\contentsline {subsection}{\numberline {5.2}Meta-Game}{4}
+\contentsline {subsection}{\numberline {5.3}Hardmode}{5}
+\contentsline {section}{\numberline {6}Struktur des Spiels}{5}
+\contentsline {section}{\numberline {7}Feedback}{6}
+\contentsline {subsection}{\numberline {7.1}Visuell}{6}
+\contentsline {subsection}{\numberline {7.2}Akustisch}{7}
+\contentsline {subsection}{\numberline {7.3}Haptisch}{7}
+\contentsline {section}{\numberline {8}Ausf\IeC {\"u}hrliche Beschreibung}{7}
+\contentsline {subsection}{\numberline {8.1}Fallenarten und Hindernisse}{7}
+\contentsline {subsection}{\numberline {8.2}Buffs und Boni}{8}
+\contentsline {subsection}{\numberline {8.3}Belohnung und Bestrafung}{8}
+\contentsline {subsection}{\numberline {8.4}Score}{8}
+\contentsline {subsection}{\numberline {8.5}Charaktere}{8}
+\contentsline {subsection}{\numberline {8.6}Orte}{9}
+\contentsline {subsubsection}{\numberline {8.6.1}\IeC {\textquotedblleft }Kerker des Schreckens\IeC {\textquotedblright }}{9}
+\contentsline {subsubsection}{\numberline {8.6.2}\IeC {\textquotedblleft }Festung der Hoffnungslosigkeit\IeC {\textquotedblright }}{9}
+\contentsline {subsubsection}{\numberline {8.6.3}\IeC {\textquotedblleft }Minen der Einsamkeit\IeC {\textquotedblright }}{9}
+\contentsline {subsubsection}{\numberline {8.6.4}\IeC {\textquotedblleft }Wald der D\IeC {\"u}sternis\IeC {\textquotedblright }}{9}
+\contentsline {subsubsection}{\numberline {8.6.5}\IeC {\textquotedblleft }Ebene der Grausamkeit\IeC {\textquotedblright }}{10}
+\contentsline {section}{\numberline {9}Unique Selling Points}{10}
