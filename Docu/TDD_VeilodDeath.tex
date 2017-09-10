@@ -145,9 +145,14 @@ einen Teil der Gruppe einen einfachen Einstieg bereitet. Weiterhin ist das einbi
 Fonts und weiteren grafischen Texturen mit dem vom Hause aus mitgebrachten
 Contentmanager ein Leichtes. Es hat weiterhin eine integriert Gameloop. \newline
 
-Animations-Bib von Mirko mit den dazu gehörigen Bibliotheken  
+Für die Animation unserer Modelle haben wir die Bibliothek eines Kommolitonen aus dem Vorjahr verwendet. Hierbei gilt es zu beachten,
+dass diese Bibliothek nur mit Monogame 3.5 arbeitet. Weiterhin benötigt die Bibliothek die Modelle im .x-Dateiformat, damit das gewünschte Ergebnis
+erzielt wird. Eine Textdatei, die beschreibt wie die Animation ablaufen soll, wird ebenfalls benötigt.
 
-
+Einen Großteil der Sounds haben wir von den beiden Internetseiten soundjay.com und soundbible.com bezogen. Beide Webseiten bieten ihre Dateien
+lizenzfrei an. Es gibt weiterhin die Einschränkung zu beachten, dass die verwendeten Dateien nicht für kommerzielle Zwecke benutzt werden dürfen.
+Auf Grund, dass wir die Software nur im Rahmen dieses Projektes anfertigen und nach dem Abschluss nicht kommerziell vervielfältigen wollen, ist in diesem
+Punkt die Sicherheit gewahrt.
 
 \newpage
 
@@ -190,7 +195,6 @@ Unsere Map-Klasse lädt die Spielwelt aus einer Bitmap-Grafik, welche die versch
 Die Block-Klasse holt sich die Informationen, welches Model, oder Textur geladen werden soll aus einem Dictionary, die Klasse LevelContent.
 Wir haben zwei zentrale Klassen für wichtige Steuerungs- und Speicherfunktionen. GameConstants ist eine statische Klasse, die sämtliche wichtigen Einstellungen und Standartwerte für das Spiel beinhaltet. Des weiteren haben wir einen Singelton-Klasse implementiert, die zwischen den verschiedenen Leveln und GameStates die wichtigsten Informationen überträgt und managed.
 Ein Gesamtüberblick über alle unserer Klassen sind der \ref{fig:classdiagramm} zu entnehmen.
-
 
 \newpage
 
