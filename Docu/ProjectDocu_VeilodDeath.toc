@@ -1,58 +1,59 @@
-\contentsline {section}{\numberline {1}Einleitung}{3}
-\contentsline {subsection}{\numberline {1.1}Spielprinzip}{3}
-\contentsline {subsection}{\numberline {1.2}Zielsetzung}{3}
-\contentsline {subsection}{\numberline {1.3}Projektumfeld}{3}
-\contentsline {section}{\numberline {2}Projektplanung}{4}
-\contentsline {subsection}{\numberline {2.1}Projektphasen}{5}
-\contentsline {subsubsection}{\numberline {2.1.1}Lernphase}{5}
-\contentsline {subsubsection}{\numberline {2.1.2}Hauptphase}{5}
-\contentsline {subsubsection}{\numberline {2.1.3}Schlussspurt}{5}
-\contentsline {subsection}{\numberline {2.2}Ressourcenplanung}{6}
-\contentsline {subsubsection}{\numberline {2.2.1}Ressource Mensch}{6}
-\contentsline {subsubsection}{\numberline {2.2.2}Ressource Software}{7}
-\contentsline {subsubsection}{\numberline {2.2.3}Ressource Assets}{8}
-\contentsline {subsection}{\numberline {2.3}Entwicklungsprozess}{8}
-\contentsline {section}{\numberline {3}Das Spiel}{9}
-\contentsline {subsection}{\numberline {3.1}Hauptmen\IeC {\"u} \leavevmode {\color {blue}(QA - Lars )}}{9}
-\contentsline {subsubsection}{\numberline {3.1.1}Spiel Starten \leavevmode {\color {blue}(QA - Lars )}}{9}
-\contentsline {subsubsection}{\numberline {3.1.2}Einstellungen \leavevmode {\color {blue}(QA - Lars )}}{9}
-\contentsline {subsubsection}{\numberline {3.1.3}Statistiken \leavevmode {\color {blue}(QA - Lars )}}{9}
-\contentsline {subsubsection}{\numberline {3.1.4}Credits \leavevmode {\color {blue}(QA - Lars )}}{10}
-\contentsline {subsubsection}{\numberline {3.1.5}Sonstiges}{11}
-\contentsline {subsection}{\numberline {3.2}Spielwelt}{11}
-\contentsline {subsubsection}{\numberline {3.2.1}Levelgenerator}{11}
-\contentsline {subsubsection}{\numberline {3.2.2}Player}{11}
-\contentsline {subsubsection}{\numberline {3.2.3}Fallen \leavevmode {\color {blue}(QA - Lars )}}{11}
-\contentsline {subsubsection}{\numberline {3.2.4}Feedback}{12}
-\contentsline {subsubsection}{\numberline {3.2.5}Assets}{12}
-\contentsline {section}{\numberline {4}Technische Umsetzung}{13}
-\contentsline {subsection}{\numberline {4.1}Codestruktur}{13}
-\contentsline {subsubsection}{\numberline {4.1.1}GameStates}{13}
-\contentsline {subsubsection}{\numberline {4.1.2}Globale Klassen \leavevmode {\color {blue}(QA - Lars )}}{13}
-\contentsline {subsection}{\numberline {4.2}InGame}{14}
-\contentsline {subsubsection}{\numberline {4.2.1}Movement \leavevmode {\color {blue}(QA/ Grafik fehlt - Lars )}}{14}
-\contentsline {subsubsection}{\numberline {4.2.2}Collision \leavevmode {\color {blue}(QA - Lars )}}{14}
-\contentsline {subsubsection}{\numberline {4.2.3}Sontiges}{15}
-\contentsline {subsection}{\numberline {4.3}GUI}{15}
-\contentsline {subsubsection}{\numberline {4.3.1}Panel System}{15}
-\contentsline {subsection}{\numberline {4.4}Rendering}{16}
-\contentsline {subsubsection}{\numberline {4.4.1}Aufbau}{16}
-\contentsline {subsubsection}{\numberline {4.4.2}Weltkoordinaten \leavevmode {\color {blue}(QA - Lars )}}{16}
-\contentsline {subsubsection}{\numberline {4.4.3}Animation \leavevmode {\color {blue}(QA - Lars )}}{16}
-\contentsline {subsubsection}{\numberline {4.4.4}Partikel Effekte}{18}
-\contentsline {subsection}{\numberline {4.5}Statistik}{18}
-\contentsline {section}{\numberline {5}Projektverlauf}{20}
-\contentsline {subsection}{\numberline {5.1}Prototypen}{20}
-\contentsline {subsubsection}{\numberline {5.1.1}Prototyp 1 - Alexander Heck und Robert Jendersie}{20}
-\contentsline {subsubsection}{\numberline {5.1.2}Prototyp 2 - Christoph Dollase und Sarah F.}{20}
-\contentsline {subsubsection}{\numberline {5.1.3}Prototyp 3 - Lars Wagner und Mattis Hagen \leavevmode {\color {blue}(QA - Lars )}}{21}
-\contentsline {subsection}{\numberline {5.2}Meilensteine}{22}
-\contentsline {subsubsection}{\numberline {5.2.1}MS I}{22}
-\contentsline {subsubsection}{\numberline {5.2.2}MS II}{22}
-\contentsline {subsubsection}{\numberline {5.2.3}MS III}{22}
-\contentsline {subsubsection}{\numberline {5.2.4}MS IV}{22}
-\contentsline {subsubsection}{\numberline {5.2.5}Abgabe}{22}
-\contentsline {section}{\numberline {6}Fazit}{23}
-\contentsline {subsection}{\numberline {6.1}Soll - Ist - Vergleich}{23}
-\contentsline {subsection}{\numberline {6.2}Lessons Learned}{23}
-\contentsline {subsection}{\numberline {6.3}Ausblick}{23}
+\contentsline {section}{\numberline {1}Einleitung}{3}{section.1}
+\contentsline {subsection}{\numberline {1.1}Spielprinzip}{3}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Zielsetzung}{3}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}Projektumfeld}{4}{subsection.1.3}
+\contentsline {section}{\numberline {2}Projektplanung}{5}{section.2}
+\contentsline {subsection}{\numberline {2.1}Projektphasen}{6}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}Lernphase}{6}{subsubsection.2.1.1}
+\contentsline {subsubsection}{\numberline {2.1.2}Hauptphase}{6}{subsubsection.2.1.2}
+\contentsline {subsubsection}{\numberline {2.1.3}Schlussspurt}{6}{subsubsection.2.1.3}
+\contentsline {subsection}{\numberline {2.2}Ressourcenplanung}{7}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}Ressource Mensch}{7}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}Ressource Software}{8}{subsubsection.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.3}Ressource Assets}{9}{subsubsection.2.2.3}
+\contentsline {subsection}{\numberline {2.3}Entwicklungsprozess}{9}{subsection.2.3}
+\contentsline {section}{\numberline {3}Das Spiel}{10}{section.3}
+\contentsline {subsection}{\numberline {3.1}Hauptmen\IeC {\"u} \leavevmode {\color {blue}(QA - Lars )}}{10}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Spiel Starten \leavevmode {\color {blue}(QA - Lars )}}{10}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}Einstellungen \leavevmode {\color {blue}(QA - Lars )}}{10}{subsubsection.3.1.2}
+\contentsline {subsubsection}{\numberline {3.1.3}Statistiken \leavevmode {\color {blue}(QA - Lars )}}{11}{subsubsection.3.1.3}
+\contentsline {subsubsection}{\numberline {3.1.4}Credits \leavevmode {\color {blue}(QA - Lars )}}{12}{subsubsection.3.1.4}
+\contentsline {subsection}{\numberline {3.2}Spielwelt}{12}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Levelgenerator}{12}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Player \leavevmode {\color {blue}(QA - Lars )}}{12}{subsubsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.3}Fallen \leavevmode {\color {blue}(QA - Lars )}}{13}{subsubsection.3.2.3}
+\contentsline {subsubsection}{\numberline {3.2.4}Feedback \leavevmode {\color {blue}(vorl\IeC {\"a}ufig - Lars )}}{13}{subsubsection.3.2.4}
+\contentsline {subsubsection}{\numberline {3.2.5}Assets}{14}{subsubsection.3.2.5}
+\contentsline {section}{\numberline {4}Technische Umsetzung}{16}{section.4}
+\contentsline {subsection}{\numberline {4.1}Codestruktur \leavevmode {\color {blue}(QA - Lars )}}{16}{subsection.4.1}
+\contentsline {subsubsection}{\numberline {4.1.1}GameStates \leavevmode {\color {blue}(QA - Lars )}}{16}{subsubsection.4.1.1}
+\contentsline {subsubsection}{\numberline {4.1.2}Globale Klassen \leavevmode {\color {blue}(QA - Lars )}}{16}{subsubsection.4.1.2}
+\contentsline {subsection}{\numberline {4.2}InGame}{18}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}Movement \leavevmode {\color {blue}(QA/ Grafik fehlt - Lars )}}{18}{subsubsection.4.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2}Collision \leavevmode {\color {blue}(QA - Lars )}}{18}{subsubsection.4.2.2}
+\contentsline {subsubsection}{\numberline {4.2.3}Sontiges}{18}{subsubsection.4.2.3}
+\contentsline {subsection}{\numberline {4.3}GUI}{19}{subsection.4.3}
+\contentsline {subsubsection}{\numberline {4.3.1}Panel System}{19}{subsubsection.4.3.1}
+\contentsline {subsection}{\numberline {4.4}Rendering}{20}{subsection.4.4}
+\contentsline {subsubsection}{\numberline {4.4.1}Aufbau}{20}{subsubsection.4.4.1}
+\contentsline {subsubsection}{\numberline {4.4.2}Weltkoordinaten \leavevmode {\color {blue}(QA - Lars )}}{20}{subsubsection.4.4.2}
+\contentsline {subsubsection}{\numberline {4.4.3}Animation \leavevmode {\color {blue}(QA - Lars )}}{20}{subsubsection.4.4.3}
+\contentsline {subsubsection}{\numberline {4.4.4}Partikel Effekte}{20}{subsubsection.4.4.4}
+\contentsline {subsection}{\numberline {4.5}Statistik}{22}{subsection.4.5}
+\contentsline {section}{\numberline {5}Projektverlauf}{23}{section.5}
+\contentsline {subsection}{\numberline {5.1}Prototypen}{23}{subsection.5.1}
+\contentsline {subsubsection}{\numberline {5.1.1}Prototyp 1 - Alexander Heck und Robert Jendersie \leavevmode {\color {blue}(QA - Lars )}}{23}{subsubsection.5.1.1}
+\contentsline {subsubsection}{\numberline {5.1.2}Prototyp 2 - Christoph Dollase und Sarah F.}{23}{subsubsection.5.1.2}
+\contentsline {subsubsection}{\numberline {5.1.3}Prototyp 3 - Lars Wagner und Mattis Hagen \leavevmode {\color {blue}(QA - Lars )}}{23}{subsubsection.5.1.3}
+\contentsline {subsection}{\numberline {5.2}Meilensteine \leavevmode {\color {blue}(QA - Lars )}}{24}{subsection.5.2}
+\contentsline {subsubsection}{\numberline {5.2.1}MS I}{24}{subsubsection.5.2.1}
+\contentsline {subsubsection}{\numberline {5.2.2}MS II}{24}{subsubsection.5.2.2}
+\contentsline {subsubsection}{\numberline {5.2.3}MS III}{24}{subsubsection.5.2.3}
+\contentsline {subsubsection}{\numberline {5.2.4}MS IV}{25}{subsubsection.5.2.4}
+\contentsline {subsubsection}{\numberline {5.2.5}MS V}{25}{subsubsection.5.2.5}
+\contentsline {subsubsection}{\numberline {5.2.6}Abgabe}{25}{subsubsection.5.2.6}
+\contentsline {section}{\numberline {6}Fazit}{26}{section.6}
+\contentsline {subsection}{\numberline {6.1}Soll - Ist - Vergleich}{26}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Lessons Learned}{26}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Ausblick}{26}{subsection.6.3}
+\contentsline {section}{\numberline {7}Anhang}{26}{section.7}

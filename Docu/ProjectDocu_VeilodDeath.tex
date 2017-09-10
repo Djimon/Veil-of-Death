@@ -14,6 +14,12 @@
 \usepackage{verbatim}
 \usepackage{float}
 
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
 \usepackage{varioref}
 	\labelformat{figure}{Abbildung~#1}
 
@@ -30,6 +36,10 @@
 \newpage
 	
 \section{Einleitung}
+In den folgenden Seiten findet sich die Projektdokumentation zum Softwareprojekt \glqq Veil of Death \grqq{} - ein 3D Spiel im Rahmen der Veranstaltung 3D Game Projekt im Sommersemester 2017. \newline
+Nach einer kurzen Einführung und einem Überblick zum Spiel gibt es einen Einblick in die Arbeitsweise und Prozesse des angewandten Projektmanagement.
+Anschließend werden wichtige Elemente und Einzelheiten des Spiels ausführlich erläutert und die technische Umsetzung an gewählten Beispielen erklärt.
+In den beiden letzten Abschnitten wird der Projektverlauf behandelt und nach Beurteilung und Rückblick ein kurzer Ausblick auf Erweiterungen und Verbesserungen des Spiels gegeben.
 
 \vspace{2cm}
 \subsection{Spielprinzip}
@@ -52,8 +62,10 @@ Bewertung wurde auch dieser Punkt verifiziert.
 
 \vspace{2cm}
 \subsection{Projektumfeld}
-- erfahrungen, background
- grund
+Das Projekt ist im Rahmen der Veranstaltung "3D Game Projekt" im Sommersemester 2017 entstanden. Es dient als Softwareprojekt und soll den Teilnehmenden praktische Erfahrung im Umgang mit der Planung und Umsetzung einer Software vermitteln. Unser Team setzt sich aus drei Personen mit unterschiedlichen Erfahrungsschätzen zusammen. \newline
+Alexander Heck studiert Computervisualistik im 5. Semester und hatte bis dato keinerlei Erfahrung in Spieleprogrammierung. Ist allerdings durch andere Projekte recht erfahren in der 3D - Modellierung. \newline
+Christoph Dollase ist unser zweites Teammitglied. Er studiert Informatik im 6. Semester und bringt Erfahrungen im Projektmanagement und 2D-Spielprogrammierung mit. Allerdings hat er bisher nur mit Unterstützung der Engine Unity gearbeitet und sich eher auf Grafik und Art konzentriert. \newline
+Lars Wagner studiert ebenfalls Informatik im 6. Semester und bringt ebenfalls keine Erfahrung in Spieleprogrammierung mit, hat aber grundlegende Kenntnisse in der allgemeinen Umsetzung von Algorithmen und beherrscht die Programmiersprache C\#.
 
 
 \newpage
@@ -139,32 +151,31 @@ Die sonstige Zeiteinteilung wurde den Teammitgliedern zur eigenen Verantwortung 
 
 \newpage
 \section{Das Spiel}
+In diesem Abschnitt gehen wir detailliert auf Features und Besonderheiten unseres Spiels ein
 
 \vspace{2cm}
 \subsection{Hauptmenü \textcolor{blue}{(QA - Lars )}}
 
-Das Hauptmenü stellt den Einstieg in unser Spiel dar. Hier wird der Spieler empfangen.
+Das Hauptmenü stellt den Einstieg in unser Spiel dar. Hier wird der Spieler empfangen und kann zwischen den verschiedenen Menüpunkten wählen.
+Die Steuerung ist hier sehr intuitiv und knüpft an die Erfahrungen des Nutzers aus anderen Spielen oder Programmen an. So ist die Navigation der Menüpunkte über die Pfeiltasten möglich, das Bestätigen eines Menüpunktes erfolgt mit der ENTER-Taste und durch betätigen der ESC-Taste wird der Spieler ins vorherige Menü zurückgebracht.
 
 \vspace{1cm}
 \subsubsection{Spiel Starten \textcolor{blue}{(QA - Lars )}}
 
 Durch das Betätigen des Buttons „Starten“ gelangt man in den Ingame-Bereich. Bevor es mit dem Spielen losgeht, öffnet sich am Anfang jedes
-Levels ein kleiner Tutorialbildschirm, welcher auch als Pause für den Spieler gedacht ist. Weiterhin kann er hier kurz verweilen um sich vorzubereiten
-und so die Konzentration zu steigern.
+Levels ein kleiner Tutorial-Bildschirm, der nochmal die grundlegende Steuerung in Erinnerung ruft und als eine Art Pausenbildschirm dient. Der Spieler kann zwischen den Levels hier kurz verweilen um sich vorzubereiten und so die Konzentration zu steigern. Denn ist ein Level erstmal gestartet, gibt es keine Möglichkeit zu Verschnaufen bis die rettende Tür zur nächsten Ebene erreicht wird.
 
 \vspace{1cm}
 \subsubsection{Einstellungen \textcolor{blue}{(QA - Lars )}}
 
-Mit den Settings kann man seine persönlichen Einstellungen an dem Spiel vornehmen. Es lassen sich der Schwierigkeitsgrad und die Musiklautstärke
-ändern. Auch gibt es hier eine ausführliche Beschreibung der Steuerung.
+Mit den Settings kann man seine persönlichen Einstellungen an dem Spiel vornehmen. So kann der Spieler einen von vier Schwierigkeitsgraden wählen, der unter anderem Geschwindigkeit und Stärke des Schleiers beeinflusst. \newline
+Eine weitere Einstellungsmöglichkeit ist die Regelung der Lautstärke von Hintergrundmusik und Effekten. \newline
+In den Einstellungen kann der Spieler zusätzlich eine ausführliche Anleitung der Steuerung finden.
 
 \vspace{1cm}
 \subsubsection{Statistiken \textcolor{blue}{(QA - Lars )}}
 
-Unter Statistics lässt sich der Spielfortschritt in den einzelnen Leveln begutachten. So findet man eine detaillierte Auflistung von Timeboni, eingesammelten
-Münzen und den Score für jedes Level. Des Weiteren werden auch die gesamte Todeszahl und der Totalscore erfasst. Nach Beenden des Spiels wird
-die Statistik gelöscht. Die Statistik wird zu dem  nur zu einem Run aufgestellt, sobald der Spieler das Spiel durchgespielt hat und einen neuen Run startet
-wird die alte Statistik gelöscht.
+Unter Statistics lässt sich der Spielfortschritt in den einzelnen Levels begutachten. So findet man eine detaillierte Auflistung von Zeitboni, eingesammelten Münzen und den Score für jedes Level. Des Weiteren werden auch die gesamte Todeszahl und die Gesamtpunktzahl erfasst. Die Statistik wird zu dem  nur zu einem Run aufgestellt, sobald der Spieler das Spiel durchgespielt hat und einen neuen Run startet, wird die alte Statistik gelöscht.
 
 \begin{figure}
 	\centering
@@ -177,9 +188,6 @@ wird die alte Statistik gelöscht.
 \subsubsection{Credits \textcolor{blue}{(QA - Lars )}}
 
 Diese Option gibt Auskunft über die Konstellation des Teams und die jeweiligen Aufgabenbereiche.
-
-\vspace{1cm}
-\subsubsection{Sonstiges}
 
 \vspace{2cm}
 \subsection{Spielwelt}
@@ -195,30 +203,28 @@ Eine Besonderheit hier ist, dass das Dictionary je nach Art des Levels andere Mo
 \vspace{1cm}
 \subsubsection{Player \textcolor{blue}{(QA - Lars )}}
 
-Der Spieler kann den Spielercharakter mit Hilfe der Pfeiltasten bewegen. Der Character kann Rennen, Springen und Sliden. Es ist ihm weiterhin möglich
-während er bei einem Sprung in der Luft ist, die Lanes zu wechseln. Diese Tatsache ist ein gewolltes Feature, da es sonst unmöglich ist manche Hindernisse
-auszuweichen.
+Die Hauptfigur fängt nach Bestätigung zum Starten des Levels automatisch an zu rennen. Sie kann nicht vom Spieler gebremst oder beschleunigt werden, sondern nur Objekte in der Umgebung haben Einfluss auf die Geschwindigkeit.
+Der Spieler kann den Spielercharakter mit Hilfe der Pfeiltasten nach links und rechts bewegen und so die Lane wechseln. Das Wechseln der Lane erfolgt immer komplett, d.h. es gibt ein vorgegebenes Grid auf dem sich der Spieler bewegt. Dies vereinfacht es dem Spieler sich auf die einzelnen Hindernisse vorzubereiten, da er nicht millimetergenau navigieren muss, sondern automatisch immer in der Mitte einer Lane gehalten wird. Der Character kann neben dem normalen Rennen auch Springen (Leertaste) und Sliden (Shift). Es ist dem Spieler auch möglich während eines Sprungs in der Luft ist die Lane zu wechseln. Diese Tatsache ist ein gewolltes Feature, da es sonst nahezu unmöglich ist manche Hindernisse zu überwinden. 
 
 \vspace{1cm}
 \subsubsection{Fallen \textcolor{blue}{(QA - Lars )}}
 
 In unserem Spiel finden zwei Arten von Fallen Verwendung. Es gibt Fallen, die den Spieler verlangsamen. Weiterhin haben wir eine
-weitere Art Fallen, die zum plötzlichen Tod führen. Dieser wird durch die Kollision mit den Fallen ausgelöst. Der Tod wird durch die
-Spiketrap und die Spikeroll verursacht. Außerdem ist zu erwähnen, dass die Spikeroll beweglich ist. Je nach Schwierigkeitsgrad nimmt
-die Bewegungsgeschwindigkeit dieser zu. Bei der Slowtrap wird der Spieler für eine bestimmte Dauer verlangsamt. Nach dem der Spieler
-mehrere Male durch die Slowtrap gelaufen ist, wird er letztendlich vom Veil eingeholt und stirbt. Dadurch haben wir verschiedene Faktoren,
-die das Spiel zusätzlich erschweren sollen.
+weitere Art Fallen, die zum plötzlichen Tod führen. Dieser wird durch die Kollision mit den Fallen ausgelöst. Fallen, die den sofortigen Tod auslösen:
+\begin{itemize}
+	\item Spiketrap - eine Platte mit mehreren Dornen, die im Boden versenkt ist und unter Umständen noch oben springt.
+	\item Spiekroll - eine mit scharfen Spitzen versehene Säule, die sich um die eigene Achse dreht und sich im Raum hin und her bewegt
+\end{itemize}
+Bei der Slowtrap wird der Spieler für eine bestimmte Dauer verlangsamt. Das klingt auf dem ersten Blick unspektakulär. Aber nachdem der Spieler
+mehrere Male durch die Slowtrap verlangsamt wurde, schrumpft sein Vorsprung zum \glqq Veil of Death\grqq{} - dem tödlichen Schleier. Letztendlich wird er vom Schleier irgendwann eingeholt und stirbt. Dadurch haben wir verschiedene Faktoren, die das Spiel zusätzlich erschweren sollen.
 
 \vspace{1cm}
 \subsubsection{Feedback \textcolor{blue}{(vorläufig - Lars )}}
 
-Das Spiel arbeitet mit sehr vielen Soundeffekten, die dem Spieler Feedback geben sollen.
-Zusätzlich gibt es eine atmosphärische Hintergrundmusik. So gibt es zum Beispiel einen Herzschlag, der durch das Triggern einer Slowtrap ausgelöst
-wird. Weiterhin nimmt die Frequenz mit der Annäherung an das Ziel zu. Auch wurde das Menü mit Sounds für die Buttons unterlegt, damit es stimmig
-ist. Das Bestehen oder nicht Bestehen eines Levels wird auch durch einen Sound symbolisiert. \newline
+Das Spiel arbeitet mit sehr vielen Soundeffekten, die dem Spieler Feedback geben sollen. Dies geschieht zum einen auf einfachster Ebene in der Menüführung sowohl bei Auswahl, als auch bei Bestätigung von Menüpunkten. Zum Anderen werden z.B. der Sprung und das Einsammeln der Münzen durch wiedererkennbare Sounds signalisiert.
+Zusätzlich gibt es eine atmosphärische Hintergrundmusik, Sowie einen Herzschlag, der immer schneller wird, je näher der Todesschleier dem Spieler kommt. Das Bestehen oder Nicht-Bestehen eines Levels wird auch durch eine eindeutige Melodie symbolisiert. \newline
 
-\noindent Zu den Soundeffekten kriegt der Spieler zusätzliches Feedback dadurch, dass der Todesschleier nach dem Passieren einer Slowtrap einen Teil des
-Bildschirms einnimmt. Der Bereich der Einverleibung nimmt mit den unterschiedlichen Phasen des Schleiers zu. 
+\noindent Zu den Soundeffekten kriegt der Spieler zusätzliches optisches Feedback dadurch, dass der Todesschleier ab einer bestimmten Entfernung Teile des Bildschirms einnimmt. Der Bereich der Einverleibung nimmt mit den unterschiedlichen Phasen des Schleiers zu. 
 
 \vspace{1cm}
 \subsubsection{Assets}
@@ -344,14 +350,21 @@ Der Todesschleier wird von hier aus gesteuert. Levelverwaltung, Scorehandhabung 
 %\textcolor{green}{- Lane prinzip \newline
 %- Jump-Funktion (Parabel anhand von Geschwindigkeit)}
 
-Unser Spielercharakter kann sich auf drei Arten fortbewegen. Er kann Rennen, Sliden und Springen. Der Sprung wurde an eine
-Wurfparabel angepasst, sodass sich der Sprung wie ein Wurf verhält. Der Spielercharakter gewinnt an Höhe bis er den Scheitelpunkt
-erreicht und sinkt danach wieder zu Boden. Dadurch ist der Sprung symmetrisch, sowohl die Anstiegs- und Abstiegskurve sind gleich.
+Unser Spielercharakter kann sich auf drei Arten fortbewegen. Er kann Rennen, Sliden und Springen. Durch das Laneprinzip unseres Spiels haben wir uns gegen einen flüssigen Übergang des Spielercharakters beim Wechseln der Lanes
+entschieden. Wir lassen ihn wirklich zwischen den Lanes switchen, so dass er sich nicht in Zwischenbereichen aufhalten kann und nur auf die Hindernisse in seiner aktuellen Bahn konzentrieren muss. \newline
+Der Sprung wurde mit einer Parabel umgesetzt, sodass sich der Sprung wie ein Wurf verhält. Der Spielercharakter gewinnt an Höhe bis er den Scheitelpunkt
+erreicht und sinkt danach wieder zu Boden. Dadurch ist der Sprung symmetrisch, sowohl die Anstiegs- und Abstiegskurve sind gleich. Eine Schematische Darstellung ist \ref{fig:parabel} zu entnehmen. Dies war uns wichtig um eine realistische Collision mit den Fallen zu erreichen. Wir können im Sprung nun die Position des Spielers (Origin ist die Mitte der Füße) mit den Fallen auf Collision überprüfen. Die nötigen Berechnungen erfolgen durch die Formeln \ref{eq:1} und \ref{eq:2}, wobei a der aktuelle Anstieg der Sprungparabel ist.
+\begin{align}
+a = \frac{Pos.Z - e}{(Pos.Y - d)^{2}}  \label{eq:1} \\
+f(y) = a \cdot (y - d)^{2} + e  \label{eq:2}
+\end{align}
 
-%Grafik Wurfparabel einfügen
-
-\noindent Durch das Laneprinzip unseres Spiels haben wir uns gegen einen flüssigen Übergang des Spielercharakters beim Wechseln der Lanes
-entschieden. Wir lassen ihn wirklich zwischen den Lanes switchen, so dass er sich nicht in Zwischenbereichen aufhalten kann.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{parabel}
+	\caption{Sprungparabel
+		\label{fig:parabel}}
+\end{figure}
 
 \vspace{1cm}
 \subsubsection{Collision \textcolor{blue}{(QA - Lars )}}
