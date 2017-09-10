@@ -27,7 +27,7 @@
 \begin{document}
 %opening
 
-\includepdf{TitlePageProjektDoku}
+%\includepdf{TitlePageProjektDoku}
 
 \newpage
 
@@ -53,10 +53,10 @@ Als wäre, dass nicht genug, muss der Spieler nebenbei auch noch Münzen einsamm
 
 Unsere Zielsetzung lässt sich durch drei Kriterien überprüfen.\newline
 Das erste Kriterium lautet: " 'Drei spielbare Level mit unterschiedlicher Optik" '. Dieses
-Kriterium gilt als gemeistert, wenn das Spiel midestens drei Level besitzt und eine .exe-Datei liefert. Weiterhin sollen sich die Level beim Voranschreiten im
+Kriterium gilt als gemeistert, wenn das Spiel mindestens drei Level besitzt und eine .exe-Datei liefert. Weiterhin sollen sich die Level beim Voranschreiten im
 Spiel nicht gleich anfühlen.\newline
 Ein weiterer Punkt lautet: " 'Herausfordernd aber nicht zu schwer" '. Dieses Kriterium lässt sich durch Playtests validieren. Verifiziert wird es dadurch das
-kein Proband das Spiel auf anhieb durchspielt. Doch es sollte auch einem Probanden gelingen das Spiel innerhalb von drei Versuchen zu beenden.\newline
+kein Proband das Spiel auf Anhieb durchspielt. Doch es sollte auch einem Probanden gelingen das Spiel innerhalb von drei Versuchen zu beenden.\newline
 Der letzte Kriterium ist wie folgt definiert: " 'stimmiges Feeling (Grafik, Sound und Gameplay)" '. Durch eine Befragung der Probanden mit einer anschließenden
 Bewertung wurde auch dieser Punkt verifiziert.
 
@@ -104,7 +104,7 @@ Für die Umsetzung des Projektes ist es notwendig im Voraus alle nötigen Ressou
 \subsubsection{Ressource Mensch}
 Hier haben wir uns einfach an unsere Fähigkeiten und Neigungen gehalten, sodass sich relativ schnell herauskristallisiert hat, wer welche Rollen und Aufgaben übernimmt. So hat Alex die Hauptführung über den Bereich des 3D-Modellings übernommen und hat die meisten Modelle und Texturen für die Modelle übernommen.
 Da es aber auch eine Vorgabe war, dass jeder im Team seinen Anteil an der Programmierung leistet, hat Alex sich dazu bereit erklärt das Menü-System zu implementieren. \newline
-Lars hat großteile der Programmierung übernommen, seine Aufgaben lagen vorallem in der Umsetzung der 3D-Optik, Kamera und Einbinden der Animationen, sowie einige Kern-Features, wie z.B. Collision oder das Soundsystem. \newline
+Lars hat großteile der Programmierung übernommen, seine Aufgaben lagen vor Allem in der Umsetzung der 3D-Optik, Kamera und Einbinden der Animationen, sowie einige Kern-Features, wie z.B. Collision oder das Soundsystem. \newline
 Das Projektmanagement hat größtenteils Christoph übernommen. Programmiertechnisch hat er bei einem Großteil der Spielrelevanten Features mitgearbeitet und dafür gesorgt, dass die einzelnen Systeme miteinander agieren können. Zusätzlich liegt alles was mit 2D-Art zu tun hat in seinem Aufgabenbereich. Neben vielen Grafiken für Menü oder UI zählt hier auch das Paritkelsystem dazu.
 
 \subsubsection{Ressource Software}
@@ -235,7 +235,7 @@ Zusätzlich gibt es eine atmosphärische Hintergrundmusik, Sowie einen Herzschla
 
 \noindent Der Protagonist des Spiels sollte ein Mensch sein, ein entflohener Gefangener auf der Flucht. 
 Hierzu gab es zwei Modellierungsansätze welche sich von der Machart und vom Aussehen stark unterschieden. 
-Der erste Versuch wurde von Null aufgezogen über das Programm Blender. Die Idee war zunächst ein Low-Polymodell zu erstellen und dieses dann zu verfeinern
+Der erste Versuch wurde von Null aufgezogen über das Programm Blender. Die Idee war zunächst ein Low-Poly Modell zu erstellen und dieses dann zu verfeinern
 und mit den von Blender gegebenen Werkzeugen zu manipulieren um es mehr nach Mensch aussehen zu lassen. Das Gesicht des Protagonisten spielt keine Rolle,
 da man ihn nie von vorne sieht. Die Textur wurde über eine UV-Map realisiert welche direkt auf die Flächen des Modells aufgetragen wird. 
 Anschließend wurden für das Modell Animationen wie Rennen und Springen über Knochen in Blender erstellt. Das Ergebnis war jedoch nicht den Erwartungen entsprechend.
@@ -259,7 +259,7 @@ Weg zu räumen. Das Resultat des zweiten Versuchs: \ref{fig:highpoly} \newline
 Die Fallen:\newline
 
 Alle Fallen wurden in Solidedge modelliert. Dies war einfacher und präziser als in Blender, da Solidedge zum Modellieren von Maschinenteilen verwendet wird und hier schon Wissen vorlag.
-Die Fallen wurden dort modelliert dann als stl-Datei exportiert und in Blender importiert um hier die Texturen, welche in Form von UV-Maps existieren, zu erstellen. Auch skalierte Solidedge
+Die Fallen wurden dort modelliert dann als stl-Datei exportiert und in Blender importiert um hier die Texturen, welche in Form von UV-Maps existieren, zu erstellen. Auch skalierte Solid Edge
 nicht korrekt, dies konnte jedoch auch in Blender nachgebessert werden. Sämtliche Modelle wurden aus dem nichts erstellt.\newline
 
 Die Fallen sind ein Kernelement des Spiels, da sie neben dem Nebel das einzige sind, was dem Spieler gefährlich werden kann. Sie mussten immersiv werden und am besten glaubwürdig
@@ -400,8 +400,9 @@ Achsen von Körper B. Anders gesagt wenn die erweiterte konvexe Hülle des einen
 \subsubsection{Sontiges}
 
 Zusätzlich hat das Spiel zwei Buffs, die der Spieler einsammeln kann. Mit dem Schwertbuff lassen sich Gegner töten um den nahenden Tod zu entweichen.
-Der Schidlbuff ist ein einmaliges Schutzschild, welches dem Spieler dazu verhilft neue Routen entlang zu gehen. Mit dem Buff lassen sich dafür vorgesehene
+Außerdem lassen sich mit dem Buff dafür vorgesehene
 Wände einreißen, was dazu führt das schwierigere Passagen umwandert werden können.
+Ein weiterer Buff ist der Speedbonus, der dem Spieler einen kurzen Boost gibt, um den Vorsprung zum Schleier wieder zu vergrößern. Allerdings werden die Abschntte mit erhöhter Geschwindigkeit auch wesentlich schwerer zu bewältigen.
 
 \vspace{2cm}
 \subsection{GUI}
@@ -420,10 +421,6 @@ Mehr als das hinzufügen der Elemente ist nicht nötig. Das Zeichnen übernimmt 
 
 \vspace{2cm}
 \subsection{Rendering}
-
-\vspace{1cm}
-\subsubsection{Aufbau}
-
 Unser Spiel benutzt die interne Rendering Pipeline von Monogame.
 
 \vspace{1cm}
@@ -592,18 +589,67 @@ Polishing: Alle\newline
 \section{Fazit}
 
 \vspace{2cm}
-\subsection{Soll - Ist - Vergleich}
+\subsection{Lessons Learned}
+
+Wenn von Anfang an viel Zeit in die Planung der Struktur des Projekts gesteckt wird, lohnt sich das Hinten raus. Bei sorgfältiger Herangehensweise erspart man sich mehrmaliges Umbauen von Features oder Klassen. Ebenfalls wichtig ist es, sich von Anfang an feste Termine und regelmäßige Zeitslots einzuplanen, da sonst der Fortschritt durch Verschiebungen und anderen spontanen Zwischenfällen stark verlangsamt werden kann.\newline
+Ein Punkt der für zukünftige Projekte mehr Beachtung finden sollte, ist die detaillierte Abstimmung zwischen Grafiker und Programmierer. Durch zu kurze und unvollständige Absprachen, hatten wir Anfangs zusätzliche Aufwände durch nachträgliche Anpassungen oder Neugestaltung ganzer Modelle.\newline
+Der Aufwand der Dokumentation ist nicht zu unterschätzen. Es ist sinnvoll damit relativ früh anzufangen und das auch regelmäßig weiter zu führen. \newline
+Auch wenn wir in unserem Team keine großen Probleme hatten, ist es zukünftig wichtig eine eindeutige Linie zu fahren, mit Konsequenzen für Verspätungen.\newline
+Weitergin aufgefallen ist uns, dass die Arbeit in einem Raum mit anderen fleißigen Menschen einfacher von Statten geht, als sich von zu Hause aus alleine zu motivieren konsequent mehrere Stunden am Projekt zu arbeiten.
 
 \vspace{2cm}
-\subsection{Lessons Learned}
+\subsection{Soll - Ist - Vergleich}
+
+Als erste Betrachtung auf unser Projekt wollen wir unsere anfangs aufgestellten Erfolgskriterien analysieren und evaluieren. \newline
+\vspace{0.5cm}
+
+\noindent \textbf{Drei spielbare Level mit unterschiedlicher Optik} \newline
+Im aktuellen Spiel haben wir insgesamt 5 spielbare Level mit unterschiedlichen Ausprägung in Vielfalt und Anzahl der Fallen. Außerdem gibt es aktuell zwei verschiedene Textur-Themen die eine weitere Abwechslung schaffen.
+Durch unser gewählten System (Bitmap-Generator, Model-Dictionary) wäre hier eine weitere Verbesserung sogar relativ gut umsetzbar.
+Im Großen und Ganzen betrachten wir diesen Punkt aber als erfüllt.
+\vspace{0.5cm}
+
+\noindent \textbf{Herausfordernd aber nicht zu schwer} \newline
+Neben den unzähligen eigenen Testläufen während der Entwicklung haben wir das Spiel mehreren Kommilitonen und Freunden zum Testen gegeben. Einige hatten Anfangs größere Probleme sich an das automatischen Laufen  zu gewöhnen und sich an den vorgegebenen Takt des Spiels anzupassen. Andere wiederum waren sogar sehr begeistert, dass sie nicht sofort alle Level beim ersten mal schafften und wurden regelrecht süchtig. Wir haben aber dennoch sichergestellt, dass selbst im \glqq Extreme \grqq-Modus das Durchspielen machbar ist. Einer unser Entwickler hat sich als Meister erwiesen und nach stundenlanger Verzweiflung das unmögliche geschafft. Dieser Modus erlaubt im gesamten Spiel nämlich maximal einen Fehler. 
+Wir sehen auch diesen Punkt als erfolgreich erledigt.
+\vspace{0.5cm}
+
+\noindent \textbf{stimmiges Feeling (Grafik, Sound und Gameplay)} \newline
+Wir haben versucht durch Sounds und Grafiken eine Stimmung zu erschaffen, die das Gameplay unterstützt und dem Spieler das Erlebnis seiner Flucht nachempfinden lässt. Gerade durch das variable Herzklopfen fühlt sich der Spieler ähnlich unter Druck gesetzt wie der Charakter selbst.
+Nur grafisch haben wir es nicht 100\% so umsetzen können, wie wir es ursprünglich geplant hatten. So geht ein Teil der Atmosphäre verloren, da es uns nicht gelang einen ansehnlichen Shader einzufügen, der mit Licht und Dunkelheit ein immersiveres Spielgefühl erzeugt. Mit dem Einbau der Partikel in der Umsetzung des annähernden Schleiers haben wir noch einmal versucht das grafische Erlebnis unseres Spiels aufzuwerten.
+Nach Befragung unserer Spieltester konnten wir diese Eindrücke bestätigen, sodass wir unterm Strich diesen Punkt nur zu zwei drittel erfüllt haben.
+Die Shader würden dem Spiel den letzten Schliff geben.
+
+Eine Übersicht über alle noch offenen Task sind Tabelle \ref{tbl:tasks} zu entnehmen.
+\begin{table}
+	\centering
+	\begin{tabular}{p{0.5cm}p{9cm}}
+		\textbf{ }  & \textbf{offene Tasks} \\
+		\hline
+		\textit{1}          & \textnormal{Shader einfügen}            \\
+		\textit{2}          & \textnormal{neue Fallenarten}            \\
+		\textit{3}          & \textnormal{Barrikade durchbrechen}      \\
+		\textit{4}          & \textnormal{Buffs einfügen (Schwert + Speed)}  \\
+		\textit{5}          & \textnormal{Gegner einfügen}            \\
+		\textit{6}          & \textnormal{weitere Textur-Themen}  \\ 
+		\textit{7}          & \textnormal{Story einfügen}  \\ 
+		\hline
+	\end{tabular}
+	\caption{Auflistung offener Tasks}	
+	\label{tbl:tasks}	
+\end{table}
+
 
 \vspace{2cm}
 \subsection{Ausblick}
+Unser Team hat sich überlegt an dem Spiel auch nach der endgültigen Abgabe weiterzuarbeiten und bis zur Einreichungsfrist vom Acagamics Game Award 2017 das bestmögliche noch aus unserem Spiel raus zu holen.
+Dabei wollen wir vorrangig alle Elemente noch einbauen, die es bis jetzt aus zeitlichen Gründen noch nicht ins Spiel geschafft haben.
 
+\newpage
 \section{Anhang}
 
 %Bild Low-Poly Modell
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\textwidth]{lowPoly}
 	\caption{Erste Modell des Hauptcharakters
@@ -611,7 +657,7 @@ Polishing: Alle\newline
 \end{figure}
 
 %bild High-Poly Modell
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\textwidth]{stevevonhinten}
 	\caption{Zweite Modell des Hauptcharakters
@@ -619,7 +665,7 @@ Polishing: Alle\newline
 \end{figure}
 
 %Bild Stachelfalle
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\textwidth]{Stachelfalle}
 	\caption{Stachelfalle
@@ -627,7 +673,7 @@ Polishing: Alle\newline
 \end{figure}
 
 %Bild Stachelrolle
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\textwidth]{stachelrolle}
 	\caption{Stachelrolle
@@ -635,7 +681,7 @@ Polishing: Alle\newline
 \end{figure}
 
 %Bild Holzwand
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\textwidth]{Holzwandhindernis}
 	\caption{Holzwand
@@ -643,7 +689,7 @@ Polishing: Alle\newline
 \end{figure}
 
 %Zellwand
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\textwidth]{zellwand}
 	\caption{Zellwand
@@ -651,7 +697,7 @@ Polishing: Alle\newline
 \end{figure}
 
 %Tür
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\textwidth]{door}
 	\caption{Tür am Ende des Levels
@@ -659,7 +705,7 @@ Polishing: Alle\newline
 \end{figure}
 
 %explosives Fass
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\textwidth]{barrel}
 	\caption{explosives Fass
@@ -667,7 +713,7 @@ Polishing: Alle\newline
 \end{figure}
 
 %Schwert
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\textwidth]{Schwert}
 	\caption{Schwert
