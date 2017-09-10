@@ -33,8 +33,21 @@
 \vspace{2cm}
 \subsection{Spielprinzip}
 
+In dem Spiel steuert der Spieler einen Charakter, der verschiedenen Hindernissen ausweichen muss um seinem Schicksal zu entkommen. Mit Hilfe von
+Sprüngen und Sliden gilt es gekonnt den fiesen Fallen auszuweichen. Je näher der Protagonist sich seiner Freiheit nähert, um so anspruchsvoller werden die Level.
+Als wäre, dass nicht genug, muss der Spieler nebenbei auch noch Münzen einsammeln, um die Wache am Ende jedes Levels bestechen zu können.
+
 \vspace{2cm}
 \subsection{Zielsetzung}
+
+Unsere Zielsetzung lässt sich durch drei Kriterien überprüfen.\newline
+Das erste Kriterium lautet: " 'Drei spielbare Level mit unterschiedlicher Optik" '. Dieses
+Kriterium gilt als gemeistert, wenn das Spiel midestens drei Level besitzt und eine .exe-Datei liefert. Weiterhin sollen sich die Level beim Voranschreiten im
+Spiel nicht gleich anfühlen.\newline
+Ein weiterer Punkt lautet: " 'Herausfordernd aber nicht zu schwer" '. Dieses Kriterium lässt sich durch Playtests validieren. Verifiziert wird es dadurch das
+kein Proband das Spiel auf anhieb durchspielt. Doch es sollte auch einem Probanden gelingen das Spiel innerhalb von drei Versuchen zu beenden.\newline
+Der letzte Kriterium ist wie folgt definiert: " 'stimmiges Feeling (Grafik, Sound und Gameplay)" '. Durch eine Befragung der Probanden mit einer anschließenden
+Bewertung wurde auch dieser Punkt verifiziert.
 
 \vspace{2cm}
 \subsection{Projektumfeld}
@@ -281,18 +294,26 @@ Gridpositions eignen sich hervorragend für statische Objekte in Spielen, daher 
 von Münzen und Slowtraps von ihnen verwaltet. Hier für werden die Positionen von unseren kollidirbaren
 Objekten abgespeichert. Die Kollision wird dann mit Hilfe von if-Bedingungen berechnet.\newline
 \newline
-Axis-Alligned-Bounding-Boxes berechnen für uns die Kollisionen mit beweglichen Obejkten, so dass jedes Objekt seine eigene
+Axis-Aligned-Bounding-Boxes berechnen für uns die Kollisionen mit beweglichen Obejkten, so dass jedes Objekt seine eigene
 Bounding Box hat. Hier für wird um das Objekt eine Hülle gespannt. In unserem Spiel haben wir die jeweiligen Maximalwerte
 der Modelle in Betrachtung der Achsen gewählt. Die Kollision entsteht wenn die Minimalwerte der Achsen von Körper A kleiner
 als die Maximalwerte von Körper B sind. Sowie die Maximalwerte der Achsen von Körper A größer sind als die Minimalwerte der
 Achsen von Körper B. Anders gesagt wenn die erweiterte konvexe Hülle des einen Körpers, die des Anderen schneidet.
 
-%Grafik einfügen
-
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{AABB}
+	\caption{Axis Aligned Bounding Boxes\newline \tiny http://www.miguelcasillas.com/assets/aabbtoaabb.png
+		\label{fig:AABB}}
+\end{figure}
 
 
 \vspace{1cm}
 \subsubsection{Sontiges}
+
+Zusätzlich hat das Spiel zwei Buffs, die der Spieler einsammeln kann. Mit dem Schwertbuff lassen sich Gegner töten um den nahenden Tod zu entweichen.
+Der Schidlbuff ist ein einmaliges Schutzschild, welches dem Spieler dazu verhilft neue Routen entlang zu gehen. Mit dem Buff lassen sich dafür vorgesehene
+Wände einreißen, was dazu führt das schwierigere Passagen umwandert werden können.
 
 \vspace{2cm}
 \subsection{GUI}
