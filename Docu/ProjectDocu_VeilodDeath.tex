@@ -12,6 +12,7 @@
 
 \usepackage{color}
 \usepackage{verbatim}
+\usepackage{float}
 
 \usepackage{varioref}
 	\labelformat{figure}{Abbildung~#1}
@@ -51,20 +52,90 @@ Bewertung wurde auch dieser Punkt verifiziert.
 
 \vspace{2cm}
 \subsection{Projektumfeld}
+- erfahrungen, background
+ grund
 
 
 \newpage
-\section{Projektplanung \textcolor{red}{(in Arbeit - Chris )}}
+\section{Projektplanung}
+
+In diesem Abschnitt werden die Ergebnisse der ersten Planungen festgehalten, wie wir das Projekt umsetzen wollen. Hierbei sind besonders wichtig, für welche Prozesse und Workflows wir uns entschieden haben. \newline
+Da wir am Anfang und selbst erstmal im Team finden musste, um unsere Stärken und Spezialisierungen kennenzulernen und uns nicht sicher waren, wieviel wir wirklich umsetzen können, haben wir uns für agiles Projektmanagement entschieden. Dabei werden in kurzen Phasen sogenannte Sprints durchgeführt, in denen immer fest definierte Teilaufgaben erledigt werden. Die Besonderheit bei einem Sprint ist, das am Ende eines Sprints immer eine funktionsfähiges Programm stehen muss, ohne offene, unvollständigen Klassen. \newline
+Als unterstützendes Tool wurde der integrierte Kanban von GitHub benutzt. Wir definierten uns relativ viele eigene Label, um den Informationsgehalt der einzelnen Tasks noch zu verstärken.
+So entwickelte sich unser Kanban relativ schnell zum zentralen Anlaufpunkt. Wir hatten stets tagesaktuelle Informationen über die Fortschritte der anderen Teammitglieder:
+\begin{itemize}
+	\item alle Tasks in ihrem aktuellen Bearbeitungsstatus, anhand der zugeordneten Spalte im Kanban
+	\item Art und Ausprägung der Aufgaben, anhand farblich markierter Labels
+	\item neue Probleme, Rückfragen oder Bugs waren durch eindeutige Farben direkt erkennbar.
+	\item bearbeitete Tasks, welche zur Überprüfung bereit sind, sind in einer eigenen Spalte aufgelistet
+\end{itemize}
+Grundsätzlich bestand der Workflow darin aktuell wichtige Tasks, die für den nächsten Meilenstein wichtig sind in die Spalte \glqq Pipeline\grqq{} zu ziehen. Sobald sich einer von uns einer Anforderung angenommen hat, so hat er diese in den Status \glqq in Bearbeitung\grqq{} verschoben. Nach Bearbeitung einer Aufgabe wurde diese dann zur \glqq Review\grqq{} überführt. Sobald ein anderes Teammitglied Tasks aus der \glqq Review\grqq{} überprüft hat, wurden sie entweder archiviert oder in die Spalte \glqq Probeleme\grqq{} gesteckt. Der Status \glqq Probleme\grqq{} war außerdem Sammelstelle für Bugs oder wenn jemand dringend Unterstützung benötigt und in seinem aktuellem Task nicht weiterkommt.
+
+\vspace{2cm}
+\subsection{Projektphasen}
+Wir haben unsere verfügbare Zeit in drei Phasen aufgeteilt, um mit realistischen Erwartungen und Ergebnissen arbeiten zu können. \newline
+\subsubsection{Lernphase}
+Wir haben die ersten beiden Meilensteine als Lern- und Findungsphase definiert. Dabei haben wir uns bewusst dafür entschieden unsere Aufgabenpakete und Ziele gering zu halten.
+Denn für uns war es wichtig, dass wir in den ersten Wochen hauptsächlich lernen mit dem Framework und allgemein der 3D-Spieleprogrammierung um zugehen. Ein zusätzlicher Erfolg war, dass wir relativ gut lernten, wie wir uns gegenseitig unterstützen konnten. In dieser Phase haben wir dann auch einen gemeinsamen Programmierstil und geeignete Coding-Coventions festgehalten. In dieser Phase haben wir unsere Grundlegende Struktur auch bewusst etwas aufwendiger implementiert, um es in den späteren, hektischeren Phasen leichter zu haben.
+
+\subsubsection{Hauptphase}
+Nach dem wir uns im Team gut eingespielt hatten, konnten wir den 3. und 4. Meilenstein relativ gut und ohne viel Stress bewältigen. Wir hatten unsere regelmäßigen Treffen zur Abstimmung und jeder hat für sich seine wöchentlichen Aufgaben eingeteilt und abgearbeitet. \newline
+In dieser Phase wurde aber auch relativ viel am GameDesign und an der Meilensteinplanung geändert, da viele Details und Besonderheiten sich erst herausstellen, wenn man am Objekt selber arbeitet. So haben sich einige Aufgaben zwischen den Meilensteinen verschoben oder wurden getauscht. Dies hatte oft den Grund, dass für die aktuelle Funktionalität gewisse Implemntierungen und Features Vorrang hatten. Hierbei spielte auch manchmal eine gewisse Abhängigkeit unter den einzelnen Teammitgliedern eine Rolle.
+
+\subsubsection{Schlussspurt}
+Uns war von Anfang an klar, dass es in den letzten 2-3 Wochen vor der Abgabe nochmal eine etwas stressigere Phase geben wird, in der nochmal versucht wird alle möglichen Features einzubauen, die noch fehlen, das Spiel Rund zu machen, kleinere Bugs die ignoriert wurden zu beheben. Um ein stimmiges Endresultat abliefern zu können, haben wir uns auch selbstständig diese Wochen so eingeplant, dass wir dort die Kapazitäten haben einen kleinen Schlussspurt hinzulegen, um unsere selbst gesteckten Ziele zu erreichen.
 
 
 \vspace{2cm}
-\subsection{Projektphasen  \textcolor{red}{(in Arbeit - Chris )}}
+\subsection{Ressourcenplanung}
+Für die Umsetzung des Projektes ist es notwendig im Voraus alle nötigen Ressourcen zu definieren und zu verteilen. Hierbei spielen sowohl personelle und materielle Ressourcen eine Rolle, als auch die Planung von nötiger Software oder Fremd-Bibliotheken. \newline
+\subsubsection{Ressource Mensch}
+Hier haben wir uns einfach an unsere Fähigkeiten und Neigungen gehalten, sodass sich relativ schnell herauskristallisiert hat, wer welche Rollen und Aufgaben übernimmt. So hat Alex die Hauptführung über den Bereich des 3D-Modellings übernommen und hat die meisten Modelle und Texturen für die Modelle übernommen.
+Da es aber auch eine Vorgabe war, dass jeder im Team seinen Anteil an der Programmierung leistet, hat Alex sich dazu bereit erklärt das Menü-System zu implementieren. \newline
+Lars hat großteile der Programmierung übernommen, seine Aufgaben lagen vorallem in der Umsetzung der 3D-Optik, Kamera und Einbinden der Animationen, sowie einige Kern-Features, wie z.B. Collision oder das Soundsystem. \newline
+Das Projektmanagement hat größtenteils Christoph übernommen. Programmiertechnisch hat er bei einem Großteil der Spielrelevanten Features mitgearbeitet und dafür gesorgt, dass die einzelnen Systeme miteinander agieren können. Zusätzlich liegt alles was mit 2D-Art zu tun hat in seinem Aufgabenbereich. Neben vielen Grafiken für Menü oder UI zählt hier auch das Paritkelsystem dazu.
+
+\subsubsection{Ressource Software}
+Wir haben für das gesamte Projekt auf Software zurück gegriffen, die entweder kostenlos zur Verfügung steht, oder die bereit in unserem Besitz ist und daher für dieses Projekt ohne Entstehung von Kosten mit genutzt werden konnten.\newline
+Um gleichzeitig ohne viel Konflikte am gleichen Projekt arbeiten zu können, ist es wichtig, dass man sich auf eine gemeinsame Software - vor Allem mit gleicher Version - entscheidet. \newline
+Als Framework für unser Spiel wählten wir MonoGame 3.5, damit war auch die Programmiersprache C\# größtenteils schon vorgegeben. Als IDE nutzen wir Visual Studio mit den Standards aus der 2015 Version.
+Dadurch konnten wir Kompatibilitätsprobleme zwischen verschiedenen C\# Versionen vorbeugen, da wir uns auf einen gemeinsamen Standard einigten.
+Wir haben uns dazu entschieden die Animation mit Hilfe einer Fremdem Bibliothek umzusetzen. \newline
+Als Software für 3D-Modelierung wurden hauptsächlich Solid Edge und Blender benutzt. Texturen und andere 2D-Elemente wurden größtenteils mit PhotoShop angefertigt und bearbeitet.
+Eine detailliertere Auflistung der gesamten Software ist Tabelle \ref{tbl:software} zu entnehmen.
+\begin{table}[H]
+\centering
+	\begin{tabular}{p{0.5cm}p{9cm}}
+		\textbf{ }  & \textbf{Name der Software/ des Services} \\
+		\hline
+		\textit{1}          & \textnormal{Visual Studio 2015 Enterprise}            \\
+		\textit{2}          & \textnormal{Visual Studio 2017 Community}            \\
+		\textit{3}          & \textnormal{Blender 2.78}            \\
+		\textit{4}          & \textnormal{Solid Edge ST9}            \\
+		\textit{5}          & \textnormal{PhotoShop CS5}            \\
+		\textit{6}          & \textnormal{Audacity 2.1.3}            \\
+		\textit{9}          & \textnormal{Git 2.7}  \\
+		\textit{10}          & \textnormal{Turtoise Git 2.4}            \\
+		\textit{11}          & \textnormal{TeXstudio 2.11 + MikTex}       \\
+		\textit{12}          & \textnormal{GoogleDocs + Google Präsentationen)}  \\
+		\textit{13}          & \textnormal{GitHub}  \\
+		\hline
+	\end{tabular}
+	\caption{Auflistung verwendeter Software und Services}	
+	\label{tbl:software}	
+\end{table}
+
+\subsubsection{Ressource Assets}
+Für Assets haben wir versucht alles so gut wie möglich komplett selber zu erstellen. Einzelheiten zu den verschiedenen Assets sind dem entsprechenden Abschnitt zu entnehmen.
+Die einzige Ausnahme bilden hier einige wenige Sounds die wir von Plattformen genommen haben, die Sounds mit CreativeCommons - Lizenz anbieten. 
 
 \vspace{2cm}
-\subsection{Ressourcenplanung  \textcolor{red}{(in Arbeit - Chris )}}
-
-\vspace{2cm}
-\subsection{Entwicklungsprozess  \textcolor{red}{(in Arbeit - Chris )}}
+\subsection{Entwicklungsprozess}
+Um den Entwicklungsprozess mit dem agilen Verfahren umzusetzen, ist es nötig sich einen gewissen regelmäßigen Ablauf einzuplanen. \newline
+Wir haben uns dazu entschieden ein wöchentliches Planungstreffen abzuhalten,
+in dem wir den aktuellen Fortschritt auswerten und die weiteren Tasks und Meilensteine einplanen. Dieses Treffen gab uns vor allem auch die Zeit und den Raum über Probleme oder eventuelle Verschiebungen zu reden. So konnten wir relativ gut auf Planänderungen agieren und unsere jeweilige Wochenaufgaben neu einplanen. \newline
+Zusätzlich haben sich die Hauptprogrammierer einmal wöchentlich gemeinsam getroffen, um sich auch gegenseitig aushelfen zu können und auch mal mit einem Augenpaar mehr auf gewisse Entscheidungen in der Umsetzung blicken zu können.
+Die sonstige Zeiteinteilung wurde den Teammitgliedern zur eigenen Verantwortung freigestellt. Dies hat sehr gut funktioniert. Wohl auch durch die wöchentlichen Planungstreffen, in denen man Bericht ablegen muss, über seine Fortschritte der letzten Woche.
 
 \newpage
 \section{Das Spiel}
@@ -114,7 +185,12 @@ Diese Option gibt Auskunft über die Konstellation des Teams und die jeweiligen 
 \subsection{Spielwelt}
 
 \vspace{1cm}
-\subsubsection{Levelgenerator  \textcolor{red}{(in Arbeit - Chris )}}
+\subsubsection{Levelgenerator}
+Zur Generierung der einzelnen Level wollten wir ein System implementieren, welches uns ermöglicht relativ einfach jederzeit Level zu ändern und neue Level hinzuzufügen, ohne großartig im Code was ändern zu müssen.
+Wir haben einen Levelgenerator geschaffen, der die Welt anhand von Bitmap-Dateien aufbaut. Die Bitmap-Datei dient dabei quasi als Skizze für das resultierende Level. Jeder Pixel der Grafik stellt ein Block im Spiel dar.
+Es wurde ein Kodierung definiert, die angibt welche Farbe für welches Objekt im Spiel steht. Mit diesem Wissen kann nahezu Jeder mit Hilfe von einfachsten Bildbearbeitungsprogrammen wie Paint seine eigenen Maps zeichnen. \newline
+Im Code selber liest der Generator die Farbwerte aus und schlägt in einem Dictionary nach, welches Model auf der aktuellen Position geladen werden soll.
+Eine Besonderheit hier ist, dass das Dictionary je nach Art des Levels andere Modelle, bzw. andere Texturen für die Modelle lädt. So können wir optisch unterschiedliche Welten generieren, die trotzdem auf den gleichen Regeln in der Bitmap-Datei beruhen.
 
 \vspace{1cm}
 \subsubsection{Player \textcolor{blue}{(QA - Lars )}}
@@ -316,9 +392,18 @@ Wände einreißen, was dazu führt das schwierigere Passagen umwandert werden k�
 
 \vspace{2cm}
 \subsection{GUI}
+Die GUI dient dem Spieler als Interatkions- und Feedbackebene. Hier können ein großteil von Informationen auf sehr einfachem Weg bereit gestellt werden, welche dem Spieler über das aktuelle Spielgeschehen in Kenntnis setzen.
+Wir haben uns dafür entschieden unsere GUI relativ schlank zu halten, um den Spieler nicht zu sehr von dem herausfordernden Hauptspiel abzulenken.
+Eine wichtigen Hinweis, welchen wir den Spieler via GUI mitteilen ist seine Aktuelle Entfernung zum Ziel und sein Vorsprung zum gefährlichen Schleier des Todes. Beide sind als Icons auf einer Strecke dargestellt, die der Länge des Levels entspricht. \newline
+Ein weiteres Element, welches wir über die GUI darstellen ist der Schleier selbst. Unterschreitet der Abstand des Spielers zum Schleier einen gewissen Schwellenwert, so wird der Spieler bereits von dessen Macht beeinflusst und sein Sichtfeld schränkt sich ein. Die Einschränkung des Sichtfeldes hat verschiedene Stufen, die abhängig von der Nähe der tödlichen Wolke sind.
 
 \vspace{1cm}
-\subsubsection{Panel System \textcolor{red}{(in Arbeit - Chris)}}
+\subsubsection{Panel System}
+Für die Umsetzung der verschiedenen GUI-Elemente haben wir uns dafür entschieden ein eigenes Panel System zu implementieren, um das Erstellen von GUI-Masken oder weiteren Menüs einfacher wird.
+Hierzu wird als erstes ein Basis-Panel erstellt, welches mit oder ohne Hintergrundgrafik geladen werden kann. Dieses Panel kann mit einer relativen oder festen Position in die Spielumgebung eingebaut werden.
+Nun kann man beliebig viele Unterelemente zu dem Hauptpanel hinzufügen.
+Dabei gibt es entweder die Möglichkeit ein Sprite (bzw. Grafik) hinzuzufügen oder einfach nur einen Text. Die Positionen dieser Elemente werden stets relativ zum Hauptpanel interpretiert. Wenn nun das Hauptpanel geändert wird, verhält es sich wie ein Anker zu all seinen Unterelementen, die sich wieder in richtiger Anordnung ausrichten.
+Mehr als das hinzufügen der Elemente ist nicht nötig. Das Zeichnen übernimmt das Hauptpanel. Trotzdem ist es möglich die einzelnen Elemente anzusprechen und zur Laufzeit zu verändern (z.B. Hervorhebung der aktuellen Auswahl).
 
 \vspace{2cm}
 \subsection{Rendering}
@@ -362,10 +447,15 @@ transparent stellen würde.
 
 \vspace{1cm}
 \subsubsection{Partikel Effekte}
+Ein Element zur optischen Verfeinerung ist unser Partikel System.
+Ein zentrales Objekt ist der Spawner, der Position, Menge, Geschwindigkeit und Lebenszeit der Partikel bestimmt. Das zweite wichtige Element ist das Partikel-Objekt, in welchem Informationen über Aussehen und Form gespeichert sind. Partikel können mit mehreren Grafiken initialisiert werden, die zufällig spawnen. Es besteht die Möglichkeit die Partikel nach dem Spawnen zu verändern, z.B. Farbe, Form und Größe oder sogar Austausch des Sprites.
+Aktuell kommt es nur in der Umsetzung des Schleiers zur Anwendung.
+Weitere Einsatzmöglichkeiten sind zusätzliche Feedback-Partikel bei verschiedenen Aktionen rund um den Haupt-Charakter.
 
 \vspace{2cm}
 \subsection{Statistik}
-
+Um dem Spieler zu ermöglichen seinen Fortschritt zu bewerten und vergleichen zu können, haben wir eingebaut, dass viele Werte und Erfolge der einzelnen Level gespeichert und gesammelt werden. So kann der Spieler z.B. einsehen in welchen Ebenen er noch einen besseren Zeitbonus rausholen kann oder wie oft er isngesamt gestorben ist, beim Versuch zu fliehen. \newline
+Ebenfalls könnte das Statistik-System relativ einfach erweitert werden, um besondere Achievements einzubauen. Bisher lagen unsere Prioritäten aber auf anderen Aspekten des Spiels.
 
 \newpage
 \section{Projektverlauf}
@@ -392,7 +482,12 @@ zwischen dem Ball und den Bumpern wird durch eine Boundigns-Sphere berechnet.
 Das Spiel selbst wurde mit Hilfe des Frameworks Monogames geschrieben und bedient sich der Sprache C\#.
 
 \vspace{1cm}
-\subsubsection{Prototyp 2 - Christoph Dollase und ???}
+\subsubsection{Prototyp 2 - Christoph Dollase und Sarah F.}
+Unser erster Prototyp war noch relativ spartanisch, da sich unserer beider Erfahrung in der 3D-Programmierung auf ein Minimum beschränkte, bzw. faktisch nicht vorhanden war. Wir entschieden uns für einen einfaches Space-Spiel, ohne großartige Physik. Kern des Spiels waren hier ein Modell eines kleinen Fliegers und im All verstreute Ringe, welche sich um ihre eigene Achse drehten. Ziel des Spiels ist es, alle Ringe einzusammeln. Hat man das geschafft, sind neue Ringe gespawnt - allerdings nur drei mal. Anschließend galt das Spiel als erfolgreich beendet. \newline
+Der Spieler konnte sein Schiff mit den Pfeiltasten steuern. Hierbei haben wir aber eine realistischere Steuerung eingebaut, sodass das Raumschiff zwar relativ einfach geradeaus fliegen konnte, das Fliegen nach links und rechts allerdings seine Tücken hatte. Wir haben hier mit \glqq Thrustern\grqq{} gearbeitet. Sprich das Raumschiff hatte zusätzlich zu seiner Vorwärtsbewegung einen seitlichen Schub bekommen, der auf die Bewegung drauf gerechnet wurde. Dadurch bekam das Spiel einen etwas höheren Schwierigkeitsgrad, weil sich der Spieler erstmal an die Bewegung gewöhnen muss. Dies wird gerade dann schwierig, wenn das Objekt zurückfliegt und so links und rechts spiegelverkehrt sind.
+Als Kamera haben wir eine fixierte Top-Down Kamera eingebaut.
+Dadurch war die 3-dimensionale Welt leider nicht mehr all zu gut erkennbar.
+Für ein wenig Spielerfeedback haben wir zum einen eine UI implementeirt, die den aktuellen Score anzeigt und einen Sound abspielen lassen, wenn der Spieler erfolgreich einen Ring eingesammelt hat.
 
 \vspace{1cm}
 \subsubsection{Prototyp 3 - Lars Wagner und Mattis Hagen \textcolor{blue}{(QA - Lars )}}
