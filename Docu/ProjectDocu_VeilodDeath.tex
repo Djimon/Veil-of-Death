@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[10pt]{article}
 
 \usepackage[utf8]{inputenc}
 \usepackage{ngerman}
@@ -27,7 +27,7 @@
 \begin{document}
 %opening
 
-%\includepdf{TitlePageProjektDoku}
+\includepdf{TitlePageProjektDoku}
 
 \newpage
 
@@ -36,34 +36,35 @@
 \newpage
 	
 \section{Einleitung}
-In den folgenden Seiten findet sich die Projektdokumentation zum Softwareprojekt \glqq Veil of Death \grqq{} - ein 3D Spiel im Rahmen der Veranstaltung 3D Game Projekt im Sommersemester 2017. \newline
+In den folgenden Seiten befindet sich die Projektdokumentation zum Softwareprojekt \glqq Veil of Death\grqq{} - ein 3D Spiel im Rahmen der Veranstaltung 3D Game Projekt im Sommersemester 2017. \newline
 Nach einer kurzen Einführung und einem Überblick zum Spiel gibt es einen Einblick in die Arbeitsweise und Prozesse des angewandten Projektmanagement.
 Anschließend werden wichtige Elemente und Einzelheiten des Spiels ausführlich erläutert und die technische Umsetzung an gewählten Beispielen erklärt.
 In den beiden letzten Abschnitten wird der Projektverlauf behandelt und nach Beurteilung und Rückblick ein kurzer Ausblick auf Erweiterungen und Verbesserungen des Spiels gegeben.
 
-\vspace{2cm}
+\vspace{0.5cm}
 \subsection{Spielprinzip}
 
 In dem Spiel steuert der Spieler einen Charakter, der verschiedenen Hindernissen ausweichen muss um seinem Schicksal zu entkommen. Mit Hilfe von
 Sprüngen und Sliden gilt es gekonnt den fiesen Fallen auszuweichen. Je näher der Protagonist sich seiner Freiheit nähert, um so anspruchsvoller werden die Level.
-Als wäre, dass nicht genug, muss der Spieler nebenbei auch noch Münzen einsammeln, um die Wache am Ende jedes Levels bestechen zu können.
+Als wäre dass nicht genug, muss der Spieler nebenbei auch noch Münzen einsammeln, um die Wache am Ende jedes Levels bestechen zu können, die den Weg zur Freiheit versperrt.
 
-\vspace{2cm}
+\vspace{0.5cm}
 \subsection{Zielsetzung}
 
 Unsere Zielsetzung lässt sich durch drei Kriterien überprüfen.\newline
-Das erste Kriterium lautet: " 'Drei spielbare Level mit unterschiedlicher Optik" '. Dieses
+Das erste Kriterium lautet: \glqq Drei spielbare Level mit unterschiedlicher Optik\grqq. Dieses
 Kriterium gilt als gemeistert, wenn das Spiel mindestens drei Level besitzt und eine .exe-Datei liefert. Weiterhin sollen sich die Level beim Voranschreiten im
 Spiel nicht gleich anfühlen.\newline
-Ein weiterer Punkt lautet: " 'Herausfordernd aber nicht zu schwer" '. Dieses Kriterium lässt sich durch Playtests validieren. Verifiziert wird es dadurch das
-kein Proband das Spiel auf Anhieb durchspielt. Doch es sollte auch einem Probanden gelingen das Spiel innerhalb von drei Versuchen zu beenden.\newline
-Der letzte Kriterium ist wie folgt definiert: " 'stimmiges Feeling (Grafik, Sound und Gameplay)" '. Durch eine Befragung der Probanden mit einer anschließenden
+Ein weiterer Punkt lautet: \glqq Herausfordernd aber nicht zu schwer\grqq. Dieses Kriterium lässt sich durch Playtests validieren. Verifiziert wird es dadurch, dass
+kein Proband das Spiel auf Anhieb durchspielt. Doch es sollte auch einem Probanden der Testgruppe gelingen, das Spiel innerhalb von drei Versuchen zu beenden.\newline
+Der letzte Kriterium ist wie folgt definiert: \glqq stimmiges Feeling (Grafik, Sound und Gameplay)\grqq. Durch eine Befragung der Probanden mit einer anschließenden
 Bewertung wurde auch dieser Punkt verifiziert.
 
-\vspace{2cm}
+\newpage
+\vspace{0.5cm}
 \subsection{Projektumfeld}
-Das Projekt ist im Rahmen der Veranstaltung "3D Game Projekt" im Sommersemester 2017 entstanden. Es dient als Softwareprojekt und soll den Teilnehmenden praktische Erfahrung im Umgang mit der Planung und Umsetzung einer Software vermitteln. Unser Team setzt sich aus drei Personen mit unterschiedlichen Erfahrungsschätzen zusammen. \newline
-Alexander Heck studiert Computervisualistik im 5. Semester und hatte bis dato keinerlei Erfahrung in Spieleprogrammierung. Ist allerdings durch andere Projekte recht erfahren in der 3D - Modellierung. \newline
+Das Projekt ist im Rahmen der Veranstaltung \glqq 3D Game Projekt\grqq im Sommersemester 2017 entstanden. Es dient als Softwareprojekt und soll den Teilnehmenden praktische Erfahrung im Umgang mit der Planung und Umsetzung einer Software vermitteln. Unser Team setzt sich aus drei Personen mit unterschiedlichen Erfahrungsschätzen zusammen. \newline
+Alexander Heck studiert Computervisualistik im 5. Semester und hatte bis dato keinerlei Erfahrung in Spieleprogrammierung, ist allerdings durch andere Projekte recht erfahren in der 3D-Modellierung. \newline
 Christoph Dollase ist unser zweites Teammitglied. Er studiert Informatik im 6. Semester und bringt Erfahrungen im Projektmanagement und 2D-Spielprogrammierung mit. Allerdings hat er bisher nur mit Unterstützung der Engine Unity gearbeitet und sich eher auf Grafik und Art konzentriert. \newline
 Lars Wagner studiert ebenfalls Informatik im 6. Semester und bringt ebenfalls keine Erfahrung in Spieleprogrammierung mit, hat aber grundlegende Kenntnisse in der allgemeinen Umsetzung von Algorithmen und beherrscht die Programmiersprache C\#.
 
@@ -71,48 +72,48 @@ Lars Wagner studiert ebenfalls Informatik im 6. Semester und bringt ebenfalls ke
 \newpage
 \section{Projektplanung}
 
-In diesem Abschnitt werden die Ergebnisse der ersten Planungen festgehalten, wie wir das Projekt umsetzen wollen. Hierbei sind besonders wichtig, für welche Prozesse und Workflows wir uns entschieden haben. \newline
-Da wir am Anfang und selbst erstmal im Team finden musste, um unsere Stärken und Spezialisierungen kennenzulernen und uns nicht sicher waren, wieviel wir wirklich umsetzen können, haben wir uns für agiles Projektmanagement entschieden. Dabei werden in kurzen Phasen sogenannte Sprints durchgeführt, in denen immer fest definierte Teilaufgaben erledigt werden. Die Besonderheit bei einem Sprint ist, das am Ende eines Sprints immer eine funktionsfähiges Programm stehen muss, ohne offene, unvollständigen Klassen. \newline
-Als unterstützendes Tool wurde der integrierte Kanban von GitHub benutzt. Wir definierten uns relativ viele eigene Label, um den Informationsgehalt der einzelnen Tasks noch zu verstärken.
-So entwickelte sich unser Kanban relativ schnell zum zentralen Anlaufpunkt. Wir hatten stets tagesaktuelle Informationen über die Fortschritte der anderen Teammitglieder:
+In diesem Abschnitt werden die Ergebnisse der ersten Planungen festgehalten, wie wir das Projekt umsetzen wollten. Hierbei sind besonders wichtig, für welche Prozesse und Workflows wir uns entschieden hatten. \newline
+Da wir am Anfang uns selbst erstmal im Team finden mussten, um unsere Stärken und Spezialisierungen kennenzulernen und uns nicht sicher waren, wieviel wir wirklich umsetzen können, haben wir uns für agiles Projektmanagement entschieden. Dabei werden in kurzen Phasen sogenannte Sprints durchgeführt, in denen immer fest definierte Teilaufgaben erledigt werden. Die Besonderheit bei einem Sprint ist, das am Ende eines Sprints immer eine funktionsfähiges Programm entstehen muss, ohne offenen und unvollständigen Klassen. \newline
+Als unterstützendes Tool wurde der integrierte Kanban von GitHub benutzt. Wir definierten uns relativ viele eigene Label, um den Informationsgehalt der einzelnen Tasks noch zu verstärken, so entwickelte sich unser Kanban relativ schnell zum zentralen Anlaufpunkt. Wir hatten stets tagesaktuelle Informationen über die Fortschritte der anderen Teammitglieder:
 \begin{itemize}
 	\item alle Tasks in ihrem aktuellen Bearbeitungsstatus, anhand der zugeordneten Spalte im Kanban
 	\item Art und Ausprägung der Aufgaben, anhand farblich markierter Labels
 	\item neue Probleme, Rückfragen oder Bugs waren durch eindeutige Farben direkt erkennbar.
 	\item bearbeitete Tasks, welche zur Überprüfung bereit sind, sind in einer eigenen Spalte aufgelistet
 \end{itemize}
-Grundsätzlich bestand der Workflow darin aktuell wichtige Tasks, die für den nächsten Meilenstein wichtig sind in die Spalte \glqq Pipeline\grqq{} zu ziehen. Sobald sich einer von uns einer Anforderung angenommen hat, so hat er diese in den Status \glqq in Bearbeitung\grqq{} verschoben. Nach Bearbeitung einer Aufgabe wurde diese dann zur \glqq Review\grqq{} überführt. Sobald ein anderes Teammitglied Tasks aus der \glqq Review\grqq{} überprüft hat, wurden sie entweder archiviert oder in die Spalte \glqq Probeleme\grqq{} gesteckt. Der Status \glqq Probleme\grqq{} war außerdem Sammelstelle für Bugs oder wenn jemand dringend Unterstützung benötigt und in seinem aktuellem Task nicht weiterkommt.
+Grundsätzlich bestand der Workflow darin, aktuell wichtige Tasks, die für den nächsten Meilenstein wichtig waren, in die Spalte \glqq Pipeline\grqq{} zu ziehen. Sobald sich Einer von uns einer Anforderung angenommen hat, so hat er diese in den Status \glqq in Bearbeitung\grqq{} verschoben. Nach Bearbeitung einer Aufgabe wurde diese dann zur \glqq Review\grqq{} überführt. Sobald ein anderes Teammitglied Tasks aus der \glqq Review\grqq{} überprüft hat, wurden sie entweder archiviert oder in die Spalte \glqq Probleme\grqq{} gesteckt. Der Status \glqq Probleme\grqq{} war außerdem Sammelstelle für Bugs oder wenn jemand dringend Unterstützung benötigte und in seinem aktuellem Task nicht weiterkam.
 
-\vspace{2cm}
+\newpage
+\vspace{1cm}
 \subsection{Projektphasen}
 Wir haben unsere verfügbare Zeit in drei Phasen aufgeteilt, um mit realistischen Erwartungen und Ergebnissen arbeiten zu können. \newline
+
 \subsubsection{Lernphase}
-Wir haben die ersten beiden Meilensteine als Lern- und Findungsphase definiert. Dabei haben wir uns bewusst dafür entschieden unsere Aufgabenpakete und Ziele gering zu halten.
-Denn für uns war es wichtig, dass wir in den ersten Wochen hauptsächlich lernen mit dem Framework und allgemein der 3D-Spieleprogrammierung um zugehen. Ein zusätzlicher Erfolg war, dass wir relativ gut lernten, wie wir uns gegenseitig unterstützen konnten. In dieser Phase haben wir dann auch einen gemeinsamen Programmierstil und geeignete Coding-Coventions festgehalten. In dieser Phase haben wir unsere Grundlegende Struktur auch bewusst etwas aufwendiger implementiert, um es in den späteren, hektischeren Phasen leichter zu haben.
+Wir haben die ersten beiden Meilensteine als Lern- und Findungsphase definiert. Dabei haben wir uns bewusst dafür entschieden unsere Aufgabenpakete und Ziele gering zu halten, denn für uns war es wichtig, dass wir in den ersten Wochen hauptsächlich lernen mit dem Framework und allgemein der 3D-Spieleprogrammierung umzugehen. Ein zusätzlicher Erfolg war, dass wir relativ gut lernten, wie wir uns gegenseitig unterstützen können. In dieser Phase haben wir dann auch einen gemeinsamen Programmierstil und geeignete Coding-Coventions festgehalten. In dieser Phase haben wir unsere grundlegende Struktur auch bewusst etwas aufwendiger implementiert, um es in den späteren, hektischeren Phasen leichter zu haben.
 
 \subsubsection{Hauptphase}
-Nach dem wir uns im Team gut eingespielt hatten, konnten wir den 3. und 4. Meilenstein relativ gut und ohne viel Stress bewältigen. Wir hatten unsere regelmäßigen Treffen zur Abstimmung und jeder hat für sich seine wöchentlichen Aufgaben eingeteilt und abgearbeitet. \newline
-In dieser Phase wurde aber auch relativ viel am GameDesign und an der Meilensteinplanung geändert, da viele Details und Besonderheiten sich erst herausstellen, wenn man am Objekt selber arbeitet. So haben sich einige Aufgaben zwischen den Meilensteinen verschoben oder wurden getauscht. Dies hatte oft den Grund, dass für die aktuelle Funktionalität gewisse Implemntierungen und Features Vorrang hatten. Hierbei spielte auch manchmal eine gewisse Abhängigkeit unter den einzelnen Teammitgliedern eine Rolle.
+Nach dem wir uns im Team gut eingespielt hatten, konnten wir den 3. und 4. Meilenstein relativ gut und ohne viel Stress bewältigen. Wir hatten unsere regelmäßigen Treffen zur Abstimmung und Jeder hat für sich seine wöchentlichen Aufgaben eingeteilt und abgearbeitet. \newline
+In dieser Phase wurde aber auch relativ viel am GameDesign und an der Meilensteinplanung geändert, da viele Details und Besonderheiten sich erst herausstellen, wenn man am Objekt selber arbeitet, so haben sich einige Aufgaben zwischen den Meilensteinen verschoben oder wurden getauscht. Dies hatte oft den Grund, dass für die aktuelle Funktionalität gewisse Implementierungen und Features Vorrang hatten. Hierbei spielte auch manchmal eine gewisse Abhängigkeit unter den einzelnen Teammitgliedern eine Rolle.
 
 \subsubsection{Schlussspurt}
-Uns war von Anfang an klar, dass es in den letzten 2-3 Wochen vor der Abgabe nochmal eine etwas stressigere Phase geben wird, in der nochmal versucht wird alle möglichen Features einzubauen, die noch fehlen, das Spiel Rund zu machen, kleinere Bugs die ignoriert wurden zu beheben. Um ein stimmiges Endresultat abliefern zu können, haben wir uns auch selbstständig diese Wochen so eingeplant, dass wir dort die Kapazitäten haben einen kleinen Schlussspurt hinzulegen, um unsere selbst gesteckten Ziele zu erreichen.
+Uns war von Anfang an klar, dass es in den letzten 2-3 Wochen vor der Abgabe nochmal eine etwas stressigere Phase geben wird, in der nochmal versucht wird alle möglichen Features einzubauen, die noch fehlen, um das Spiel Rund zu machen, kleinere Bugs, die ignoriert wurden, zu beheben. Um ein stimmiges Endresultat abliefern zu können, haben wir uns auch selbstständig diese Wochen so eingeplant, dass wir dort die Kapazitäten haben einen kleinen Schlussspurt hinzulegen, um unsere selbst gesteckten Ziele zu erreichen.
 
 
-\vspace{2cm}
+\vspace{1cm}
 \subsection{Ressourcenplanung}
-Für die Umsetzung des Projektes ist es notwendig im Voraus alle nötigen Ressourcen zu definieren und zu verteilen. Hierbei spielen sowohl personelle und materielle Ressourcen eine Rolle, als auch die Planung von nötiger Software oder Fremd-Bibliotheken. \newline
+Für die Umsetzung des Projektes ist es notwendig im Voraus alle nötigen Ressourcen zu definieren und zu verteilen. Hierbei spielten sowohl personelle und materielle Ressourcen eine Rolle, als auch die Planung von nötiger Software oder Fremd-Bibliotheken. \newline
 \subsubsection{Ressource Mensch}
 Hier haben wir uns einfach an unsere Fähigkeiten und Neigungen gehalten, sodass sich relativ schnell herauskristallisiert hat, wer welche Rollen und Aufgaben übernimmt. So hat Alex die Hauptführung über den Bereich des 3D-Modellings übernommen und hat die meisten Modelle und Texturen für die Modelle übernommen.
 Da es aber auch eine Vorgabe war, dass jeder im Team seinen Anteil an der Programmierung leistet, hat Alex sich dazu bereit erklärt das Menü-System zu implementieren. \newline
-Lars hat großteile der Programmierung übernommen, seine Aufgaben lagen vor Allem in der Umsetzung der 3D-Optik, Kamera und Einbinden der Animationen, sowie einige Kern-Features, wie z.B. Collision oder das Soundsystem. \newline
-Das Projektmanagement hat größtenteils Christoph übernommen. Programmiertechnisch hat er bei einem Großteil der Spielrelevanten Features mitgearbeitet und dafür gesorgt, dass die einzelnen Systeme miteinander agieren können. Zusätzlich liegt alles was mit 2D-Art zu tun hat in seinem Aufgabenbereich. Neben vielen Grafiken für Menü oder UI zählt hier auch das Paritkelsystem dazu.
+Lars hat Großteile der Programmierung übernommen, seine Aufgaben lagen vor Allem in der Umsetzung der 3D-Optik, Kamera und Einbinden der Animationen, sowie einige Kern-Features, wie z.B. Collision oder das Soundsystem. \newline
+Das Projektmanagement hat größtenteils Christoph übernommen. Programmiertechnisch hat er bei einem Großteil der spielrelevanten Features mitgearbeitet und dafür gesorgt, dass die einzelnen Systeme miteinander agieren können. Zusätzlich liegt alles was mit 2D-Art zu tun hat in seinem Aufgabenbereich. Neben vielen Grafiken für Menü oder UI zählt hier auch das Paritkelsystem dazu.
 
 \subsubsection{Ressource Software}
-Wir haben für das gesamte Projekt auf Software zurück gegriffen, die entweder kostenlos zur Verfügung steht, oder die bereit in unserem Besitz ist und daher für dieses Projekt ohne Entstehung von Kosten mit genutzt werden konnten.\newline
+Wir haben für das gesamte Projekt auf Software zurückgegriffen, die entweder kostenlos zur Verfügung steht oder die bereits in unserem Besitz ist und daher für dieses Projekt ohne Entstehung von Kosten mit genutzt werden kann.\newline
 Um gleichzeitig ohne viel Konflikte am gleichen Projekt arbeiten zu können, ist es wichtig, dass man sich auf eine gemeinsame Software - vor Allem mit gleicher Version - entscheidet. \newline
-Als Framework für unser Spiel wählten wir MonoGame 3.5, damit war auch die Programmiersprache C\# größtenteils schon vorgegeben. Als IDE nutzen wir Visual Studio mit den Standards aus der 2015 Version.
+Als Framework für unser Spiel wählten wir MonoGame 3.5, damit war auch die Programmiersprache C\# größtenteils schon vorgegeben. Als IDE nutzten wir Visual Studio mit den Standards aus der 2015er Version.
 Dadurch konnten wir Kompatibilitätsprobleme zwischen verschiedenen C\# Versionen vorbeugen, da wir uns auf einen gemeinsamen Standard einigten.
-Wir haben uns dazu entschieden die Animation mit Hilfe einer Fremdem Bibliothek umzusetzen. \newline
+Wir haben uns dazu entschieden die Animation mit Hilfe einer fremdem Bibliothek umzusetzen. \newline
 Als Software für 3D-Modelierung wurden hauptsächlich Solid Edge und Blender benutzt. Texturen und andere 2D-Elemente wurden größtenteils mit PhotoShop angefertigt und bearbeitet.
 Eine detailliertere Auflistung der gesamten Software ist Tabelle \ref{tbl:software} zu entnehmen.
 \begin{table}[H]
@@ -121,7 +122,7 @@ Eine detailliertere Auflistung der gesamten Software ist Tabelle \ref{tbl:softwa
 		\textbf{ }  & \textbf{Name der Software/ des Services} \\
 		\hline
 		\textit{1}          & \textnormal{Visual Studio 2015 Enterprise}            \\
-		\textit{2}          & \textnormal{Visual Studio 2017 Community}            \\
+		\textit{2}          & \textnormal{Visual Studio 2017 Enterprise \& Community}            \\
 		\textit{3}          & \textnormal{Blender 2.78}            \\
 		\textit{4}          & \textnormal{Solid Edge ST9}            \\
 		\textit{5}          & \textnormal{PhotoShop CS5}            \\
@@ -138,14 +139,14 @@ Eine detailliertere Auflistung der gesamten Software ist Tabelle \ref{tbl:softwa
 \end{table}
 
 \subsubsection{Ressource Assets}
-Für Assets haben wir versucht alles so gut wie möglich komplett selber zu erstellen. Einzelheiten zu den verschiedenen Assets sind dem entsprechenden Abschnitt zu entnehmen.
+Für Assets haben wir versucht alles so gut wie möglich komplett selbst zu erstellen. Einzelheiten zu den verschiedenen Assets sind dem entsprechenden Abschnitt zu entnehmen.
 Die einzige Ausnahme bilden hier einige wenige Sounds die wir von Plattformen genommen haben, die Sounds mit CreativeCommons - Lizenz anbieten. 
 
-\vspace{2cm}
+\vspace{0.5cm}
 \subsection{Entwicklungsprozess}
 Um den Entwicklungsprozess mit dem agilen Verfahren umzusetzen, ist es nötig sich einen gewissen regelmäßigen Ablauf einzuplanen. \newline
 Wir haben uns dazu entschieden ein wöchentliches Planungstreffen abzuhalten,
-in dem wir den aktuellen Fortschritt auswerten und die weiteren Tasks und Meilensteine einplanen. Dieses Treffen gab uns vor allem auch die Zeit und den Raum über Probleme oder eventuelle Verschiebungen zu reden. So konnten wir relativ gut auf Planänderungen agieren und unsere jeweilige Wochenaufgaben neu einplanen. \newline
+in dem wir den aktuellen Fortschritt auswerten und die weiteren Tasks und Meilensteine einplanen. Dieses Treffen gab uns vor allem auch die Zeit und den Raum über Probleme oder eventuelle Verschiebungen zu reden. So konnten wir relativ gut auf Planänderungen reagieren und unsere jeweilige Wochenaufgaben neu einplanen. \newline
 Zusätzlich haben sich die Hauptprogrammierer einmal wöchentlich gemeinsam getroffen, um sich auch gegenseitig aushelfen zu können und auch mal mit einem Augenpaar mehr auf gewisse Entscheidungen in der Umsetzung blicken zu können.
 Die sonstige Zeiteinteilung wurde den Teammitgliedern zur eigenen Verantwortung freigestellt. Dies hat sehr gut funktioniert. Wohl auch durch die wöchentlichen Planungstreffen, in denen man Bericht ablegen muss, über seine Fortschritte der letzten Woche.
 
@@ -153,80 +154,84 @@ Die sonstige Zeiteinteilung wurde den Teammitgliedern zur eigenen Verantwortung 
 \section{Das Spiel}
 In diesem Abschnitt gehen wir detailliert auf Features und Besonderheiten unseres Spiels ein
 
-\vspace{2cm}
-\subsection{Hauptmenü \textcolor{blue}{(QA - Lars )}}
+\vspace{0.5cm}
+\subsection{Hauptmenü}
 
 Das Hauptmenü stellt den Einstieg in unser Spiel dar. Hier wird der Spieler empfangen und kann zwischen den verschiedenen Menüpunkten wählen.
 Die Steuerung ist hier sehr intuitiv und knüpft an die Erfahrungen des Nutzers aus anderen Spielen oder Programmen an. So ist die Navigation der Menüpunkte über die Pfeiltasten möglich, das Bestätigen eines Menüpunktes erfolgt mit der ENTER-Taste und durch betätigen der ESC-Taste wird der Spieler ins vorherige Menü zurückgebracht.
 
-\vspace{1cm}
-\subsubsection{Spiel Starten \textcolor{blue}{(QA - Lars )}}
+\vspace{0.5cm}
+\subsubsection{Spiel Starten}
 
 Durch das Betätigen des Buttons „Starten“ gelangt man in den Ingame-Bereich. Bevor es mit dem Spielen losgeht, öffnet sich am Anfang jedes
-Levels ein kleiner Tutorial-Bildschirm, der nochmal die grundlegende Steuerung in Erinnerung ruft und als eine Art Pausenbildschirm dient. Der Spieler kann zwischen den Levels hier kurz verweilen um sich vorzubereiten und so die Konzentration zu steigern. Denn ist ein Level erstmal gestartet, gibt es keine Möglichkeit zu Verschnaufen bis die rettende Tür zur nächsten Ebene erreicht wird.
+Levels ein kleiner Tutorial-Bildschirm, der nochmal die grundlegende Steuerung in Erinnerung ruft und als eine Art Pausenbildschirm dient. Der Spieler kann zwischen den Levels hier kurz verweilen, um sich vorzubereiten und so die Konzentration zu steigern. Denn ist ein Level erstmal gestartet, gibt es keine Möglichkeit zu Verschnaufen bis die rettende Tür zur nächsten Ebene erreicht ist.
 
-\vspace{1cm}
-\subsubsection{Einstellungen \textcolor{blue}{(QA - Lars )}}
+\vspace{0.5cm}
+\subsubsection{Einstellungen}
 
 Mit den Settings kann man seine persönlichen Einstellungen an dem Spiel vornehmen. So kann der Spieler einen von vier Schwierigkeitsgraden wählen, der unter anderem Geschwindigkeit und Stärke des Schleiers beeinflusst. \newline
 Eine weitere Einstellungsmöglichkeit ist die Regelung der Lautstärke von Hintergrundmusik und Effekten. \newline
 In den Einstellungen kann der Spieler zusätzlich eine ausführliche Anleitung der Steuerung finden.
 
-\vspace{1cm}
-\subsubsection{Statistiken \textcolor{blue}{(QA - Lars )}}
+\newpage
+\vspace{0.5cm}
+\subsubsection{Statistiken}
 
 Unter Statistics lässt sich der Spielfortschritt in den einzelnen Levels begutachten. So findet man eine detaillierte Auflistung von Zeitboni, eingesammelten Münzen und den Score für jedes Level. Des Weiteren werden auch die gesamte Todeszahl und die Gesamtpunktzahl erfasst. Die Statistik wird zu dem  nur zu einem Run aufgestellt, sobald der Spieler das Spiel durchgespielt hat und einen neuen Run startet, wird die alte Statistik gelöscht.
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{Statistics}
 	\caption{Statistik
 		\label{fig:statistics}}
 \end{figure}
 
-\vspace{1cm}
-\subsubsection{Credits \textcolor{blue}{(QA - Lars )}}
+\vspace{0.5cm}
+\subsubsection{Credits}
 
 Diese Option gibt Auskunft über die Konstellation des Teams und die jeweiligen Aufgabenbereiche.
 
-\vspace{2cm}
+\newpage
+\vspace{0.5cm}
 \subsection{Spielwelt}
 
-\vspace{1cm}
+\vspace{0.5cm}
 \subsubsection{Levelgenerator}
 Zur Generierung der einzelnen Level wollten wir ein System implementieren, welches uns ermöglicht relativ einfach jederzeit Level zu ändern und neue Level hinzuzufügen, ohne großartig im Code was ändern zu müssen.
 Wir haben einen Levelgenerator geschaffen, der die Welt anhand von Bitmap-Dateien aufbaut. Die Bitmap-Datei dient dabei quasi als Skizze für das resultierende Level. Jeder Pixel der Grafik stellt ein Block im Spiel dar.
-Es wurde ein Kodierung definiert, die angibt welche Farbe für welches Objekt im Spiel steht. Mit diesem Wissen kann nahezu Jeder mit Hilfe von einfachsten Bildbearbeitungsprogrammen wie Paint seine eigenen Maps zeichnen. \newline
-Im Code selber liest der Generator die Farbwerte aus und schlägt in einem Dictionary nach, welches Model auf der aktuellen Position geladen werden soll.
-Eine Besonderheit hier ist, dass das Dictionary je nach Art des Levels andere Modelle, bzw. andere Texturen für die Modelle lädt. So können wir optisch unterschiedliche Welten generieren, die trotzdem auf den gleichen Regeln in der Bitmap-Datei beruhen.
+Es wurde eine Kodierung definiert, die angibt, welche Farbe für welches Objekt im Spiel steht. Mit diesem Wissen kann nahezu Jeder mit Hilfe von einfachsten Bildbearbeitungsprogrammen wie Paint seine eigenen Maps zeichnen. \newline
+Im Code selbst liest der Generator die Farbwerte aus und schlägt in einem Dictionary nach, welches Model auf die aktuelle Position geladen werden soll.
+Eine Besonderheit hier ist, dass das Dictionary je nach Art des Levels andere Modelle bzw. andere Texturen für die Modelle lädt. So können wir optisch unterschiedliche Welten generieren, die trotzdem auf den gleichen Regeln in der Bitmap-Datei beruhen.
 
-\vspace{1cm}
-\subsubsection{Player \textcolor{blue}{(QA - Lars )}}
+\vspace{0.5cm}
+\subsubsection{Player}
 
 Die Hauptfigur fängt nach Bestätigung zum Starten des Levels automatisch an zu rennen. Sie kann nicht vom Spieler gebremst oder beschleunigt werden, sondern nur Objekte in der Umgebung haben Einfluss auf die Geschwindigkeit.
-Der Spieler kann den Spielercharakter mit Hilfe der Pfeiltasten nach links und rechts bewegen und so die Lane wechseln. Das Wechseln der Lane erfolgt immer komplett, d.h. es gibt ein vorgegebenes Grid auf dem sich der Spieler bewegt. Dies vereinfacht es dem Spieler sich auf die einzelnen Hindernisse vorzubereiten, da er nicht millimetergenau navigieren muss, sondern automatisch immer in der Mitte einer Lane gehalten wird. Der Character kann neben dem normalen Rennen auch Springen (Leertaste) und Sliden (Shift). Es ist dem Spieler auch möglich während eines Sprungs in der Luft ist die Lane zu wechseln. Diese Tatsache ist ein gewolltes Feature, da es sonst nahezu unmöglich ist manche Hindernisse zu überwinden. 
+Der Spieler kann den Spielercharakter mit Hilfe der Pfeiltasten nach links und rechts bewegen und so die Lane wechseln. Das Wechseln der Lane erfolgt immer komplett, d.h. es gibt ein vorgegebenes Grid auf dem sich der Spieler bewegt. Dies vereinfacht es dem Spieler sich auf die einzelnen Hindernisse vorzubereiten, da er nicht millimetergenau navigieren muss, sondern automatisch immer in der Mitte einer Lane gehalten wird. Der Character kann neben dem normalen Rennen auch Springen (Leertaste) und Sliden (Shift). Es ist dem Spieler auch möglich während eines Sprungs indem er in der Luft ist die Lane zu wechseln. Diese Tatsache ist ein gewolltes Feature, da es sonst nahezu unmöglich ist manche Hindernisse zu überwinden. 
 
-\vspace{1cm}
-\subsubsection{Fallen \textcolor{blue}{(QA - Lars )}}
+\newpage
+\vspace{0.5cm}
+\subsubsection{Fallen}
 
 In unserem Spiel finden zwei Arten von Fallen Verwendung. Es gibt Fallen, die den Spieler verlangsamen. Weiterhin haben wir eine
-weitere Art Fallen, die zum plötzlichen Tod führen. Dieser wird durch die Kollision mit den Fallen ausgelöst. Fallen, die den sofortigen Tod auslösen:
+weitere Art von Fallen, die zum plötzlichen Tod führen. Dieser wird durch die Kollision mit den Fallen ausgelöst. Fallen, die den sofortigen Tod auslösen:
 \begin{itemize}
-	\item Spiketrap - eine Platte mit mehreren Dornen, die im Boden versenkt ist und unter Umständen noch oben springt.
+	\item Spiketrap - eine Platte mit mehreren Dornen, die im Boden versenkt ist und unter Umständen nach oben springt.
 	\item Spiekroll - eine mit scharfen Spitzen versehene Säule, die sich um die eigene Achse dreht und sich im Raum hin und her bewegt
 \end{itemize}
-Bei der Slowtrap wird der Spieler für eine bestimmte Dauer verlangsamt. Das klingt auf dem ersten Blick unspektakulär. Aber nachdem der Spieler
+Bei der Slowtrap wird der Spieler für eine bestimmte Dauer verlangsamt. Das klingt auf dem ersten Blick unspektakulär, aber nachdem der Spieler
 mehrere Male durch die Slowtrap verlangsamt wurde, schrumpft sein Vorsprung zum \glqq Veil of Death\grqq{} - dem tödlichen Schleier. Letztendlich wird er vom Schleier irgendwann eingeholt und stirbt. Dadurch haben wir verschiedene Faktoren, die das Spiel zusätzlich erschweren sollen.
 
-\vspace{1cm}
-\subsubsection{Feedback \textcolor{blue}{(vorläufig - Lars )}}
+\vspace{0.5cm}
+\subsubsection{Feedback}
 
-Das Spiel arbeitet mit sehr vielen Soundeffekten, die dem Spieler Feedback geben sollen. Dies geschieht zum einen auf einfachster Ebene in der Menüführung sowohl bei Auswahl, als auch bei Bestätigung von Menüpunkten. Zum Anderen werden z.B. der Sprung und das Einsammeln der Münzen durch wiedererkennbare Sounds signalisiert.
-Zusätzlich gibt es eine atmosphärische Hintergrundmusik, Sowie einen Herzschlag, der immer schneller wird, je näher der Todesschleier dem Spieler kommt. Das Bestehen oder Nicht-Bestehen eines Levels wird auch durch eine eindeutige Melodie symbolisiert. \newline
+Das Spiel arbeitet mit sehr vielen Soundeffekten, die dem Spieler Feedback geben sollen. Dies geschieht zum Einen auf einfachster Ebene in der Menüführung sowohl bei der Auswahl, als auch bei der  Bestätigung von Menüpunkten. Zum Anderen werden z.B. der Sprung und das Einsammeln der Münzen durch wiedererkennbare Sounds signalisiert.
+Zusätzlich gibt es eine atmosphärische Hintergrundmusik, sowie einen Herzschlag, der immer schneller wird, je näher der Todesschleier dem Spieler kommt. Das Bestehen oder Nicht-Bestehen eines Levels wird auch durch eine eindeutige Melodie symbolisiert. \newline
 
 \noindent Zu den Soundeffekten kriegt der Spieler zusätzliches optisches Feedback dadurch, dass der Todesschleier ab einer bestimmten Entfernung Teile des Bildschirms einnimmt. Der Bereich der Einverleibung nimmt mit den unterschiedlichen Phasen des Schleiers zu. 
 
-\vspace{1cm}
+\newpage
+\vspace{0.5cm}
 \subsubsection{Assets}
 
 \begin{scriptsize} Alle Assets die in diesem Unterpunkt beschrieben werden, finden sie im Anhang wieder.\end{scriptsize}\newline
@@ -235,71 +240,76 @@ Zusätzlich gibt es eine atmosphärische Hintergrundmusik, Sowie einen Herzschla
 
 \noindent Der Protagonist des Spiels sollte ein Mensch sein, ein entflohener Gefangener auf der Flucht. 
 Hierzu gab es zwei Modellierungsansätze welche sich von der Machart und vom Aussehen stark unterschieden. 
-Der erste Versuch wurde von Null aufgezogen über das Programm Blender. Die Idee war zunächst ein Low-Poly Modell zu erstellen und dieses dann zu verfeinern
-und mit den von Blender gegebenen Werkzeugen zu manipulieren um es mehr nach Mensch aussehen zu lassen. Das Gesicht des Protagonisten spielt keine Rolle,
-da man ihn nie von vorne sieht. Die Textur wurde über eine UV-Map realisiert welche direkt auf die Flächen des Modells aufgetragen wird. 
+Der erste Versuch wurde von Null aufgezogen über das Programm Blender. Die Idee war zunächst ein Low-Poly Modell zu erstellen, es zu verfeinern
+und dann mit den von Blender gegebenen Werkzeugen zu manipulieren, um es mehr nach Mensch aussehen zu lassen. Das Gesicht des Protagonisten spielt keine Rolle,
+da man ihn nie von vorne sieht. Die Textur wurde über eine UV-Map realisiert, welche direkt auf die Flächen des Modells aufgetragen wird. 
 Anschließend wurden für das Modell Animationen wie Rennen und Springen über Knochen in Blender erstellt. Das Ergebnis war jedoch nicht den Erwartungen entsprechend.
 Das passende Asset ist die \ref{fig:lowpoly}\newline
 
-\noindent Der zweite Versuch basierte auf einem vorher nach Wünschen erstellten Modell von dem Programm MakeHuman. Das hieraus gezogene Modell hat im Vergleich zum vorherigen
+\noindent Der zweite Versuch basierte auf einem vorher nach Wünschen erstellten Modell von dem Programm MakeHuman. Das hieraus gezogene Modell hat im Vergleich zum Vorherigen
 viel mehr Flächen. Das Programm bietet einem zusätzlich noch den Service an, passende Texturen mit zu exportieren. Diese wurden jedoch verworfen. Ebenfalls konnte man zum
 Modell passende Kleidung mit Texturen exportieren. Die Modelle wurden übernommen, aber die Texturen ebenfalls verworfen. Um dem Protagonisten eine glaubwürdige
 Gefangenenmontur zu geben wurde die UV-Map, aus welcher die Texturen entstehen, mit entsprechenden Schmutzflecken und Blut gekennzeichnet. Auch die ikonische Figur
-auf der Rückseite seines T-Shirts soll hier nicht unerwähnt bleiben.Der nächste Schritt waren die Animationen, welche wie vorher über Knochen in Blender realisiert wurden.
-Es waren von MakeHuman schon Knochen vorgegeben diese wurden jedoch durch neue ersetzt. 
-Der Protagonist hat folgende Animationen:\newline
-	-Rennen\newline
-	-Springen\newline
-	-Sliden\newline
+auf der Rückseite seines T-Shirts soll hier nicht unerwähnt bleiben.Darauf folgten die Animationen, welche wie vorher über Knochen in Blender realisiert wurden.
+Es waren von MakeHuman schon Knochen vorgegeben diese wurden jedoch durch Neue ersetzt. 
+Der Protagonist hat folgende Animationen:
+\begin{itemize}
+	\item Rennen
+	\item Springen
+	\item Sliden
+\end{itemize}
+
+\vspace{0.2cm}
 
 \noindent Da der Spieler im Verlauf des Spiels ein Power-Up, ein Schwert, aufnehmen kann, wurden sämtliche Animationen nochmal mit Schwert an der Hüfte erstellt. Dies basiert auf
 einem anderen Modell, welches aber nur wenig abweicht von dem ursprünglichen Modell. Hier wurde noch eine Animation hinzugefügt, der Schwertstreich um Hindernisse aus dem
 Weg zu räumen. Das Resultat des zweiten Versuchs: \ref{fig:highpoly} \newline
 
-Die Fallen:\newline
+\newpage
+\noindent Die Fallen:\newline
 
-Alle Fallen wurden in Solidedge modelliert. Dies war einfacher und präziser als in Blender, da Solidedge zum Modellieren von Maschinenteilen verwendet wird und hier schon Wissen vorlag.
+\noindent Alle Fallen wurden in Solidedge modelliert. Dies war einfacher und präziser als in Blender, da Solidedge zum Modellieren von Maschinenteilen verwendet wird und hier schon Wissen vorlag.
 Die Fallen wurden dort modelliert dann als stl-Datei exportiert und in Blender importiert um hier die Texturen, welche in Form von UV-Maps existieren, zu erstellen. Auch skalierte Solid Edge
-nicht korrekt, dies konnte jedoch auch in Blender nachgebessert werden. Sämtliche Modelle wurden aus dem nichts erstellt.\newline
+nicht korrekt, dies konnte jedoch auch in Blender nachgebessert werden. Sämtliche Modelle wurden aus dem Nichts erstellt.\newline
 
-Die Fallen sind ein Kernelement des Spiels, da sie neben dem Nebel das einzige sind, was dem Spieler gefährlich werden kann. Sie mussten immersiv werden und am besten glaubwürdig
+\noindent Die Fallen sind ein Kernelement des Spiels, da sie neben dem Nebel das Einzige sind, was dem Spieler gefährlich werden kann. Sie mussten immersiv werden und am Besten glaubwürdig
 in ein Dungeon oder Folterkeller passen. Die erste Idee war die Stachelfalle wie sie im Folgenden genannt wird. Sie besteht aus einer Platte und einigen Stacheln, in Form von gespitzten
 Stäben, welche aus ihr in Richtung des Protagonisten hervorragen. Als Textur wurde ein einheitliches schimmerndes Grau gewählt, um den Eindruck von Stahl zu erwecken. Das Asset finden
-sie im Anhang unter der \ref{fig:spiketrap}\newline
+sie im Anhang unter \ref{fig:spiketrap}\newline
 
-Um dem Spiel etwas Diversität zu verleihen wurden noch andere Fallen bzw Hindernisse entworfen wie etwa die sich drehende Stachelrolle. \ref{fig:spikeroll}\newline
+\noindent Um dem Spiel etwas Diversität zu verleihen, wurden noch andere Fallen bzw. Hindernisse entworfen, wie etwa die sich drehende Stachelrolle. \ref{fig:spikeroll}\newline
 
-Oder eine unterschiedlich einsetzbare Wand aus Holz. Durch ihre Größe kann sie zu unterschiedlichen Zwecken verwendet werden, so kann der Spieler bespielsweise durch ihren Einsatz zum 
+\noindent Oder eine unterschiedlich einsetzbare Wand aus Holz. Durch ihre Größe kann sie zu unterschiedlichen Zwecken verwendet werden, so kann der Spieler bespielsweise durch ihren Einsatz zum 
 Springen oder Sliden gezwungen werden. \ref{fig:woodwall}\newline
 
-Da das Spiel in einem Dungeon spielt, und dieses ja auch eine Besatzung hat, jedenfalls theoretisch, wurden noch Zellenwände zur Dekoration und Waffenständer in das Spiel implementiert
+\noindent Da das Spiel in einem Dungeon spielt und dieses ja auch eine Besatzung hat, jedenfalls theoretisch, wurden noch Zellenwände zur Dekoration und Waffenständer in das Spiel implementiert,
 um die Umgebung nicht ganz so trist wirken zu lassen. \ref{fig:prisonwall}\newline
 
-Das Ziel eines jeden Levels ist die Tür, welche das Ende des aktuellen Levels markiert. \ref{fig:door}\newline
+\noindent Das Ziel eines jeden Levels ist die Tür, welche das Ende des aktuellen Levels markiert. \ref{fig:door}\newline
 
-Es gibt noch weitere Modelle und Fallen welche es jedoch nicht in die aktuelle Version des Spiels geschafft haben, jedoch evtl. ihren Platz in einer späteren Version haben werden wie z.B. das
+\noindent Es gibt noch weitere Modelle und Fallen, welche es jedoch nicht in die aktuelle Version des Spiels geschafft haben, jedoch evtl. ihren Platz in einer späteren Version finden werden wie z.B. das
 explodierende Fass. Die Grafik zu dem Modell finden sie unter \ref{fig:barrel}\newline
 
-Zusätzlich wurden wie bereits erwähnt noch Gegenstände ins Spiel integriert, die der Spieler aufnehmen kann, wie ein Schwert und die Münzen nach denen sich die Punktzahl richten. \ref{fig:sword}\newline
+\noindent Zusätzlich wurden wie bereits erwähnt noch Gegenstände ins Spiel integriert, die der Spieler aufnehmen kann, wie ein Schwert und die Münzen nach denen sich die Punktzahl richtet. \ref{fig:sword}\newline
 
 \newpage
 \section{Technische Umsetzung}
 
-\vspace{2cm}
-\subsection{Codestruktur \textcolor{blue}{(QA - Lars )}}
+\vspace{0.5cm}
+\subsection{Codestruktur}
 %\textcolor{green}{- siehe TDD}
 
 %Klassendiagramm einfügen
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{classdiagramm.png}
 	\caption{Klassendiagramm Veil of Death
 		\label{fig:classdiagramm}}
 \end{figure}
 
-Die Game-Klasse ist die Hauptklasse unseres Spieles. Von Ihr aus geht der allgemeine Game-Loop, der in allen Zuständen des Spiels vorkommt. Die
+Die Game-Klasse ist die Hauptklasse unseres Spieles. Von Ihr aus geht die allgemeine Game-Loop, die in allen Zuständen des Spiels vorkommt. Die
 unterschiedlichen Zustände des Spiels werden mit Hilfe eines Interfaces (IGameStates) mit gemeinsamen Funktionen (z.B. Initialisierung, Game-Loop, Draw) gespeist.
-Für alle Objekte im Spiel die miteinander agieren können, haben wir eine übergeordnete abstrakte Klasse (AGameObject) erschaffen, von der die einzelnen Objektklassen erben.
+Für alle Objekte im Spiel, die miteinander agieren können, haben wir eine übergeordnete abstrakte Klasse (AGameObject) erschaffen, von der die einzelnen Objektklassen erben.
 Hierzu gibt es noch 2 verschiedene Interfaces, die die Objekte in starre (IStaticEntity) und bewegliche (IMovingEntity) einteilen.
 Die Collision-Klasse berechnet alle Kollisionen des Spielers mit der Umgebung. Sie erhält Input
 aus der Level- und Player-Klasse.
@@ -308,31 +318,32 @@ gesteuert. Hier wird vor Allem die Bewegung des Spielers und die Kommunikation m
 Unsere Map-Klasse lädt die Spielwelt aus einer Bitmap-Grafik, welche die verschiedenen Blöcke kodiert.
 Die Block-Klasse holt sich die Informationen, welches Model, oder Textur geladen werden soll aus einem Dictionary, die Klasse LevelContent.
 Wir haben zwei zentrale Klassen für wichtige Steuerungs- und Speicherfunktionen. GameConstants ist eine statische Klasse, die sämtliche wichtigen
-Einstellungen und Standartwerte für das Spiel beinhaltet. Des weiteren haben wir einen Singelton-Klasse implementiert, die zwischen den verschiedenen
+Einstellungen und Standartwerte für das Spiel beinhaltet. Des Weiteren haben wir eine Singelton-Klasse implementiert, die zwischen den verschiedenen
 Leveln und GameStates die wichtigsten Informationen überträgt und managed.
 Ein Gesamtüberblick über alle unserer Klassen sind der \ref{fig:classdiagramm} zu entnehmen.
 
-\vspace{1cm}
-\subsubsection{GameStates \textcolor{blue}{(QA - Lars )}}
+\vspace{0.5cm}
+\subsubsection{GameStates}
 %\textcolor{green}{- alle mal kurz anreißen}
 
 Die GameState-Klasse dient als Interface für alle anderen GameStates. Weiterhin wird sie zum Wechseln zwischen den einzelnen GameStates benötigt.\newline\newline
-Die MainMenu-State beinhaltet die Aufmachung des Hauptmenüs sowie die Steuerung zum Wechseln der Optionen. Auch die Weiterleitung zu den
+Der MainMenu-State beinhaltet die Aufmachung des Hauptmenüs sowie die Steuerung zum Wechseln der Optionen. Auch die Weiterleitung zu den
 anderen States ist hier verankert.\newline\newline
-Der Ingame-State behandelt das Ingame-Content, s o befindet sich hier die Ingameroutine mit der Gameloop, so dass sich das Spiel nicht nach einem Aufruf schließt.\newline\newline
+Der Ingame-State behandelt das Ingame-Content, so befindet sich hier die Ingameroutine mit der Gameloop, so dass sich das Spiel nicht nach einem Aufruf schließt.\newline\newline
 Der GameOver-State wird erreicht, sobald der Spieler stirbt. Die dazugehörigen Screens werden hier gesetzt.\newline\newline
 Der gegenteilige Part ist der Score-State, welcher durch erfolgreichen Beendens eines Levels oder dem Abschluss des Spiels ausgelöst wird.\newline\newline
-Der Credits-State beinhaltet die Informationen von den Credits und stellt diese dar. Die Einstellungen werden im Settings-State verwaltet und dargestellt.
+Der Credits-State beinhaltet die Informationen von den Credits und stellt diese dar.\newline
+Die Einstellungen werden im Settings-State verwaltet und dargestellt.
 Auch die Aktualisierung der Einstellungen wird in dem State verwirktlicht.\newline\newline
-Für das Darstellen des Spielsfortschritts ist der Statistics-State zuständig. Hier werden die einzelnen Daten aufbereitet und dann dargestellt.\newline\newline
+Für das Darstellen des Spielfortschritts ist der Statistics-State zuständig. Hier werden die einzelnen Daten aufbereitet und dann dargestellt.\newline\newline
 Der Story-State updatet das Storytelling innerhalb des Spiels. Je nach Fortschritt des Spiels lädt dieser State die passende Story.
 
 \vspace{1cm}
-\subsubsection{Globale Klassen \textcolor{blue}{(QA - Lars )}}
+\subsubsection{Globale Klassen}
 %\textcolor{green}{- GameConstants \newline
 %- Gamemanager (siehe TDD)}
 
-In der GameConstants-Klasse wurden alle static-Objekte des Projektes angelegt. Hier zu gehören Variablen die klassenübergreifend gebraucht werden.
+In der GameConstants-Klasse wurden alle static-Objekte des Projektes angelegt. Hier zu gehören Variablen, die klassenübergreifend gebraucht werden.
 Weiterhin sind hier alle wichtigen Soundeffekte hinterlegt. Eine Kamerainstanz ist auch hinterlegt. Des Weiteren sind auch wichtige Angaben zum Sprung
 hier hinterlegt, wie die Sprungweite und Sprunghöhe. Der Vorteil dieser Klasse ist, dass hier alle Zahlenwerte gebündelt gesammelt wurden, die global im
 Projekt verwendet werden. Dadurch sind Änderungen sehr schnell vornehmbar.
@@ -342,11 +353,11 @@ vorhin eingegangen sind, ist es notwendig zu wissen, welche Fallen aktiv sind un
 immer aktualisiert werden, durch hinzufügen oder löschen der Fallen. So gibt es für jede Fallenart eine Liste. Das gleiche Prinzip gilt auch für die Münzen.
 Der Todesschleier wird von hier aus gesteuert. Levelverwaltung, Scorehandhabung und das Speichern der Statistik sind ein weiterer Bestandteil des GameManagers.
 
-\vspace{2cm}
+\vspace{0.5cm}
 \subsection{InGame}
 
-\vspace{1cm}
-\subsubsection{Movement \textcolor{blue}{(QA/ Grafik fehlt - Lars )}}
+\vspace{0.5cm}
+\subsubsection{Movement}
 %\textcolor{green}{- Lane prinzip \newline
 %- Jump-Funktion (Parabel anhand von Geschwindigkeit)}
 
@@ -366,8 +377,8 @@ f(y) = a \cdot (y - d)^{2} + e  \label{eq:2}
 		\label{fig:parabel}}
 \end{figure}
 
-\vspace{1cm}
-\subsubsection{Collision \textcolor{blue}{(QA - Lars )}}
+\vspace{0.5cm}
+\subsubsection{Collision}
 
 \begin{comment}
 \textcolor{green}{2 Arten: \newline
@@ -380,68 +391,68 @@ Zum Einen Arbeiten wir mit Gridpositions für statische Objekte und mit den
 Axis-Alligned-Bounding-Boxes für bewegbare Objekte.\newline
 \newline
 Gridpositions eignen sich hervorragend für statische Objekte in Spielen, daher werden die Kollisionen
-von Münzen und Slowtraps von ihnen verwaltet. Hier für werden die Positionen von unseren kollidirbaren
+von Münzen und Slowtraps von ihnen verwaltet. Hier für werden die Positionen von unseren kollidierbaren
 Objekten abgespeichert. Die Kollision wird dann mit Hilfe von if-Bedingungen berechnet.\newline
 \newline
-Axis-Aligned-Bounding-Boxes berechnen für uns die Kollisionen mit beweglichen Obejkten, so dass jedes Objekt seine eigene
+Axis-Aligned-Bounding-Boxes berechnen für uns die Kollisionen mit beweglichen Objekten, so dass jedes Objekt seine eigene
 Bounding Box hat. Hier für wird um das Objekt eine Hülle gespannt. In unserem Spiel haben wir die jeweiligen Maximalwerte
 der Modelle in Betrachtung der Achsen gewählt. Die Kollision entsteht wenn die Minimalwerte der Achsen von Körper A kleiner
 als die Maximalwerte von Körper B sind. Sowie die Maximalwerte der Achsen von Körper A größer sind als die Minimalwerte der
 Achsen von Körper B. Anders gesagt wenn die erweiterte konvexe Hülle des einen Körpers, die des Anderen schneidet.
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\textwidth]{AABB}
 	\caption{Axis Aligned Bounding Boxes\newline \tiny http://www.miguelcasillas.com/assets/aabbtoaabb.png 
 		\label{fig:AABB}}
 \end{figure}
 
-\vspace{1cm}
+\vspace{0.5cm}
 \subsubsection{Sontiges}
 
-Zusätzlich hat das Spiel zwei Buffs, die der Spieler einsammeln kann. Mit dem Schwertbuff lassen sich Gegner töten um den nahenden Tod zu entweichen.
+Zusätzlich hat das Spiel zwei Buffs, die der Spieler einsammeln kann. Mit dem Schwertbuff lassen sich Gegner töten, um den nahenden Tod zu entweichen.
 Außerdem lassen sich mit dem Buff dafür vorgesehene
 Wände einreißen, was dazu führt das schwierigere Passagen umwandert werden können.
 Ein weiterer Buff ist der Speedbonus, der dem Spieler einen kurzen Boost gibt, um den Vorsprung zum Schleier wieder zu vergrößern. Allerdings werden die Abschntte mit erhöhter Geschwindigkeit auch wesentlich schwerer zu bewältigen.
 
-\vspace{2cm}
+\vspace{0.5cm}
 \subsection{GUI}
-Die GUI dient dem Spieler als Interatkions- und Feedbackebene. Hier können ein großteil von Informationen auf sehr einfachem Weg bereit gestellt werden, welche dem Spieler über das aktuelle Spielgeschehen in Kenntnis setzen.
+Die GUI dient dem Spieler als Interaktions- und Feedbackebene. Hier kann ein Großteil von Informationen auf sehr einfachem Weg bereit gestellt werden, welche dem Spieler über das aktuelle Spielgeschehen in Kenntnis setzen.
 Wir haben uns dafür entschieden unsere GUI relativ schlank zu halten, um den Spieler nicht zu sehr von dem herausfordernden Hauptspiel abzulenken.
-Eine wichtigen Hinweis, welchen wir den Spieler via GUI mitteilen ist seine Aktuelle Entfernung zum Ziel und sein Vorsprung zum gefährlichen Schleier des Todes. Beide sind als Icons auf einer Strecke dargestellt, die der Länge des Levels entspricht. \newline
+Einen wichtigen Hinweis, welchen wir den Spieler via GUI mitteilen ist seine aktuelle Entfernung zum Ziel und sein Vorsprung zum gefährlichen Schleier des Todes. Beide sind als Icons auf einer Strecke dargestellt, die der Länge des Levels entspricht. \newline
 Ein weiteres Element, welches wir über die GUI darstellen ist der Schleier selbst. Unterschreitet der Abstand des Spielers zum Schleier einen gewissen Schwellenwert, so wird der Spieler bereits von dessen Macht beeinflusst und sein Sichtfeld schränkt sich ein. Die Einschränkung des Sichtfeldes hat verschiedene Stufen, die abhängig von der Nähe der tödlichen Wolke sind.
 
-\vspace{1cm}
+\vspace{0.5cm}
 \subsubsection{Panel System}
 Für die Umsetzung der verschiedenen GUI-Elemente haben wir uns dafür entschieden ein eigenes Panel System zu implementieren, um das Erstellen von GUI-Masken oder weiteren Menüs einfacher wird.
-Hierzu wird als erstes ein Basis-Panel erstellt, welches mit oder ohne Hintergrundgrafik geladen werden kann. Dieses Panel kann mit einer relativen oder festen Position in die Spielumgebung eingebaut werden.
+Hierzu wird als Erstes ein Basis-Panel erstellt, welches mit oder ohne Hintergrundgrafik geladen werden kann. Dieses Panel kann mit einer relativen oder festen Position in die Spielumgebung eingebaut werden.
 Nun kann man beliebig viele Unterelemente zu dem Hauptpanel hinzufügen.
 Dabei gibt es entweder die Möglichkeit ein Sprite (bzw. Grafik) hinzuzufügen oder einfach nur einen Text. Die Positionen dieser Elemente werden stets relativ zum Hauptpanel interpretiert. Wenn nun das Hauptpanel geändert wird, verhält es sich wie ein Anker zu all seinen Unterelementen, die sich wieder in richtiger Anordnung ausrichten.
-Mehr als das hinzufügen der Elemente ist nicht nötig. Das Zeichnen übernimmt das Hauptpanel. Trotzdem ist es möglich die einzelnen Elemente anzusprechen und zur Laufzeit zu verändern (z.B. Hervorhebung der aktuellen Auswahl).
+Mehr als das Hinzufügen der Elemente ist nicht nötig. Das Zeichnen übernimmt das Hauptpanel. Trotzdem ist es möglich die einzelnen Elemente anzusprechen und zur Laufzeit zu verändern (z.B. Hervorhebung der aktuellen Auswahl).
 
-\vspace{2cm}
+\vspace{0.5cm}
 \subsection{Rendering}
 Unser Spiel benutzt die interne Rendering Pipeline von Monogame.
 
-\vspace{1cm}
-\subsubsection{Weltkoordinaten \textcolor{blue}{(QA - Lars )}}
+\vspace{0.5cm}
+\subsubsection{Weltkoordinaten}
 
 Der Up-Vektor in unserem Spiel ist nicht wie üblich die y-Achse sondern die z-Achse. Weiterhin bildet der Koordinatenursprung am 
 Anfang nicht die Mitte unserer Lanes, er liegt am linken Rand. Darauf aufbauend wird die Spielwelt mit Hilfe unserer Blocksize generiert. Hierfür 
-werden lediglich die x- und y-Achse benötigt. Die z-Achse wird für die Kollisionsberechnung benötigt. Die Kamera befindet sich am Anfang 
-vor unserer eigentlich Spielwelt, um die gewünschte Perspektive zu erzeugen. Im weiteren Verlauf des Spiels verfolgt sie dann den Spieler
+werden lediglich die x- und y-Achse benötigt. Die z-Achse wird für die Kollisionsberechnung verwendet. Die Kamera befindet sich am Anfang 
+vor unserer eigentlichen Spielwelt, um die gewünschte Perspektive zu erzeugen. Im weiteren Verlauf des Spiels verfolgt sie dann den Spieler
 auf einer Linie entlang der y-Achse mit konstanter Geschwindigkeit. Die Kamera wurde somit aus dem Koordinatenursprung zu ihrem letztendlichen
 Platz verschoben. Somit bildet die Weltmatrix diese Translation ab. Eine genaue Darstellung können sie \ref{fig:coordinates} entnehmen.
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{Weltkoordinaten}
 	\caption{Weltkoordinaten
 		\label{fig:coordinates}}
 \end{figure}
 
-\vspace{1cm}
-\subsubsection{Animation \textcolor{blue}{(QA - Lars )}}
+\vspace{0.5cm}
+\subsubsection{Animation}
 Die Animation der Modelle erfolgt unter den Gebrauch einer Bibliothek. Hierfür benötigt man eine .x-Datei.
 Des Weiteren wird eine Textdatei benötigt, in der festgehalten ist, wie das Modell animiert werden soll.
 In dieser Textdatei kann man auf das jeweilige Modell bezogen so viele Methoden (Animationparts) erstellen
@@ -449,76 +460,77 @@ wie man möchte. Man kann entscheiden, ob die Animation wiederholt werden soll o
 Außerdem wird hier das Start- und Endframe der Animation festgelegt. Auch die Animationsdauer ist eine weitere
 Einstellungsoption. Nach dem man die jeweiligen Einstellungen für seine Methoden festgelegt hat, kann man diese
 im späteren Code unter ihrem angegebenen Namen aufrufen. Bevor man diese jedoch aufrufen kann, muss die
-Textdatei gelesen werden. Es gilt weiterhin zu beachten, dass nur eine Animations gleichzeitig abgespielt werden kann.
+Textdatei gelesen werden. Es gilt weiterhin zu beachten, dass nur eine Animation gleichzeitig abgespielt werden kann.
 Darunter ist zu verstehen, dass es nicht möglich ist die Animation in mehrere Schichten aufzuteilen, sodass es möglich ist
 mehrere Animationen abzuspielen aber nur Eine sichtbar zu zeichnen, während die Anderen im Hintergrund weiterlaufen.
 Diese Option würde den Übergang zwischen unterschiedlichen Animationen vereinfachen, da man die Zweite einfach auf
 transparent stellen würde.
 
-\vspace{1cm}
+\vspace{0.5cm}
 \subsubsection{Partikel Effekte}
 Ein Element zur optischen Verfeinerung ist unser Partikel System.
 Ein zentrales Objekt ist der Spawner, der Position, Menge, Geschwindigkeit und Lebenszeit der Partikel bestimmt. Das zweite wichtige Element ist das Partikel-Objekt, in welchem Informationen über Aussehen und Form gespeichert sind. Partikel können mit mehreren Grafiken initialisiert werden, die zufällig spawnen. Es besteht die Möglichkeit die Partikel nach dem Spawnen zu verändern, z.B. Farbe, Form und Größe oder sogar Austausch des Sprites.
 Aktuell kommt es nur in der Umsetzung des Schleiers zur Anwendung.
 Weitere Einsatzmöglichkeiten sind zusätzliche Feedback-Partikel bei verschiedenen Aktionen rund um den Haupt-Charakter.
 
-\vspace{2cm}
+\vspace{0.5cm}
 \subsection{Statistik}
-Um dem Spieler zu ermöglichen seinen Fortschritt zu bewerten und vergleichen zu können, haben wir eingebaut, dass viele Werte und Erfolge der einzelnen Level gespeichert und gesammelt werden. So kann der Spieler z.B. einsehen in welchen Ebenen er noch einen besseren Zeitbonus rausholen kann oder wie oft er isngesamt gestorben ist, beim Versuch zu fliehen. \newline
+Um dem Spieler zu ermöglichen seinen Fortschritt zu bewerten und vergleichen zu können, haben wir eingebaut, dass viele Werte und Erfolge der einzelnen Level gespeichert und gesammelt werden. So kann der Spieler z.B. einsehen in welchen Ebenen er noch einen besseren Zeitbonus rausholen kann oder wie oft er insgesamt gestorben ist, beim Versuch zu fliehen. \newline
 Ebenfalls könnte das Statistik-System relativ einfach erweitert werden, um besondere Achievements einzubauen. Bisher lagen unsere Prioritäten aber auf anderen Aspekten des Spiels.
 
 \newpage
 \section{Projektverlauf}
 
-\vspace{2cm}
+\vspace{0.5cm}
 \subsection{Prototypen}
 
-\vspace{1cm}
-\subsubsection{Prototyp 1 - Alexander Heck und Robert Jendersie \textcolor{blue}{(QA - Lars )}}
+\vspace{0.5cm}
+\subsubsection{Prototyp 1 - Alexander Heck und Robert Jendersie}
 
 Ziel des Prototyps war es, ein simples flipperartiges Spiel zu kreieren. Dies sollte jedoch anderen Regeln folgen. Die Vision
-bestand aus einem Ball, welcher ein unendlich langes Brett runterrollt, und dann beim Rammen verschiedener Hindernisse
+bestand aus einem Ball, welcher ein unendlich langes Brett herunterrollt und dann beim Rammen verschiedener Hindernisse
 Punkte erhält, bei anderen Hindernissen nur Geschwindigkeit verliert. Die Menge der Punkte errechnete sich aus der Geschwindigkeit
 der Kugel beim Zusammenstoß mit sog. Bumpern, welche dann die Punkte ausgeben. Die Kugel konnte mit den Pfeiltasten
-in eine bestimmte Richtung beim Runterrollen geführt werden um bestimmten Hindernissen auszuweichen oder gezielt Bumper
-zu treffen. Die Vision wurde leicht verändert umgesetzt, mit dem Unterschied, dass die Kugel ein Brett runterrollt mit einer
-vorgeschriebenen Länge. Somit ist das Spiel vorbei, wenn man unten ankommt und es werden einem die Punkte ausgegeben
+in eine bestimmte Richtung beim Herunterrollen geführt werden um bestimmten Hindernissen auszuweichen oder gezielt Bumper
+zu treffen. Die Vision wurde leicht verändert umgesetzt, mit dem Unterschied, dass die Kugel ein Brett herunterrollt mit einer
+vorgeschriebenen Länge. Somit ist das Spiel vorbei, wenn man unten ankommt und es werden einem die Punkte ausgegeben,
 die man auf dem Weg gesammelt hat. Vor dem eigentlichen Spiel kommt man in ein Menü, durch das man in das Spiel
-reinkommt oder das Spiel wieder verlassen kann. Auch geschieht die Auswahl über die Pfeiltasten.\newline\newline
+reinkommt oder das Spiel wieder verlassen kann. Auch geschieht die Auswahl über die Pfeiltasten.\newline
 
-Das Spiel benutzt eine Fallphysik, damit der Ball zu Boden fliegt und das Abbruchkriterium erreicht werden kann. Die Kollision
-zwischen dem Ball und den Bumpern wird durch eine Boundigns-Sphere berechnet.
+\noindent Das Spiel benutzt eine Fallphysik, damit der Ball zu Boden fliegt und das Abbruchkriterium erreicht wird. Die Kollision
+zwischen dem Ball und den Bumpern wird durch eine Boundings-Sphere berechnet.
 
-Das Spiel selbst wurde mit Hilfe des Frameworks Monogames geschrieben und bedient sich der Sprache C\#.
+\noindent Das Spiel selbst wurde mit Hilfe des Frameworks Monogames geschrieben und bedient sich der Sprache C\#.
 
-\vspace{1cm}
+\vspace{0.5cm}
 \subsubsection{Prototyp 2 - Christoph Dollase und Sarah F.}
-Unser erster Prototyp war noch relativ spartanisch, da sich unserer beider Erfahrung in der 3D-Programmierung auf ein Minimum beschränkte, bzw. faktisch nicht vorhanden war. Wir entschieden uns für einen einfaches Space-Spiel, ohne großartige Physik. Kern des Spiels waren hier ein Modell eines kleinen Fliegers und im All verstreute Ringe, welche sich um ihre eigene Achse drehten. Ziel des Spiels ist es, alle Ringe einzusammeln. Hat man das geschafft, sind neue Ringe gespawnt - allerdings nur drei mal. Anschließend galt das Spiel als erfolgreich beendet. \newline
-Der Spieler konnte sein Schiff mit den Pfeiltasten steuern. Hierbei haben wir aber eine realistischere Steuerung eingebaut, sodass das Raumschiff zwar relativ einfach geradeaus fliegen konnte, das Fliegen nach links und rechts allerdings seine Tücken hatte. Wir haben hier mit \glqq Thrustern\grqq{} gearbeitet. Sprich das Raumschiff hatte zusätzlich zu seiner Vorwärtsbewegung einen seitlichen Schub bekommen, der auf die Bewegung drauf gerechnet wurde. Dadurch bekam das Spiel einen etwas höheren Schwierigkeitsgrad, weil sich der Spieler erstmal an die Bewegung gewöhnen muss. Dies wird gerade dann schwierig, wenn das Objekt zurückfliegt und so links und rechts spiegelverkehrt sind.
+Unser erster Prototyp war noch relativ spartanisch, da sich unserer beider Erfahrung in der 3D-Programmierung auf ein Minimum beschränkte, bzw. faktisch nicht vorhanden war. Wir entschieden uns für ein einfaches Space-Spiel, ohne großartige Physik. Kern des Spiels war hier ein Modell eines kleinen Fliegers und im All verstreute Ringe, welche sich um ihre eigene Achse drehten. Ziel des Spiels ist es, alle Ringe einzusammeln. Hat man das geschafft, sind neue Ringe gespawnt - allerdings nur drei mal. Anschließend galt das Spiel als erfolgreich beendet. \newline
+Der Spieler konnte sein Schiff mit den Pfeiltasten steuern. Hierbei haben wir aber eine realistischere Steuerung eingebaut, sodass das Raumschiff zwar relativ einfach geradeaus fliegen konnte, das Fliegen nach links und rechts allerdings seine Tücken hatte. Wir haben hier mit \glqq Thrustern\grqq{} gearbeitet. Sprich das Raumschiff hatte zusätzlich zu seiner Vorwärtsbewegung einen seitlichen Schub bekommen, der auf die Bewegung aufgerechnet wurde. Dadurch bekam das Spiel einen etwas höheren Schwierigkeitsgrad, weil sich der Spieler erstmal an die Bewegung gewöhnen muss. Dies wird gerade dann schwierig, wenn das Objekt zurückfliegt und so links und rechts spiegelverkehrt sind.
 Als Kamera haben wir eine fixierte Top-Down Kamera eingebaut.
 Dadurch war die 3-dimensionale Welt leider nicht mehr all zu gut erkennbar.
 Für ein wenig Spielerfeedback haben wir zum einen eine UI implementeirt, die den aktuellen Score anzeigt und einen Sound abspielen lassen, wenn der Spieler erfolgreich einen Ring eingesammelt hat.
 
-\vspace{1cm}
-\subsubsection{Prototyp 3 - Lars Wagner und Mattis Hagen \textcolor{blue}{(QA - Lars )}}
+\vspace{0.5cm}
+\subsubsection{Prototyp 3 - Lars Wagner und Mattis Hagen}
 Unser Prototyp war ein Spaceshooter indem man ein Raumschiff steuern konnte, welches Meteoriten ausweichen musste.
 Es ist auch möglich gewesen die Meteoriten abzuschießen. Für den Abschuss der Meteoriten hat man Punkte gekriegt. Das Spiel endet
-sobald das Raumschiff keine Trefferpunkte mehr hat, welche man verliert wenn man mit den Meteoriten kollidiert. Ziel des Spiels ist es
+sobald das Raumschiff keine Trefferpunkte mehr hat, welche man verlor, wenn man mit den Meteoriten kollidierte. Ziel des Spiels ist es,
 solange wie möglich zu überleben und seinen Highscore zu maximieren.
 
 \noindent Das Spiel basiert auf einem Grid-System, da die Meteoriten nur in einem Grid aus festgelegten Punkten spawnen können. Die
 Kamera ist starr fixiert und lässt sich nur zu Debugzwecken bewegen. Die Meteoriten rotieren um eine zufällig gewählte Achse während
-sie sich dem Spieler nähern. Mit der Zeit nimmt die Geschwindigkeit der Meteoriten zu.\newline\newline
+sie sich dem Spieler nähern. Mit der Zeit nimmt die Geschwindigkeit der Meteoriten zu.\newline
 
-Unsere Laserstrahlen sind Punkte die wir dann als separate von einander getrennte Linien zeichnen lassen.
-Auch wurde der Spieler über die GUI über seinen Score, seine verbliebenen Trefferpunkte informiert.
-Die Asteroiden werden durch den MeteorHandler verwaltet. Dadurch sind nie mehr als 20 Meteoriten auf dem Bildschirm, sobald ein Meteor
+\noindent Unsere Laserstrahlen sind Punkte, die wir dann als separate von einander getrennte Linien zeichnen lassen.
+Auch wurde der Spieler über die GUI über seinen Score und seine verbliebenen Trefferpunkte informiert.
+Die Meteoriten werden durch den MeteorHandler verwaltet. Dadurch sind nie mehr als 20 Meteoriten auf dem Bildschirm, sobald ein Meteor
 hinter der Kamera despawnte, spawnte sofort ein Neuer.
 
-\vspace{2cm}
-\subsection{Meilensteine \textcolor{blue}{(QA - Lars )}}
+\newpage
+\vspace{0.5cm}
+\subsection{Meilensteine}
 
-\vspace{1cm}
+\vspace{0.5cm}
 \subsubsection{MS I}
 
 Game-Summary (Einleitung): Alex\newline
@@ -531,7 +543,7 @@ Technische Mindestanforderung: Lars\newline
 (Als Aufgaben nehmen wir jeweils die Überschriften und wer sie bearbeitet hat)\newline
 \newline
 
-\vspace{1cm}
+\vspace{0.5cm}
 \subsubsection{MS II}
 
 Gamestates: Chris\newline
@@ -545,7 +557,7 @@ Texturen: Wände und Boden: Chris, Alex\newline
 Model Collactables: Alex\newline
 \newline
 
-\vspace{1cm}
+\vspace{0.5cm}
 \subsubsection{MS III}
 
 GUI + Scoresystem: Lars, Chris\newline
@@ -558,7 +570,7 @@ Model Fallen: Alex\newline
 Model Gegner: Alex\newline
 Refactoring: Chris\newline
 
-\vspace{1cm}
+\vspace{0.5cm}
 \subsubsection{MS IV}
 
 Ein Komplettes Level mit allen mechaniken Spielbar: Lars\newline
@@ -568,7 +580,7 @@ Weitere Shader für Effekte und Postprocessing: Chris\newline
 Balancing Belohnung und Score: Lars\newline
 Levelübersicht: Chris\newline
 
-\vspace{1cm}
+\vspace{0.5cm}
 \subsubsection{MS V}
 
 Procedural Mapgeneration: Chris\newline
@@ -579,7 +591,7 @@ Polishing Menüs: Alex\newline
 Achievements: Alle\newline
 Refactoring: Lars, Chris\newline
 
-\vspace{1cm}
+\vspace{0.5cm}
 \subsubsection{Abgabe}
 
 Debugging: Alle\newline
@@ -588,39 +600,39 @@ Polishing: Alle\newline
 \newpage
 \section{Fazit}
 
-\vspace{2cm}
+\vspace{0.5cm}
 \subsection{Lessons Learned}
 
-Wenn von Anfang an viel Zeit in die Planung der Struktur des Projekts gesteckt wird, lohnt sich das Hinten raus. Bei sorgfältiger Herangehensweise erspart man sich mehrmaliges Umbauen von Features oder Klassen. Ebenfalls wichtig ist es, sich von Anfang an feste Termine und regelmäßige Zeitslots einzuplanen, da sonst der Fortschritt durch Verschiebungen und anderen spontanen Zwischenfällen stark verlangsamt werden kann.\newline
+Wenn von Anfang an viel Zeit in die Planung der Struktur des Projekts gesteckt wird, lohnt sich das Hinten heraus. Bei sorgfältiger Herangehensweise erspart man sich mehrmaliges Umbauen von Features oder Klassen. Ebenfalls wichtig ist es, sich von Anfang an feste Termine und regelmäßige Zeitslots einzuplanen, da sonst der Fortschritt durch Verschiebungen und anderen spontanen Zwischenfällen stark verlangsamt werden kann.\newline
 Ein Punkt der für zukünftige Projekte mehr Beachtung finden sollte, ist die detaillierte Abstimmung zwischen Grafiker und Programmierer. Durch zu kurze und unvollständige Absprachen, hatten wir Anfangs zusätzliche Aufwände durch nachträgliche Anpassungen oder Neugestaltung ganzer Modelle.\newline
-Der Aufwand der Dokumentation ist nicht zu unterschätzen. Es ist sinnvoll damit relativ früh anzufangen und das auch regelmäßig weiter zu führen. \newline
+Der Aufwand der Dokumentation ist nicht zu unterschätzen. Es ist sinnvoll damit relativ früh anzufangen und dass auch regelmäßig weiter zu führen. \newline
 Auch wenn wir in unserem Team keine großen Probleme hatten, ist es zukünftig wichtig eine eindeutige Linie zu fahren, mit Konsequenzen für Verspätungen.\newline
-Weitergin aufgefallen ist uns, dass die Arbeit in einem Raum mit anderen fleißigen Menschen einfacher von Statten geht, als sich von zu Hause aus alleine zu motivieren konsequent mehrere Stunden am Projekt zu arbeiten.
+Weiterhin ist uns aufgefallen, dass die Arbeit in einem Raum mit anderen fleißigen Menschen einfacher von Statten geht, als sich von zu Hause aus alleine zu motivieren, konsequent mehrere Stunden am Projekt zu arbeiten.
 
-\vspace{2cm}
+\vspace{0.5cm}
 \subsection{Soll - Ist - Vergleich}
 
 Als erste Betrachtung auf unser Projekt wollen wir unsere anfangs aufgestellten Erfolgskriterien analysieren und evaluieren. \newline
 \vspace{0.5cm}
 
 \noindent \textbf{Drei spielbare Level mit unterschiedlicher Optik} \newline
-Im aktuellen Spiel haben wir insgesamt 5 spielbare Level mit unterschiedlichen Ausprägung in Vielfalt und Anzahl der Fallen. Außerdem gibt es aktuell zwei verschiedene Textur-Themen die eine weitere Abwechslung schaffen.
+Im aktuellen Spiel haben wir insgesamt 5 spielbare Level mit unterschiedlicher Ausprägung in Vielfalt und Anzahl der Fallen. Außerdem gibt es aktuell zwei verschiedene Textur-Themen die eine weitere Abwechselung schaffen.
 Durch unser gewählten System (Bitmap-Generator, Model-Dictionary) wäre hier eine weitere Verbesserung sogar relativ gut umsetzbar.
 Im Großen und Ganzen betrachten wir diesen Punkt aber als erfüllt.
 \vspace{0.5cm}
 
 \noindent \textbf{Herausfordernd aber nicht zu schwer} \newline
-Neben den unzähligen eigenen Testläufen während der Entwicklung haben wir das Spiel mehreren Kommilitonen und Freunden zum Testen gegeben. Einige hatten Anfangs größere Probleme sich an das automatischen Laufen  zu gewöhnen und sich an den vorgegebenen Takt des Spiels anzupassen. Andere wiederum waren sogar sehr begeistert, dass sie nicht sofort alle Level beim ersten mal schafften und wurden regelrecht süchtig. Wir haben aber dennoch sichergestellt, dass selbst im \glqq Extreme \grqq-Modus das Durchspielen machbar ist. Einer unser Entwickler hat sich als Meister erwiesen und nach stundenlanger Verzweiflung das unmögliche geschafft. Dieser Modus erlaubt im gesamten Spiel nämlich maximal einen Fehler. 
+Neben den unzähligen eigenen Testläufen während der Entwicklung haben wir das Spiel mehreren Kommilitonen und Freunden zum Testen gegeben. Einige hatten Anfangs größere Probleme sich an das automatischen Laufen  zu gewöhnen und sich an den vorgegebenen Takt des Spiels anzupassen. Andere wiederum waren sogar sehr begeistert, dass sie nicht sofort alle Level beim ersten Mal schafften und wurden regelrecht süchtig. Wir haben aber dennoch sichergestellt, dass selbst im \glqq Extreme \grqq-Modus das Durchspielen machbar ist. Einer unser Entwickler hat sich als Meister erwiesen und nach stundenlanger Verzweiflung das unmögliche geschafft. Dieser Modus erlaubt im gesamten Spiel nämlich maximal einen Fehler. 
 Wir sehen auch diesen Punkt als erfolgreich erledigt.
 \vspace{0.5cm}
 
 \noindent \textbf{stimmiges Feeling (Grafik, Sound und Gameplay)} \newline
-Wir haben versucht durch Sounds und Grafiken eine Stimmung zu erschaffen, die das Gameplay unterstützt und dem Spieler das Erlebnis seiner Flucht nachempfinden lässt. Gerade durch das variable Herzklopfen fühlt sich der Spieler ähnlich unter Druck gesetzt wie der Charakter selbst.
+Wir haben versucht durch Sounds und Grafiken eine Stimmung zu erschaffen, die das Gameplay unterstützt und dem Spieler das Erlebnis seiner Flucht nachempfinden lässt. Gerade durch das variable Herzklopfen fühlt sich der Spieler ähnlich unter Druck gesetzt, wie der Charakter selbst.
 Nur grafisch haben wir es nicht 100\% so umsetzen können, wie wir es ursprünglich geplant hatten. So geht ein Teil der Atmosphäre verloren, da es uns nicht gelang einen ansehnlichen Shader einzufügen, der mit Licht und Dunkelheit ein immersiveres Spielgefühl erzeugt. Mit dem Einbau der Partikel in der Umsetzung des annähernden Schleiers haben wir noch einmal versucht das grafische Erlebnis unseres Spiels aufzuwerten.
-Nach Befragung unserer Spieltester konnten wir diese Eindrücke bestätigen, sodass wir unterm Strich diesen Punkt nur zu zwei drittel erfüllt haben.
+Nach Befragung unserer Spieltester konnten wir diese Eindrücke bestätigen, sodass wir unterm Strich diesen Punkt nur zu zwei Drittel erfüllt haben.
 Die Shader würden dem Spiel den letzten Schliff geben.
 
-Eine Übersicht über alle noch offenen Task sind Tabelle \ref{tbl:tasks} zu entnehmen.
+\noindent Eine Übersicht über alle noch offenen Task sind Tabelle \ref{tbl:tasks} zu entnehmen.
 \begin{table}
 	\centering
 	\begin{tabular}{p{0.5cm}p{9cm}}
@@ -640,16 +652,9 @@ Eine Übersicht über alle noch offenen Task sind Tabelle \ref{tbl:tasks} zu ent
 \end{table}
 
 
-Lars:\newline
-
-Für die nächsten Projekte habe ich folgende Erfahrungen gemacht. Die Dokumentation eines Projektes ist umfangreicher als es auf den ersten Blick zu
-seihen scheint. Nach dem Motto der Anblick trügt. Weiterhin habe ich für die kommenden Projekte die schmerzhafte Erfahrung gemacht, dass es nicht um
-sonst heißt das, das Technical- und Game Design Document lebende Dokumente sind. Auch die Absprache vor dem Start hätte ich im Nachhinein anders
-gestaltet, da dort im Projekt an manchen Stellen, Diskrepanzen aufkamen, die man durch frühe konsequente Festlegungen hätte vermeiden können.
-
-\vspace{2cm}
+\vspace{0.5cm}
 \subsection{Ausblick}
-Unser Team hat sich überlegt an dem Spiel auch nach der endgültigen Abgabe weiterzuarbeiten und bis zur Einreichungsfrist vom Acagamics Game Award 2017 das bestmögliche noch aus unserem Spiel raus zu holen.
+Unser Team hat sich überlegt an dem Spiel auch nach der endgültigen Abgabe weiterzuarbeiten und bis zur Einreichungsfrist vom Acagamics Game Award 2017 das Bestmögliche noch aus unserem Spiel herauszuholen.
 Dabei wollen wir vorrangig alle Elemente noch einbauen, die es bis jetzt aus zeitlichen Gründen noch nicht ins Spiel geschafft haben.
 
 \newpage
@@ -658,7 +663,7 @@ Dabei wollen wir vorrangig alle Elemente noch einbauen, die es bis jetzt aus zei
 %Bild Low-Poly Modell
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\textwidth]{lowPoly}
+	\includegraphics[width=0.5\textwidth]{lowPoly}
 	\caption{Erste Modell des Hauptcharakters
 		\label{fig:lowpoly}}
 \end{figure}
@@ -666,7 +671,7 @@ Dabei wollen wir vorrangig alle Elemente noch einbauen, die es bis jetzt aus zei
 %bild High-Poly Modell
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\textwidth]{stevevonhinten}
+	\includegraphics[width=0.3\textwidth]{stevevonhinten}
 	\caption{Zweite Modell des Hauptcharakters
 		\label{fig:highpoly}}
 \end{figure}
@@ -674,7 +679,7 @@ Dabei wollen wir vorrangig alle Elemente noch einbauen, die es bis jetzt aus zei
 %Bild Stachelfalle
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{Stachelfalle}
+	\includegraphics[width=0.4\textwidth]{Stachelfalle}
 	\caption{Stachelfalle
 		\label{fig:spiketrap}}
 \end{figure}
@@ -682,7 +687,7 @@ Dabei wollen wir vorrangig alle Elemente noch einbauen, die es bis jetzt aus zei
 %Bild Stachelrolle
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\textwidth]{stachelrolle}
+	\includegraphics[width=0.25\textwidth]{stachelrolle}
 	\caption{Stachelrolle
 		\label{fig:spikeroll}}
 \end{figure}
@@ -690,7 +695,7 @@ Dabei wollen wir vorrangig alle Elemente noch einbauen, die es bis jetzt aus zei
 %Bild Holzwand
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\textwidth]{Holzwandhindernis}
+	\includegraphics[width=0.5\textwidth]{Holzwandhindernis}
 	\caption{Holzwand
 		\label{fig:woodwall}}
 \end{figure}
@@ -698,7 +703,7 @@ Dabei wollen wir vorrangig alle Elemente noch einbauen, die es bis jetzt aus zei
 %Zellwand
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\textwidth]{zellwand}
+	\includegraphics[width=0.5\textwidth]{zellwand}
 	\caption{Zellwand
 		\label{fig:prisonwall}}
 \end{figure}
@@ -706,7 +711,7 @@ Dabei wollen wir vorrangig alle Elemente noch einbauen, die es bis jetzt aus zei
 %Tür
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\textwidth]{door}
+	\includegraphics[width=0.3\textwidth]{door}
 	\caption{Tür am Ende des Levels
 		\label{fig:door}}
 \end{figure}
@@ -714,7 +719,7 @@ Dabei wollen wir vorrangig alle Elemente noch einbauen, die es bis jetzt aus zei
 %explosives Fass
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\textwidth]{barrel}
+	\includegraphics[width=0.3\textwidth]{barrel}
 	\caption{explosives Fass
 		\label{fig:barrel}}
 \end{figure}
