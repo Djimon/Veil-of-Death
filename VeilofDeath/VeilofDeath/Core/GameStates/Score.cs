@@ -72,6 +72,7 @@ namespace VeilofDeath.Core.GameStates
 
         public void Initialize()
         {
+            GameConstants.isRetryQuickJoinOn = false;
             newState = EState.none;
             ilevelscore = GameManager.Instance.score;
             ilevelCoins = GameManager.Instance.iCoinScore[GameManager.Instance.Level];
@@ -84,7 +85,7 @@ namespace VeilofDeath.Core.GameStates
             {
                 mustRetry = false;
                 if (GameConstants.isDebugMode)
-                    Console.WriteLine("Success");            
+                    Console.WriteLine("Success");
             }
             else
             {
@@ -288,6 +289,7 @@ namespace VeilofDeath.Core.GameStates
             GameConstants.Select.Play();//LARS: play sound: Menüpunkt bestätigen
             GameConstants.MainCam.ResetCamera();
             GameManager.Instance.ResetLevel();
+            //GameConstants.isQuickJoin = true;
             newState = EState.Ingame;
             canLeave = true;
         }

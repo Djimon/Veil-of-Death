@@ -87,7 +87,7 @@ namespace VeilofDeath.Core
         /// number of Traps in the Game
         /// </summary>
         public static int iTrapNumber = 4;
-        public static int iMaxLevel = 5;
+        public const int iMaxLevel = 5;
         /// <summary>
         /// Diificulty can be 1,2,3 or 4
         /// </summary>
@@ -101,6 +101,7 @@ namespace VeilofDeath.Core
         public static SpriteFont lucidaConsole;
         internal static int iWinStatus = 0;
         internal static bool hasGameWon = false;
+        internal static bool isRetryQuickJoinOn = false;
 
         public static GraphicsDeviceManager Graphics { get; internal set; }
 

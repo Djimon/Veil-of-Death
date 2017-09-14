@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Media;
 using VeilofDeath.Objects;
 using VeilofDeath.Objects.Traps;
+using System.IO;
 
 namespace VeilofDeath.Core
 {
@@ -25,19 +26,103 @@ namespace VeilofDeath.Core
             }
         }
 
+        private const string awzmSvNm = "LCA00x88.wza";
+
         public GameManager()
         {
            
         }
+        public void Save()
+        {
+            /* je Zeile nur eine Information
+              - maxLevel
+              - Volume
+              - difficulty (als integer)
+              - aktuelles Level (als integer)
+              - Level 0 - (i)score;(i)Coins;(i)Time;(f)Completeness
+              - Level 0 - (i)score;(i)Coins;(i)Time;(f)Completeness
+              - Level 0 - (i)score;(i)Coins;(i)Time;(f)Completeness
+              - Level 0 - (i)score;(i)Coins;(i)Time;(f)Completeness
+              - Level 0 - (i)score;(i)Coins;(i)Time;(f)Completeness
+              - Level 0 - (i)score;(i)Coins;(i)Time;(f)Completeness
+              - Veil Distance (float)
+             */
+            if (this.Level > 0)
+            {
+                StreamWriter savewriter = new StreamWriter(awzmSvNm);
+                int i = 0;
+
+                savewriter.WriteLine(GameConstants.iMaxLevel.ToString());
+                savewriter.WriteLine(GameConstants.Volume.ToString());
+                savewriter.WriteLine(GameConstants.iDifficulty.ToString());
+                savewriter.WriteLine(this.Level.ToString());
+                while (i < GameConstants.iMaxLevel)
+                {
+                    savewriter.WriteLine(this.Score[i].ToString() + ":"
+                                        + this.iCoinScore[i].ToString() + ":"
+                                        + this.iTimeBonus[i].ToString() + ":"
+                                        + this.fStageCleared[i].ToString());
+                    i++;
+                }
+                savewriter.WriteLine(this.fVeilDistance.ToString());
+                savewriter.Close();
+                Console.WriteLine("Saved...");
+            }
+            
+        }
 
         public void Load()
         {
-            //TODO: aus datei laden (if Datei leer, then level = 1)
-            this.Level = 0;
             Score = new int[GameConstants.iMaxLevel];
-            fVeilDistance = 100; //TODO: abhängig von GameConstants.iDifficulty machen
-            iPhase = 0;
-            LoadScores();
+            
+            if (File.Exists(awzmSvNm))
+            {
+                StreamReader savereader = new StreamReader(awzmSvNm);
+                int k = 0;
+                int maxL = 0;
+                try
+                {
+                    char[] delimiter = { ':', ';' };
+                    maxL = int.Parse(savereader.ReadLine());
+                    Console.WriteLine("Loaded internal Savings:");
+                    GameConstants.Volume = float.Parse(savereader.ReadLine());
+                    Console.WriteLine("Volume = " + GameConstants.Volume);
+                    GameConstants.iDifficulty = int.Parse(savereader.ReadLine());
+                    Console.WriteLine("Difficulty = " +  GameConstants.iDifficulty);
+                    this.Level = int.Parse(savereader.ReadLine());                    
+                    while (k < maxL)
+                    {
+                        string[] words = savereader.ReadLine().Split(delimiter);
+                        this.Score[k] = int.Parse(words[0]);
+                        this.iCoinScore[k] = int.Parse(words[1]);
+                        this.iTimeBonus[k] = int.Parse(words[2]);
+                        this.fStageCleared[k] = float.Parse(words[3]);
+                        Console.WriteLine("Level " + k + " = " + fStageCleared[k]*100 + "%");
+
+                        k++;
+                    }
+                    this.fVeilDistance = float.Parse(savereader.ReadLine());
+
+                    savereader.Close();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("failed to load: {0}", e.ToString());
+                    this.Level = 0;
+                    fVeilDistance = 100;
+                    iPhase = 0;
+                    FlushStats();
+                } 
+            }
+            else
+            {
+                this.Level = 0;                
+                fVeilDistance = 100;
+                iPhase = 0;
+                FlushStats();
+            }
+
+             
 
         }
 
@@ -94,12 +179,6 @@ namespace VeilofDeath.Core
         public float[] fStageCleared = new float[GameConstants.iMaxLevel];
 
 
-        private void LoadScores()
-        {
-            //TODO: don use FlushStats and Read from file!!!
-            FlushStats();
-        }
-
         public void FlushStats()
         {
             for (int i = 0; i < GameConstants.iMaxLevel; i++)
@@ -141,10 +220,6 @@ namespace VeilofDeath.Core
         public void LevelUp()
         {
             Level++;
-        }
-        public void Save()
-        {           
-            //TODO: Session-data in dateispeichern
         }
 
         public void EnterNextPhase()

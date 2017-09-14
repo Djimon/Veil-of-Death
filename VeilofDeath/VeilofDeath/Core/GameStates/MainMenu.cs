@@ -62,15 +62,7 @@ namespace VeilofDeath.Core.GameStates
 
         public void LoadContent()
         {
-            //TODO: Rearragne the TitleMenu
-            /*
-             -> Start Game
-             -> Settings
-             -> Statistics
-             -> Credits
-             -> Quit
-             */
-
+          
             background = GameConstants.Content.Load<Texture2D>("titleBG");
             Buttons = new Texture2D[(int)Button.Count];
             Buttons[(int)Button.Start] = GameConstants.Content.Load<Texture2D>("Textures/StartB");

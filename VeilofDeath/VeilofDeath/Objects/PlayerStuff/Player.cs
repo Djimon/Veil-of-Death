@@ -233,11 +233,11 @@ namespace VeilofDeath.Objects.PlayerStuff
         {
             List<Coin> lc = GameManager.Instance.getCoinList();
             // in einer foreach kann ich nciht löschen
-            // For schleife von hinten nach vorne, da dann selbst bei einer löschung der Indx korrekt blebit
-            for (int i = lc.Count-1 ; i > 0; i--)
+            // For schleife von hinten nach vorne, da dann selbst bei einer löschung der Index korrekt blebit
+            for (int i = lc.Count-1 ; i >= 0; i--)
             {
-                if (lc[i].Position.Y > (this.Position.Y + 2 * GameConstants.iBlockSize)
-                    || lc[i].Position.Y < (this.Position.Y - GameConstants.iBlockSize))
+                if (lc[i].Position.Y > (this.Position.Y + 2f * GameConstants.iBlockSize)
+                    || lc[i].Position.Y < (this.Position.Y - 1.5* GameConstants.iBlockSize))
                 {
                     continue;
                 }
@@ -248,7 +248,7 @@ namespace VeilofDeath.Objects.PlayerStuff
                         Console.WriteLine("Coin collected");
                     GameManager.Instance.Delete(lc[i]);
                     GameManager.Instance.iCoinScore[GameManager.Instance.Level]++;
-                    GameManager.Instance.AddtoScore(GameConstants.ScorePerCoin);
+                    GameManager.Instance.AddtoScore(GameConstants.ScorePerCoin  + 5 * (GameConstants.iDifficulty - 1));
                 }
             }
 

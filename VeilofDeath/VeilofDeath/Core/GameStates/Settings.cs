@@ -384,6 +384,7 @@ namespace VeilofDeath.Core.GameStates
                 isEnterDown = true;
                 enterMenu = false;
                 GameConstants.Select.Play();
+                GameManager.Instance.Save();
             }
 
             if (Keyboard.GetState().IsKeyUp(Keys.Escape))
@@ -460,6 +461,7 @@ namespace VeilofDeath.Core.GameStates
                 ptHard2.isActive = false;
                 ptExtreme2.isActive = false;
                 GameConstants.Select.Play();
+                GameManager.Instance.Save();
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
