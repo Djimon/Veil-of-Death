@@ -116,7 +116,7 @@ namespace VeilofDeath.Objects.PlayerStuff
         {
             Move(map);
 
-            box.update(this);
+            box.updatePlayer(this);
             //if (! isJumping)
             HandleCollision();
 

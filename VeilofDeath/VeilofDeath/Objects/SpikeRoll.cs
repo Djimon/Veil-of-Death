@@ -53,7 +53,7 @@ namespace VeilofDeath.Objects
         {
             fAngle++;
             Move(map);
-            box.update(this);
+            box.updateSpikeRoll(this);
         }
 
         private void Move(Map map)
