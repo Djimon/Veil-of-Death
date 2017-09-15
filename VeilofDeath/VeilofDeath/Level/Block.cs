@@ -176,6 +176,7 @@ namespace VeilofDeath.Level
                 {
                     foreach (BasicEffect effect in mesh.Effects)
                     {
+                        
                         effect.EnableDefaultLighting();
                         effect.PreferPerPixelLighting = true;
 

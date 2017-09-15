@@ -77,7 +77,6 @@ namespace VeilofDeath.Core
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            //TODO: Sounds und Music laden initial hierher, damit überall im Game erreichbar
             GameConstants.CoinCollect = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/PickupCoin");
             GameConstants.Landing = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/LandAfterJump");
             GameConstants.CharactersJump = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/JumpHupHuman");
@@ -194,4 +193,16 @@ namespace VeilofDeath.Core
             }
         }
     }
+
+    //TODO:  Mehr Content einbauen
+    //TODO: Zufällig Weltgenerierung wäre schön. (Eher unwichtig)
+    //TODO: Eure Collisionsboxen sind sehr merwürdig positioniert, sodass man erst sehr spät springen sollte, dass mindert den Spielspaß
+    //TODO: Im Menü kann man den Schwierigkeitsgrad einstellen aber es wird nciht der ausgewählte State gespeichert.
+    //TODO: Man startet manchmal im Boden und kann sich nicht mehr bewegen
+    //TODO:  Warum stirbt man in den späteren Level wenn man jeden die Wand läuft? - Ist das gewollt?
+    //TODO: Manchmal wird kein Sound im Level abgespielt.
+    //TODO: Über die rotierenden Säulen kann man rüber springen
+    //TODO: Nicht jede Münze lässt sich einsammeln.
+
+
 }

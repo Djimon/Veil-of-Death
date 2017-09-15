@@ -4,6 +4,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Media;
 using VeilofDeath.Objects;
 using VeilofDeath.Objects.Traps;
+using System.IO;
+using System.Security.Cryptography;
+using System.Text;
+using System.Globalization;
 
 namespace VeilofDeath.Core
 {
@@ -25,20 +29,49 @@ namespace VeilofDeath.Core
             }
         }
 
+        private const string awzmSvNm = "LCA00x88.wza";
+
         public GameManager()
         {
            
         }
+        public void Save()
+        {
+            /* je Zeile nur eine Information
+              - maxLevel
+              - Volume
+              - difficulty (als integer)
+              - aktuelles Level (als integer)
+              - Level 0 - (i)score;(i)Coins;(i)Time;(f)Completeness
+              - Level 0 - (i)score;(i)Coins;(i)Time;(f)Completeness
+              - Level 0 - (i)score;(i)Coins;(i)Time;(f)Completeness
+              - Level 0 - (i)score;(i)Coins;(i)Time;(f)Completeness
+              - Level 0 - (i)score;(i)Coins;(i)Time;(f)Completeness
+              - Level 0 - (i)score;(i)Coins;(i)Time;(f)Completeness
+              - Veil Distance (float)
+             */
+            if (this.Level > 0)
+            {
+                WriteAndEncryptSaveFile();
+            }
+
+        }
 
         public void Load()
         {
-            //TODO: aus datei laden (if Datei leer, then level = 1)
-            this.Level = 0;
             Score = new int[GameConstants.iMaxLevel];
-            fVeilDistance = 100; //TODO: abhängig von GameConstants.iDifficulty machen
-            iPhase = 0;
-            LoadScores();
-
+            
+            if (File.Exists(awzmSvNm))
+            {
+                LoadAndDecryptSaveData();
+            }
+            else
+            {
+                this.Level = 0;                
+                fVeilDistance = 100;
+                iPhase = 0;
+                FlushStats();
+            }            
         }
 
         /// <summary>
@@ -94,12 +127,6 @@ namespace VeilofDeath.Core
         public float[] fStageCleared = new float[GameConstants.iMaxLevel];
 
 
-        private void LoadScores()
-        {
-            //TODO: don use FlushStats and Read from file!!!
-            FlushStats();
-        }
-
         public void FlushStats()
         {
             for (int i = 0; i < GameConstants.iMaxLevel; i++)
@@ -141,10 +168,6 @@ namespace VeilofDeath.Core
         public void LevelUp()
         {
             Level++;
-        }
-        public void Save()
-        {           
-            //TODO: Session-data in dateispeichern
         }
 
         public void EnterNextPhase()
@@ -220,5 +243,181 @@ namespace VeilofDeath.Core
         {
             return RollList;
         }
+
+        private readonly byte[] key = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 };
+        private readonly byte[] iv = new byte[] { 65, 110, 68, 26, 69, 178, 200, 219 };
+
+        /// <summary>
+        /// Verschlüsselt einen Eingabestring.
+        /// </summary>
+        /// <param name="input">Der zu verschlüsselnde String.</param>
+        /// <returns>Byte-Array mit dem verschlüsselten String.</returns>
+        public byte[] MakeUnreadable(string input)
+        {
+            try
+            {
+                // MemoryStream Objekt erzeugen
+                MemoryStream memoryStream = new MemoryStream();
+
+                // CryptoStream Objekt erzeugen und den Initialisierungs-Vektor
+                // sowie den Schlüssel übergeben.
+                CryptoStream cryptoStream = new CryptoStream(
+                memoryStream, new TripleDESCryptoServiceProvider().CreateEncryptor(this.key, this.iv), CryptoStreamMode.Write);
+
+                // Eingabestring in ein Byte-Array konvertieren
+                byte[] toEncrypt = new ASCIIEncoding().GetBytes(input);
+
+                // Byte-Array in den Stream schreiben und flushen.
+                cryptoStream.Write(toEncrypt, 0, toEncrypt.Length);
+                cryptoStream.FlushFinalBlock();
+
+                // Ein Byte-Array aus dem Memory-Stream auslesen
+                byte[] ret = memoryStream.ToArray();
+
+                // Stream schließen.
+                cryptoStream.Close();
+                memoryStream.Close();
+
+                // Rückgabewert.
+                return ret;
+            }
+            catch (CryptographicException e)
+            {
+                Console.WriteLine(String.Format(CultureInfo.CurrentCulture, "Fehler beim Verschlüsseln: {0}", e.Message));
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Entschlüsselt einen String aus einem Byte-Array.
+        /// </summary>
+        /// <param name="data">Das verscghlüsselte Byte-Array.</param>
+        /// <returns>Entschlüsselter String.</returns>
+        public string MakeReadable(byte[] data)
+        {
+            try
+            {
+                // Ein MemoryStream Objekt erzeugen und das Byte-Array
+                // mit den verschlüsselten Daten zuweisen.
+                MemoryStream memoryStream = new MemoryStream(data);
+
+                // Ein CryptoStream Objekt erzeugen und den MemoryStream hinzufügen.
+                // Den Schlüssel und Initialisierungsvektor zum entschlüsseln verwenden.
+                CryptoStream cryptoStream = new CryptoStream(
+                memoryStream,
+                new TripleDESCryptoServiceProvider().CreateDecryptor(this.key, this.iv), CryptoStreamMode.Read);
+                // Buffer erstellen um die entschlüsselten Daten zuzuweisen.
+                byte[] fromEncrypt = new byte[data.Length];
+
+                // Read the decrypted data out of the crypto stream
+                // and place it into the temporary buffer.
+                // Die entschlüsselten Daten aus dem CryptoStream lesen
+                // und im temporären Puffer ablegen.
+                cryptoStream.Read(fromEncrypt, 0, fromEncrypt.Length);
+
+                // Den Puffer in einen String konvertieren und zurückgeben.
+                return new ASCIIEncoding().GetString(fromEncrypt);
+            }
+            catch (CryptographicException e)
+            {
+                Console.WriteLine(String.Format(CultureInfo.CurrentCulture, "Fehler beim Entschlüsseln: {0}", e.Message));
+                return null;
+            }
+        }
+
+        public static string ByteArrayToString(byte[] ba)
+        {
+            string hex = BitConverter.ToString(ba);
+            return hex.Replace("-", "");
+        }
+
+        public static byte[] StringToByteArray(String hex)
+        {
+            int NumberChars = hex.Length;
+            byte[] bytes = new byte[NumberChars / 2];
+            for (int i = 0; i < NumberChars; i += 2)
+                bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
+            return bytes;
+        }
+
+        private void LoadAndDecryptSaveData()
+        {
+            StreamReader savereader = new StreamReader(awzmSvNm);
+            Console.WriteLine(savereader.ToString());
+            string decoded = MakeReadable(StringToByteArray(savereader.ReadLine()));
+            savereader.Close();
+            Console.WriteLine(decoded);
+            StreamWriter tmp1 = new StreamWriter("~4426377.dz");
+            tmp1.Write(decoded);
+            tmp1.Close();
+            StreamReader tmp2 = new StreamReader("~4426377.dz");
+            int k = 0;
+            int maxL = 0;
+            try
+            {
+                char[] delimiter = { ':', ';' };
+                maxL = int.Parse(tmp2.ReadLine());
+                Console.WriteLine("Loaded internal Savings:");
+                GameConstants.Volume = float.Parse(tmp2.ReadLine());
+                Console.WriteLine("Volume = " + GameConstants.Volume);
+                GameConstants.iDifficulty = int.Parse(tmp2.ReadLine());
+                Console.WriteLine("Difficulty = " + GameConstants.iDifficulty);
+                this.Level = int.Parse(tmp2.ReadLine());
+                while (k < maxL)
+                {
+                    string[] words = tmp2.ReadLine().Split(delimiter);
+                    this.Score[k] = int.Parse(words[0]);
+                    this.iCoinScore[k] = int.Parse(words[1]);
+                    this.iTimeBonus[k] = int.Parse(words[2]);
+                    this.fStageCleared[k] = float.Parse(words[3]);
+                    Console.WriteLine("Level " + k + " = " + fStageCleared[k] * 100 + "%");
+
+                    k++;
+                }
+                this.fVeilDistance = float.Parse(tmp2.ReadLine());
+
+                tmp2.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("failed to load: {0}", e.ToString());
+                this.Level = 0;
+                fVeilDistance = 100;
+                iPhase = 0;
+                FlushStats();
+            }
+
+            File.Delete("~4426377.dz");
+        }
+
+        private void WriteAndEncryptSaveFile()
+        {
+            if (File.Exists(awzmSvNm))
+                File.Delete(awzmSvNm);
+
+            StreamWriter savewriter = new StreamWriter(awzmSvNm);
+            string savestring = "";
+            int i = 0;
+
+            savestring += GameConstants.iMaxLevel.ToString() + "\n";
+            savestring += GameConstants.Volume.ToString() + "\n";
+            savestring += GameConstants.iDifficulty.ToString() + "\n";
+            savestring += this.Level.ToString() + "\n";
+            while (i < GameConstants.iMaxLevel)
+            {
+                savestring += (this.Score[i].ToString() + ":"
+                                    + this.iCoinScore[i].ToString() + ":"
+                                    + this.iTimeBonus[i].ToString() + ":"
+                                    + this.fStageCleared[i].ToString()) + "\n";
+                i++;
+            }
+            savestring += (this.fVeilDistance.ToString()) + "\n";
+            Console.WriteLine(savestring);
+            savewriter.Write(ByteArrayToString(MakeUnreadable(savestring)));
+            Console.WriteLine(savewriter);
+            savewriter.Close();
+            Console.WriteLine("Saved...");
+        }
+
     }
 }

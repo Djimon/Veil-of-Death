@@ -127,7 +127,7 @@ namespace VeilofDeath.Core.GameStates
                 GameManager.Instance.ResetScore();                
                 newState = EState.Ingame;
                 canLeave = true;
-
+                GameConstants.isRetryQuickJoinOn = true;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -137,6 +137,7 @@ namespace VeilofDeath.Core.GameStates
                 GameManager.Instance.Save();
                 newState = EState.MainMenu;
                 canLeave = true;
+                GameConstants.isRetryQuickJoinOn = false;
             }
 
         }
@@ -153,9 +154,7 @@ namespace VeilofDeath.Core.GameStates
 					DrawWIN();
                     break;
                 default: break;
-            }
-            //TODO: Draw Statistics
-    
+            }    
 
         }
 

@@ -147,7 +147,8 @@ namespace VeilofDeath.Core.GameStates
 
             LoadPanel();
 
-            Console.WriteLine("Levels" + GameManager.Instance.Score[0] + "," 
+            Console.WriteLine("Levels: \n" 
+                + GameManager.Instance.Score[0] + "," 
                 + GameManager.Instance.Score[1] + "," 
                 + GameManager.Instance.Score[2] + "," 
                 + GameManager.Instance.Score[3] );
@@ -177,7 +178,7 @@ namespace VeilofDeath.Core.GameStates
             MaxCoins = GameManager.Instance.getCoinList().Count;
             Player = new Player(m_player);
             // x_playerModelTransforms = SetupEffectDefaults(m_player);
-            Player.Spawn(new Vector3(start.X, start.Y, -3)); // -3 is richtig, sonst schwebt er die Ganze Zeit.
+            Player.Spawn(new Vector3(start.X, start.Y, 0));
             GameConstants.MainCam.SetTarget(Player);
             PController = new PlayerController(Player);
             TrapHandler = new TrapHandler();
@@ -289,7 +290,7 @@ namespace VeilofDeath.Core.GameStates
 
         public void Update(GameTime time)
         {
-            if (isStarted)
+            if (isStarted || GameConstants.isRetryQuickJoinOn)
                 UpdateRun(time);
             else
                 UpdateWarmUp(time);
@@ -434,12 +435,12 @@ namespace VeilofDeath.Core.GameStates
                     //TODO: Feedback "+1000" über Spieler (Player-particleEnginge)
                     GameManager.Instance.iTimeBonus[GameManager.Instance.Level] = 1000;
                 }
-                else if (fTimeRecord > 0.75f)
+                else if (fTimeRecord > 0.7f)
                 {
                     //TODO: Feedback "+500" über Spieler
                     GameManager.Instance.iTimeBonus[GameManager.Instance.Level] = 500;
                 }
-                else if (fTimeRecord > 0.5f)
+                else if (fTimeRecord > 0.4f)
                 {
                     //TODO: Feedback "+250" über Spieler
                     GameManager.Instance.iTimeBonus[GameManager.Instance.Level] = 250;
