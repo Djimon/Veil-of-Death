@@ -152,7 +152,7 @@ namespace VeilofDeath.Core.GameStates
                 {
                     GameManager.Instance.FlushStats();
                     GameManager.Instance.ResetToLevel0();
-                    newState = EState.Ingame;
+                    newState = EState.Story;
                     canLeave = true;
                 }
                 else
@@ -201,13 +201,12 @@ namespace VeilofDeath.Core.GameStates
                         }
                         if (isNewGame)
                         {
-                            //TODO: Story1 einfügen
-                            //if GameManager.Instance.Level == 0
-                            //  newState = EState.Story(1)
-                            newState = EState.Ingame;
-                            canLeave = true;
+                            if (GameManager.Instance.Level == 0 && !GameManager.Instance.hasStoryRead[0])
+                                newState = EState.Story;
+                            else
+                                newState = EState.Ingame;
+                            canLeave = true;                            
                         }
-
                         break;
                     case Button.Exit:
                         GameConstants.currentGame.Exit();

@@ -50,9 +50,10 @@ namespace VeilofDeath.Core
               - Level 0 - (i)score;(i)Coins;(i)Time;(f)Completeness
               - Veil Distance (float)
              */
-            if (this.Level > 0)
+            if (this.Level >= 0)
             {
                 WriteAndEncryptSaveFile();
+                Console.WriteLine("Game saved");
             }
 
         }
@@ -64,6 +65,7 @@ namespace VeilofDeath.Core
             if (File.Exists(awzmSvNm))
             {
                 LoadAndDecryptSaveData();
+                Console.WriteLine("Game loaded");
             }
             else
             {
@@ -125,10 +127,12 @@ namespace VeilofDeath.Core
         public int[] iCoinScore = new int[GameConstants.iMaxLevel];
         public int[] iTimeBonus = new int[GameConstants.iMaxLevel];
         public float[] fStageCleared = new float[GameConstants.iMaxLevel];
+        public bool[] hasStoryRead = new bool[3];
 
 
         public void FlushStats()
         {
+            this.DeathCounter = 0;
             for (int i = 0; i < GameConstants.iMaxLevel; i++)
             {
                 iCoinScore[i] = 0;
@@ -163,6 +167,9 @@ namespace VeilofDeath.Core
         {
             Level = 0;
             GameConstants.iWinStatus = 0;
+            this.hasStoryRead[0] = false;
+            this.hasStoryRead[1] = false;
+            this.hasStoryRead[2] = false;
         }
 
         public void LevelUp()
@@ -375,6 +382,7 @@ namespace VeilofDeath.Core
                     k++;
                 }
                 this.fVeilDistance = float.Parse(tmp2.ReadLine());
+                this.DeathCounter = int.Parse(tmp2.ReadLine());
 
                 tmp2.Close();
             }
@@ -412,6 +420,7 @@ namespace VeilofDeath.Core
                 i++;
             }
             savestring += (this.fVeilDistance.ToString()) + "\n";
+            savestring += (this.DeathCounter.ToString()) + "\n";
             Console.WriteLine(savestring);
             savewriter.Write(ByteArrayToString(MakeUnreadable(savestring)));
             Console.WriteLine(savewriter);

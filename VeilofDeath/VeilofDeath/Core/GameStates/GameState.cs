@@ -16,6 +16,7 @@ namespace VeilofDeath.Core.GameStates
         Controlls,
         Statistics,
         Ingame,
+        Story,
         Score,
         GameOver,
         Credits,

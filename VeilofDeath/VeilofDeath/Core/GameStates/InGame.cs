@@ -291,7 +291,10 @@ namespace VeilofDeath.Core.GameStates
         public void Update(GameTime time)
         {
             if (isStarted || GameConstants.isRetryQuickJoinOn)
+            {
                 UpdateRun(time);
+                isStarted = true;
+            }
             else
                 UpdateWarmUp(time);
 
@@ -318,11 +321,15 @@ namespace VeilofDeath.Core.GameStates
         {
             if (time.TotalGameTime.Milliseconds % 500 == 0)
             {
-                peJumpA.isActive = !peJumpA.isActive;
-                peJumpB.isActive = !peJumpB.isActive;
                 peRunA.isActive = !peRunA.isActive;
                 peRunB.isActive = !peRunB.isActive;
             }
+            if (time.TotalGameTime.Milliseconds % 900 == 0)
+            {
+                peJumpA.isActive = !peJumpA.isActive;
+                peJumpB.isActive = !peJumpB.isActive;
+            }
+            
 
             if (time.TotalGameTime.Milliseconds % 200 == 0)
             {

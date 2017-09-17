@@ -16,10 +16,10 @@ namespace VeilofDeath.Objects.PlayerStuff
     {
 
         private KeyboardState currentKeyboardState;
-        bool isSpacePressed = false;
-        bool isDownPressed = false;
-        bool isRightPressed = false;
-        bool isLeftPressed = false;
+        bool isSpacePressed = true;
+        bool isDownPressed = true;
+        bool isRightPressed = true;
+        bool isLeftPressed = true;
         bool isOnGround = true;
 
         private float SlideEndPos;
@@ -93,10 +93,10 @@ namespace VeilofDeath.Objects.PlayerStuff
 
             // first events for the animations
 
-            if (!character.isJumping && isSpacePressed)
+            if (!character.isJumping && !isSpacePressed && isSpacePressed)
                 character.AniModel.BlendToAnimationPart("Jump");
 
-            if (!character.isSliding && isDownPressed)
+            if (!character.isSliding && !isDownPressed && isDownPressed)
                 character.AniModel.BlendToAnimationPart("Slide");
 
             // return to the run animation
@@ -154,7 +154,7 @@ namespace VeilofDeath.Objects.PlayerStuff
                 }
             } catch(IndexOutOfRangeException e)
             {
-                Console.WriteLine("Indx Out of Range");
+                Console.WriteLine("Indx Out of Range: " + e);
                 GameConstants.currentGame.Exit();
             }
             
