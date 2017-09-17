@@ -145,6 +145,7 @@ namespace VeilofDeath.Core
         public static List<SoundEffect> Sounds = new List<SoundEffect>();
 
         public static float Volume = 0.75f; // 1 = 100%
+        internal static float fSpeedTime = 350 - (50 * iDifficulty);
         //public static SoundEffectInstance HBInstance;
 
         #endregion

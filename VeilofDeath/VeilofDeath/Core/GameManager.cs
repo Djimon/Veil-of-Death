@@ -8,6 +8,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using System.Globalization;
+using VeilofDeath.SpecialFX;
 
 namespace VeilofDeath.Core
 {
@@ -212,6 +213,23 @@ namespace VeilofDeath.Core
         List<SlowTrap> SlowList = new List<SlowTrap>();
         List<Coin> CoinList = new List<Coin>();
         List<SpikeRoll> RollList = new List<SpikeRoll>();
+        List<SpeedTrap> SpeedList = new List<SpeedTrap>();
+
+        public List<SpeedTrap> getSpeedList()
+        {
+            return SpeedList;
+        }
+
+        public void AddSpeed(SpeedTrap speed)
+        {
+            SpeedList.Add(speed);
+        }
+
+        public void DeleteBuff(SpeedTrap s)
+        {
+            //GameConstants.CoinCollect.Play();
+            SpeedList.Remove(s);
+        }
 
         public List<SlowTrap> getSlowList()
         {
@@ -340,6 +358,8 @@ namespace VeilofDeath.Core
             }
         }
 
+
+
         /// <summary>
         /// converts a byte array to a hex string
         /// </summary>
@@ -451,6 +471,8 @@ namespace VeilofDeath.Core
             savewriter.Close();
             Console.WriteLine("Saved...");
         }
+
+        public GUIFlash GUIFX;
 
     }
 }

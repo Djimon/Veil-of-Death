@@ -196,6 +196,7 @@ namespace VeilofDeath.Core
         }
     }
 
+    //TODO: Door Red ist kaputt
     //TODO: Mehr Content einbauen
     //TODO: Zufällig Weltgenerierung wäre schön. (Eher unwichtig)
     //TODO: Eure Collisionsboxen sind sehr merwürdig positioniert, sodass man erst sehr spät springen sollte, dass mindert den Spielspaß
