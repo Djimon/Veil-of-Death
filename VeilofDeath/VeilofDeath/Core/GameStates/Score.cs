@@ -27,7 +27,6 @@ namespace VeilofDeath.Core.GameStates
         private Texture2D background;
 
         SpriteBatch spriteBatch;
-        IGameState _callingGameState;
         private Vector2 GUI_Pos = new Vector2(1000, 20);
         private Vector2 GUI_Pos2 = new Vector2(960, 60);
         private Vector2 GUI_Pos3 = new Vector2(920, 100);

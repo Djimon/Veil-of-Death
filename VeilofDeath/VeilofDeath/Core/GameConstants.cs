@@ -16,10 +16,15 @@ namespace VeilofDeath.Core
         /// If on puts some outputs to the console
         /// </summary>
         public static bool isDebugMode = false;
-        //mandatory things        
+        
+        /// <summary>
+        /// Global Content Manager (MonoGame)
+        /// </summary>                   
         public static ContentManager Content;
 
-        // Camera and View
+        /// <summary>
+        /// Windowsize (width,height)
+        /// </summary>
         public static Vector2 WINDOWSIZE = new Vector2(1200, 700);
 
         #region camera variables
@@ -28,6 +33,9 @@ namespace VeilofDeath.Core
         /// fixed aspect ratio of the window
         /// </summary>
         public static float fAspectRatio = WINDOWSIZE.X / WINDOWSIZE.Y;
+        /// <summary>
+        /// Main Camera Object
+        /// </summary>
         public static Camera MainCam;
         public static int CameraAngle = 35;
         public static float CameraDistance = -20; //TODO: Fix staert of game is behind the Map
@@ -93,14 +101,25 @@ namespace VeilofDeath.Core
         /// </summary>
         public static int iDifficulty = 1; 
 
-        public static bool isCollided = false;
-
+        /// <summary>
+        /// Basic Score per Coin.
+        /// Will be heigher at harder difficulties
+        /// </summary>
         public static int ScorePerCoin = 25;
 
         public static Game currentGame;
+        /// <summary>
+        /// Global Font for TextObjects
+        /// </summary>
         public static SpriteFont lucidaConsole;
+        /// <summary>
+        /// Contains the information if the game is fully completed
+        /// </summary>
         internal static int iWinStatus = 0;
         internal static bool hasGameWon = false;
+        /// <summary>
+        /// Triggers the Quick-Rejoin function, when a level has to be redone
+        /// </summary>
         internal static bool isRetryQuickJoinOn = false;
 
         public static GraphicsDeviceManager Graphics { get; internal set; }
@@ -109,8 +128,6 @@ namespace VeilofDeath.Core
         public static float rotation = 0f;
         public static float rotationSpeed = 0.05f;
 
-        //variable for saving effect, which does ambient, diffuse, specular lightning
-        public static Effect lightEffect;
 
         #region Sound Variables
 

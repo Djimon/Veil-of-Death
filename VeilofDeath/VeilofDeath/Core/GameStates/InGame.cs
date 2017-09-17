@@ -47,10 +47,6 @@ namespace VeilofDeath.Core.GameStates
         PlayerController PController;
         AnimatedModel m_player;
 
-        public Matrix[] x_playerModelTransforms;
-        private Matrix x_projectionMatrix;
-        private Matrix x_viewMatrix;
-
         private Veil VeilofDeath;
 
         Vector2 GUI_Pos = new Vector2(1000, 20); 
@@ -146,13 +142,6 @@ namespace VeilofDeath.Core.GameStates
             LoadSoundMusic();            
 
             LoadPanel();
-
-            Console.WriteLine("Levels: \n" 
-                + GameManager.Instance.Score[0] + "," 
-                + GameManager.Instance.Score[1] + "," 
-                + GameManager.Instance.Score[2] + "," 
-                + GameManager.Instance.Score[3] );
-
         }
 
         private void LoadMapAndPlayer()
@@ -205,28 +194,11 @@ namespace VeilofDeath.Core.GameStates
 
         private void LoadSoundMusic()
         {
-            //GameConstants.CoinCollect = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/PickupCoin");
-            //GameConstants.Landing = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/LandAfterJump");
-            //GameConstants.CharactersJump = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/JumpHupHuman");
-            //GameConstants.HeartBeat = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/HBeat");
-            //GameConstants.ChangePhase = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Roaring");
-            //GameConstants.Winner = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Winner");
-            //GameConstants.TotalWinner = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/TotalWinner");
-            //GameConstants.Loser = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Loser");
-
-
-            //GameConstants.HBInstance = GameConstants.HeartBeat.CreateInstance();
-            //GameConstants.HBInstance.Volume = 0f;
-            //GameConstants.HBInstance.Play();
-
-            //SoundEffect.MasterVolume = GameConstants.Volume;
-
             music = GameConstants.Content.Load<Song>("Music/Background");
             MediaPlayer.Play(music);
             MediaPlayer.IsRepeating = true;
 
             MediaPlayer.Volume = GameConstants.Volume *2/3;
-
         }
 
         private void LoadPanel()
@@ -258,25 +230,6 @@ namespace VeilofDeath.Core.GameStates
             MainPanel.Add(peJumpA, new Vector2(0.15f, 0.2f));
             MainPanel.Add(peJumpB, new Vector2(0.15f, 0.2f));
             MainPanel.Add(ptJump, new Vector2(0.15f, 0.1f));
-        }
-
-        /// <summary>
-        /// Loads a Model from content pipeline via string
-        /// and apply a basic effect
-        /// </summary>
-        /// <param name="assetName">name of model in content pipeline (with path)</param>
-        /// <returns>Model</returns>
-        private Model LoadModel(string assetName)
-        {
-            Model newModel = GameConstants.Content.Load<Model>(assetName);
-            foreach (ModelMesh mesh in newModel.Meshes)
-            {
-                foreach (ModelMeshPart meshPart in mesh.MeshParts)
-                {
-                    //meshPart.Effect = basicEffect.Clone();
-                }
-            }
-            return newModel;
         }
 
         public void UnloadContent()
@@ -619,49 +572,6 @@ namespace VeilofDeath.Core.GameStates
         }
 
         #endregion
-
-        /// <summary>
-        /// Enables the default effect for the given model
-        /// </summary>
-        /// <param name="myModel">3D Model</param>
-        /// <returns>absolute bone transforms as Matrix[]</returns>
-        private Matrix[] SetupEffectDefaults(Model myModel)
-            {
-                Matrix[] absoluteTransforms = new Matrix[myModel.Bones.Count];
-                myModel.CopyAbsoluteBoneTransformsTo(absoluteTransforms);
-
-                foreach (ModelMesh mesh in myModel.Meshes)
-                {
-                    foreach (BasicEffect effect in mesh.Effects)
-                    {
-                        effect.EnableDefaultLighting();
-                        effect.Projection = x_projectionMatrix;
-                        effect.View = x_viewMatrix;
-                    }
-                }
-                return absoluteTransforms;
-            }
-
-        /// <summary>
-        /// Loads a Model from content pipeline via string
-        /// and apply a basic effect
-        /// </summary>
-        /// <param name="assetName">name of model in content pipeline (with path)</param>
-        /// <returns>Model</returns>
-        //private Model LoadModel(string assetName)
-        //{
-        //    Model newModel = GameConstants.Content.Load<Model>(assetName);
-
-        //    //foreach (ModelMesh mesh in newModel.Meshes)
-        //    //{
-        //    //    foreach (ModelMeshPart meshPart in mesh.MeshParts)
-        //    //    {
-        //    //        //meshPart.Effect = basicEffect.Clone();
-        //    //    }
-        //    //}
-
-        //    return newModel;
-        //}
 
         private bool reachedFinish()
             {

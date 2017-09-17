@@ -63,7 +63,7 @@ namespace VeilofDeath.Objects
                                       (this.iminZ <= other.imaxZ && this.imaxZ >= other.iminZ));
 
             /*
-            Console.WriteLine("Collision: " + GameConstants.isCollided);
+            Console.WriteLine("Collision: " + GameConstants.isCollided)
             Console.WriteLine("Player x: " + iminX + " y: " + iminY + " z: " + iminZ);
             Console.WriteLine("Trap x: " + other.imaxX + " y: " + other.imaxY + " z: " + other.imaxZ);
             */

@@ -43,7 +43,7 @@ namespace VeilofDeath.Core.GameStates
         //PanelElements for all Panels
         PanelElement ptConfirm, peEnter, ptBack, peEsc;
         // PanelElements for DifficultyPanel
-        PanelElement ptHeader, ptEasy, ptMedium, ptHard, ptExtreme,ptEasy2, ptMedium2, ptHard2, ptExtreme2, ptWarning;
+        PanelElement ptHeader, ptEasy, ptMedium, ptHard, ptExtreme,ptEasy2, ptMedium2, ptHard2, ptExtreme2;
         //PanelElements for VolumePanel
         PanelElement ptHeader2, ptVolume, ptPlus,ptMinus, pePlusMinus, peLine, peMarker;
         //PanelElements for ControlsPanel

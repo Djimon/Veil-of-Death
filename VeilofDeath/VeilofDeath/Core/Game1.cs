@@ -200,7 +200,6 @@ namespace VeilofDeath.Core
     //TODO: Zufällig Weltgenerierung wäre schön. (Eher unwichtig)
     //TODO: Eure Collisionsboxen sind sehr merwürdig positioniert, sodass man erst sehr spät springen sollte, dass mindert den Spielspaß
     //TODO: Im Menü kann man den Schwierigkeitsgrad einstellen aber es wird nciht der ausgewählte State gespeichert.
-    //TODO: Man startet manchmal im Boden und kann sich nicht mehr bewegen
     //TODO: Warum stirbt man in den späteren Level wenn man jeden die Wand läuft? - Ist das gewollt?
     //TODO: Manchmal wird kein Sound im Level abgespielt.
     //TODO: Über die rotierenden Säulen kann man rüber springen

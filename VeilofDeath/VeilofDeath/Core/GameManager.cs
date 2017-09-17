@@ -129,7 +129,9 @@ namespace VeilofDeath.Core
         public float[] fStageCleared = new float[GameConstants.iMaxLevel];
         public bool[] hasStoryRead = new bool[3];
 
-
+        /// <summary>
+        /// Resets all statistics
+        /// </summary>
         public void FlushStats()
         {
             this.DeathCounter = 0;
@@ -162,7 +164,9 @@ namespace VeilofDeath.Core
             iTimeBonus[Level] = 0;
             fStageCleared[Level] = 0;
         }
-
+        /// <summary>
+        /// Resets the whole game to beginning
+        /// </summary>
         public void ResetToLevel0()
         {
             Level = 0;
@@ -177,6 +181,9 @@ namespace VeilofDeath.Core
             Level++;
         }
 
+        /// <summary>
+        /// Controlls the phases of the veil
+        /// </summary>
         public void EnterNextPhase()
         {
             iPhase = Math.Min(1+iPhase, 4);
@@ -298,7 +305,7 @@ namespace VeilofDeath.Core
         /// <summary>
         /// Entschlüsselt einen String aus einem Byte-Array.
         /// </summary>
-        /// <param name="data">Das verscghlüsselte Byte-Array.</param>
+        /// <param name="data">Das verschlüsselte Byte-Array.</param>
         /// <returns>Entschlüsselter String.</returns>
         public string MakeReadable(byte[] data)
         {
@@ -332,12 +339,22 @@ namespace VeilofDeath.Core
             }
         }
 
+        /// <summary>
+        /// converts a byte array to a hex string
+        /// </summary>
+        /// <param name="ba">byte array</param>
+        /// <returns></returns>
         public static string ByteArrayToString(byte[] ba)
         {
             string hex = BitConverter.ToString(ba);
             return hex.Replace("-", "");
         }
 
+        /// <summary>
+        /// Converts a hex string to byte array
+        /// </summary>
+        /// <param name="hex">string in hex</param>
+        /// <returns></returns>
         public static byte[] StringToByteArray(String hex)
         {
             int NumberChars = hex.Length;
@@ -347,6 +364,9 @@ namespace VeilofDeath.Core
             return bytes;
         }
 
+        /// <summary>
+        /// Reads end decrypts the save file to load the game details
+        /// </summary>
         private void LoadAndDecryptSaveData()
         {
             StreamReader savereader = new StreamReader(awzmSvNm);
@@ -398,6 +418,9 @@ namespace VeilofDeath.Core
             File.Delete("~4426377.dz");
         }
 
+        /// <summary>
+        /// Writes all necessary save information of the game into a string and encrypts the save file
+        /// </summary>
         private void WriteAndEncryptSaveFile()
         {
             if (File.Exists(awzmSvNm))
