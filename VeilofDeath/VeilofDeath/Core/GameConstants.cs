@@ -95,7 +95,7 @@ namespace VeilofDeath.Core
         /// number of Traps in the Game
         /// </summary>
         public static int iTrapNumber = 4;
-        public const int iMaxLevel = 5;
+        public const int iMaxLevel = 6;
         /// <summary>
         /// Diificulty can be 1,2,3 or 4
         /// </summary>

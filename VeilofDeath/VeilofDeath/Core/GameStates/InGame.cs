@@ -110,7 +110,14 @@ namespace VeilofDeath.Core.GameStates
             GameConstants.MainCam.ResetCamera();
             GameConstants.fMovingSpeed = 1.5f + (0.25f * GameConstants.iDifficulty);
 
-            GameConstants.levelDictionary = LevelContent.LoadListContent<Model>(GameConstants.Content, "Models/Level"+GameManager.Instance.Level);
+            if (GameManager.Instance.Level < 2)
+                GameConstants.levelDictionary = LevelContent.LoadListContent<Model>(GameConstants.Content, "Models/Ebene0");
+            else if (GameManager.Instance.Level >= 2 && GameManager.Instance.Level < 4)
+                GameConstants.levelDictionary = LevelContent.LoadListContent<Model>(GameConstants.Content, "Models/Ebene1");
+            else if (GameManager.Instance.Level >= 4)
+                GameConstants.levelDictionary = LevelContent.LoadListContent<Model>(GameConstants.Content, "Models/Ebene2");
+
+
             foreach (KeyValuePair<string, Model> SM in GameConstants.levelDictionary)
             {
                 if (GameConstants.isDebugMode)

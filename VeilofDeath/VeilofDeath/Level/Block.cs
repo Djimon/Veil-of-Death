@@ -142,21 +142,21 @@ namespace VeilofDeath.Level
                         this.position = new Vector3(pos, GameConstants.fLevelHeight);
                         GameManager.Instance.AddRoll(new SpikeRoll(new Vector3(pos, -3f)));
                         this.isWalkable = true;
-                        this.isFree = false;
+                        this.isFree = true;
                         break;
                     }
                 case 7: //Door
                     {
                         this.m_Block = modelDictionary["ende"];
                         this.position = new Vector3(pos, GameConstants.fLevelHeight);
-                        this.isWalkable = true;
+                        this.isWalkable = false;
                         break;
                     }
-                case 8: //Falle 4
+                case 8: //Zelle
                     {
-                        this.m_Block = modelDictionary[""];
+                        this.m_Block = modelDictionary["Zelle"];
                         this.position = new Vector3(pos, GameConstants.fLevelHeight);
-                        this.isWalkable = true;
+                        this.isWalkable = false;
                         break;
                     }
             }      
