@@ -29,11 +29,11 @@ namespace VeilofDeath.Objects
             O_Parent = gameObject;
             iminX = gameObject.Position.X - GameConstants.iBlockSize / 4;
             iminY = gameObject.Position.Y - GameConstants.iBlockSize / 4;
-            iminZ = gameObject.Position.Z  ;
+            iminZ = gameObject.Position.Z;
             imaxX = gameObject.Position.X + GameConstants.iBlockSize / 4;
             imaxY = gameObject.Position.Y + GameConstants.iBlockSize / 4;
-            imaxZ = gameObject.Position.Z + GameConstants.iBlockSize ;
-            
+            imaxZ = gameObject.Position.Z + GameConstants.iBlockSize;
+
         }
 
         /*
@@ -71,17 +71,28 @@ namespace VeilofDeath.Objects
             return O_Parent.hasCollided;
         }
 
+
+        public void updatePlayer(AGameObject gameObject)
+        {
+            iminX = gameObject.Position.X + 0.2f - GameConstants.iBlockSize / 4;
+            iminY = gameObject.Position.Y + 0.2f - GameConstants.iBlockSize / 4;
+            iminZ = gameObject.Position.Z;
+            imaxX = gameObject.Position.X + 0.2f + GameConstants.iBlockSize / 4;
+            imaxY = gameObject.Position.Y + 0.2f + GameConstants.iBlockSize / 4;
+            imaxZ = gameObject.Position.Z + GameConstants.iBlockSize;
+        }
+
         /// <summary>
         /// updates bounding box of the object
         /// </summary>
         /// <param name="gameObject">object which bounding box should be updated</param>
-        public void update(AGameObject gameObject)
+        public void updateSpikeTrap(AGameObject gameObject)
         {
-            iminX = gameObject.Position.X - GameConstants.iBlockSize / 4;
-            iminY = gameObject.Position.Y - GameConstants.iBlockSize / 4;
+            iminX = gameObject.Position.X - 0.85f * GameConstants.iBlockSize / 4;
+            iminY = gameObject.Position.Y - 0.85f * GameConstants.iBlockSize / 4;
             iminZ = gameObject.Position.Z ;
-            imaxX = gameObject.Position.X + GameConstants.iBlockSize / 4;
-            imaxY = gameObject.Position.Y + GameConstants.iBlockSize / 4;
+            imaxX = gameObject.Position.X + 0.85f * GameConstants.iBlockSize / 4;
+            imaxY = gameObject.Position.Y + 0.85f * GameConstants.iBlockSize / 4;
             imaxZ = gameObject.Position.Z + GameConstants.iBlockSize;
         }
 
@@ -93,6 +104,16 @@ namespace VeilofDeath.Objects
             imaxX = gameObject.Position.X + GameConstants.iBlockSize / 4;
             imaxY = gameObject.Position.Y + GameConstants.iBlockSize / 4;
             imaxZ = gameObject.Position.Z + GameConstants.iBlockSize / 2;
+        }
+
+        public void updateSpikeRoll(AGameObject gameObject)
+        {
+            iminX = gameObject.Position.X - 0.9f * GameConstants.iBlockSize / 4;
+            iminY = gameObject.Position.Y - 0.9f * GameConstants.iBlockSize / 4;
+            iminZ = gameObject.Position.Z;
+            imaxX = gameObject.Position.X + 0.9f * GameConstants.iBlockSize / 4;
+            imaxY = gameObject.Position.Y + 0.9f * GameConstants.iBlockSize / 4;
+            imaxZ = gameObject.Position.Z + 3 * GameConstants.iBlockSize;
         }
 
 

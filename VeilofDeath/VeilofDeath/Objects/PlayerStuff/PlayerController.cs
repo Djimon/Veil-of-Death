@@ -120,7 +120,7 @@ namespace VeilofDeath.Objects.PlayerStuff
 
             if (character.isSliding)
             {
-                character.box.update(character);
+                character.box.updateSpikeTrap(character);
                 Console.Out.WriteLine("----------------------------Boundingbox Character Z-Max: "+character.box.imaxZ);
             }
                 
