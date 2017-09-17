@@ -127,7 +127,7 @@ namespace VeilofDeath.Core
         public int[] iCoinScore = new int[GameConstants.iMaxLevel];
         public int[] iTimeBonus = new int[GameConstants.iMaxLevel];
         public float[] fStageCleared = new float[GameConstants.iMaxLevel];
-        public bool[] hasStoryRead = new bool[3];
+        public bool[] hasStoryRead = new bool[4];
 
         /// <summary>
         /// Resets all statistics
@@ -174,6 +174,7 @@ namespace VeilofDeath.Core
             this.hasStoryRead[0] = false;
             this.hasStoryRead[1] = false;
             this.hasStoryRead[2] = false;
+            this.hasStoryRead[3] = false;
         }
 
         public void LevelUp()

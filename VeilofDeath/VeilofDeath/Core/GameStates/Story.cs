@@ -30,7 +30,7 @@ namespace VeilofDeath.Core.GameStates
             iLevel = level;
             Initialize();
             LoadContent();
-            if (iLevel != 0 && iLevel != 3 && GameConstants.iWinStatus != 1)
+            if (iLevel != 0 && iLevel != 2 && iLevel !=4 && GameConstants.iWinStatus != 1)
                 Continue();
 
             Console.WriteLine("instanciate story: " + iLevel + " won? : " + GameConstants.iWinStatus);
@@ -52,13 +52,13 @@ namespace VeilofDeath.Core.GameStates
             switch (iLevel)
             {
                 case 0:
-                    peHeader = new PanelElement(GameConstants.Content.Load<Texture2D>("Story/storyTest"), true);
+                    peHeader = new PanelElement(GameConstants.Content.Load<Texture2D>("Story/story0"), true);
                     break;
-                case 3:
-                    peHeader = new PanelElement(GameConstants.Content.Load<Texture2D>("Story/storyTest"), true);
+                case 2:
+                    peHeader = new PanelElement(GameConstants.Content.Load<Texture2D>("Story/story1"), true);
                     break;
-                case GameConstants.iMaxLevel:
-                    peHeader = new PanelElement(GameConstants.Content.Load<Texture2D>("Story/storyTest"), true);
+                case 4:
+                    peHeader = new PanelElement(GameConstants.Content.Load<Texture2D>("Story/story2"), true);
                     break;
                 default:
                     peHeader = new PanelElement(GameConstants.Content.Load<Texture2D>("Story/storyTest"), true);
@@ -84,20 +84,20 @@ namespace VeilofDeath.Core.GameStates
                     GameManager.Instance.hasStoryRead[0] = true;
                     Console.WriteLine("Story 1");
                 }          
-                if (iLevel == 3)
+                if (iLevel == 2)
                 {
                     Continue();
                     canLeave = true;
                     GameManager.Instance.hasStoryRead[1] = true;
                     Console.WriteLine("Story 2");
                 }
-                if (iLevel >= GameConstants.iMaxLevel || GameConstants.iWinStatus == 1)
+                if (iLevel == 4)
                 {
-                    newState = EState.GameOver;
+                    Continue();
                     canLeave = true;
                     GameManager.Instance.hasStoryRead[2] = true;
                     Console.WriteLine("Story 3");
-                }               
+                }            
             }            
 
             if (!isKeyPressed && Keyboard.GetState().IsKeyDown(Keys.Escape))

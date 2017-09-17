@@ -238,17 +238,20 @@ namespace VeilofDeath.Core.GameStates
                             GameConstants.MainCam.ResetCamera();
                             GameManager.Instance.iCoinScore[GameManager.Instance.Level] -= ilevelCoins * 1 / 2;
                             GameManager.Instance.LevelUp();
-                            if (GameManager.Instance.Level == 4 && ! GameManager.Instance.hasStoryRead[1])
-                              newState = EState.Story;
+                            if (GameManager.Instance.Level == 2 && !GameManager.Instance.hasStoryRead[1])
+                                newState = EState.Story;
+                            else if (GameManager.Instance.Level == 4 && !GameManager.Instance.hasStoryRead[2])
+                                newState = EState.Story;
                             else
-                              newState = EState.Ingame;
+                                newState = EState.Ingame;
+
                             canLeave = true;
                         }
                         else
                         {
                             GameConstants.iWinStatus = 1;
                             GameConstants.hasGameWon = true;
-                            newState = EState.Story;
+                            newState = EState.GameOver;
                             canLeave = true;
                         }
                         break;
