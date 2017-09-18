@@ -59,6 +59,8 @@ namespace VeilofDeath.Core.GameStates
 
         float fTimeDelta;
 
+        private Texture2D shadeLayer;
+
         #endregion
 
 
@@ -132,6 +134,18 @@ namespace VeilofDeath.Core.GameStates
             txVeil[2] = GameConstants.Content.Load<Texture2D>("GUI/veil_3");
 
             CalculateGUIPositions();
+
+            GameConstants.PointLightLayer = GameConstants.Content.Load<Effect>("FX/PointLightLayer");
+
+            shadeLayer = GameConstants.Content.Load<Texture2D>("Textures/shadeLayer");
+
+            GameConstants.renderTarget = new RenderTarget2D(
+                GameConstants.Graphics.GraphicsDevice,
+                GameConstants.Graphics.GraphicsDevice.PresentationParameters.BackBufferWidth,
+                GameConstants.Graphics.GraphicsDevice.PresentationParameters.BackBufferHeight,
+                false,
+                GameConstants.Graphics.GraphicsDevice.PresentationParameters.BackBufferFormat,
+                DepthFormat.Depth24);
         }
 
         private void CalculateGUIPositions()
@@ -474,22 +488,51 @@ namespace VeilofDeath.Core.GameStates
 
         #region draw methods
 
-        public void Draw(GameTime time)
+        public void DrawSceneToTexture(GameTime time)
         {
+            // Set the render target
+            GameConstants.Graphics.GraphicsDevice.SetRenderTarget(GameConstants.renderTarget);
+
+            GameConstants.Graphics.GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
+
+            // Draw the scene
+            GameConstants.Graphics.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.CornflowerBlue);
+
             //float t0 = time.ElapsedGameTime.Milliseconds;
             int GridY = (int)(Player.Position.Y - (GameConstants.iBlockSize / 2)) / GameConstants.iBlockSize;
-            if (testmap != null) 
-                testmap.Draw(GridY -6, GridY -7 + GameConstants.fFarClipPlane);
+            if (testmap != null)
+                testmap.Draw(GridY - 6, GridY - 7 + GameConstants.fFarClipPlane);
             //Console.WriteLine("Drawtime: "+ (time.ElapsedGameTime.Milliseconds - t0)+ " seconds");
 
             Player.Draw(time);
-            
+
             DrawObject();
 
             DrawGUI();
 
             if (!isStarted)
                 DrawReadyPanel();
+
+            // Drop the render target
+            GameConstants.Graphics.GraphicsDevice.SetRenderTarget(null);
+        }
+
+
+        public void Draw(GameTime time)
+        {
+            DrawSceneToTexture(time);
+
+            GameConstants.Graphics.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
+
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,
+                SamplerState.LinearWrap, DepthStencilState.Default,
+                RasterizerState.CullNone, GameConstants.PointLightLayer);
+
+            GameConstants.PointLightLayer.Parameters["PointLight"].SetValue(shadeLayer);
+
+            spriteBatch.Draw(GameConstants.renderTarget, new Microsoft.Xna.Framework.Rectangle(0, 0, 1200, 700), Microsoft.Xna.Framework.Color.White);
+
+            spriteBatch.End();
         }
 
         private void DrawReadyPanel()

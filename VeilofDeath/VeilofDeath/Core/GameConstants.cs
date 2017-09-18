@@ -128,6 +128,9 @@ namespace VeilofDeath.Core
         public static float rotation = 0f;
         public static float rotationSpeed = 0.05f;
 
+        public static RenderTarget2D renderTarget;
+        public static Effect PointLightLayer;
+
 
         #region Sound Variables
 
