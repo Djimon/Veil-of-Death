@@ -98,11 +98,11 @@ namespace VeilofDeath.Objects
         public void updatePlayer(AGameObject gameObject)
         {
             //TODO: drin lassen->  trotzdem constructor 2 mit factor = 0.85f
-            iminX = gameObject.Position.X + 0.2f - GameConstants.iBlockSize / 4;
-            iminY = gameObject.Position.Y + 0.2f - GameConstants.iBlockSize / 4;
+            iminX = gameObject.Position.X + 0.3f - GameConstants.iBlockSize / 4;
+            iminY = gameObject.Position.Y + 0.3f - GameConstants.iBlockSize / 4;
             iminZ = gameObject.Position.Z;
-            imaxX = gameObject.Position.X + 0.2f + GameConstants.iBlockSize / 4;
-            imaxY = gameObject.Position.Y + 0.2f + GameConstants.iBlockSize / 4;
+            imaxX = gameObject.Position.X + 0.3f + GameConstants.iBlockSize / 4;
+            imaxY = gameObject.Position.Y + 0.3f + GameConstants.iBlockSize / 4;
             imaxZ = gameObject.Position.Z + GameConstants.iBlockSize;
         }
 

@@ -27,7 +27,7 @@ namespace VeilofDeath.Objects.Traps
 
         public void Initialize()
         {
-            model = GameConstants.Content.Load<Model>("Models/holzwand2");
+            //model = GameConstants.Content.Load<Model>("Models/holzwand");
             box = new MyBoundingBox(this);
             //SwordBox = new MyBoundingBox(this);
         }

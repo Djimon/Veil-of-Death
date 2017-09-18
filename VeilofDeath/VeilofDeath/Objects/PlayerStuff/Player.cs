@@ -408,37 +408,42 @@ namespace VeilofDeath.Objects.PlayerStuff
 
         private void HandleBretts()
         {
-            foreach (BrettTrap brett in GameManager.Instance.getBrettList())
+            if (!isSliding)
             {
-
-                if (brett.Position.Y > (this.Position.Y + 2 * GameConstants.iBlockSize)
-                    || brett.Position.Y < (this.Position.Y - GameConstants.iBlockSize))
+                foreach (BrettTrap brett in GameManager.Instance.getBrettList())
                 {
-                    continue;
-                }
 
-                //if (this.box.intersect(brett.SwordBox))
-                //{
-                //    if (sword.isActive)
-                //    {
-                //        isHitting = true;
-                //    }
-                //}
+                    if (brett.Position.Y > (this.Position.Y + 2 * GameConstants.iBlockSize)
+                        || brett.Position.Y < (this.Position.Y - GameConstants.iBlockSize))
+                    {
+                        continue;
+                    }
 
-                if (this.box.intersect(brett.box))
-                {
-                    //if (sword.isActive)
-                    //{                       
-                    //    GameManager.Instance.DeleteBrett(brett);
-                    //    sword.iDurability--;
-                    //    if (sword.iDurability <= 0)
-                    //        sword.isActive = false;
-                    //    isHitting = false;
+                    //if (this.box.intersect(brett.SwordBox))
+                    //{
+                    //    if (sword.isActive)
+                    //    {
+                    //        isHitting = true;
+                    //    }
                     //}
-                    //else
-                      this.isDead = true;
+
+                    if (this.box.intersect(brett.box))
+                    {
+                        //if (sword.isActive)
+                        //{                       
+                        //    GameManager.Instance.DeleteBrett(brett);
+                        //    sword.iDurability--;
+                        //    if (sword.iDurability <= 0)
+                        //        sword.isActive = false;
+                        //    isHitting = false;
+                        //}
+                        //else
+                        Console.WriteLine("Collided Brett");
+                        this.isDead = true;
+                    }
                 }
             }
+            
         }
 
         #endregion
