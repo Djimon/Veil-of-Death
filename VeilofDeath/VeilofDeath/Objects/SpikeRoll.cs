@@ -34,7 +34,7 @@ namespace VeilofDeath.Objects
         public void Initialize()
         {
             model = GameConstants.Content.Load<Model>("Models/spikeroll");
-            box = new MyBoundingBox(this);
+            box = new MyBoundingBox(this, 0.9f, 3);
             rnd = new Random();
             fSpeed = Math.Min(0.08f *GameConstants.iDifficulty ,Math.Min((float) rnd.NextDouble(), 0.3f));
         }

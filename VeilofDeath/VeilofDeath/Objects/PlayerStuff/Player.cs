@@ -82,7 +82,7 @@ namespace VeilofDeath.Objects.PlayerStuff
         /// </summary>
         public void Initialize()
         {
-            box = new MyBoundingBox(this);
+            box = new MyBoundingBox(this, 0.85f);
             sword = new Sword();
             sword.isActive = false;
             sword.iDurability = Math.Max(1, 3 - GameConstants.iDifficulty);
@@ -252,7 +252,7 @@ namespace VeilofDeath.Objects.PlayerStuff
         /// </summary>
         protected void HandleCollision()
         {
-            //HandleSpikes();
+            HandleSpikes();
             HandleSlowtraps();
             HandleCoins();
             HandleSpikeRolls();

@@ -32,7 +32,7 @@ namespace VeilofDeath.Objects.Traps
         {
             fModelScale = 2;
             model = GameConstants.levelDictionary["stachelfalle"];
-            box = new MyBoundingBox(this);                   
+            box = new MyBoundingBox(this, 0.85f);                   
         }
 
         public void Interact()
