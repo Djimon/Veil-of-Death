@@ -87,6 +87,9 @@ namespace VeilofDeath.Core
             GameConstants.Loser = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Loser");
             GameConstants.Select = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Select");
             GameConstants.Switch = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Switch");
+            GameConstants.SpikeRoll = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/SpikeRoll");
+            GameConstants.SpikeTrap = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/SpikeTrap");
+            GameConstants.SpeedUp = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/SpeedUp");
 
             GameConstants.Sounds.Add(GameConstants.CoinCollect);
             GameConstants.Sounds.Add(GameConstants.Landing);
@@ -98,6 +101,9 @@ namespace VeilofDeath.Core
             GameConstants.Sounds.Add(GameConstants.Loser);
             GameConstants.Sounds.Add(GameConstants.Select);
             GameConstants.Sounds.Add(GameConstants.Switch);
+            GameConstants.Sounds.Add(GameConstants.SpikeRoll);
+            GameConstants.Sounds.Add(GameConstants.SpikeTrap);
+            GameConstants.Sounds.Add(GameConstants.SpeedUp);
 
             SoundEffect.MasterVolume = GameConstants.Volume;
 

@@ -48,6 +48,8 @@ namespace VeilofDeath.Level
         public static String SlightGrey = "ff909090"; // Zelle
         public static String Syellow = "ffffff00"; //BrettvormKopf
 
+        public static String sBrown = "";//Platz für Waffenhalter
+
         /// <summary>
         ///  <para>generates a map with random traps and the possibility of fixed traps ("taktische Falle")</para>
         /// 
@@ -139,6 +141,11 @@ namespace VeilofDeath.Level
                     {
                         map[row, col] = new Block(9, new Vector2(row * iBlockSize + scale, col * iBlockSize + scale));
                         // Zelle
+                    }
+                    else if (mask.GetPixel(row, col).Name == sBrown)
+                    {
+                        map[row, col] = new Block(10, new Vector2(row * iBlockSize + scale, col * iBlockSize + scale));
+                        // Waffenhalter
                     }
                     else
                     {

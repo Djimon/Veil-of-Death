@@ -144,6 +144,9 @@ namespace VeilofDeath.Core
         public static SoundEffect HeartBeat;
         public static SoundEffect Select;
         public static SoundEffect Switch;
+        public static SoundEffect SpikeRoll;
+        public static SoundEffect SpikeTrap;
+        public static SoundEffect SpeedUp;
 
         public static List<SoundEffect> Sounds = new List<SoundEffect>();
 

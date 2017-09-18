@@ -309,6 +309,8 @@ namespace VeilofDeath.Objects.PlayerStuff
 
                 if (this.box.intersect(trap.box))
                 {
+                    GameConstants.SpikeTrap.Play();
+
                     //GameConstants.currentGame.Exit();
                     if (GameConstants.isDebugMode)
                     {
@@ -335,6 +337,8 @@ namespace VeilofDeath.Objects.PlayerStuff
 
                 if (this.box.intersect(trap.box))
                 {
+                    GameConstants.SpikeRoll.Play();
+
                     //GameConstants.currentGame.Exit();
                     if (GameConstants.isDebugMode)
                     {
@@ -390,8 +394,10 @@ namespace VeilofDeath.Objects.PlayerStuff
 
                 if (this.box.intersect(lc[i].box))
                 {
-                    //if (GameConstants.isDebugMode)
+                    if (GameConstants.isDebugMode)
                         Console.WriteLine("SpeedBuff");
+					GameConstants.SpeedUp.Play();
+
                     GameManager.Instance.DeleteBuff(lc[i]);
                     this.isSpeeded = true;
                     speedtime = GameConstants.fSpeedTime;

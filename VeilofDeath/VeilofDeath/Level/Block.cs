@@ -167,6 +167,13 @@ namespace VeilofDeath.Level
                         this.isWalkable = false;
                         break;
                     }
+                case 10: //Waffenhalter
+                    {
+                        this.m_Block = modelDictionary["Waffenhalter"];
+                        this.position = new Vector3(pos, GameConstants.fLevelHeight);
+                        this.isWalkable = false;
+                        break;
+                    }
             }      
 
         }
