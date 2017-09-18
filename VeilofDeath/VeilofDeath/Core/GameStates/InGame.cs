@@ -180,7 +180,7 @@ namespace VeilofDeath.Core.GameStates
         private void LoadMapAndPlayer()
         {
             //load Model with Animation and Textures ( UV-Mapping)
-            m_player = new AnimatedModel(GameConstants.Content, "AnimatedModels/Playermodell", "AnimatedModels/MAINTEXTURE");
+            m_player = new AnimatedModel(GameConstants.Content, "AnimatedModels/PlayerModell", "AnimatedModels/MAINTEXTURE");
 
             //load Light-Shader for Ambient,Diffus,Specular Light
             //GameConstants.lightEffect = GameConstants.Content.Load<Effect>("FX/Test");
@@ -522,11 +522,6 @@ namespace VeilofDeath.Core.GameStates
 
             DrawObject();
 
-            DrawGUI();
-
-            if (!isStarted)
-                DrawReadyPanel();
-
             // Drop the render target
             GameConstants.Graphics.GraphicsDevice.SetRenderTarget(null);
         }
@@ -547,6 +542,11 @@ namespace VeilofDeath.Core.GameStates
             spriteBatch.Draw(GameConstants.renderTarget, new Microsoft.Xna.Framework.Rectangle(0, 0, 1200, 700), Microsoft.Xna.Framework.Color.White);
 
             spriteBatch.End();
+
+            DrawGUI();
+
+            if (!isStarted)
+                DrawReadyPanel();
         }
 
         private void DrawReadyPanel()

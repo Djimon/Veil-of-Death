@@ -288,6 +288,8 @@ namespace VeilofDeath.Objects.PlayerStuff
 
                 if (this.box.intersect(trap.box))
                 {
+                    GameConstants.SpikeTrap.Play();
+
                     //GameConstants.currentGame.Exit();
                     if (GameConstants.isDebugMode)
                     {
@@ -314,6 +316,8 @@ namespace VeilofDeath.Objects.PlayerStuff
 
                 if (this.box.intersect(trap.box))
                 {
+                    GameConstants.SpikeRoll.Play();
+
                     //GameConstants.currentGame.Exit();
                     if (GameConstants.isDebugMode)
                     {
@@ -369,6 +373,8 @@ namespace VeilofDeath.Objects.PlayerStuff
 
                 if (this.box.intersect(lc[i].box))
                 {
+                    GameConstants.SpeedUp.Play();
+
                     if (GameConstants.isDebugMode)
                         Console.WriteLine("Coin collected");
                     GameManager.Instance.DeleteBuff(lc[i]);
