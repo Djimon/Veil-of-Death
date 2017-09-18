@@ -174,7 +174,7 @@ namespace VeilofDeath.Core.GameStates
             temp.Add(GameConstants.Content.Load<Texture2D>("GUI/slowDown"));
             temp.Add(GameConstants.Content.Load<Texture2D>("GUI/speedUP")); //TODO: ersetze mit richtigem Icon
             GameManager.Instance.GUIFX = new GUIFlash(temp);
-            GameManager.Instance.GUIFX.EmitterLocation = new Vector2(GameConstants.WINDOWSIZE.X, GameConstants.WINDOWSIZE.Y);
+            GameManager.Instance.GUIFX.EmitterLocation = new Vector2(GameConstants.WINDOWSIZE.X/2, GameConstants.WINDOWSIZE.Y/2);
         }
 
         private void LoadMapAndPlayer()
@@ -280,6 +280,7 @@ namespace VeilofDeath.Core.GameStates
             {
                 UpdateRun(time);
                 isStarted = true;
+                isSetTime = false;
             }
             else
                 UpdateWarmUp(time);
@@ -377,6 +378,11 @@ namespace VeilofDeath.Core.GameStates
                 Player.Position.Y = GameManager.Instance.ZielPos.Y;
             }
 
+            if (Keyboard.GetState().IsKeyDown(Keys.M))
+            {
+                GameManager.Instance.GUIFX.SpawnSpeed();
+            }
+
         }
 
         private void UpdateSpikerolls()
@@ -425,7 +431,7 @@ namespace VeilofDeath.Core.GameStates
                 float temp = time.TotalGameTime.Minutes * 60 * 1000 + time.TotalGameTime.Seconds * 1000 + time.TotalGameTime.Milliseconds;
                 float fTimeRecord = GameManager.Instance.BestTime / (temp - t0);
 
-                if (fTimeRecord > 0.93f)
+                if (fTimeRecord > 0.93f || temp < t0)
                 {
                     //TODO: Feedback "+1000" über Spieler (Player-particleEnginge)
                     GameManager.Instance.iTimeBonus[GameManager.Instance.Level] = 1000;

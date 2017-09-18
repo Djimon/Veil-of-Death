@@ -77,7 +77,7 @@ namespace VeilofDeath.Objects
 
 
             if (time.TotalGameTime.Seconds % 2 == 0 && GameConstants.isDebugMode)
-                Console.WriteLine(GameManager.Instance.iPhase);
+                Console.WriteLine("Phase " + GameManager.Instance.iPhase);
 
             HandleCurse();
 
@@ -137,7 +137,7 @@ namespace VeilofDeath.Objects
         private Vector2[] CalculatePositions(int iPhase)
         {
             Vector2[] P = new Vector2[4];
-            Console.WriteLine(iPhase);
+            //Console.WriteLine(iPhase);
             switch (iPhase)
             {
                 case 1:

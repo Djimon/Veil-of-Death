@@ -134,7 +134,6 @@ namespace VeilofDeath.Objects.PlayerStuff
             if (isSpeeded)
             {
                 speedtime--;
-
                 if (speedtime <= 0)
                     isSpeeded = false;
             }
@@ -373,12 +372,16 @@ namespace VeilofDeath.Objects.PlayerStuff
 
                 if (this.box.intersect(lc[i].box))
                 {
-                    GameConstants.SpeedUp.Play();
-
                     if (GameConstants.isDebugMode)
-                        Console.WriteLine("Coin collected");
+                        Console.WriteLine("SpeedBuff");
+					GameConstants.SpeedUp.Play();
+
                     GameManager.Instance.DeleteBuff(lc[i]);
                     this.isSpeeded = true;
+                    speedtime = GameConstants.fSpeedTime;
+                    GameManager.Instance.GUIFX.SpawnSpeed();
+                    GameManager.Instance.GUIFX.SpawnSpeed();
+                    GameManager.Instance.GUIFX.SpawnSpeed();
                     GameManager.Instance.GUIFX.SpawnSpeed();
                 }
             }

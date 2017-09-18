@@ -54,7 +54,7 @@ namespace VeilofDeath.Core
             if (this.Level >= 0)
             {
                 WriteAndEncryptSaveFile();
-                Console.WriteLine("Game saved");
+                //Console.WriteLine("Game saved");
             }
 
         }
@@ -66,7 +66,7 @@ namespace VeilofDeath.Core
             if (File.Exists(awzmSvNm))
             {
                 LoadAndDecryptSaveData();
-                Console.WriteLine("Game loaded");
+                //Console.WriteLine("Game loaded");
             }
             else
             {
@@ -391,10 +391,10 @@ namespace VeilofDeath.Core
         private void LoadAndDecryptSaveData()
         {
             StreamReader savereader = new StreamReader(awzmSvNm);
-            Console.WriteLine(savereader.ToString());
+            //Console.WriteLine(savereader.ToString());
             string decoded = MakeReadable(StringToByteArray(savereader.ReadLine()));
             savereader.Close();
-            Console.WriteLine(decoded);
+            //Console.WriteLine(decoded);
             StreamWriter tmp1 = new StreamWriter("~4426377.dz");
             tmp1.Write(decoded);
             tmp1.Close();
@@ -405,7 +405,7 @@ namespace VeilofDeath.Core
             {
                 char[] delimiter = { ':', ';' };
                 maxL = int.Parse(tmp2.ReadLine());
-                Console.WriteLine("Loaded internal Savings:");
+                Console.WriteLine("Loaded Savefile:");
                 GameConstants.Volume = float.Parse(tmp2.ReadLine());
                 Console.WriteLine("Volume = " + GameConstants.Volume);
                 GameConstants.iDifficulty = int.Parse(tmp2.ReadLine());
@@ -465,11 +465,11 @@ namespace VeilofDeath.Core
             }
             savestring += (this.fVeilDistance.ToString()) + "\n";
             savestring += (this.DeathCounter.ToString()) + "\n";
-            Console.WriteLine(savestring);
+            //Console.WriteLine(savestring);
             savewriter.Write(ByteArrayToString(MakeUnreadable(savestring)));
-            Console.WriteLine(savewriter);
+            //Console.WriteLine(savewriter);
             savewriter.Close();
-            Console.WriteLine("Saved...");
+            Console.WriteLine("Game Saved...");
         }
 
         public GUIFlash GUIFX;

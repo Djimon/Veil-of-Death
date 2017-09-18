@@ -64,6 +64,7 @@ namespace VeilofDeath.SpecialFX
                 if (particles.Count <= 0)
                 {
                     hasSpawned = false;
+                    //Console.WriteLine(" all particle depsawned..................");
                 }                
             }            
         }
@@ -111,20 +112,21 @@ namespace VeilofDeath.SpecialFX
             return Spawnparticle(position, texture);
         }
 
-        private Particle Spawnparticle(Vector2 position, Texture2D tex)
+        private Particle Spawnparticle(Vector2 position, Texture2D tex, bool moveUp = true)
         {
-            Vector2 velocity = new Vector2(0f , (moveUp ? 1f : -1f));
-            //velocity += attraction;
+            Vector2 velocity = new Vector2(1f , (moveUp ? 1f : -1f));
+            velocity += attraction;
             if (tex == null)
                 GameConstants.Content.Load<Texture2D>("Panels/void");
 
             float angle = 0;
-            float angularVelocity = 0f;
+            float angularVelocity = 1f;
             float brghtness = (float)random.NextDouble();
             Color color = new Color(brghtness, brghtness, brghtness, brghtness);
-            float size = 0.1f;
-            int ttl = (int)lifetime * 100;
-
+            float size = 1f;
+            int ttl = (int)lifetime * 100;            
+            //Console.WriteLine("particle spawned.. at: " + position.X + ":" + position.Y);
+            //Console.WriteLine("with: " + tex.Name.ToString());
             return new Particle(tex, position, velocity, angle, angularVelocity, Color.White, size, ttl);
         }
     }
