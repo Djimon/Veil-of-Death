@@ -35,6 +35,29 @@ namespace VeilofDeath.Objects
             imaxZ = gameObject.Position.Z + GameConstants.iBlockSize;
 
         }
+        public MyBoundingBox(AGameObject gameObject, float factor)
+        {
+            O_Parent = gameObject;
+            iminX = gameObject.Position.X - factor * GameConstants.iBlockSize / 4;
+            iminY = gameObject.Position.Y - factor * GameConstants.iBlockSize / 4;
+            iminZ = gameObject.Position.Z;
+            imaxX = gameObject.Position.X + factor * GameConstants.iBlockSize / 4;
+            imaxY = gameObject.Position.Y + factor * GameConstants.iBlockSize / 4;
+            imaxZ = gameObject.Position.Z + GameConstants.iBlockSize;
+
+        }
+
+        public MyBoundingBox(AGameObject gameObject, float factor, float Z)
+        {
+            O_Parent = gameObject;
+            iminX = gameObject.Position.X - factor * GameConstants.iBlockSize / 4;
+            iminY = gameObject.Position.Y - factor * GameConstants.iBlockSize / 4;
+            iminZ = gameObject.Position.Z;
+            imaxX = gameObject.Position.X + factor * GameConstants.iBlockSize / 4;
+            imaxY = gameObject.Position.Y + factor * GameConstants.iBlockSize / 4;
+            imaxZ = gameObject.Position.Z + Z * GameConstants.iBlockSize;
+
+        }
 
         /*
         public MyBoundingBox(SpikeTrap trap)
@@ -74,6 +97,7 @@ namespace VeilofDeath.Objects
 
         public void updatePlayer(AGameObject gameObject)
         {
+            //TODO: drin lassen->  trotzdem constructor 2 mit factor = 0.85f
             iminX = gameObject.Position.X + 0.2f - GameConstants.iBlockSize / 4;
             iminY = gameObject.Position.Y + 0.2f - GameConstants.iBlockSize / 4;
             iminZ = gameObject.Position.Z;
@@ -88,6 +112,7 @@ namespace VeilofDeath.Objects
         /// <param name="gameObject">object which bounding box should be updated</param>
         public void updateSpikeTrap(AGameObject gameObject)
         {
+            //TODO: is fest -> constructor 2 mit factor = 0.85f
             iminX = gameObject.Position.X - 0.85f * GameConstants.iBlockSize / 4;
             iminY = gameObject.Position.Y - 0.85f * GameConstants.iBlockSize / 4;
             iminZ = gameObject.Position.Z ;
@@ -98,16 +123,18 @@ namespace VeilofDeath.Objects
 
         public void updateSlide(AGameObject gameObject)
         {
+            //TODO: ist fest -> nutze Konstruktur 3 mit (factor = 1 und Z = 0.5)
             iminX = gameObject.Position.X - GameConstants.iBlockSize / 4;
             iminY = gameObject.Position.Y - GameConstants.iBlockSize / 4;
             iminZ = gameObject.Position.Z;
             imaxX = gameObject.Position.X + GameConstants.iBlockSize / 4;
             imaxY = gameObject.Position.Y + GameConstants.iBlockSize / 4;
-            imaxZ = gameObject.Position.Z + GameConstants.iBlockSize / 2;
+            imaxZ = gameObject.Position.Z + 0.5f * GameConstants.iBlockSize ;
         }
 
         public void updateSpikeRoll(AGameObject gameObject)
         {
+            //TODO: drin lassen->  trotzdem constructor 3 mit factor = 0.9f, Z = 3
             iminX = gameObject.Position.X - 0.9f * GameConstants.iBlockSize / 4;
             iminY = gameObject.Position.Y - 0.9f * GameConstants.iBlockSize / 4;
             iminZ = gameObject.Position.Z;

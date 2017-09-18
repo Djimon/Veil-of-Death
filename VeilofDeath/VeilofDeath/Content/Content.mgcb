@@ -1740,3 +1740,21 @@
 /processorParam:TextureFormat=Color
 /build:Models/holzz.png
 
+#begin Music/SoundEffects/SpeedUp.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/SoundEffects/SpeedUp.mp3
+
+#begin Music/SoundEffects/SpikeRoll.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/SoundEffects/SpikeRoll.mp3
+
+#begin Music/SoundEffects/SpikeTrap.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/SoundEffects/SpikeTrap.mp3
+
