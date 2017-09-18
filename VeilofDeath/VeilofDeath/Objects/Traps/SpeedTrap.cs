@@ -30,7 +30,7 @@ namespace VeilofDeath.Objects.Traps
 
         public void Initialize()
         {
-            model = GameConstants.Content.Load<Model>("Models/cube");
+            model = GameConstants.Content.Load<Model>("Models/speedUP");
             box = new MyBoundingBox(this);
             effect = GameConstants.Content.Load<Effect>("Shader/Transparency");
         }

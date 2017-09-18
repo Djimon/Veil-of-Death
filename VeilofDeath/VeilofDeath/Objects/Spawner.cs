@@ -45,7 +45,7 @@ namespace VeilofDeath.Objects
 
 
         /// <summary>
-        /// main method to place Coins in the level in dependene of the generated map and free spaces
+        /// main method to place Coins and power ups in the level in dependene of the generated map and free spaces
         /// </summary>
         /// <param name="map">block matrix of the actual map</param>
         public void PlaceCoins(Block[,] map)
@@ -54,7 +54,7 @@ namespace VeilofDeath.Objects
             {
                 if (B.blockType == 0
                     && B.isFree
-                    && B.position.Y > 2 * GameConstants.iBlockSize)
+                    && B.position.Y > GameManager.Instance.StartPos.Y + 4 * GameConstants.iBlockSize)
                 {
                     freePos.Add(B);
                     if (rnd.NextDouble() >= 0.8)
@@ -93,14 +93,14 @@ namespace VeilofDeath.Objects
             } /* foreach (Block B in map) */
 
             if (GameConstants.isDebugMode)
-                Console.WriteLine("Coins placed: " +GameManager.Instance.getCoinList().Count);
+                Console.WriteLine("Coins placed: " + GameManager.Instance.getCoinList().Count);
         }
 
         private void SpawnSpeed(Vector3 position)
         {
-            if (GameManager.Instance.getSpeedList().Count < Math.Min( 1 + GameManager.Instance.Level, 4))
+            if (GameManager.Instance.getSpeedList().Count < Math.Min( GameManager.Instance.Level, 4))
             {
-                GameManager.Instance.AddSpeed(new SpeedTrap(new Vector3(position.X, position.Y, 1)));
+                GameManager.Instance.AddSpeed(new SpeedTrap(new Vector3(position.X, position.Y, -1f)));
                 Console.WriteLine("speedup at " + position);
             }
                 
