@@ -90,7 +90,6 @@ namespace VeilofDeath.Core.GameStates
                         ptJump, // description jump
                         peJumpA, // Jump anim state 1
                         peJumpB; // jump anim state 2
-                        
 
 
         public InGame(int Level)
@@ -111,6 +110,7 @@ namespace VeilofDeath.Core.GameStates
             oldKeyboardState = new KeyboardState();
             GameConstants.MainCam.ResetCamera();
             GameConstants.fMovingSpeed = 1.5f + (0.25f * GameConstants.iDifficulty);
+            GameConstants.fSpeedTime = 350 - (50 * GameConstants.iDifficulty);
 
             if (GameManager.Instance.Level < 2)
                 GameConstants.levelDictionary = LevelContent.LoadListContent<Model>(GameConstants.Content, "Models/Ebene0");
@@ -163,6 +163,18 @@ namespace VeilofDeath.Core.GameStates
             LoadSoundMusic();            
 
             LoadPanel();
+
+            LoadGUIeffects();
+        }
+
+        private void LoadGUIeffects()
+        {
+            List<Texture2D> temp = new List<Texture2D>();
+            temp.Add(GameConstants.Content.Load<Texture2D>("GUI/speedUp"));
+            temp.Add(GameConstants.Content.Load<Texture2D>("GUI/slowDown"));
+            temp.Add(GameConstants.Content.Load<Texture2D>("GUI/speedUP")); //TODO: ersetze mit richtigem Icon
+            GameManager.Instance.GUIFX = new GUIFlash(temp);
+            GameManager.Instance.GUIFX.EmitterLocation = new Vector2(GameConstants.WINDOWSIZE.X, GameConstants.WINDOWSIZE.Y);
         }
 
         private void LoadMapAndPlayer()
@@ -342,6 +354,8 @@ namespace VeilofDeath.Core.GameStates
             UpdateCheating();
 
             UpdateFinishLine(time);
+
+            GameManager.Instance.GUIFX.Update(time);
 
             VeilofDeath.Update(time);
 
@@ -562,6 +576,11 @@ namespace VeilofDeath.Core.GameStates
                 sr.Draw();
             }
 
+            foreach (SpeedTrap st in GameManager.Instance.getSpeedList())
+            {
+                st.Draw();
+            }
+
         }
 
 
@@ -608,6 +627,8 @@ namespace VeilofDeath.Core.GameStates
             // Vorlage: // spriteBatch.Draw(texture, position, color)
             spriteBatch.DrawString(GameConstants.lucidaConsole, " Score: " + GameManager.Instance.score,
                 GUI_Pos, Microsoft.Xna.Framework.Color.White);
+
+            GameManager.Instance.GUIFX.Draw(spriteBatch);
 
             // GUI
             spriteBatch.Draw(txLine, new Vector2(1, 1), Microsoft.Xna.Framework.Color.White);

@@ -30,6 +30,8 @@ namespace VeilofDeath.Objects.PlayerStuff
         /// </summary>
         public bool isJumping = false;
 
+        private float speedtime = GameConstants.fSpeedTime;
+
         /// <summary>
         /// triggers the Sliding animation
         /// </summary>
@@ -41,6 +43,7 @@ namespace VeilofDeath.Objects.PlayerStuff
         Vector2 S;
         float a;
         float afterJumpY;
+        private bool isSpeeded;
 
 
         //public Quaternion Rotation;
@@ -128,6 +131,14 @@ namespace VeilofDeath.Objects.PlayerStuff
         /// </summary>
         public void Move(Map map)
         {
+            if (isSpeeded)
+            {
+                speedtime--;
+
+                if (speedtime <= 0)
+                    isSpeeded = false;
+            }
+
             Velocity = Vector3.Zero;
             if (isJumping)
             {
@@ -135,7 +146,11 @@ namespace VeilofDeath.Objects.PlayerStuff
             }
 
             if (CheckFrontIsWalkable(map))
-                Velocity = isSlowed ? fSpeed / 5 * Vector3.Up : fSpeed * Vector3.Up;
+                Velocity = isSlowed ? 
+                            fSpeed / 5 * Vector3.Up : 
+                           isSpeeded? 
+                            fSpeed *1.5f *Vector3.Up :
+                           fSpeed * Vector3.Up;
 
             Position += Velocity;
 
@@ -227,6 +242,7 @@ namespace VeilofDeath.Objects.PlayerStuff
             HandleSlowtraps();
             HandleCoins();
             HandleSpikeRolls();
+            HandleSpeedtraps();
         }
 
         private void HandleCoins()
@@ -332,8 +348,33 @@ namespace VeilofDeath.Objects.PlayerStuff
                     if (GameConstants.isDebugMode)
                         Console.WriteLine("Slowdown");
                     this.isSlowed = true;
+                    GameManager.Instance.GUIFX.SpawnSlow();
                 }
 
+            }
+        }
+
+        private void HandleSpeedtraps()
+        {
+            List<SpeedTrap> lc = GameManager.Instance.getSpeedList();
+            // in einer foreach kann ich nciht löschen
+            // For schleife von hinten nach vorne, da dann selbst bei einer löschung der Index korrekt blebit
+            for (int i = lc.Count - 1; i >= 0; i--)
+            {
+                if (lc[i].Position.Y > (this.Position.Y + 2f * GameConstants.iBlockSize)
+                    || lc[i].Position.Y < (this.Position.Y - 1.5 * GameConstants.iBlockSize))
+                {
+                    continue;
+                }
+
+                if (this.box.intersect(lc[i].box))
+                {
+                    if (GameConstants.isDebugMode)
+                        Console.WriteLine("Coin collected");
+                    GameManager.Instance.DeleteBuff(lc[i]);
+                    this.isSpeeded = true;
+                    GameManager.Instance.GUIFX.SpawnSpeed();
+                }
             }
         }
 

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using VeilofDeath.Core;
 using VeilofDeath.Level;
 using VeilofDeath.Objects;
+using VeilofDeath.Objects.Traps;
 
 namespace VeilofDeath.Objects
 {
@@ -82,11 +83,27 @@ namespace VeilofDeath.Objects
                         }
 
                     } /* if if (rnd.NextDouble() >= 0.85) */
+
+                    if (rnd.NextDouble() <= 0.008)
+                    {
+                        SpawnSpeed(B.position);
+                    } 
+
                 } /* if (B.blockType == 0 */
             } /* foreach (Block B in map) */
 
             if (GameConstants.isDebugMode)
                 Console.WriteLine("Coins placed: " +GameManager.Instance.getCoinList().Count);
+        }
+
+        private void SpawnSpeed(Vector3 position)
+        {
+            if (GameManager.Instance.getSpeedList().Count < Math.Min( 1 + GameManager.Instance.Level, 4))
+            {
+                GameManager.Instance.AddSpeed(new SpeedTrap(new Vector3(position.X, position.Y, 1)));
+                Console.WriteLine("speedup at " + position);
+            }
+                
         }
 
         /// <summary>

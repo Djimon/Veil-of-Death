@@ -119,18 +119,18 @@ namespace VeilofDeath.Objects
 
 
             /*******************************
-               RAWING THE SCRENE SHRINKING   
+               DRAWING THE SCRENE SHRINKING   
              *******************************/
             
             SB.Draw(Left, pos[1], Color.White);
             SB.Draw(Right, pos[2], Color.White);
             SB.Draw(Top, pos[0], Color.White);
             SB.Draw(Bottom, pos[3], Color.White);
-
-            foreach (Vector2 XX in pos)
-            {
-                Console.WriteLine(XX.ToString());
-            }
+           
+            //foreach (Vector2 XX in pos)
+            //{
+            //    Console.WriteLine(XX.ToString());
+            //}
             
         }
 

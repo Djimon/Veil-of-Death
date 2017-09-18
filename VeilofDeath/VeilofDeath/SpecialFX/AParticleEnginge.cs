@@ -19,7 +19,6 @@ namespace VeilofDeath.SpecialFX
 
         public float lifetime { get;  set;}
 
-
         public virtual void Update(GameTime gt)
         {
             float x = 1000 / total;
