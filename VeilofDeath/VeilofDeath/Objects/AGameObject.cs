@@ -56,10 +56,6 @@ namespace VeilofDeath.Objects
                 {
                     effect.EnableDefaultLighting();
 
-                    effect.DirectionalLight0.DiffuseColor = new Vector3(1, 1, 1); // a red light
-                    effect.DirectionalLight0.Direction = new Vector3(-1, 0, -1);  // coming along the x-axis
-                    effect.DirectionalLight0.SpecularColor = new Vector3(0.2f, 0.2f, 0.2f); // with green highlights
-
                     effect.AmbientLightColor = new Vector3(0f, 0f, 0f);
                     effect.EmissiveColor = new Vector3(0.15f, 0.15f, 0.0f);
 

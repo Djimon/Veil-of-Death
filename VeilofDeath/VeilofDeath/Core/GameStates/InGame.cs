@@ -49,7 +49,8 @@ namespace VeilofDeath.Core.GameStates
 
         private Veil VeilofDeath;
 
-        Vector2 GUI_Pos = new Vector2(1000, 20); 
+        Vector2 GUI_Pos = new Vector2(1000, 20);
+        Vector2 GUI_Pos2 = new Vector2(1000, 650);
         Vector2 GUI_Stuff = new Vector2(100, 400); 
 
         Texture2D txLine, txPlayer;
@@ -516,7 +517,7 @@ namespace VeilofDeath.Core.GameStates
             GameConstants.Graphics.GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
 
             // Draw the scene
-            GameConstants.Graphics.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.CornflowerBlue);
+            GameConstants.Graphics.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
 
             //float t0 = time.ElapsedGameTime.Milliseconds;
             int GridY = (int)(Player.Position.Y - (GameConstants.iBlockSize / 2)) / GameConstants.iBlockSize;
@@ -587,6 +588,11 @@ namespace VeilofDeath.Core.GameStates
                 st.Draw();
             }
 
+            foreach (BrettTrap bt in GameManager.Instance.getBrettList())
+            {
+                bt.Draw();
+            }
+
         }
 
 
@@ -631,8 +637,11 @@ namespace VeilofDeath.Core.GameStates
 
 
             // Vorlage: // spriteBatch.Draw(texture, position, color)
-            spriteBatch.DrawString(GameConstants.lucidaConsole, " Score: " + GameManager.Instance.score,
-                GUI_Pos, Microsoft.Xna.Framework.Color.White);
+            spriteBatch.DrawString(GameConstants.lucidaConsole, "Score: " + GameManager.Instance.score,
+                GUI_Pos2, Microsoft.Xna.Framework.Color.White);
+            if(Player.GetSword().isActive)
+                spriteBatch.DrawString(GameConstants.lucidaConsole, "Sword Durability: " + Player.GetSword().iDurability,
+                    GUI_Pos2, Microsoft.Xna.Framework.Color.White);
 
             GameManager.Instance.GUIFX.Draw(spriteBatch);
 

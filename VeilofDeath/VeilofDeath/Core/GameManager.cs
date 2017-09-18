@@ -32,6 +32,8 @@ namespace VeilofDeath.Core
 
         private const string awzmSvNm = "LCA00x88.wza";
 
+        public GUIFlash GUIFX;
+
         public GameManager()
         {
            
@@ -86,6 +88,8 @@ namespace VeilofDeath.Core
             SlowList.Clear();
             CoinList.Clear();
             RollList.Clear();
+            SpeedList.Clear();
+            BrettList.Clear();
             ResetScore();
             ResetPhase();
         }
@@ -214,6 +218,22 @@ namespace VeilofDeath.Core
         List<Coin> CoinList = new List<Coin>();
         List<SpikeRoll> RollList = new List<SpikeRoll>();
         List<SpeedTrap> SpeedList = new List<SpeedTrap>();
+        List<BrettTrap> BrettList = new List<BrettTrap>();
+
+        public List<BrettTrap> getBrettList()
+        {
+            return BrettList;
+        }
+
+        public void AddBrett(BrettTrap brett)
+        {
+            BrettList.Add(brett);
+        }
+
+        public void DeleteBrett(BrettTrap B)
+        {
+            BrettList.Remove(B);
+        }
 
         public List<SpeedTrap> getSpeedList()
         {
@@ -227,7 +247,6 @@ namespace VeilofDeath.Core
 
         public void DeleteBuff(SpeedTrap s)
         {
-            //GameConstants.CoinCollect.Play();
             SpeedList.Remove(s);
         }
 
@@ -276,6 +295,8 @@ namespace VeilofDeath.Core
         {
             return RollList;
         }
+
+        #region Verschlüsselung und Entschlüsselung: Save 'n' Load
 
         private readonly byte[] key = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 };
         private readonly byte[] iv = new byte[] { 65, 110, 68, 26, 69, 178, 200, 219 };
@@ -472,7 +493,8 @@ namespace VeilofDeath.Core
             Console.WriteLine("Game Saved...");
         }
 
-        public GUIFlash GUIFX;
+        #endregion
+
 
     }
 }

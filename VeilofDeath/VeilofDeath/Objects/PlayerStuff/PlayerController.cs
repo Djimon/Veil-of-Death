@@ -99,7 +99,12 @@ namespace VeilofDeath.Objects.PlayerStuff
             if (!character.isSliding && !isDownPressed && isDownPressed)
                 character.AniModel.BlendToAnimationPart("Slide");
 
-            // return to the run animation
+            //if (character.isHitting)
+            //    character.AniModel.BlendToAnimationPart("Hit");
+
+            //if (character.reachedBrett)
+            //    character.isHitting = false;
+
 
             // jump -> run, then setting isOnGround true, otherwise we cannot return to the run animation
 

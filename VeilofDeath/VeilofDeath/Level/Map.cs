@@ -46,6 +46,7 @@ namespace VeilofDeath.Level
         public static String sCyan = "ff00ffff"; // spikerolll
         public static String sDarkGreen = "ff004000"; // Door
         public static String SlightGrey = "ff909090"; // Zelle
+        public static String Syellow = "ffffff00"; //BrettvormKopf
 
         /// <summary>
         ///  <para>generates a map with random traps and the possibility of fixed traps ("taktische Falle")</para>
@@ -61,6 +62,7 @@ namespace VeilofDeath.Level
         ///  <para>Scyan      = "ff008080" taktische Falle 2          true      </para>
         ///  <para>Sdarkgreen = "ff004000" door                       true      </para>
         ///  <para>SlightGrey = "ff909090" Zelle                      false     </para>
+        ///  <para>syellow    = "ffffff00" Brett (vorm Kopp)          false     </para>
         ///  
         ///  <para>Sred is default.                                       </para>
         /// </summary>
@@ -131,6 +133,11 @@ namespace VeilofDeath.Level
                     else if (mask.GetPixel(row, col).Name == SlightGrey)
                     {
                         map[row, col] = new Block(8, new Vector2(row * iBlockSize + scale, col * iBlockSize + scale));
+                        // Zelle
+                    }
+                    else if (mask.GetPixel(row, col).Name == Syellow)
+                    {
+                        map[row, col] = new Block(9, new Vector2(row * iBlockSize + scale, col * iBlockSize + scale));
                         // Zelle
                     }
                     else

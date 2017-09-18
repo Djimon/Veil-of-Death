@@ -76,6 +76,7 @@
     <Compile Include="Core\Program.cs" />
     <Compile Include="Objects\IStaticEntity.cs" />
     <Compile Include="Objects\SpikeRoll.cs" />
+    <Compile Include="Objects\Traps\BrettTrap.cs" />
     <Compile Include="Objects\Traps\SlowTrap.cs" />
     <Compile Include="Objects\Traps\SpeedTrap.cs" />
     <Compile Include="Objects\Traps\SpikeTrap.cs" />

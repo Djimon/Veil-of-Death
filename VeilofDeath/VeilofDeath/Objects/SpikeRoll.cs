@@ -51,7 +51,7 @@ namespace VeilofDeath.Objects
 
         public void Update(Map map)
         {
-            fAngle++;
+            fAngle += 0.5f + fSpeed;
             Move(map);
             box.updateSpikeRoll(this);
         }
@@ -98,7 +98,7 @@ namespace VeilofDeath.Objects
 
                     effect.World = GameConstants.MainCam.X_World *
                                    Matrix.CreateScale(fModelScale) *
-                                   (Matrix.CreateFromAxisAngle(rotationAxis, GameConstants.rotation) *
+                                   (Matrix.CreateFromAxisAngle(rotationAxis, fAngle) *
                                    Matrix.CreateTranslation(this.Position));
                     effect.View = GameConstants.MainCam.X_View;
                     effect.Projection = GameConstants.MainCam.X_Projection;

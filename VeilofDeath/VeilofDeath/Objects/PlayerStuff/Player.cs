@@ -14,6 +14,12 @@ using VeilofDeath.Objects.Traps;
 
 namespace VeilofDeath.Objects.PlayerStuff
 {
+    public struct Sword
+    {
+        public bool isActive;
+        public int iDurability;
+    }
+
      public class Player : AGameObject,ILivingEntity
     {
 
@@ -38,6 +44,12 @@ namespace VeilofDeath.Objects.PlayerStuff
         public bool isSliding = false;
 
         public bool isSlowed = false;
+
+        private Sword  sword;
+        public bool isHitting = false;
+        public bool reachedBrett = false;
+        public void GiveSword() {sword.isActive = true;}
+        public Sword GetSword() { return sword; }
 
         // Scheitelpunkt-Form für Sprung-Kurve
         Vector2 S;
@@ -71,6 +83,9 @@ namespace VeilofDeath.Objects.PlayerStuff
         public void Initialize()
         {
             box = new MyBoundingBox(this);
+            sword = new Sword();
+            sword.isActive = false;
+            sword.iDurability = Math.Max(1, 3 - GameConstants.iDifficulty);
         }
 
         #endregion
@@ -242,6 +257,13 @@ namespace VeilofDeath.Objects.PlayerStuff
             HandleCoins();
             HandleSpikeRolls();
             HandleSpeedtraps();
+            HandleBretts();
+            HandleWeaponRack();
+        }
+
+        private void HandleWeaponRack()
+        {
+            
         }
 
         private void HandleCoins()
@@ -374,9 +396,41 @@ namespace VeilofDeath.Objects.PlayerStuff
                     this.isSpeeded = true;
                     speedtime = GameConstants.fSpeedTime;
                     GameManager.Instance.GUIFX.SpawnSpeed();
-                    GameManager.Instance.GUIFX.SpawnSpeed();
-                    GameManager.Instance.GUIFX.SpawnSpeed();
-                    GameManager.Instance.GUIFX.SpawnSpeed();
+                }
+            }
+        }
+
+        private void HandleBretts()
+        {
+            foreach (BrettTrap brett in GameManager.Instance.getBrettList())
+            {
+
+                if (brett.Position.Y > (this.Position.Y + 2 * GameConstants.iBlockSize)
+                    || brett.Position.Y < (this.Position.Y - GameConstants.iBlockSize))
+                {
+                    continue;
+                }
+
+                //if (this.box.intersect(brett.SwordBox))
+                //{
+                //    if (sword.isActive)
+                //    {
+                //        isHitting = true;
+                //    }
+                //}
+
+                if (this.box.intersect(brett.box))
+                {
+                    //if (sword.isActive)
+                    //{                       
+                    //    GameManager.Instance.DeleteBrett(brett);
+                    //    sword.iDurability--;
+                    //    if (sword.iDurability <= 0)
+                    //        sword.isActive = false;
+                    //    isHitting = false;
+                    //}
+                    //else
+                      this.isDead = true;
                 }
             }
         }
