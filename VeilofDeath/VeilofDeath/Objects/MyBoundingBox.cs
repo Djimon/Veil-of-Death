@@ -110,27 +110,27 @@ namespace VeilofDeath.Objects
         /// updates bounding box of the object
         /// </summary>
         /// <param name="gameObject">object which bounding box should be updated</param>
-        public void updateSpikeTrap(AGameObject gameObject)
-        {
-            //TODO: is fest -> constructor 2 mit factor = 0.85f
-            iminX = gameObject.Position.X - 0.85f * GameConstants.iBlockSize / 4;
-            iminY = gameObject.Position.Y - 0.85f * GameConstants.iBlockSize / 4;
-            iminZ = gameObject.Position.Z ;
-            imaxX = gameObject.Position.X + 0.85f * GameConstants.iBlockSize / 4;
-            imaxY = gameObject.Position.Y + 0.85f * GameConstants.iBlockSize / 4;
-            imaxZ = gameObject.Position.Z + GameConstants.iBlockSize;
-        }
+        //public void updateSpikeTrap(AGameObject gameObject)
+        //{
+        //    //TODO: is fest -> constructor 2 mit factor = 0.85f
+        //    iminX = gameObject.Position.X - 0.85f * GameConstants.iBlockSize / 4;
+        //    iminY = gameObject.Position.Y - 0.85f * GameConstants.iBlockSize / 4;
+        //    iminZ = gameObject.Position.Z ;
+        //    imaxX = gameObject.Position.X + 0.85f * GameConstants.iBlockSize / 4;
+        //    imaxY = gameObject.Position.Y + 0.85f * GameConstants.iBlockSize / 4;
+        //    imaxZ = gameObject.Position.Z + GameConstants.iBlockSize;
+        //}
 
-        public void updateSlide(AGameObject gameObject)
-        {
-            //TODO: ist fest -> nutze Konstruktur 3 mit (factor = 1 und Z = 0.5)
-            iminX = gameObject.Position.X - GameConstants.iBlockSize / 4;
-            iminY = gameObject.Position.Y - GameConstants.iBlockSize / 4;
-            iminZ = gameObject.Position.Z;
-            imaxX = gameObject.Position.X + GameConstants.iBlockSize / 4;
-            imaxY = gameObject.Position.Y + GameConstants.iBlockSize / 4;
-            imaxZ = gameObject.Position.Z + 0.5f * GameConstants.iBlockSize ;
-        }
+        //public void updateSlide(AGameObject gameObject)
+        //{
+        //    //TODO: ist fest -> nutze Konstruktur 3 mit (factor = 1 und Z = 0.5)
+        //    iminX = gameObject.Position.X - GameConstants.iBlockSize / 4;
+        //    iminY = gameObject.Position.Y - GameConstants.iBlockSize / 4;
+        //    iminZ = gameObject.Position.Z;
+        //    imaxX = gameObject.Position.X + GameConstants.iBlockSize / 4;
+        //    imaxY = gameObject.Position.Y + GameConstants.iBlockSize / 4;
+        //    imaxZ = gameObject.Position.Z + 0.5f * GameConstants.iBlockSize ;
+        //}
 
         public void updateSpikeRoll(AGameObject gameObject)
         {
