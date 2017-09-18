@@ -163,13 +163,13 @@ namespace VeilofDeath.Level
                     {
                         this.m_Block = modelDictionary["wegStone"];
                         this.position = new Vector3(pos, GameConstants.fLevelHeight);
-                        GameManager.Instance.AddBrett(new BrettTrap(new Vector3(pos, -3f)));
+                        GameManager.Instance.AddBrett(new BrettTrap(new Vector3(pos, 3f)));
                         this.isWalkable = false;
                         break;
                     }
                 case 10: //Waffenhalter
                     {
-                        this.m_Block = modelDictionary["Waffenhalter"];
+                        this.m_Block = modelDictionary["weg"];
                         this.position = new Vector3(pos, GameConstants.fLevelHeight);
                         this.isWalkable = false;
                         break;

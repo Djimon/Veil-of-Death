@@ -47,8 +47,7 @@ namespace VeilofDeath.Level
         public static String sDarkGreen = "ff004000"; // Door
         public static String SlightGrey = "ff909090"; // Zelle
         public static String Syellow = "ffffff00"; //BrettvormKopf
-
-        public static String sBrown = "";//Platz für Waffenhalter
+        public static String sBrown = "ff802000";//Platz für Waffenhalter
 
         /// <summary>
         ///  <para>generates a map with random traps and the possibility of fixed traps ("taktische Falle")</para>
@@ -65,6 +64,7 @@ namespace VeilofDeath.Level
         ///  <para>Sdarkgreen = "ff004000" door                       true      </para>
         ///  <para>SlightGrey = "ff909090" Zelle                      false     </para>
         ///  <para>syellow    = "ffffff00" Brett (vorm Kopp)          false     </para>
+        ///  <para>Sbrown     = "" Waffenhalter                       false</para>
         ///  
         ///  <para>Sred is default.                                       </para>
         /// </summary>

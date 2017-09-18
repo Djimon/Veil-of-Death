@@ -252,7 +252,7 @@ namespace VeilofDeath.Objects.PlayerStuff
         /// </summary>
         protected void HandleCollision()
         {
-            HandleSpikes();
+            //HandleSpikes();
             HandleSlowtraps();
             HandleCoins();
             HandleSpikeRolls();
