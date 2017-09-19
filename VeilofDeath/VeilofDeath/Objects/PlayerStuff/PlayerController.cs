@@ -62,7 +62,7 @@ namespace VeilofDeath.Objects.PlayerStuff
                     isLeftPressed = true;
                 }
             }
-            if (!character.isJumping && !isSpacePressed && currentKeyboardState.IsKeyDown(Keys.Space) &&
+            if (!character.isJumping && !character.isSliding && !isSpacePressed && currentKeyboardState.IsKeyDown(Keys.Space) &&
                 !oldKeyboardState.IsKeyDown(Keys.Space))
             {
                 //character.Position.Z += 1 * GameConstants.iBlockSize;
@@ -70,7 +70,7 @@ namespace VeilofDeath.Objects.PlayerStuff
                 isSpacePressed = true;
             }
 
-            if (!character.isSliding && !isDownPressed && currentKeyboardState.IsKeyDown(Keys.LeftShift) &&
+            if (!character.isSliding && !character.isJumping && !isDownPressed && currentKeyboardState.IsKeyDown(Keys.LeftShift) &&
                 !oldKeyboardState.IsKeyDown(Keys.LeftShift))
             {
                 character.isSliding = true;
@@ -93,10 +93,10 @@ namespace VeilofDeath.Objects.PlayerStuff
 
             // first events for the animations
 
-            if (!character.isJumping && isSpacePressed)
-                character.AniModel.BlendToAnimationPart("Jump");
+            //if (!character.isJumping && isSpacePressed)
+            //    character.AniModel.BlendToAnimationPart("Jump");
 
-            if (!character.isSliding && isDownPressed)
+            if (character.isSliding && isDownPressed)
                 character.AniModel.BlendToAnimationPart("Slide");
 
             //if (character.isHitting)
@@ -108,10 +108,14 @@ namespace VeilofDeath.Objects.PlayerStuff
 
             // jump -> run, then setting isOnGround true, otherwise we cannot return to the run animation
 
-            if (character.Position.Z <= 0.2f && !isOnGround)
-            {
-                character.AniModel.BlendToAnimationPart("Run");
-            }
+            Console.WriteLine("----------------------------------------------------------------");
+            Console.WriteLine("Z: "+ character.Position.Z);
+            Console.WriteLine("bool: " + !isOnGround);
+
+            //if (character.Position.Z >= 0.4f && !isOnGround)
+            //{
+            //    character.AniModel.BlendToAnimationPart("Run");
+            //}
 
             if (character.Position.Z <= 0.2f && !character.isJumping)
 

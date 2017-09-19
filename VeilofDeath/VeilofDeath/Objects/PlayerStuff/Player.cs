@@ -369,16 +369,26 @@ namespace VeilofDeath.Objects.PlayerStuff
                 }
 
                 if (this.box.intersect(slow.box))
-                { 
-
+                {
                     if (GameConstants.isDebugMode)
                         Console.WriteLine("Slowdown");
                     this.isSlowed = true;
                     GameManager.Instance.GUIFX.SpawnSlow();
                 }
 
+                if (this.box.intersect(slow.box) && !GameConstants.isPlayedSlowTrap)
+                {
+                    GameConstants.isPlayedSlowTrap = true;
+                    GameConstants.SlowTrap.Play();
+                    GameConstants.TrapPosY = slow.Position.Y;
+                }
+
             }
 
+            if (GameConstants.TrapPosY < (this.Position.Y) && !(GameConstants.TrapPosY > (this.Position.Y - 2f)) && GameConstants.isPlayedSlowTrap )
+            {
+                GameConstants.isPlayedSlowTrap = false;
+            }
         }
 
         private void HandleSpeedtraps()

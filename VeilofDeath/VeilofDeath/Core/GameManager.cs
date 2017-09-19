@@ -185,6 +185,23 @@ namespace VeilofDeath.Core
         public void LevelUp()
         {
             Level++;
+
+            Random rand = new Random();
+
+            double choice = rand.NextDouble();
+
+            if (choice <= 0.5)
+            {
+                MediaPlayer.Play(GameConstants.music1);
+            }
+            else
+            {
+                MediaPlayer.Play(GameConstants.music2);
+            }
+            MediaPlayer.IsRepeating = true;
+
+            MediaPlayer.Volume = GameConstants.Volume * 2 / 3;
+
         }
 
         /// <summary>

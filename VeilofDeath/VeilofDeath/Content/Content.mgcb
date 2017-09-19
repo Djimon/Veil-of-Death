@@ -1738,18 +1738,6 @@
 /processorParam:Quality=Best
 /build:Music/SoundEffects/SpikeTrap.mp3
 
-#begin Models/wegTex.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Models/wegTex.png
-
 #begin Models/Ebene1/Weaponrack.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1810,4 +1798,10 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Music/SoundEffects/EvilLaugh.mp3
+
+#begin Music/BackgroundMusic2.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/BackgroundMusic2.mp3
 

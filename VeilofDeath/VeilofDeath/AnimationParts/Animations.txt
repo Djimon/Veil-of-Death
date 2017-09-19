@@ -15,7 +15,7 @@ Jump
 Start = 19;
 StartLoop = 19;
 End = 39;
-Duration = 1;
+Duration = 0.3;
 ForwardBackward = false;
 Loop = false;
 }

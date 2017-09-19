@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 using VeilofDeath.Objects;
+using VeilofDeath.Objects.Traps;
 
 namespace VeilofDeath.Core
 {
@@ -160,6 +161,12 @@ namespace VeilofDeath.Core
 
         public static bool isPlayedAtmosphere = false;
         public static float savedSeconds;
+
+        public static Song music1;
+        public static Song music2;
+
+        public static bool isPlayedSlowTrap = false;
+        public static float TrapPosY;
 
         #endregion
     }

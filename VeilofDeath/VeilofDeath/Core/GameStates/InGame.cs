@@ -228,8 +228,21 @@ namespace VeilofDeath.Core.GameStates
 
         private void LoadSoundMusic()
         {
-            music = GameConstants.Content.Load<Song>("Music/Background");
-            MediaPlayer.Play(music);
+            GameConstants.music1 = GameConstants.Content.Load<Song>("Music/Background");
+            GameConstants.music2 = GameConstants.Content.Load<Song>("Music/BackgroundMusic2");
+
+            Random rand = new Random();
+
+            double choice = rand.NextDouble();
+
+            if (choice <= 0.5)
+            {
+                MediaPlayer.Play(GameConstants.music1);
+            }
+            else
+            {
+                MediaPlayer.Play(GameConstants.music2);
+            }
             MediaPlayer.IsRepeating = true;
 
             MediaPlayer.Volume = GameConstants.Volume *2/3;
