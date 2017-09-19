@@ -93,10 +93,10 @@ namespace VeilofDeath.Objects.PlayerStuff
 
             // first events for the animations
 
-            if (character.isJumping && isSpacePressed)
+            if (!character.isJumping && isSpacePressed)
                 character.AniModel.BlendToAnimationPart("Jump");
 
-            if (character.isSliding && isDownPressed)
+            if (!character.isSliding && isDownPressed)
                 character.AniModel.BlendToAnimationPart("Slide");
 
             //if (character.isHitting)
