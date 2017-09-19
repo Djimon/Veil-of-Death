@@ -369,7 +369,8 @@ namespace VeilofDeath.Objects.PlayerStuff
                 }
 
                 if (this.box.intersect(slow.box))
-                {
+                { 
+
                     if (GameConstants.isDebugMode)
                         Console.WriteLine("Slowdown");
                     this.isSlowed = true;
@@ -377,6 +378,7 @@ namespace VeilofDeath.Objects.PlayerStuff
                 }
 
             }
+
         }
 
         private void HandleSpeedtraps()

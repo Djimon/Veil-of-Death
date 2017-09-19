@@ -90,6 +90,10 @@ namespace VeilofDeath.Core
             GameConstants.SpikeRoll = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/SpikeRoll");
             GameConstants.SpikeTrap = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/SpikeTrap");
             GameConstants.SpeedUp = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/SpeedUp");
+            GameConstants.SlowTrap = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/SlowTrap");
+            GameConstants.Slide = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/Slide");
+            GameConstants.EvilLaugh = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/EvilLaugh");
+            GameConstants.AtmosphereSound = GameConstants.Content.Load<SoundEffect>("Music/SoundEffects/AtmosphereSound");
 
             GameConstants.Sounds.Add(GameConstants.CoinCollect);
             GameConstants.Sounds.Add(GameConstants.Landing);
@@ -104,6 +108,10 @@ namespace VeilofDeath.Core
             GameConstants.Sounds.Add(GameConstants.SpikeRoll);
             GameConstants.Sounds.Add(GameConstants.SpikeTrap);
             GameConstants.Sounds.Add(GameConstants.SpeedUp);
+            GameConstants.Sounds.Add(GameConstants.SlowTrap);
+            GameConstants.Sounds.Add(GameConstants.Slide);
+            GameConstants.Sounds.Add(GameConstants.EvilLaugh);
+            GameConstants.Sounds.Add(GameConstants.AtmosphereSound);
 
             SoundEffect.MasterVolume = GameConstants.Volume;
 

@@ -93,10 +93,10 @@ namespace VeilofDeath.Objects.PlayerStuff
 
             // first events for the animations
 
-            if (!character.isJumping && !isSpacePressed && isSpacePressed)
+            if (character.isJumping && isSpacePressed)
                 character.AniModel.BlendToAnimationPart("Jump");
 
-            if (!character.isSliding && !isDownPressed && isDownPressed)
+            if (character.isSliding && isDownPressed)
                 character.AniModel.BlendToAnimationPart("Slide");
 
             //if (character.isHitting)
@@ -123,11 +123,11 @@ namespace VeilofDeath.Objects.PlayerStuff
                 character.isSliding = false;
             }
 
-            if (character.isSliding)
-            {
-                //character.box.updatePlayer();
-                Console.Out.WriteLine("----------------------------Boundingbox Character Z-Max: "+character.box.imaxZ);
-            }
+            //if (character.isSliding)
+            //{
+            //    //character.box.updatePlayer();
+            //    Console.Out.WriteLine("----------------------------Boundingbox Character Z-Max: "+character.box.imaxZ);
+            //}
                 
             
 
@@ -190,6 +190,7 @@ namespace VeilofDeath.Objects.PlayerStuff
         private void slide()
         {
             SlideEndPos = character.Position.Y + 3 * GameConstants.iBlockSize;
+            GameConstants.Slide.Play();
         }
 
         /// <summary>

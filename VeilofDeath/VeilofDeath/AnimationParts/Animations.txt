@@ -22,9 +22,9 @@ Loop = false;
 
 Slide
 {
-Start = 50;
-StartLoop = 50;
-End = 64;
+Start = 51;
+StartLoop = 51;
+End = 58;
 Duration = 1;
 ForwardBackward = false;
 Loop = false;

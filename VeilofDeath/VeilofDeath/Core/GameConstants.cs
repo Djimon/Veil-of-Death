@@ -147,12 +147,19 @@ namespace VeilofDeath.Core
         public static SoundEffect SpikeRoll;
         public static SoundEffect SpikeTrap;
         public static SoundEffect SpeedUp;
+        public static SoundEffect SlowTrap;
+        public static SoundEffect Slide;
+        public static SoundEffect EvilLaugh;
+        public static SoundEffect AtmosphereSound;
 
         public static List<SoundEffect> Sounds = new List<SoundEffect>();
 
         public static float Volume = 0.75f; // 1 = 100%
         internal static float fSpeedTime = 350 - (50 * iDifficulty);
         //public static SoundEffectInstance HBInstance;
+
+        public static bool isPlayedAtmosphere = false;
+        public static float savedSeconds;
 
         #endregion
     }

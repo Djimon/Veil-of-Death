@@ -107,7 +107,8 @@ namespace VeilofDeath.Core.GameStates
                 GameManager.Instance.Save();
                 newState = EState.Statistics;
                 canLeave = true;
-
+                GameConstants.savedSeconds = 0;
+                GameConstants.isPlayedAtmosphere = false;
             }
         }
 
@@ -138,6 +139,8 @@ namespace VeilofDeath.Core.GameStates
                 newState = EState.MainMenu;
                 canLeave = true;
                 GameConstants.isRetryQuickJoinOn = false;
+                GameConstants.savedSeconds = 0;
+                GameConstants.isPlayedAtmosphere = false;
             }
 
         }

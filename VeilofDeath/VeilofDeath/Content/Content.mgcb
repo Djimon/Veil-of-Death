@@ -43,7 +43,6 @@
 #begin Fonts/Lucida Console.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Lucida Console.spritefont
 
@@ -1709,37 +1708,6 @@
 /processorParam:TextureFormat=Color
 /build:Textures/shadeLayer.png
 
-#begin Models/holzwand2.fbx
-/importer:FbxImporter
-/processor:ModelProcessor
-/processorParam:ColorKeyColor=0,0,0,0
-/processorParam:ColorKeyEnabled=True
-/processorParam:DefaultEffect=BasicEffect
-/processorParam:GenerateMipmaps=True
-/processorParam:GenerateTangentFrames=False
-/processorParam:PremultiplyTextureAlpha=True
-/processorParam:PremultiplyVertexColors=True
-/processorParam:ResizeTexturesToPowerOfTwo=False
-/processorParam:RotationX=0
-/processorParam:RotationY=0
-/processorParam:RotationZ=0
-/processorParam:Scale=2.4
-/processorParam:SwapWindingOrder=False
-/processorParam:TextureFormat=Compressed
-/build:Models/holzwand2.fbx
-
-#begin Models/holzz.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Models/holzz.png
-
 #begin Music/SoundEffects/SpeedUp.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
@@ -1757,4 +1725,34 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Music/SoundEffects/SpikeTrap.mp3
+
+#begin ../../../../../Ablage/Slide.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:../../../../../Ablage/Slide.mp3
+
+#begin Music/SoundEffects/SlowTrap.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/SoundEffects/SlowTrap.mp3
+
+#begin Music/SoundEffects/Slide.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/SoundEffects/Slide.mp3
+
+#begin Music/SoundEffects/AtmosphereSound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/SoundEffects/AtmosphereSound.mp3
+
+#begin Music/SoundEffects/EvilLaugh.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/SoundEffects/EvilLaugh.mp3
 

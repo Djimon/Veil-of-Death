@@ -351,6 +351,8 @@ namespace VeilofDeath.Core.GameStates
             //update Animation
             m_player.Update(time);
 
+            updateRandomSound(time);
+
             UpdateScore();
 
             UpdateCheating();
@@ -503,7 +505,37 @@ namespace VeilofDeath.Core.GameStates
             } /*else (if (Player.isDead))*/
         }
 
+        private void updateRandomSound(GameTime time)
+        {
+            float seconds = time.TotalGameTime.Seconds;
 
+            Random rand = new Random();
+
+            double temp = rand.NextDouble();
+
+            if (seconds % 10 == 0 && !GameConstants.isPlayedAtmosphere)
+            {
+
+                GameConstants.savedSeconds = seconds;
+
+                if (temp <= 0.1)
+                {
+                    GameConstants.isPlayedAtmosphere = true;
+                    GameConstants.EvilLaugh.Play();
+                }
+                else if(temp <= 0.5 && temp > 0.1)
+                {
+                    GameConstants.isPlayedAtmosphere = true;
+                    GameConstants.AtmosphereSound.Play();
+                }
+            }
+
+            if (GameConstants.savedSeconds + 27 < seconds)
+            {
+                GameConstants.isPlayedAtmosphere = false;
+            }
+
+        }
 
         #endregion
 
