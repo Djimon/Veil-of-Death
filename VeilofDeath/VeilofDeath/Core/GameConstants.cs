@@ -38,12 +38,12 @@ namespace VeilofDeath.Core
         /// Main Camera Object
         /// </summary>
         public static Camera MainCam;
-        public static int CameraAngle = 35;
-        public static float CameraDistance = 55; //TODO: Fix staert of game is behind the Map
+        public static int CameraAngle = 23;
+        public static float CameraDistance = 50; //TODO: Fix staert of game is behind the Map
         /// <summary>
         /// fixed window size width
         /// </summary>
-        public static float fCameraHeight = 7;
+        public static float fCameraHeight = 10f;
         /// <summary>
         /// Belongs to the Camera View Distance
         /// </summary>

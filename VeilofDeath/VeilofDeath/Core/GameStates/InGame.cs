@@ -138,7 +138,8 @@ namespace VeilofDeath.Core.GameStates
 
             GameConstants.PointLightLayer = GameConstants.Content.Load<Effect>("FX/PointLightLayer");
 
-            shadeLayer = GameConstants.Content.Load<Texture2D>("Textures/shadeLayer");
+            //shadeLayer = GameConstants.Content.Load<Texture2D>("Textures/shadeLayer");
+            shadeLayer = GameConstants.Content.Load<Texture2D>("Textures/layer");
 
             GameConstants.renderTarget = new RenderTarget2D(
                 GameConstants.Graphics.GraphicsDevice,

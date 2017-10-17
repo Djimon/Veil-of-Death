@@ -137,10 +137,10 @@ namespace VeilofDeath.Core
         {
             if (!isTargetSet) return;
 
-            camTarget = target.Position ; 
+            camTarget = new Vector3(target.Position.X, target.Position.Y, target.Position.Z + 8); 
             camPos += new Vector3(0, target.Velocity.Y ,0);
 
-            Vector3 targetVector = new Vector3(GameConstants.fLaneCenter, target.Position.Y, 0f);
+            Vector3 targetVector = new Vector3(GameConstants.fLaneCenter, camTarget.Y, 3f);
             x_view = Matrix.CreateLookAt(camPos,targetVector,UP );
 
         }
